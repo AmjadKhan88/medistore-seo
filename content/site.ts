@@ -47,20 +47,76 @@ export const keywords = [
 ];
 
 export const features = [
-  { title: "Medicine Inventory", description: "Batch-aware stock records for tablets, syrups, injections, medical supplies, and controlled medicine workflows.", icon: Pill },
-  { title: "Patient Records", description: "Maintain patient medicine history, repeat purchase notes, prescription references, and pharmacy service context.", icon: Users },
-  { title: "Billing and POS", description: "Fast checkout, discounts, tax-ready invoices, returns, and cashier-friendly medical POS screens.", icon: CreditCard },
-  { title: "Stock Alerts", description: "Low stock reminders, reorder points, vendor follow-ups, and daily purchase planning for busy pharmacies.", icon: Bell },
-  { title: "Expiry Tracking", description: "Find near-expiry medicine by batch, rack, supplier, and category before it becomes dead inventory.", icon: BadgeCheck },
-  { title: "Analytics and Reports", description: "Track revenue, gross margin, inventory turnover, patient demand, and slow-moving SKUs.", icon: BarChart3 },
-  { title: "Secure Authentication", description: "Redirect users to your existing protected dashboard while the website remains SEO-focused.", icon: Lock },
-  { title: "Role Management", description: "Support owner, pharmacist, cashier, inventory manager, and accountant responsibilities in the app.", icon: ShieldCheck },
-  { title: "Prescription Tracking", description: "Link prescriptions, medicine instructions, and purchase trails for cleaner pharmacy operations.", icon: FileText },
-  { title: "Barcode Support", description: "Prepare scanning flows for faster item lookup, fewer billing mistakes, and cleaner stock counts.", icon: QrCode },
-  { title: "Medical Reports", description: "Daily closing, medicine movement, expiry summaries, purchase ledgers, and performance reports.", icon: Activity },
-  { title: "Cloud Backup", description: "Cloud-first data access that keeps medical shop operations available across devices.", icon: Cloud },
-  { title: "Supplier Control", description: "Track vendors, purchases, returns, payable balances, and repeat ordering patterns.", icon: Boxes },
-  { title: "Clinic Ready", description: "Useful for clinic dispensaries, hospital pharmacies, and multi-counter medicine shops.", icon: Stethoscope }
+  {
+    title: "Medicine Inventory",
+    description: "Add medicines with batch numbers, expiry dates, generic names, dosage forms and strength. Get instant low-stock and expiry alerts.",
+    icon: Pill,
+  },
+  {
+    title: "Patient Records",
+    description: "Complete patient profiles with medical history, allergies, blood group and outstanding balance tracking. Share read-only portal link with patients.",
+    icon: Users,
+  },
+  {
+    title: "Billing & Invoices",
+    description: "Create professional invoices in seconds. Support for cash, JazzCash, EasyPaisa and card. Thermal 58mm/80mm and A4 invoice templates.",
+    icon: CreditCard,
+  },
+  {
+    title: "Expiry Alerts",
+    description: "Automatic weekly email and push notification digest every Monday. See expired, expiring in 30 days and low stock in one report. Export to PDF.",
+    icon: BadgeCheck,
+  },
+  {
+    title: "Digital Prescriptions",
+    description: "Write digital prescriptions with dosage, frequency and duration. Print A5 letterhead PDF. Convert prescription to invoice in one click.",
+    icon: FileText,
+  },
+  {
+    title: "Appointment Tracking",
+    description: "Schedule patient visits with time slots. Record vital signs, diagnosis and medicines given during each visit. Monthly calendar view included.",
+    icon: Activity,
+  },
+  {
+    title: "Lab Test Tracking",
+    description: "Order and track CBC, blood sugar, X-ray and 30+ common tests. Enter panel results with H/L flags. Upload result PDF or image to Cloudinary.",
+    icon: Stethoscope,
+  },
+  {
+    title: "Supplier Management",
+    description: "Full supplier database with payment history, outstanding balances, delivery performance score and star ratings. Track which supplier provides which medicines.",
+    icon: Boxes,
+  },
+  {
+    title: "Purchase Orders",
+    description: "Create orders for suppliers, receive stock and track payments. Auto-updates medicine inventory when order is received.",
+    icon: ShieldCheck,
+  },
+  {
+    title: "Reports & Analytics",
+    description: "Revenue trends, top-selling medicines, top patients by spending. Filter by any date range. Export as branded PDF or CSV spreadsheet.",
+    icon: BarChart3,
+  },
+  {
+    title: "AI Medicine Assistant",
+    description: "Powered by Google Gemini and Groq. Ask about side effects, drug interactions, dosages. Auto-fill medicine details. Smart reorder suggestions from sales data.",
+    icon: QrCode,
+  },
+  {
+    title: "Role Management",
+    description: "Admin, Doctor and Pharmacist roles with different permissions. Staff invited via email with temporary password. Deactivate accounts instantly.",
+    icon: Lock,
+  },
+  {
+    title: "Document Storage",
+    description: "Upload patient ID cards, previous prescriptions, batch certificates and drug licenses. All files stored on Cloudinary CDN. Attach documents to any record.",
+    icon: Cloud,
+  },
+  {
+    title: "WhatsApp Reminders",
+    description: "Send payment reminders to patients with outstanding balance directly via WhatsApp Web. Pre-filled message with balance amount and store name.",
+    icon: Bell,
+  },
 ];
 
 export const faqs = [
@@ -93,9 +149,54 @@ export const testimonials = [
 ];
 
 export const pricingPlans = [
-  { name: "Starter", price: "$49", description: "For single-location medical stores getting organized.", features: ["Inventory and billing", "Expiry alerts", "Basic reports", "Email support"] },
-  { name: "Growth", price: "$99", description: "For busy pharmacies with multiple roles and reports.", features: ["Advanced analytics", "Role management", "Supplier tracking", "Priority support"], popular: true },
-  { name: "Enterprise", price: "Custom", description: "For hospital pharmacies, chains, and custom operations.", features: ["Multi-branch workflows", "Custom integrations", "Security review", "Dedicated onboarding"] }
+  {
+    name: "Free Trial",
+    price: "Free",
+    period: "14 days",
+    description: "Try every feature free for 14 days. No credit card required.",
+    features: [
+      "50 medicines",
+      "20 patients",
+      "50 bills per month",
+      "1 user account",
+      "All features unlocked",
+      "PDF invoices & expiry alerts",
+    ],
+  },
+  {
+    name: "Basic",
+    price: "₨2,999",
+    period: "per month",
+    description: "For growing pharmacies with a small team and full billing needs.",
+    features: [
+      "500 medicines",
+      "200 patients",
+      "3 staff members",
+      "Unlimited bills",
+      "PDF invoices & reports",
+      "WhatsApp reminders",
+      "Purchase orders",
+      "Expiry alerts",
+    ],
+    popular: true,
+  },
+  {
+    name: "Pro",
+    price: "₨5,999",
+    period: "per month",
+    description: "For busy pharmacies needing unlimited capacity and advanced features.",
+    features: [
+      "Unlimited medicines",
+      "Unlimited patients",
+      "Unlimited staff",
+      "Unlimited bills",
+      "Advanced analytics",
+      "AI medicine assistant",
+      "Audit log",
+      "Data backup & restore",
+      "Priority support",
+    ],
+  },
 ];
 
 export const integrations = ["Barcode scanners", "Thermal printers", "Invoice printers", "Accounting exports", "WhatsApp reminders", "Payment gateways", "Supplier catalogs", "Analytics tools"];

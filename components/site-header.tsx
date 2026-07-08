@@ -71,7 +71,7 @@ export function SiteHeader() {
         </nav>
 
         {/* Desktop CTAs */}
-        <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+        <div style={{ alignItems: "center", gap: 10 }} className="hidden md:flex">
           <ThemeToggle />
           <AppCta label="Login" variant="outline" />
           <AppCta label="Start Free" />
