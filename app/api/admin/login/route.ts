@@ -3,9 +3,8 @@ import { createAdminSession } from "@/lib/auth";
 
 export async function POST(req: NextRequest) {
   const { password } = await req.json();
-  const correct = process.env.ADMIN_PASSWORD ?? "admin123";
 
-  if (password !== correct) {
+  if (!password || password !== process.env.ADMIN_PASSWORD) {
     return NextResponse.json({ error: "Wrong password" }, { status: 401 });
   }
 
