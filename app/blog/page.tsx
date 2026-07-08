@@ -5,54 +5,65 @@ import { PageHero } from "@/components/page-hero";
 import { Card } from "@/components/ui/card";
 import { readingTime } from "@/lib/utils";
 import { createMetadata } from "@/seo/metadata";
-import { readBlogPosts } from "@/lib/db";
+import { connectDB } from "@/lib/mongodb";
+import { BlogPost } from "@/models/BlogPost";
 import { blogPosts as staticPosts } from "@/content/blog";
-import type { BlogPost } from "@/content/blog";
+import type { IBlogPost } from "@/models/BlogPost";
 
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = createMetadata({
   title: "Pharmacy Management Blog | Medicine Inventory and Billing Guides",
   description:
-    "SEO guides for medicine store management software, medical inventory systems, pharmacy POS, expiry tracking, reports, and billing workflows.",
+    "Guides on medicine store management, pharmacy inventory, billing, expiry tracking, and medical POS.",
   path: "/blog",
 });
 
-export default function BlogPage() {
-  const dynamic_posts = readBlogPosts();
-  const slugs = new Set(dynamic_posts.map((p) => p.slug));
-  const posts: BlogPost[] = [
-    ...dynamic_posts,
-    ...staticPosts.filter((p) => !slugs.has(p.slug)),
-  ];
+async function getPosts(): Promise<IBlogPost[]> {
+  try {
+    await connectDB();
+    const dbPosts = await BlogPost.find({ published: true })
+      .sort({ date: -1 })
+      .lean() as IBlogPost[];
+    const slugs = new Set(dbPosts.map((p) => p.slug));
+    return [...dbPosts, ...staticPosts.filter((p) => !slugs.has(p.slug))] as IBlogPost[];
+  } catch {
+    return staticPosts as IBlogPost[];
+  }
+}
+
+export default async function BlogPage() {
+  const posts = await getPosts();
 
   return (
     <>
       <PageHero
         eyebrow="Blog"
         title="Guides for medicine store owners and healthcare operators"
-        description="Practical guides on pharmacy management software, inventory, billing, and expiry tracking."
+        description="Practical guides on pharmacy management, inventory, billing, and expiry tracking."
       />
       <section className="section">
-        <div className="container grid gap-4 md:grid-cols-3">
+        <div className="container grid gap-6 md:grid-cols-3">
           {posts.length === 0 && (
-            <p className="text-sm opacity-60 col-span-3">No posts yet.</p>
+            <p className="col-span-3 opacity-60 text-sm">No posts yet.</p>
           )}
           {posts.map((post) => (
             <Card key={post.slug}>
+              {post.coverImage && (
+                <img
+                  src={post.coverImage}
+                  alt={post.title}
+                  style={{ width: "100%", height: 180, objectFit: "cover", borderRadius: 8, marginBottom: 16 }}
+                />
+              )}
               <p className="text-sm font-semibold text-[rgb(var(--primary))]">
-                {post.category} / {readingTime(post.body)} min read
+                {post.category} · {readingTime(post.body)} min read
               </p>
-              <h2 className="mt-3 text-xl font-bold">{post.title}</h2>
-              <p className="mt-3 text-sm leading-7 opacity-70">
-                {post.description}
-              </p>
+              <h2 className="mt-3 text-xl font-bold leading-snug">{post.title}</h2>
+              <p className="mt-3 text-sm leading-7 opacity-70">{post.description}</p>
               <div className="mt-4 flex flex-wrap gap-2">
                 {post.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="rounded-md bg-[rgb(var(--muted))] px-2 py-1 text-xs"
-                  >
+                  <span key={tag} className="rounded-md bg-[rgb(var(--muted))] px-2 py-1 text-xs">
                     {tag}
                   </span>
                 ))}
