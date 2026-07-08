@@ -28,7 +28,6 @@ const nextConfig: NextConfig = {
     optimizePackageImports: ["lucide-react", "framer-motion", "react-icons"],
   },
   async headers() {
-    // Build CSP dynamically
     const csp = isDev
       ? [
           "default-src 'self'",
@@ -41,13 +40,18 @@ const nextConfig: NextConfig = {
           "base-uri 'self'",
           "form-action 'self'",
         ].join("; ")
-      : // Production: stricter, no 'unsafe-eval' or 'unsafe-inline' (if possible)
-        [
+      : [
+          // Production – now permissive enough for inline styles/scripts and external resources
           "default-src 'self'",
-          "script-src 'self' https://www.googletagmanager.com https://www.google-analytics.com https://www.clarity.ms https://connect.facebook.net",
-          "style-src 'self'",
+          // Allow inline scripts (needed for dark theme script, analytics, etc.) and Vercel Live
+          "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://www.clarity.ms https://connect.facebook.net https://vercel.live",
+          // Allow inline styles and Google Fonts CSS
+          "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+          // Allow images from anywhere (already)
           "img-src 'self' data: blob: https:",
-          "font-src 'self' data:",
+          // Allow Google Fonts WOFF files
+          "font-src 'self' data: https://fonts.gstatic.com",
+          // Connect sources for analytics
           "connect-src 'self' https://www.google-analytics.com https://www.clarity.ms https://www.facebook.com",
           "frame-ancestors 'self'",
           "base-uri 'self'",
