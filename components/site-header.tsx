@@ -30,19 +30,20 @@ export function SiteHeader() {
         <Link
           href="/"
           prefetch
-          className="focus-ring"
-          style={{ display: "flex", alignItems: "center", gap: 10, fontWeight: 700, borderRadius: 8, textDecoration: "none", color: "rgb(var(--foreground))" }}
+          className="focus-ring font-light md:font-semibold gap-2 md:gap-4"
+          style={{ display: "flex", alignItems: "center", borderRadius: 8, textDecoration: "none", color: "rgb(var(--foreground))" }}
         >
-          <span style={{ width: 36, height: 36, display: "flex", alignItems: "center", justifyContent: "center", borderRadius: 8, background: "rgb(var(--primary) / 0.14)", color: "rgb(var(--primary))", flexShrink: 0 }}>
+          <span style={{ display: "flex", alignItems: "center", justifyContent: "center", borderRadius: 8, background: "rgb(var(--primary) / 0.14)", color: "rgb(var(--primary))", flexShrink: 0 }} 
+            className="w-auto h-auto ">
             <Pill size={18} />
           </span>
-          <span>MediStore Cloud</span>
+          <span className="text-sm hidden md:block md:text-lg">MediStore Cloud</span>
         </Link>
 
         {/* Desktop nav */}
         <nav
           aria-label="Main navigation"
-          style={{ display: "flex", alignItems: "center", gap: 4 }}
+          style={{ alignItems: "center", gap: 4 }}
           className="hidden md:flex"
         >
           {navItems.map((item) => {
@@ -70,7 +71,7 @@ export function SiteHeader() {
         </nav>
 
         {/* Desktop CTAs */}
-        <div className="hidden md:flex" style={{ display: "flex", alignItems: "center", gap: 10 }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
           <ThemeToggle />
           <AppCta label="Login" variant="outline" />
           <AppCta label="Start Free" />
@@ -83,7 +84,6 @@ export function SiteHeader() {
           aria-expanded={open}
           onClick={() => setOpen((v) => !v)}
           style={{
-            display: "flex",
             alignItems: "center",
             justifyContent: "center",
             width: 40,
@@ -95,7 +95,7 @@ export function SiteHeader() {
             color: "rgb(var(--foreground))",
             flexShrink: 0,
           }}
-          className="md:hidden"
+          className="flex md:hidden"
         >
           {open ? <X size={20} /> : <Menu size={20} />}
         </button>
