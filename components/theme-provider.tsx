@@ -1,33 +1,41 @@
 "use client";
 
-import { createContext, useContext, useEffect, useMemo, useState } from "react";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
 
 type Theme = "light" | "dark" | "system";
 
 const ThemeContext = createContext<{
   theme: Theme;
-  setTheme: (theme: Theme) => void;
+  setTheme: (t: Theme) => void;
 } | null>(null);
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setTheme] = useState<Theme>("system");
+  const [theme, setThemeState] = useState<Theme>("system");
+  const [mounted, setMounted] = useState(false);
 
-  // Load saved preference on mount
+  // Only read localStorage after mount to avoid hydration mismatch
   useEffect(() => {
     const saved = localStorage.getItem("theme") as Theme | null;
     if (saved === "light" || saved === "dark" || saved === "system") {
-      setTheme(saved);
+      setThemeState(saved);
     }
+    setMounted(true);
   }, []);
 
-  // Apply dark class whenever theme or system preference changes
   useEffect(() => {
-    const root = document.documentElement;
+    if (!mounted) return;
 
     function apply() {
       const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-      const isDark = theme === "dark" || (theme === "system" && prefersDark);
-      root.classList.toggle("dark", isDark);
+      const isDark =
+        theme === "dark" || (theme === "system" && prefersDark);
+      document.documentElement.classList.toggle("dark", isDark);
     }
 
     apply();
@@ -36,7 +44,11 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     const mq = window.matchMedia("(prefers-color-scheme: dark)");
     mq.addEventListener("change", apply);
     return () => mq.removeEventListener("change", apply);
-  }, [theme]);
+  }, [theme, mounted]);
+
+  function setTheme(t: Theme) {
+    setThemeState(t);
+  }
 
   const value = useMemo(() => ({ theme, setTheme }), [theme]);
 
@@ -48,7 +60,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
 }
 
 export function useTheme() {
-  const context = useContext(ThemeContext);
-  if (!context) throw new Error("useTheme must be used inside ThemeProvider");
-  return context;
+  const ctx = useContext(ThemeContext);
+  if (!ctx) throw new Error("useTheme must be inside ThemeProvider");
+  return ctx;
 }

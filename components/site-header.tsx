@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Menu, X, Pill } from "lucide-react";
 import { useState } from "react";
 import { AppCta } from "@/components/cta-link";
@@ -9,58 +10,90 @@ import { navItems } from "@/content/site";
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
 
   return (
-    <header className="sticky top-0 z-50 border-b border-[rgb(var(--border))] bg-[rgb(var(--background))] backdrop-blur-xl">
-      <div className="container flex h-16 items-center justify-between gap-4">
+    <header
+      style={{
+        position: "sticky",
+        top: 0,
+        zIndex: 50,
+        borderBottom: "1px solid rgb(var(--border))",
+        background: "rgb(var(--background))",
+        backdropFilter: "blur(16px)",
+        WebkitBackdropFilter: "blur(16px)",
+      }}
+    >
+      <div className="container" style={{ display: "flex", alignItems: "center", justifyContent: "space-between", height: 64, gap: 16 }}>
+
         {/* Logo */}
         <Link
           href="/"
-          className="focus-ring flex items-center gap-2 rounded-md font-bold"
-          aria-label="MediStore Cloud home"
+          prefetch
+          className="focus-ring"
+          style={{ display: "flex", alignItems: "center", gap: 10, fontWeight: 700, borderRadius: 8, textDecoration: "none", color: "rgb(var(--foreground))" }}
         >
-          <span className="flex h-9 w-9 items-center justify-center rounded-md bg-[rgb(var(--primary)_/_0.14)] text-[rgb(var(--primary))]">
-            <Pill size={20} />
+          <span style={{ width: 36, height: 36, display: "flex", alignItems: "center", justifyContent: "center", borderRadius: 8, background: "rgb(var(--primary) / 0.14)", color: "rgb(var(--primary))", flexShrink: 0 }}>
+            <Pill size={18} />
           </span>
           <span>MediStore Cloud</span>
         </Link>
 
         {/* Desktop nav */}
-        <nav className="hidden items-center gap-6 md:flex" aria-label="Main navigation">
-          {navItems.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="text-sm font-medium opacity-75 hover:opacity-100 transition-opacity"
-            >
-              {item.label}
-            </Link>
-          ))}
+        <nav
+          aria-label="Main navigation"
+          style={{ display: "flex", alignItems: "center", gap: 4 }}
+          className="hidden md:flex"
+        >
+          {navItems.map((item) => {
+            const active = pathname === item.href || (item.href !== "/" && pathname.startsWith(item.href));
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                prefetch
+                style={{
+                  padding: "6px 12px",
+                  borderRadius: 7,
+                  fontSize: 14,
+                  fontWeight: 500,
+                  textDecoration: "none",
+                  color: active ? "rgb(var(--primary))" : "rgb(var(--foreground))",
+                  background: active ? "rgb(var(--primary) / 0.08)" : "transparent",
+                  transition: "background 150ms, color 150ms",
+                }}
+              >
+                {item.label}
+              </Link>
+            );
+          })}
         </nav>
 
-        {/* Desktop actions */}
-        <div className="hidden items-center gap-3 md:flex">
+        {/* Desktop CTAs */}
+        <div className="hidden md:flex" style={{ display: "flex", alignItems: "center", gap: 10 }}>
           <ThemeToggle />
           <AppCta label="Login" variant="outline" />
           <AppCta label="Start Free" />
         </div>
 
-        {/* Mobile hamburger — plain <button> not Button component */}
+        {/* Mobile hamburger — NO Tailwind classes on the button itself */}
         <button
           type="button"
-          onClick={() => setOpen((v) => !v)}
           aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
+          onClick={() => setOpen((v) => !v)}
           style={{
-            display: "inline-flex",
+            display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            padding: "8px",
-            borderRadius: "6px",
+            width: 40,
+            height: 40,
+            borderRadius: 8,
             border: "1px solid rgb(var(--border))",
             background: "transparent",
             cursor: "pointer",
             color: "rgb(var(--foreground))",
+            flexShrink: 0,
           }}
           className="md:hidden"
         >
@@ -68,26 +101,41 @@ export function SiteHeader() {
         </button>
       </div>
 
-      {/* Mobile menu drawer */}
+      {/* Mobile drawer */}
       {open && (
         <nav
-          className="border-t border-[rgb(var(--border))] bg-[rgb(var(--background))] md:hidden"
           aria-label="Mobile navigation"
+          style={{
+            borderTop: "1px solid rgb(var(--border))",
+            background: "rgb(var(--background))",
+          }}
         >
-          <div className="container grid gap-1 py-4">
-            {navItems.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                onClick={() => setOpen(false)}
-                className="rounded-md px-3 py-2 text-sm font-medium opacity-75 hover:opacity-100 hover:bg-[rgb(var(--muted))] transition-colors"
-              >
-                {item.label}
-              </Link>
-            ))}
-            <div
-              className="mt-3 flex flex-col gap-2 border-t border-[rgb(var(--border))] pt-3"
-            >
+          <div className="container" style={{ padding: "16px 0", display: "grid", gap: 4 }}>
+            {navItems.map((item) => {
+              const active = pathname === item.href || (item.href !== "/" && pathname.startsWith(item.href));
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  prefetch
+                  onClick={() => setOpen(false)}
+                  style={{
+                    padding: "10px 14px",
+                    borderRadius: 8,
+                    fontSize: 14,
+                    fontWeight: 500,
+                    textDecoration: "none",
+                    color: active ? "rgb(var(--primary))" : "rgb(var(--foreground))",
+                    background: active ? "rgb(var(--primary) / 0.08)" : "transparent",
+                    display: "block",
+                  }}
+                >
+                  {item.label}
+                </Link>
+              );
+            })}
+
+            <div style={{ borderTop: "1px solid rgb(var(--border))", marginTop: 8, paddingTop: 12, display: "flex", flexDirection: "column", gap: 8 }}>
               <ThemeToggle />
               <AppCta label="Login" variant="outline" />
               <AppCta label="Start Free" />

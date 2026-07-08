@@ -9,12 +9,21 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { createMetadata } from "@/seo/metadata";
 import { organizationSchema, softwareSchema } from "@/schemas/jsonld";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
-const space = Space_Grotesk({ subsets: ["latin"], variable: "--font-space", display: "swap" });
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
+});
+const space = Space_Grotesk({
+  subsets: ["latin"],
+  variable: "--font-space",
+  display: "swap",
+});
 
 export const metadata: Metadata = createMetadata({
   title: "Medicine Store Management Software | Pharmacy Inventory and Billing",
-  description: "SEO-ready medicine store management software website for medical inventory, pharmacy billing, expiry tracking, medical POS, patient records, reports, and analytics."
+  description:
+    "Medicine store management software for medical inventory, pharmacy billing, expiry tracking, medical POS, patient records, reports, and analytics.",
 });
 
 export const viewport: Viewport = {
@@ -22,13 +31,29 @@ export const viewport: Viewport = {
   initialScale: 1,
   themeColor: [
     { media: "(prefers-color-scheme: light)", color: "#fafcfc" },
-    { media: "(prefers-color-scheme: dark)", color: "#090e12" }
-  ]
+    { media: "(prefers-color-scheme: dark)", color: "#090e12" },
+  ],
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        {/* Inline script to set dark class BEFORE paint — prevents flash */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              try {
+                var t = localStorage.getItem('theme');
+                var d = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                if (t === 'dark' || (!t && d) || (t === 'system' && d)) {
+                  document.documentElement.classList.add('dark');
+                }
+              } catch(e) {}
+            `,
+          }}
+        />
+      </head>
       <body className={`${inter.variable} ${space.variable}`}>
         <ThemeProvider>
           <StructuredData data={[organizationSchema(), softwareSchema()]} />
