@@ -21,7 +21,7 @@ async function getPost(slug: string): Promise<IBlogPost | null> {
     await connectDB();
     const post = await BlogPost.findOne({ slug, published: true }).lean() as IBlogPost | null;
     if (post) return post;
-  } catch {}
+  } catch { }
   return (staticPosts.find((p) => p.slug === slug) as IBlogPost) ?? null;
 }
 
@@ -78,11 +78,16 @@ export default async function BlogPostPage({ params }: Props) {
 
           <Card className="p-8">
             {post.coverImage && (
-              <Image
-                src={post.coverImage}
-                alt={post.title}
-                style={{ width: "100%", height: 340, objectFit: "cover", borderRadius: 10, marginBottom: 28 }}
-              />
+              <div style={{ position: "relative", width: "100%", height: 340, borderRadius: 10, overflow: "hidden", marginBottom: 28 }}>
+                <Image
+                  src={post.coverImage}
+                  alt={post.title}
+                  fill
+                  priority
+                  sizes="(max-width: 768px) 100vw, 800px"
+                  style={{ objectFit: "cover" }}
+                />
+              </div>
             )}
             <p className="text-sm font-semibold text-[rgb(var(--primary))]">
               {post.category} · {readingTime(post.body)} min read · {post.date}

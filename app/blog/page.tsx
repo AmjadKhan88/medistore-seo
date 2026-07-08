@@ -9,6 +9,7 @@ import { connectDB } from "@/lib/mongodb";
 import { BlogPost } from "@/models/BlogPost";
 import { blogPosts as staticPosts } from "@/content/blog";
 import type { IBlogPost } from "@/models/BlogPost";
+import Image from "next/image";
 
 export const dynamic = "force-dynamic";
 
@@ -50,10 +51,12 @@ export default async function BlogPage() {
           {posts.map((post) => (
             <Card key={post.slug}>
               {post.coverImage && (
-                <img
+                <Image
                   src={post.coverImage}
                   alt={post.title}
-                  style={{ width: "100%", height: 180, objectFit: "cover", borderRadius: 8, marginBottom: 16 }}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                  style={{ objectFit: "cover"}}
                 />
               )}
               <p className="text-sm font-semibold text-[rgb(var(--primary))]">

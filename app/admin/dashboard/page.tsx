@@ -466,7 +466,8 @@ export default function AdminDashboard() {
               <div key={post.slug} style={{ ...S.card, display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 16 }}>
                 <div style={{ display: "flex", gap: 14, alignItems: "flex-start" }}>
                   {post.coverImage && (
-                    <Image src={post.coverImage} alt="cover image" style={{ width: 72, height: 52, objectFit: "cover", borderRadius: 6, flexShrink: 0 }} />
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img src={post.coverImage} alt="cover image" style={{ width: 72, height: 52, objectFit: "cover", borderRadius: 6, flexShrink: 0 }} />
                   )}
                   <div>
                     <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 4 }}>
