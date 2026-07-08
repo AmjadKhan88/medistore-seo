@@ -1,3 +1,6 @@
+export const dynamic = 'force-dynamic';
+// If you are using Edge Runtime, also add:
+export const runtime = 'nodejs';  // or 'edge', but nodejs is usually safer
 import { NextRequest, NextResponse } from "next/server";
 import { isAdminAuthenticated } from "@/lib/auth";
 import { connectDB } from "@/lib/mongodb";
