@@ -80,6 +80,11 @@
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/api/admin/docs/route.js"
+    ],
+    "/docs/[slug]/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/docs/[slug]/page.js"
     ]
   }
 }

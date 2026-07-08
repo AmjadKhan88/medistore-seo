@@ -1,8 +1,9 @@
 {
   "/manifest.webmanifest/route": "app/manifest.webmanifest/route.js",
-  "/page": "app/page.js",
-  "/blog/[slug]/page": "app/blog/[slug]/page.js",
   "/features/page": "app/features/page.js",
-  "/admin/page": "app/admin/page.js",
+  "/pricing/page": "app/pricing/page.js",
+  "/docs/page": "app/docs/page.js",
+  "/contact/page": "app/contact/page.js",
+  "/docs/[slug]/page": "app/docs/[slug]/page.js",
   "/admin/dashboard/page": "app/admin/dashboard/page.js"
 }
