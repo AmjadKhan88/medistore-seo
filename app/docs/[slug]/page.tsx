@@ -2,24 +2,28 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { Card } from "@/components/ui/card";
-import { readDocs } from "@/lib/db";
+import { connectDB } from "@/lib/mongodb";
+import { Doc } from "@/models/Doc";
 import { docs as staticDocs } from "@/content/docs";
-import type { DocPage } from "@/content/docs";
+import type { IDoc } from "@/models/Doc";
 import { createMetadata } from "@/seo/metadata";
 
 export const dynamic = "force-dynamic";
 
 type Props = { params: Promise<{ slug: string }> };
 
-function getAllDocs(): DocPage[] {
-  const dynamic = readDocs();
-  const slugs = new Set(dynamic.map((d) => d.slug));
-  return [...dynamic, ...staticDocs.filter((d) => !slugs.has(d.slug))];
+async function getDoc(slug: string): Promise<IDoc | null> {
+  try {
+    await connectDB();
+    const doc = await Doc.findOne({ slug, published: true }).lean() as IDoc | null;
+    if (doc) return doc;
+  } catch {}
+  return (staticDocs.find((d) => d.slug === slug) as IDoc) ?? null;
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const doc = getAllDocs().find((d) => d.slug === slug);
+  const doc = await getDoc(slug);
   if (!doc) return {};
   return createMetadata({
     title: `${doc.title} | Documentation`,
@@ -30,7 +34,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function DocPage({ params }: Props) {
   const { slug } = await params;
-  const doc = getAllDocs().find((d) => d.slug === slug);
+  const doc = await getDoc(slug);
   if (!doc) notFound();
 
   return (
@@ -44,7 +48,6 @@ export default async function DocPage({ params }: Props) {
       />
       <section className="section pt-8">
         <div className="container grid gap-8 lg:grid-cols-[220px_1fr]">
-          {/* Sidebar: section list */}
           <aside className="hidden lg:block">
             <Card className="sticky top-24">
               <h2 className="font-bold">Sections</h2>
@@ -61,12 +64,9 @@ export default async function DocPage({ params }: Props) {
               </div>
             </Card>
           </aside>
-
           <Card className="p-8">
             <h1 className="text-4xl font-bold">{doc.title}</h1>
-            <p className="mt-4 text-lg leading-8 opacity-75">
-              {doc.description}
-            </p>
+            <p className="mt-4 text-lg leading-8 opacity-75">{doc.description}</p>
             <div className="prose-site mt-8">
               {doc.sections.map((section) => (
                 <section
