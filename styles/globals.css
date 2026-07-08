@@ -1,0 +1,139 @@
+@import "tailwindcss";
+
+@variant dark (&:where(.dark, .dark *));
+
+:root {
+  color-scheme: light;
+  --background: 250 252 252;
+  --foreground: 13 24 31;
+  --muted: 236 244 243;
+  --border: 207 222 220;
+  --primary: 0 124 116;
+  --primary-foreground: 255 255 255;
+  --accent: 255 185 80;
+  --ink: 16 30 40;
+
+  /* Semantic aliases — used by Tailwind utilities like bg-background, text-foreground */
+  --color-background: rgb(var(--background));
+  --color-foreground: rgb(var(--foreground));
+  --color-muted: rgb(var(--muted));
+  --color-border: rgb(var(--border));
+  --color-primary: rgb(var(--primary));
+  --color-primary-foreground: rgb(var(--primary-foreground));
+  --color-accent: rgb(var(--accent));
+  --color-ring: rgb(var(--primary));
+}
+
+.dark {
+  color-scheme: dark;
+  --background: 9 14 18;
+  --foreground: 238 247 247;
+  --muted: 21 32 39;
+  --border: 54 73 79;
+  --primary: 63 211 192;
+  --primary-foreground: 4 24 28;
+  --accent: 255 196 94;
+  --ink: 238 247 247;
+
+  --color-background: rgb(var(--background));
+  --color-foreground: rgb(var(--foreground));
+  --color-muted: rgb(var(--muted));
+  --color-border: rgb(var(--border));
+  --color-primary: rgb(var(--primary));
+  --color-primary-foreground: rgb(var(--primary-foreground));
+  --color-accent: rgb(var(--accent));
+  --color-ring: rgb(var(--primary));
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: rgb(var(--background));
+  color: rgb(var(--foreground));
+  font-family: var(--font-inter), Arial, sans-serif;
+  text-rendering: optimizeLegibility;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+::selection {
+  background: rgba(0, 124, 116, 0.2);
+}
+
+.container {
+  width: min(1120px, calc(100% - 32px));
+  margin-inline: auto;
+}
+
+.section {
+  padding: 88px 0;
+}
+
+.focus-ring {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
+.focus-ring:focus-visible {
+  outline-color: rgb(var(--primary));
+}
+
+.glass {
+  background: color-mix(in srgb, rgb(var(--background)) 78%, transparent);
+  border: 1px solid rgb(var(--border) / 0.72);
+  backdrop-filter: blur(16px);
+}
+
+.grid-bg {
+  background-image:
+    linear-gradient(rgb(var(--border) / 0.35) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(var(--border) / 0.35) 1px, transparent 1px);
+  background-size: 44px 44px;
+}
+
+.prose-site h2 {
+  font-size: clamp(1.7rem, 4vw, 2.4rem);
+  line-height: 1.12;
+  margin: 2.2rem 0 1rem;
+}
+
+.prose-site h3 {
+  font-size: 1.35rem;
+  margin: 1.7rem 0 0.65rem;
+}
+
+.prose-site p,
+.prose-site li {
+  color: color-mix(in srgb, rgb(var(--foreground)) 78%, transparent);
+  line-height: 1.78;
+}
+
+.prose-site ul {
+  padding-left: 1.2rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}

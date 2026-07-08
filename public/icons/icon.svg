@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-label="MediStore Cloud icon">
+  <rect width="512" height="512" rx="72" fill="#007c74"/>
+  <path d="M162 246c0-52 42-94 94-94h74c11 0 20 9 20 20v74c0 52-42 94-94 94h-74c-11 0-20-9-20-20v-74Z" fill="#fff"/>
+  <path d="M230 196h52v128h-52z" fill="#007c74"/>
+  <path d="M192 234h128v52H192z" fill="#007c74"/>
+</svg>

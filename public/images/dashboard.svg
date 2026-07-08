@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="780" viewBox="0 0 1200 780" role="img" aria-label="Medicine inventory dashboard placeholder">
+  <rect width="1200" height="780" rx="28" fill="#f6fbfa"/>
+  <rect x="48" y="54" width="1104" height="672" rx="24" fill="#ffffff" stroke="#cfdedc"/>
+  <rect x="82" y="92" width="240" height="36" rx="8" fill="#007c74"/>
+  <rect x="82" y="162" width="300" height="130" rx="14" fill="#eaf4f3"/>
+  <rect x="414" y="162" width="300" height="130" rx="14" fill="#eaf4f3"/>
+  <rect x="746" y="162" width="300" height="130" rx="14" fill="#eaf4f3"/>
+  <rect x="82" y="334" width="632" height="330" rx="16" fill="#f9fcfc" stroke="#cfdedc"/>
+  <rect x="746" y="334" width="300" height="330" rx="16" fill="#f9fcfc" stroke="#cfdedc"/>
+  <path d="M132 604V478h54v126h-54Zm86 0V420h54v184h-54Zm86 0V462h54v142h-54Zm86 0V392h54v212h-54Zm86 0V444h54v160h-54Zm86 0V372h54v232h-54Z" fill="#007c74" opacity=".78"/>
+</svg>
