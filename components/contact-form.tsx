@@ -20,23 +20,72 @@ type FormValues = z.infer<typeof schema>;
 
 export function ContactForm() {
   const [sent, setSent] = useState(false);
-  const { register, handleSubmit, formState: { errors, isSubmitting }, reset } = useForm<FormValues>({ resolver: zodResolver(schema) });
+  const [error, setError] = useState("");
+  const { register, handleSubmit, formState: { errors, isSubmitting }, reset } = useForm<FormValues>({
+    resolver: zodResolver(schema)
+  });
 
-  function onSubmit(values: FormValues) {
+  async function onSubmit(values: FormValues) {
+    // Honeypot check
     if (values.website) return;
-    setSent(true);
-    reset();
+
+    setError("");
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: values.name,
+          email: values.email,
+          company: values.company || "",
+          message: values.message,
+        }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.error || "Failed to send message");
+      }
+
+      setSent(true);
+      reset();
+    } catch (err: any) {
+      setError(err.message || "Something went wrong. Please try again.");
+    }
   }
 
   return (
     <form className="grid gap-4" onSubmit={handleSubmit(onSubmit)} noValidate>
       <input className="hidden" tabIndex={-1} autoComplete="off" {...register("website")} />
-      <label className="grid gap-2 text-sm font-medium">Name<Input {...register("name")} autoComplete="name" />{errors.name ? <span className="text-red-600">{errors.name.message}</span> : null}</label>
-      <label className="grid gap-2 text-sm font-medium">Email<Input type="email" {...register("email")} autoComplete="email" />{errors.email ? <span className="text-red-600">{errors.email.message}</span> : null}</label>
-      <label className="grid gap-2 text-sm font-medium">Company<Input {...register("company")} autoComplete="organization" /></label>
-      <label className="grid gap-2 text-sm font-medium">Message<Textarea {...register("message")} />{errors.message ? <span className="text-red-600">{errors.message.message}</span> : null}</label>
-      <Button type="submit" disabled={isSubmitting}><Send size={18} /> Send message</Button>
-      {sent ? <p className="rounded-md bg-[rgb(var(--primary) / 0.12)] p-3 text-sm text-[rgb(var(--primary))]">Thanks. Your message is ready to connect to an email, CRM, or form endpoint.</p> : null}
+      <label className="grid gap-2 text-sm font-medium">
+        Name
+        <Input {...register("name")} autoComplete="name" />
+        {errors.name && <span className="text-red-600">{errors.name.message}</span>}
+      </label>
+      <label className="grid gap-2 text-sm font-medium">
+        Email
+        <Input type="email" {...register("email")} autoComplete="email" />
+        {errors.email && <span className="text-red-600">{errors.email.message}</span>}
+      </label>
+      <label className="grid gap-2 text-sm font-medium">
+        Company
+        <Input {...register("company")} autoComplete="organization" />
+      </label>
+      <label className="grid gap-2 text-sm font-medium">
+        Message
+        <Textarea {...register("message")} rows={5} />
+        {errors.message && <span className="text-red-600">{errors.message.message}</span>}
+      </label>
+      {error && <p className="text-red-600 text-sm">{error}</p>}
+      <Button type="submit" disabled={isSubmitting}>
+        <Send size={18} /> {isSubmitting ? "Sending..." : "Send message"}
+      </Button>
+      {sent && (
+        <p className="rounded-md bg-[rgb(var(--primary) / 0.12)] p-3 text-sm text-[rgb(var(--primary))]">
+          Thanks! Your message has been sent. We’ll get back to you soon.
+        </p>
+      )}
     </form>
   );
 }

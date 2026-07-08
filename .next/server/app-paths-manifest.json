@@ -1,10 +1,6 @@
 {
   "/manifest.webmanifest/route": "app/manifest.webmanifest/route.js",
-  "/pricing/page": "app/pricing/page.js",
-  "/docs/page": "app/docs/page.js",
-  "/contact/page": "app/contact/page.js",
-  "/docs/[slug]/page": "app/docs/[slug]/page.js",
-  "/features/page": "app/features/page.js",
   "/page": "app/page.js",
+  "/contact/page": "app/contact/page.js",
   "/blog/page": "app/blog/page.js"
 }
