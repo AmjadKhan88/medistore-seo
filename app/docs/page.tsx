@@ -34,7 +34,7 @@ export default async function DocsPage() {
     <>
       <PageHero
         eyebrow="Documentation"
-        title="Learn how to use MediStore"
+        title="Learn how to use EliteHMS"
         description="Step-by-step guides on every feature — from getting started to advanced reporting."
       />
       <section className="section">

@@ -21,9 +21,9 @@ const space = Space_Grotesk({
 });
 
 export const metadata: Metadata = createMetadata({
-  title: "Medicine Store Management Software | Pharmacy Inventory and Billing",
+  title: "Hospital Management Software | Pharmacy Inventory and Billing",
   description:
-    "Medicine store management software for medical inventory, pharmacy billing, expiry tracking, medical POS, patient records, reports, and analytics.",
+    "Hospital and Medicine store management software for medical inventory, pharmacy billing, expiry tracking, medical POS, patient records, reports, and analytics.",
 });
 
 export const viewport: Viewport = {
@@ -39,6 +39,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        <link rel="shortcut icon" href="/icons/logo.png" type="image/*" />
         {/* Inline script to set dark class BEFORE paint — prevents flash */}
         <script
           dangerouslySetInnerHTML={{

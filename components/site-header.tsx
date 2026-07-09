@@ -37,7 +37,7 @@ export function SiteHeader() {
             className="w-auto h-auto ">
             <Pill size={18} />
           </span>
-          <span className="text-sm hidden md:block md:text-lg">MediStore Cloud</span>
+          <span className="text-sm hidden md:block md:text-lg">Elite HMS</span>
         </Link>
 
         {/* Desktop nav */}

@@ -21,10 +21,10 @@ export function SiteFooter() {
         <div>
           <div className="flex items-center gap-2 font-bold">
             <Pill className="text-[rgb(var(--primary))]" />
-            MediStore Cloud
+            Elite HMS
           </div>
           <p className="mt-4 max-w-md text-sm leading-7 text-[rgb(var(--foreground) / 0.72)]">
-            SEO website for medicine inventory, pharmacy billing, medical POS, patient records, expiry alerts, and healthcare inventory software.
+            SEO website for Hospital and medicine inventory, pharmacy billing, medical POS, patient records, expiry alerts, and healthcare inventory software.
           </p>
           <div className="mt-5 flex flex-wrap gap-3">
             <AppCta label="Try Demo" />
@@ -49,7 +49,7 @@ export function SiteFooter() {
         </div>
       </div>
       <div className="border-t border-[rgb(var(--border))] py-5">
-        <div className="container text-sm text-[rgb(var(--foreground) / 0.64)]">Copyright 2026 MediStore Cloud. All rights reserved.</div>
+        <div className="container text-sm text-[rgb(var(--foreground) / 0.64)]">Copyright 2026 elitehms. All rights reserved.</div>
       </div>
     </footer>
   );
