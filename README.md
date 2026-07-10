@@ -14,7 +14,7 @@
 **Complete Pharmacy Management System built for the Pakistani market.**
 Manage medicines, patients, billing, staff, prescriptions, lab tests and more — all in one professional platform.
 
-[🌐 Live Demo](https://app.medistore.pk) · [📧 Support](mailto:support@medistore.pk) · [🐛 Report Bug](https://github.com/yourusername/medistore/issues)
+[🌐 Live Demo](https://app.elitehms.online) · [📧 Support](mailto:amjadfast87@gmail.com) · [🐛 Report Bug](https://www.elitehms.online/contact)
 
 </div>
 
