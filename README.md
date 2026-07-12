@@ -1605,12 +1605,13 @@ Building AI-powered SaaS products for the Pakistani market
 
 ## 🙏 Acknowledgments
 
-- **Anthropic Claude** — AI assistant that helped build this entire system
+- **Anthropic Claude** — AI assistant that helped build this system
 - **Google Gemini** — AI features in the medicine assistant
 - **Groq** — Fast inference for AI features
 - **Cloudinary** — File storage CDN
 - **MongoDB Atlas** — Database hosting
 - **Render + Vercel** — Hosting platforms
+- **Hostinger** — DNS (domin name system)
 
 ---
 
