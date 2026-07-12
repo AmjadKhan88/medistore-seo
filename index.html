@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Primary SEO Meta Tags -->
+    <title>EliteHMS – Pakistan's #1 Pharmacy & Hospital Management SaaS</title>
+    <meta name="description" content="EliteHMS is a complete AI-powered pharmacy & hospital management system built for Pakistan. Features inventory, billing, patient records, AI drug checker, PWA & more." />
+    <meta name="keywords" content="pharmacy management, hospital management, medical store software, healthcare SaaS, inventory management, patient billing, AI drug interaction checker, Pakistan healthcare, medical inventory, digital prescriptions, clinic management, pharmacy software, hospital software, healthtech Pakistan" />
+    <meta name="author" content="Amjad Ullah" />
+    <link rel="canonical" href="https://elitehms.github.io/elitehms-seo/" />
+
+    <!-- Open Graph / Social Media Meta Tags -->
+    <meta property="og:title" content="EliteHMS – Pakistan's #1 Pharmacy & Hospital Management SaaS" />
+    <meta property="og:description" content="Complete AI-powered pharmacy & hospital management system. Inventory, billing, patient records, AI drug checker, PWA & more." />
+    <meta property="og:image" content="https://images.unsplash.com/photo-1584982751601-97dcc096659c?w=1200&h=630&fit=crop" />
+    <meta property="og:url" content="https://elitehms.github.io/elitehms-seo/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="EliteHMS" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="EliteHMS – Pakistan's #1 Pharmacy & Hospital Management SaaS" />
+    <meta name="twitter:description" content="Complete AI-powered pharmacy & hospital management system." />
+    <meta name="twitter:image" content="https://images.unsplash.com/photo-1584982751601-97dcc096659c?w=1200&h=630&fit=crop" />
+
+    <!-- JSON-LD Structured Data (Organization + SoftwareApplication) -->
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "SoftwareApplication",
+            "name": "EliteHMS",
+            "applicationCategory": "HealthApplication",
+            "operatingSystem": "All",
+            "description": "Complete AI-powered pharmacy & hospital management system for Pakistan.",
+            "url": "https://elitehms.github.io/elitehms-seo/",
+            "author": {
+                "@type": "Person",
+                "name": "Amjad Ullah"
+            },
+            "offers": {
+                "@type": "Offer",
+                "price": "0",
+                "priceCurrency": "PKR"
+            }
+        }
+    </script>
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "EliteHMS",
+            "url": "https://elitehms.github.io/elitehms-seo/",
+            "logo": "https://images.unsplash.com/photo-1584982751601-97dcc096659c?w=200&h=200&fit=crop",
+            "description": "Pakistan's first AI-powered pharmacy and hospital management SaaS platform.",
+            "address": {
+                "@type": "PostalAddress",
+                "addressCountry": "PK"
+            }
+        }
+    </script>
+
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏥</text></svg>" />
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+    <style>
+        /* ===== CSS Reset & Base ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: #1e293b;
+            background-color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ===== Buttons ===== */
+        .btn-primary {
+            display: inline-block;
+            background: #0d9488;
+            color: #fff;
+            padding: 16px 40px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 16px rgba(13, 148, 136, 0.35);
+        }
+        .btn-primary:hover {
+            background: #0f766e;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(13, 148, 136, 0.45);
+        }
+
+        .btn-secondary {
+            display: inline-block;
+            background: transparent;
+            color: #0d9488;
+            padding: 16px 40px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            border: 2px solid #0d9488;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .btn-secondary:hover {
+            background: #0d9488;
+            color: #fff;
+            transform: translateY(-2px);
+        }
+
+        /* ===== Header / Navigation ===== */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 24px;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: #0d9488;
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .logo span {
+            font-weight: 300;
+            color: #1e293b;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+            list-style: none;
+        }
+        .nav-links a {
+            font-weight: 500;
+            color: #475569;
+            transition: color 0.2s;
+            font-size: 0.95rem;
+        }
+        .nav-links a:hover {
+            color: #0d9488;
+        }
+        .nav-cta {
+            background: #0d9488;
+            color: #fff !important;
+            padding: 10px 24px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+        .nav-cta:hover {
+            background: #0f766e !important;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 4px;
+        }
+        .hamburger span {
+            display: block;
+            width: 28px;
+            height: 3px;
+            background: #1e293b;
+            border-radius: 3px;
+            transition: all 0.3s;
+        }
+
+        /* ===== Hero Section ===== */
+        .hero {
+            padding: 80px 0 100px;
+            background: linear-gradient(165deg, #f0fdfa 0%, #ecfdf5 50%, #ffffff 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -40%;
+            right: -20%;
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, rgba(13, 148, 136, 0.06) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+        .hero-content h1 {
+            font-size: 3.2rem;
+            font-weight: 900;
+            line-height: 1.15;
+            color: #0f172a;
+            letter-spacing: -1px;
+        }
+        .hero-content h1 .highlight {
+            color: #0d9488;
+            position: relative;
+        }
+        .hero-content h1 .highlight::after {
+            content: '';
+            position: absolute;
+            bottom: 4px;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: rgba(13, 148, 136, 0.2);
+            border-radius: 4px;
+        }
+        .hero-content p {
+            font-size: 1.2rem;
+            color: #475569;
+            margin: 24px 0 32px;
+            max-width: 520px;
+            line-height: 1.8;
+        }
+        .hero-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 24px;
+        }
+        .hero-badges span {
+            background: rgba(13, 148, 136, 0.08);
+            color: #0d9488;
+            padding: 6px 18px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+        }
+        .hero-image img {
+            width: 100%;
+            border-radius: 24px;
+            box-shadow: 0 24px 64px rgba(0, 0, 0, 0.08);
+            aspect-ratio: 4/3;
+            object-fit: cover;
+        }
+
+        /* ===== Stats / Trust Bar ===== */
+        .stats {
+            background: #ffffff;
+            padding: 40px 0;
+            border-bottom: 1px solid #f1f5f9;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 32px;
+            text-align: center;
+        }
+        .stats-grid h3 {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #0f172a;
+        }
+        .stats-grid p {
+            color: #64748b;
+            font-weight: 500;
+            margin-top: 4px;
+        }
+
+        /* ===== Section Headers ===== */
+        .section-label {
+            display: inline-block;
+            background: rgba(13, 148, 136, 0.08);
+            color: #0d9488;
+            padding: 4px 16px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+        }
+        .section-title {
+            font-size: 2.4rem;
+            font-weight: 800;
+            color: #0f172a;
+            letter-spacing: -0.5px;
+        }
+        .section-sub {
+            color: #64748b;
+            font-size: 1.1rem;
+            max-width: 560px;
+            margin-top: 12px;
+        }
+
+        /* ===== Features Section ===== */
+        .features {
+            padding: 80px 0;
+            background: #fafdfc;
+        }
+        .features-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 60px;
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+        .feature-card {
+            background: #fff;
+            padding: 32px 28px;
+            border-radius: 20px;
+            border: 1px solid #f1f5f9;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+        }
+        .feature-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 48px rgba(13, 148, 136, 0.08);
+            border-color: #ccfbf1;
+        }
+        .feature-icon {
+            font-size: 2.2rem;
+            margin-bottom: 16px;
+            display: block;
+        }
+        .feature-card h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 8px;
+        }
+        .feature-card p {
+            color: #64748b;
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* ===== AI & Pakistan First ===== */
+        .ai-section {
+            padding: 80px 0;
+            background: linear-gradient(165deg, #0f172a 0%, #1e293b 100%);
+            color: #fff;
+        }
+        .ai-section .section-title {
+            color: #fff;
+        }
+        .ai-section .section-sub {
+            color: #94a3b8;
+        }
+        .ai-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            margin-top: 40px;
+        }
+        .ai-content ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 20px;
+        }
+        .ai-content ul li {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1rem;
+            color: #e2e8f0;
+        }
+        .ai-content ul li span {
+            font-size: 1.2rem;
+        }
+        .ai-image img {
+            border-radius: 20px;
+            width: 100%;
+            aspect-ratio: 4/3;
+            object-fit: cover;
+            box-shadow: 0 24px 64px rgba(0, 0, 0, 0.4);
+        }
+
+        .badge-pakistan {
+            display: inline-block;
+            background: #ffffff10;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 6px 18px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            color: #94a3b8;
+            margin-top: 16px;
+        }
+
+        /* ===== CTA Section ===== */
+        .cta-section {
+            padding: 80px 0;
+            background: #f0fdfa;
+            text-align: center;
+        }
+        .cta-section h2 {
+            font-size: 2.4rem;
+            font-weight: 800;
+            color: #0f172a;
+        }
+        .cta-section p {
+            color: #475569;
+            font-size: 1.1rem;
+            max-width: 560px;
+            margin: 16px auto 32px;
+        }
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        /* ===== Footer ===== */
+        .footer {
+            background: #0f172a;
+            color: #94a3b8;
+            padding: 48px 0 32px;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 48px;
+            margin-bottom: 32px;
+        }
+        .footer h4 {
+            color: #f1f5f9;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+        .footer a {
+            color: #94a3b8;
+            transition: color 0.2s;
+            display: block;
+            margin-bottom: 8px;
+        }
+        .footer a:hover {
+            color: #ccfbf1;
+        }
+        .footer-bottom {
+            border-top: 1px solid #1e293b;
+            padding-top: 24px;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #64748b;
+        }
+        .footer-bottom strong {
+            color: #94a3b8;
+        }
+
+        /* ===== Responsive ===== */
+        @media (max-width: 992px) {
+            .hero-grid,
+            .ai-grid {
+                grid-template-columns: 1fr;
+            }
+            .hero-content h1 {
+                font-size: 2.6rem;
+            }
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 72px;
+                left: 0;
+                right: 0;
+                background: #fff;
+                padding: 24px;
+                border-bottom: 1px solid #f1f5f9;
+                box-shadow: 0 16px 32px rgba(0, 0, 0, 0.06);
+                gap: 16px;
+            }
+            .nav-links.open {
+                display: flex;
+            }
+            .hamburger {
+                display: flex;
+            }
+
+            .hero-content h1 {
+                font-size: 2.2rem;
+            }
+            .hero-content p {
+                font-size: 1rem;
+            }
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            .section-title {
+                font-size: 1.8rem;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+            .cta-section h2 {
+                font-size: 1.8rem;
+            }
+            .hero {
+                padding: 40px 0 60px;
+            }
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 1.8rem;
+            }
+            .btn-primary,
+            .btn-secondary {
+                padding: 14px 28px;
+                font-size: 1rem;
+                width: 100%;
+                text-align: center;
+            }
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            .stats-grid h3 {
+                font-size: 1.6rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== NAVBAR ===== -->
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+        <div class="logo">
+            🏥 <span>EliteHMS</span>
+        </div>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#features">Features</a></li>
+            <li><a href="#ai">AI & Pakistan</a></li>
+            <li><a href="#cta" class="nav-cta">Try Free →</a></li>
+        </ul>
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+
+    <!-- ===== HERO ===== -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-content">
+                    <div class="section-label">🇵🇰 Pakistan-first</div>
+                    <h1>
+                        Smart Pharmacy &amp;<br />
+                        <span class="highlight">Hospital Management</span> for Pakistan
+                    </h1>
+                    <p>
+                        EliteHMS is a complete, AI-powered SaaS platform for pharmacies, clinics, and hospitals.
+                        Manage inventory, billing, patients, prescriptions &amp; more — all in one place.
+                    </p>
+                    <a href="https://app.elitehms.online" class="btn-primary" target="_blank" rel="noopener noreferrer">
+                        🚀 Try EliteHMS Free
+                    </a>
+                    <div class="hero-badges">
+                        <span>✅ 22+ Features</span>
+                        <span>🤖 AI-Powered</span>
+                        <span>📱 PWA</span>
+                        <span>🔒 Multi-Tenant</span>
+                        <span>⚡ Real-time</span>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <img
+                    src="https://images.unsplash.com/photo-1584982751601-97dcc096659c?w=800&h=600&fit=crop&crop=center"
+                    alt="EliteHMS Pharmacy Management Dashboard Preview"
+                    loading="eager"
+                    width="800"
+                    height="600"
+                    />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== STATS ===== -->
+    <section class="stats" aria-label="Platform statistics">
+        <div class="container">
+            <div class="stats-grid">
+                <div>
+                    <h3>22+</h3>
+                    <p>Major Features</p>
+                </div>
+                <div>
+                    <h3>4</h3>
+                    <p>Development Phases</p>
+                </div>
+                <div>
+                    <h3>100%</h3>
+                    <p>Pakistan-first</p>
+                </div>
+                <div>
+                    <h3>📱</h3>
+                    <p>PWA Installable</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FEATURES ===== -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="features-header">
+                <span class="section-label">💡 Features</span>
+                <h2 class="section-title">Everything you need to run your pharmacy or hospital</h2>
+                <p class="section-sub">22+ features across 4 phases — built for Pakistan's healthcare needs.</p>
+            </div>
+
+            <div class="features-grid">
+
+                <div class="feature-card">
+                    <span class="feature-icon">💊</span>
+                    <h3>Medicine Inventory</h3>
+                    <p>Track stock levels with expiry alerts. Never lose medicines to expiry again.</p>
+                </div>
+
+                <div class="feature-card">
+                    <span class="feature-icon">🧾</span>
+                    <h3>Professional Billing</h3>
+                    <p>Generate invoices in A4, Thermal 58mm, or 80mm. Customize colors, layout &amp; content.</p>
+                </div>
+
+                <div class="feature-card">
+                    <span class="feature-icon">👥</span>
+                    <h3>Patient Records</h3>
+                    <p>Complete patient history, balance tracking, and WhatsApp payment reminders.</p>
+                </div>
+
+                <div class="feature-card">
+                    <span class="feature-icon">💊</span>
+                    <h3>Digital Prescriptions</h3>
+                    <p>Create and manage digital prescriptions. Paperless, secure, and accessible.</p>
+                </div>
+
+                <div class="feature-card">
+                    <span class="feature-icon">🤖</span>
+                    <h3>AI Medicine Assistant</h3>
+                    <p>AI-powered medicine suggestions and drug interaction checking (Gemini + Groq).</p>
+                </div>
+
+                <div class="feature-card">
+                    <span class="feature-icon">📱</span>
+                    <h3>PWA Installable</h3>
+                    <p>Install EliteHMS on your phone like a native app. Works offline with service workers.</p>
+                </div>
+
+                <div class="feature-card">
+                    <span class="feature-icon">🔔</span>
+                    <h3>Real-time Updates</h3>
+                    <p>Live inventory and billing updates via Socket.io. No page refresh needed.</p>
+                </div>
+
+                <div class="feature-card">
+                    <span class="feature-icon">🔒</span>
+                    <h3>Multi-Tenant</h3>
+                    <p>Complete data isolation per store. Your data stays private and secure.</p>
+                </div>
+
+                <div class="feature-card">
+                    <span class="feature-icon">🇵🇰</span>
+                    <h3>Pakistan-first</h3>
+                    <p>JazzCash, EasyPaisa, Urdu-friendly interface. Built for Pakistan's healthcare sector.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== AI & PAKISTAN SECTION ===== -->
+    <section class="ai-section" id="ai">
+        <div class="container">
+            <div class="ai-grid">
+                <div class="ai-content">
+                    <span class="section-label" style="background: rgba(255,255,255,0.08); color: #ccfbf1;">🤖 AI-Powered</span>
+                    <h2 class="section-title">AI-Driven Pharmacy Management</h2>
+                    <p class="section-sub">
+                        EliteHMS uses cutting-edge AI to help you make better decisions, faster.
+                    </p>
+                    <ul>
+                        <li><span>🧠</span> Gemini API for intelligent medicine suggestions</li>
+                        <li><span>⚡</span> Groq API for lightning-fast drug interaction checking</li>
+                        <li><span>📊</span> AI-powered expiry alerts and inventory forecasting</li>
+                        <li><span>🔬</span> Smart patient balance and prescription analysis</li>
+                    </ul>
+                    <div class="badge-pakistan">
+                        🇵🇰 Built for Pakistan — JazzCash, EasyPaisa &amp; Urdu support
+                    </div>
+                </div>
+                <div class="ai-image">
+                    <img
+                    src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&h=600&fit=crop&crop=center"
+                    alt="AI-powered pharmacy management dashboard"
+                    loading="lazy"
+                    width="800"
+                    height="600"
+                    />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CTA ===== -->
+    <section class="cta-section" id="cta">
+        <div class="container">
+            <h2>Ready to digitize your pharmacy or hospital?</h2>
+            <p>
+                Join hundreds of pharmacies, clinics, and hospitals across Pakistan using EliteHMS.
+                Start free — no credit card required.
+            </p>
+            <div class="cta-buttons">
+                <a href="https://app.elitehms.online" class="btn-primary" target="_blank" rel="noopener noreferrer">
+                    🚀 Try EliteHMS Free
+                </a>
+                <a href="https://app.elitehms.online" class="btn-secondary" target="_blank" rel="noopener noreferrer">
+                    👀 View Demo
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h4 style="color:#fff; font-size:1.4rem;">🏥 EliteHMS</h4>
+                    <p style="color:#94a3b8; max-width:320px;">
+                        Pakistan's first AI-powered pharmacy and hospital management SaaS.
+                        Built by developers, for healthcare professionals.
+                    </p>
+                </div>
+                <div>
+                    <h4>Quick Links</h4>
+                    <a href="https://app.elitehms.online" target="_blank" rel="noopener noreferrer">Try EliteHMS</a>
+                    <a href="#features">Features</a>
+                    <a href="#ai">AI &amp; Pakistan</a>
+                </div>
+                <div>
+                    <h4>Connect</h4>
+                    <a href="https://linkedin.com/in/amjad-ullah-tk" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                    <a href="https://github.com/AmjadKhan88" target="_blank" rel="noopener noreferrer">GitHub</a>
+                    <a href="https://amjad-pro-stack-creations-ov8w.vercel.app" target="_blank" rel="noopener noreferrer">Portfolio</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                &copy; 2026 <strong>EliteHMS</strong> — Made with ❤️ in Pakistan 🇵🇰
+                <br />
+                <span style="font-size:0.85rem; color:#475569;">
+                    Built by <a href="https://linkedin.com/in/amjad-ullah-tk" target="_blank" rel="noopener noreferrer" style="display:inline; color:#94a3b8;">Amjad Ullah</a>
+                </span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===== HAMBURGER TOGGLE ===== -->
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+
+        hamburger.addEventListener('click', () => {
+            const isOpen = navLinks.classList.toggle('open');
+            hamburger.setAttribute('aria-expanded', isOpen);
+        });
+
+        // Close on link click (mobile)
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('open');
+                hamburger.setAttribute('aria-expanded', 'false');
+            });
+        });
+    </script>
+</body>
+</html>
