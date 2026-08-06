@@ -12,14 +12,26 @@ type SeoInput = {
 };
 
 const defaultKeywords = [
-  "Medicine Store Management Software",
-  "Pharmacy Management Software",
+  "EliteHMS",
+  "Hospital Management System Pakistan",
+  "HMS Software Pakistan",
+  "Pharmacy Management Software Pakistan",
+  "Hospital Management Software",
   "Medical Inventory System",
-  "Medicine Billing Software",
-  "Medical POS",
+  "IPD Management Software",
+  "OPD Queue Management System",
+  "Electronic Medical Records Pakistan",
+  "EMR Software Pakistan",
+  "Blood Bank Management System",
+  "DRAP Compliance Software",
+  "Medical Billing Software Pakistan",
   "Medicine Expiry Tracking",
-  "Healthcare Inventory Software",
-  "Hospital Pharmacy Software"
+  "Healthcare SaaS Pakistan",
+  "Pharmacy POS Pakistan",
+  "Lab Management Software",
+  "Patient Management System",
+  "Medical Store Software Pakistan",
+  "Hospital Billing Software",
 ];
 
 export function createMetadata({
@@ -29,7 +41,7 @@ export function createMetadata({
   keywords = [],
   image = "/api/og",
   type = "website",
-  noIndex = false
+  noIndex = false,
 }: SeoInput): Metadata {
   const url = absoluteUrl(path);
   const imageUrl = image.startsWith("http") ? image : absoluteUrl(image);
@@ -40,12 +52,15 @@ export function createMetadata({
     metadataBase: new URL(siteConfig.siteUrl),
     applicationName: siteConfig.name,
     keywords: [...defaultKeywords, ...keywords],
+    authors: [{ name: siteConfig.author.name, url: siteConfig.author.linkedin }],
+    creator: siteConfig.author.name,
+    publisher: siteConfig.name,
     alternates: {
       canonical: url,
       languages: {
-        "en-US": url,
-        "x-default": url
-      }
+        "en-PK": url,
+        "x-default": url,
+      },
     },
     robots: {
       index: !noIndex,
@@ -55,8 +70,8 @@ export function createMetadata({
         follow: !noIndex,
         "max-image-preview": "large",
         "max-snippet": -1,
-        "max-video-preview": -1
-      }
+        "max-video-preview": -1,
+      },
     },
     openGraph: {
       type,
@@ -65,22 +80,22 @@ export function createMetadata({
       url,
       siteName: siteConfig.name,
       locale: siteConfig.locale,
-      images: [{ url: imageUrl, width: 1200, height: 630, alt: title }]
+      images: [{ url: imageUrl, width: 1200, height: 630, alt: title }],
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
       creator: siteConfig.twitter,
-      images: [imageUrl]
+      images: [imageUrl],
     },
     verification: {
       google: analytics.gsc,
       other: {
         "msvalidate.01": analytics.bing || "",
-        "yandex-verification": analytics.yandex || ""
-      }
+        "yandex-verification": analytics.yandex || "",
+      },
     },
-    category: "Healthcare Software"
+    category: "Healthcare Software",
   };
 }
