@@ -1,6 +1,7 @@
 export const siteConfig = {
   name: "EliteHMS",
   shortName: "EliteHMS",
+  legalName: "EliteHMS Hospital Pharymacy and Healthcare Solutions Pakistan",
   description:
     "EliteHMS is a full-stack SaaS Hospital Management System for Pakistan — covering pharmacy billing, IPD/OPD management, EMR, lab tests, blood bank, OT scheduling, AI diagnosis, and DRAP compliance in one platform.",
   siteUrl: process.env.NEXT_PUBLIC_SITE_URL || "https://www.elitehms.online",
@@ -8,14 +9,20 @@ export const siteConfig = {
   locale: "en_PK",
   twitter: "@EliteHMS",
   supportEmail: "amjadfast87@gmail.com",
-  address: "Pakistan",
+  contactPhone: "+92 306 9534618", // Editable placeholder
+  whatsapp: "+92 306 9534618",
+  address: "Peshawar / Islamabad, Pakistan",
+  officeLocation: "Peshawar, Khyber Pakhtunkhwa, Pakistan",
   author: {
     name: "Amjad Ullah",
-    role: "Full-Stack Developer",
+    role: "Lead Full-Stack Architect & Founder",
+    email: "amjadfast87@gmail.com",
     linkedin: "https://www.linkedin.com/in/amjad-ullah-baa484246",
   },
   social: {
     linkedin: "https://www.linkedin.com/company/elitehms",
+    facebook: "https://www.facebook.com/elitehms",
+    twitter: "https://twitter.com/elitehms",
   },
 };
 

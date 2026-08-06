@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, CheckCircle2, Pill, ShieldCheck, Sparkles, Star } from "lucide-react";
+import { ArrowRight, CheckCircle2, Lock, MapPin, Pill, ShieldCheck, Sparkles, Star, UserCheck } from "lucide-react";
 import { AppCta } from "@/components/cta-link";
 import { PageHero } from "@/components/page-hero";
 import { SectionHeading } from "@/components/section-heading";
 import { Card } from "@/components/ui/card";
 import { features, pricingPlans, faqs, testimonials, stats } from "@/content/site";
+import { siteConfig } from "@/lib/env";
 import { createMetadata } from "@/seo/metadata";
 import { StructuredData } from "@/components/structured-data";
 import { faqSchema, softwareSchema } from "@/schemas/jsonld";
@@ -185,8 +186,49 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Testimonials */}
+      {/* Trust, Security & Compliance Section */}
       <section className="section border-t border-[rgb(var(--border))] bg-[rgb(var(--card))] py-20">
+        <div className="container max-w-5xl">
+          <SectionHeading
+            title="Enterprise Security & Regulatory Compliance"
+            description="Your medical data is protected with 256-bit SSL encryption, 2FA authentication, role-based access control, and complete legal transparency."
+          />
+          <div className="mt-12 grid gap-6 md:grid-cols-3">
+            <Card className="bg-[rgb(var(--background))]">
+              <div className="mb-3 text-[rgb(var(--primary))]">
+                <ShieldCheck size={28} />
+              </div>
+              <h3 className="font-bold text-lg">DRAP & FBR Compliant</h3>
+              <p className="mt-2 text-xs leading-5 text-[rgb(var(--foreground)/0.74)]">
+                Form-10 Schedule H controlled drug registers, expiry destruction records with pharmacist PCP numbers, and FBR GST reconciliation exports.
+              </p>
+            </Card>
+
+            <Card className="bg-[rgb(var(--background))]">
+              <div className="mb-3 text-[rgb(var(--primary))]">
+                <Lock size={28} />
+              </div>
+              <h3 className="font-bold text-lg">256-Bit SSL & 2FA Security</h3>
+              <p className="mt-2 text-xs leading-5 text-[rgb(var(--foreground)/0.74)]">
+                JWT access tokens, 30-day httpOnly session refresh cookies, Google Authenticator 2FA, and remote device revocation.
+              </p>
+            </Card>
+
+            <Card className="bg-[rgb(var(--background))]">
+              <div className="mb-3 text-[rgb(var(--primary))]">
+                <UserCheck size={28} />
+              </div>
+              <h3 className="font-bold text-lg">100% Verified Business</h3>
+              <p className="mt-2 text-xs leading-5 text-[rgb(var(--foreground)/0.74)]">
+                Developed and supported by <strong>{siteConfig.author.name}</strong> ({siteConfig.officeLocation}). Full legal Privacy Policy & Terms of Service provided.
+              </p>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials */}
+      <section className="section border-t border-[rgb(var(--border))] bg-[rgb(var(--background))] py-20">
         <div className="container max-w-5xl">
           <SectionHeading
             title="Trusted by Healthcare Leaders"
@@ -194,7 +236,7 @@ export default function HomePage() {
           />
           <div className="mt-12 grid gap-6 md:grid-cols-3">
             {testimonials.map((t) => (
-              <Card key={t.name} className="flex flex-col justify-between">
+              <Card key={t.name} className="flex flex-col justify-between bg-[rgb(var(--card))]">
                 <div className="flex gap-1 text-amber-400 mb-3">
                   {[...Array(5)].map((_, i) => (
                     <Star key={i} size={16} fill="currentColor" />
