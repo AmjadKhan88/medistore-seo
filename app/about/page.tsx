@@ -119,40 +119,6 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* Core Modules */}
-        <section className="rounded-2xl border border-[rgb(var(--border))] bg-[rgb(var(--card))] p-8">
-          <h2 className="text-2xl font-bold font-[var(--font-space)] mb-4">Complete Healthcare Management</h2>
-          <p className="text-sm text-[rgb(var(--foreground)/0.7)] mb-6">
-            EliteHMS covers everything from a small pharmacy to a multi-department hospital — all in one platform.
-          </p>
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {[
-              { icon: "💊", label: "Medicine Inventory & Expiry Alerts" },
-              { icon: "🧾", label: "Billing & Invoices with Partial Payments" },
-              { icon: "👤", label: "Patient Management with Allergy Alerts" },
-              { icon: "🛏", label: "Ward & Bed Management (Color-Coded)" },
-              { icon: "💉", label: "IPD Management with MAR Sheets" },
-              { icon: "🏥", label: "OPD Queue with Priority System" },
-              { icon: "🧠", label: "AI Diagnosis Assistant" },
-              { icon: "📸", label: "Prescription OCR Scanner (Urdu/English)" },
-              { icon: "🩸", label: "Blood Bank with Expiry Tracking" },
-              { icon: "📊", label: "Advanced Accounting & P&L" },
-              { icon: "💰", label: "Payroll with FBR Tax Slabs" },
-              { icon: "📱", label: "WhatsApp/SMS Broadcast" },
-              { icon: "⭐", label: "Patient Feedback & Ratings" },
-              { icon: "📅", label: "Online Appointment Booking" },
-              { icon: "🔒", label: "Two-Factor Authentication" },
-            ].map((f) => (
-              <div key={f.label} className="flex items-center gap-2 text-sm">
-                <span className="text-lg">{f.icon}</span>
-                <span>{f.label}</span>
-              </div>
-            ))}
-          </div>
-          <p className="text-xs text-[rgb(var(--foreground)/0.5)] mt-6 border-t border-[rgb(var(--border))] pt-4">
-            All modules are role-based and configurable. Pharmacy staff see pharmacy modules. Hospital staff see hospital modules. Your dashboard, your way.
-          </p>
-        </section>
 
         {/* Who Uses EliteHMS */}
         <section className="rounded-2xl border border-[rgb(var(--border))] bg-[rgb(var(--background))] p-8">
