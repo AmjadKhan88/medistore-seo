@@ -8,6 +8,7 @@ import { StructuredData } from "@/components/structured-data";
 import { ThemeProvider } from "@/components/theme-provider";
 import { createMetadata } from "@/seo/metadata";
 import { organizationSchema, softwareSchema } from "@/schemas/jsonld";
+import { ChatWidget } from "@/components/chat/chat-widget";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -35,7 +36,11 @@ export const viewport: Viewport = {
   ],
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
@@ -62,6 +67,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <main>{children}</main>
           <SiteFooter />
           <Analytics />
+          <ChatWidget />
         </ThemeProvider>
       </body>
     </html>
