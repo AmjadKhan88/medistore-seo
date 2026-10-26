@@ -23,6 +23,8 @@ type Msg = {
 };
 
 const STORAGE_KEY = "elitehms-chat-v1";
+const MEMORY_MESSAGES = 10; // last 5 exchanges are sent to the AI
+const MAX_STORED = 40;
 const SUGGESTIONS = [
   "How do I add a new medicine?",
   "How do I create a bill?",
@@ -45,20 +47,30 @@ export function ChatPanel({
   const abortRef = useRef<AbortController | null>(null);
   const endRef = useRef<HTMLDivElement>(null);
   const taRef = useRef<HTMLTextAreaElement>(null);
+  const [hydrated, setHydrated] = useState(false);
 
   // restore / persist (per browser tab)
   useEffect(() => {
     try {
       const saved = sessionStorage.getItem(STORAGE_KEY);
-      if (saved) setMessages(JSON.parse(saved));
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed))
+          setMessages(parsed.filter((m: Msg) => m && m.content?.trim()));
+      }
     } catch {}
+    setHydrated(true);
   }, []);
+
   useEffect(() => {
-    if (loading) return;
+    if (!hydrated || loading) return;
     try {
-      sessionStorage.setItem(STORAGE_KEY, JSON.stringify(messages.slice(-30)));
+      sessionStorage.setItem(
+        STORAGE_KEY,
+        JSON.stringify(messages.slice(-MAX_STORED)),
+      );
     } catch {}
-  }, [messages, loading]);
+  }, [messages, loading, hydrated]);
 
   useEffect(() => {
     endRef.current?.scrollIntoView({ block: "end" });
@@ -87,6 +99,7 @@ export function ChatPanel({
       const botMsg: Msg = { id: uid(), role: "assistant", content: "" };
       const history = [...messages, userMsg]
         .filter((m) => !m.error && m.content.trim())
+        .slice(-(MEMORY_MESSAGES + 1))
         .map(({ role, content }) => ({ role, content }));
 
       setMessages((prev) => [...prev, userMsg, botMsg]);

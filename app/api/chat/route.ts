@@ -31,15 +31,18 @@ export async function POST(req: NextRequest) {
   const parsed = bodySchema.safeParse(await req.json().catch(() => null));
   if (!parsed.success) return NextResponse.json({ error: "Invalid request." }, { status: 400 });
 
-  const messages = parsed.data.messages.slice(-10);
-  if (messages[messages.length - 1].role !== "user") {
-    return NextResponse.json({ error: "Last message must be from the user." }, { status: 400 });
-  }
+const MEMORY_MESSAGES = 10; // 5 exchanges
 
-  // Retrieval query: short follow-ups ("and the price?") borrow the previous user question
-  const question = messages[messages.length - 1].content;
-  const prevUser = messages.slice(0, -1).filter((m) => m.role === "user").pop()?.content;
-  const retrievalQuery = prevUser && question.length < 80 ? `${prevUser}\n${question}` : question;
+const messages = parsed.data.messages.slice(-(MEMORY_MESSAGES + 1));
+if (messages[messages.length - 1].role !== "user") {
+  return NextResponse.json({ error: "Last message must be from the user." }, { status: 400 });
+}
+
+// Short follow-ups ("and the price?") borrow the user's previous questions
+const userTurns = messages.filter((m) => m.role === "user").map((m) => m.content);
+const question = userTurns[userTurns.length - 1];
+const retrievalQuery =
+  question.length < 80 && userTurns.length > 1 ? userTurns.slice(-3).join("\n") : question;
 
   let chunks: RetrievedChunk[] = [];
   try {

@@ -59,15 +59,16 @@ export async function indexDocument(id: string) {
   const doc = await KnowledgeDoc.findById(id).select("+content");
   if (!doc || !doc.content) throw new Error("Document not found or empty");
 
-  await removeVectors(id, doc.chunkCount); // wipe old vectors first
+  const oldCount = doc.chunkCount;
   const chunks = chunkText(doc.content);
 
   doc.status = "processing";
   doc.error = "";
-  doc.chunkCount = chunks.length; // set BEFORE upsert so cleanup always knows the ids
+  doc.chunkCount = Math.max(oldCount, chunks.length); // so cleanup always knows every id
   await doc.save();
 
   try {
+    await removeVectors(id, oldCount);
     const vectors = await embedDocuments(chunks.map((c) => `${doc.title}\n\n${c}`));
     await upsertVectors(
       chunks.map((text, i) => ({
@@ -77,6 +78,7 @@ export async function indexDocument(id: string) {
       }))
     );
     doc.status = "ready";
+    doc.chunkCount = chunks.length;
     doc.indexedAt = new Date();
     doc.embeddingModel = EMBED_MODEL;
   } catch (e: any) {

@@ -68,17 +68,25 @@ export async function PATCH(req: NextRequest, { params }: Ctx) {
   return NextResponse.json(await KnowledgeDoc.findById(id).lean());
 }
 
-export async function DELETE(_req: NextRequest, { params }: Ctx) {
+export async function DELETE(req: NextRequest, { params }: Ctx) {
   if (!(await isAdminAuthenticated())) return unauth();
   const { id } = await params;
   if (!isValidObjectId(id)) return fail("Invalid id.");
   await connectDB();
   const doc = await KnowledgeDoc.findById(id).select("chunkCount");
   if (!doc) return fail("Not found.", 404);
+
+  const force = new URL(req.url).searchParams.get("force") === "1";
   try {
-    await removeVectors(id, doc.chunkCount); // Pinecone first; if it fails we keep the record and can retry
+    await removeVectors(id, doc.chunkCount);
   } catch (e: any) {
-    return fail(`Could not delete embeddings: ${e?.message || e}`, 500);
+    console.error("[knowledge] Pinecone delete failed", e);
+    if (!force) {
+      return NextResponse.json(
+        { error: `Could not delete embeddings from Pinecone: ${e?.message || e}`, canForce: true },
+        { status: 409 }
+      );
+    }
   }
   await KnowledgeDoc.deleteOne({ _id: id });
   return NextResponse.json({ ok: true });

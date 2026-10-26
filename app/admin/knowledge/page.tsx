@@ -79,7 +79,11 @@ async function api(url: string, init?: RequestInit) {
   const res = await fetch(url, init);
   if (res.status === 401) throw new Error("UNAUTH");
   const data = await res.json().catch(() => ({}));
-  if (!res.ok) throw new Error(data.error || "Request failed");
+  if (!res.ok) {
+    const err: any = new Error(data.error || "Request failed");
+    err.canForce = !!data.canForce;
+    throw err;
+  }
   return data;
 }
 
@@ -188,7 +192,18 @@ export default function KnowledgePage() {
       return;
     setBusy(doc._id);
     try {
-      await api(`/api/admin/knowledge/${doc._id}`, { method: "DELETE" });
+      try {
+        await api(`/api/admin/knowledge/${doc._id}`, { method: "DELETE" });
+      } catch (e: any) {
+        if (!e?.canForce) throw e;
+        const go = confirm(
+          `${e.message}\n\nDelete the record from MongoDB anyway?\n(Embeddings may stay in Pinecone.)`,
+        );
+        if (!go) throw new Error("Delete cancelled.");
+        await api(`/api/admin/knowledge/${doc._id}?force=1`, {
+          method: "DELETE",
+        });
+      }
       flash("Deleted.");
       await load();
     } catch (e) {
@@ -429,7 +444,7 @@ export default function KnowledgePage() {
                   <button
                     type="button"
                     className={btn}
-                    disabled={working}
+                    disabled={busy === d._id}
                     onClick={() =>
                       patch(d, { action: "reindex" }, "Re-indexed.")
                     }
@@ -453,7 +468,7 @@ export default function KnowledgePage() {
                   <button
                     type="button"
                     className={`${btn} text-red-600`}
-                    disabled={working}
+                    disabled={busy === d._id}
                     onClick={() => remove(d)}
                   >
                     <Trash2 size={13} /> Delete
