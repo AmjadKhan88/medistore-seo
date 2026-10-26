@@ -18,18 +18,26 @@ const fail = (error: string, status = 400) => NextResponse.json({ error }, { sta
 
 export async function GET() {
   if (!(await isAdminAuthenticated())) return unauth();
-  await connectDB();
-  const docs = await KnowledgeDoc.find().sort({ createdAt: -1 }).lean();
-  const ready = docs.filter((d) => d.status === "ready");
-  return NextResponse.json({
-    docs,
-    stats: {
-      totalDocs: docs.length,
-      readyDocs: ready.length,
-      totalChunks: ready.reduce((s, d) => s + d.chunkCount, 0),
-      pineconeVectors: await getVectorCount(),
-    },
-  });
+  try {
+    await connectDB();
+    const docs = await KnowledgeDoc.find().sort({ createdAt: -1 }).lean();
+    const ready = docs.filter((d) => d.status === "ready");
+    return NextResponse.json({
+      docs,
+      stats: {
+        totalDocs: docs.length,
+        readyDocs: ready.length,
+        totalChunks: ready.reduce((s, d) => s + d.chunkCount, 0),
+        pineconeVectors: await getVectorCount(),
+      },
+    });
+  } catch (e: any) {
+    console.error("[knowledge] list failed", e);
+    return NextResponse.json(
+      { error: `Could not load documents: ${e?.message || e}` },
+      { status: 500 }
+    );
+  }
 }
 
 export async function POST(req: NextRequest) {
@@ -86,6 +94,11 @@ export async function POST(req: NextRequest) {
     status: "processing",
   });
 
-  await indexDocument(String(doc._id)); // sets ready / failed itself
+    try {
+    await indexDocument(String(doc._id)); // sets ready / failed itself
+  } catch (e: any) {
+    console.error("[knowledge] indexing crashed", e);
+    return fail(`Indexing failed: ${e?.message || e}`, 500);
+  }
   return NextResponse.json(await KnowledgeDoc.findById(doc._id).lean());
 }
