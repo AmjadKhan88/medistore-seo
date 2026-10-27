@@ -91,6 +91,9 @@ const IMG = {
 
   mar: u("photo-1631815589968-fdb09a223b1e"),
   discharge: u("photo-1516549655169-df83a0774514"),
+
+  waiting: u("photo-1519494140681-8b17d830a050"),
+  screen: u("photo-1593359677879-a4bb92f829d1"),
 };
 
 const page = (slug: string, title: string, description?: string, extra: Partial<DocPage> = {}): DocPage => ({
@@ -1183,7 +1186,198 @@ export const docGroups: DocGroup[] = [
           ],
         }
       ),
-      page("opd-queue", "OPD Queue"),
+      page(
+        "opd-queue",
+        "OPD Queue",
+        "Use OPD Queue to issue visit tokens, call patients in order, track consultation progress, and view queue statistics.",
+        {
+          image: IMG.waiting,
+          blocks: [
+            { type: "heading", text: "How to find this page" },
+            {
+              type: "steps",
+              items: [
+                { title: "Sign in to EliteHMS" },
+                { title: "Select **OPD Queue** from the left-hand menu" },
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.doctor,
+              alt: "OPD Queue option in the left-hand menu",
+              caption: "OPD Queue in the left-hand menu",
+            },
+            {
+              type: "callout",
+              kind: "note",
+              text: "OPD means Outpatient Department: patients who come for a visit and do not stay in a hospital bed.",
+            },
+
+            { type: "heading", text: "What this page is for" },
+            {
+              type: "paragraph",
+              text: "Use OPD Queue to issue visit tokens, call patients in order, track consultation progress, and view queue statistics. A token is a number used to identify a patient’s place in the queue.",
+            },
+            {
+              type: "paragraph",
+              text: "The page works with registered patient records, but you can also create a queue token for a walk-in patient without linking a record.",
+            },
+
+            { type: "heading", text: "Understand the page overview" },
+            {
+              type: "list",
+              items: [
+                "**Queue Open / Queue Closed:** Shows whether staff can register new tokens. Registration is disabled while the queue is closed.",
+                "**Waiting:** Tokens waiting to be called.",
+                "**In Consultation:** Patients whose consultation has started.",
+                "**Done:** Consultations marked complete.",
+                "**Avg Wait:** Average waiting time for completed consultations.",
+                "**Avg Consult:** Average consultation length for completed consultations.",
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.analytics,
+              alt: "OPD Queue overview with Waiting, In Consultation, Done, and average times",
+              caption: "The OPD Queue overview",
+            },
+            {
+              type: "paragraph",
+              text: "**Display Screen** opens a separate queue board for patients. **Refresh** reloads the current queue.",
+            },
+
+            { type: "heading", text: "Register a patient" },
+            {
+              type: "steps",
+              items: [
+                {
+                  title: "Make sure the queue is open, then select **Register Token** or **Register First Patient**",
+                },
+                {
+                  title: "Optionally search for an existing patient",
+                  detail: "Selecting one fills in their name and phone number.",
+                },
+                {
+                  title: "If the patient is not registered, enter their name as a walk-in",
+                  detail: "The patient name is required.",
+                },
+                { title: "Add a phone number if useful" },
+                {
+                  title: "Optionally enter the doctor and choose a department",
+                  detail: "For example, General OPD, Cardiology, or Pediatrics.",
+                },
+                {
+                  title: "Choose a priority: **Normal**, **Urgent**, or **VIP**",
+                  detail: "Use priority according to your clinic’s policy.",
+                },
+                { title: "Optionally add a short note, then select **Issue Token**" },
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.form,
+              alt: "Register Token form with patient, doctor, department, and priority",
+              caption: "The Register Token form",
+            },
+            {
+              type: "callout",
+              kind: "note",
+              text: "The system issues a token such as **A-001** and adds the patient to the waiting list. The token is for today’s queue at the selected location.",
+            },
+
+            { type: "heading", text: "Call and serve patients" },
+            {
+              type: "paragraph",
+              text: "Use **Call Next** to call the next person in line. The system calls by priority (Urgent, then VIP, then Normal) and uses registration order within each priority. You can also use **Call** on an individual waiting patient’s card.",
+            },
+            {
+              type: "image",
+              src: IMG.reception,
+              alt: "Call Next button and waiting patient cards",
+              caption: "Calling the next patient",
+            },
+            { type: "paragraph", text: "After a token is called:" },
+            {
+              type: "steps",
+              items: [
+                { title: "Select **Start** when the consultation begins" },
+                { title: "Select **Done** when it is finished" },
+              ],
+            },
+            {
+              type: "callout",
+              kind: "tip",
+              text: "These steps update the consultation status and timing. Use the list buttons to keep each patient’s status accurate.",
+            },
+
+            { type: "heading", text: "Manage exceptions" },
+            {
+              type: "list",
+              items: [
+                "**Skip:** Use when a waiting or called patient cannot be seen at that moment.",
+                "**No-Show:** Use when the patient did not attend after being called.",
+                "**Re-Queue:** Returns a skipped or no-show token to the waiting list.",
+              ],
+            },
+            {
+              type: "callout",
+              kind: "tip",
+              text: "Check the patient and token before changing a status.",
+            },
+            {
+              type: "callout",
+              kind: "warning",
+              text: "The red trash button resets today’s queue and clears its tokens. Use it only when you intentionally want to remove the day’s queue records.",
+            },
+
+            { type: "heading", text: "Queue filters and Statistics tab" },
+            {
+              type: "paragraph",
+              text: "On the **Queue** tab, choose **All** or a status filter to narrow the token list. The **Statistics** tab includes a seven-day patient trend, today’s peak hours, a summary of today’s queue, and a priority breakdown.",
+            },
+            {
+              type: "image",
+              src: IMG.charts,
+              alt: "Statistics tab with a seven-day trend and peak hours",
+              caption: "The Statistics tab",
+            },
+            {
+              type: "callout",
+              kind: "note",
+              text: "Use the averages as operational summaries. They reflect queue timing recorded by staff and may not include unfinished visits.",
+            },
+
+            { type: "heading", text: "Display Screen" },
+            {
+              type: "paragraph",
+              text: "Select **Display Screen** to open a separate board suitable for a waiting-room monitor. It shows the current token and waiting information. When a token is called, the board updates and may announce it aloud.",
+            },
+            {
+              type: "image",
+              src: IMG.screen,
+              alt: "Display Screen showing the current token on a waiting-room monitor",
+              caption: "The Display Screen on a waiting-room monitor",
+            },
+            {
+              type: "callout",
+              kind: "tip",
+              text: "Keep the display device’s sound at a suitable level.",
+            },
+
+            { type: "heading", text: "Helpful terms" },
+            {
+              type: "list",
+              items: [
+                "**Token:** A queue number assigned to a visit.",
+                "**Priority:** The queue category used to decide who is called first.",
+                "**FIFO:** “First in, first out.” Earlier registrations are served first within the same priority.",
+                "**Walk-in:** A patient visiting without a pre-booked appointment.",
+                "**Consultation:** The patient’s visit with the doctor or clinician.",
+              ],
+            },
+          ],
+        }
+      ),
       page(
         "prescriptions",
         "Prescriptions",
