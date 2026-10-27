@@ -34,7 +34,7 @@ const u = (id: string, w = 1600) =>
   `https://images.unsplash.com/${id}?auto=format&fit=crop&w=${w}&q=70`;
 
 const IMG = {
-  hospital: u("photo-1519494026892-80bbd2d6fd0d"),
+  hospital: u("photo-1793110853158-03bbff4179b4"),
   pharmacy: u("photo-1584308666744-24d5c474f2ae"),
   doctor: u("photo-1576091160399-112ba8d25d1d"),
   lab: u("photo-1579154204601-01588f351e67"),
