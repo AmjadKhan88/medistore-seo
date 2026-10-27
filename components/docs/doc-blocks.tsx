@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import {
   AlertTriangle,
   BarChart3,
@@ -47,6 +48,26 @@ const CARD_ICONS: Record<string, LucideIcon> = {
   users: Users,
 };
 
+/** Renders **bold** text. Use it for button names and UI labels. */
+function Inline({ text }: { text: string }) {
+  return (
+    <>
+      {text.split(/(\*\*[^*]+\*\*)/g).map((part, i) =>
+        part.startsWith("**") && part.endsWith("**") ? (
+          <strong
+            key={i}
+            className="font-semibold text-[rgb(var(--foreground))]"
+          >
+            {part.slice(2, -2)}
+          </strong>
+        ) : (
+          <Fragment key={i}>{part}</Fragment>
+        ),
+      )}
+    </>
+  );
+}
+
 export function DocBlocks({ blocks }: { blocks: DocBlock[] }) {
   return (
     <div className="mt-8">
@@ -71,7 +92,7 @@ export function DocBlocks({ blocks }: { blocks: DocBlock[] }) {
           case "paragraph":
             return (
               <p key={i} className="my-4 leading-8 opacity-80">
-                {b.text}
+                <Inline text={b.text} />
               </p>
             );
           case "list": {
@@ -85,7 +106,9 @@ export function DocBlocks({ blocks }: { blocks: DocBlock[] }) {
                 )}
               >
                 {b.items.map((it, j) => (
-                  <li key={j}>{it}</li>
+                  <li key={j}>
+                    <Inline text={it} />
+                  </li>
                 ))}
               </Tag>
             );
@@ -106,10 +129,12 @@ export function DocBlocks({ blocks }: { blocks: DocBlock[] }) {
                       {j + 1}
                     </span>
                     <div className="min-w-0 pt-0.5">
-                      <p className="font-semibold">{s.title}</p>
+                      <p className="font-semibold">
+                        <Inline text={s.title} />
+                      </p>
                       {s.detail && (
                         <p className="mt-1 text-sm leading-7 opacity-75">
-                          {s.detail}
+                          <Inline text={s.detail} />
                         </p>
                       )}
                     </div>
@@ -128,7 +153,7 @@ export function DocBlocks({ blocks }: { blocks: DocBlock[] }) {
                 <Icon size={18} className={cn("mt-0.5 shrink-0", c.ic)} />
                 <p className="text-sm leading-7">
                   <span className="mr-1 font-bold">{c.label}:</span>
-                  {b.text}
+                  <Inline text={b.text} />
                 </p>
               </div>
             );
@@ -158,7 +183,7 @@ export function DocBlocks({ blocks }: { blocks: DocBlock[] }) {
                         {c.title}
                       </h3>
                       <p className="mt-1.5 text-sm leading-7 opacity-75">
-                        {c.text}
+                        <Inline text={c.text} />
                       </p>
                     </div>
                   );

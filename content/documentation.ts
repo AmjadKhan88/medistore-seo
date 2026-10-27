@@ -38,13 +38,20 @@ const IMG = {
   pharmacy: u("photo-1584308666744-24d5c474f2ae"),
   doctor: u("photo-1576091160399-112ba8d25d1d"),
   lab: u("photo-1579154204601-01588f351e67"),
+
   tech: u("photo-1576091160550-2173dba999ef"),
   team: u("photo-1551601651-2a8555f1a136"),
   dashboard: u("photo-1551288049-bebda4e38f71"),
   analytics: u("photo-1460925895917-afdab827c52f"),
+
   finance: u("photo-1554224155-6726b3ff858f"),
   payment: u("photo-1563013544-824ae1b704d3"),
   checkout: u("photo-1556742049-0cfed4f6a45d"),
+  map: u("photo-1524661135-423995f22d0b"),
+
+  office: u("photo-1486406146926-c627a92ad1ab"),
+  staff: u("photo-1522071820081-009f0129c71c"),
+  form: u("photo-1450101499163-c8848c66ca85"),
 };
 
 const page = (slug: string, title: string, description?: string, extra: Partial<DocPage> = {}): DocPage => ({
@@ -257,6 +264,213 @@ export const docGroups: DocGroup[] = [
               type: "callout",
               kind: "note",
               text: "The values in these screenshots are examples from the account shown. Your plan, usage, payment history, prices, and renewal date may be different.",
+            },
+          ],
+        }
+      ),
+      page(
+        "my-locations",
+        "My Locations",
+        "The My Locations page helps the account owner manage the organization’s branches, such as separate pharmacy, clinic, or hospital sites.",
+        {
+          image: IMG.office,
+          blocks: [
+            {
+              type: "paragraph",
+              text: "Each location keeps its own inventory, patients, and bills. The subscription covers the locations included in the plan and any paid add-ons.",
+            },
+
+            { type: "heading", text: "How to Find This Page" },
+            {
+              type: "list",
+              items: [
+                "**From the left menu:** Sign in and select **My Locations**.",
+                "**From the location selector:** Click the current location name in the top bar, then choose **Manage locations**.",
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.map,
+              alt: "Location selector in the top bar with Manage locations option",
+              caption: "The location selector in the top bar",
+            },
+            {
+              type: "callout",
+              kind: "tip",
+              text: "If My Locations is missing, ask the account owner or administrator to check your access.",
+            },
+
+            { type: "heading", text: "What You See" },
+            {
+              type: "list",
+              items: [
+                "**Plan coverage summary:** Shows how many locations are active and how many your plan covers. It may also show paid add-ons and deactivated locations.",
+                "**Location cards:** Each card shows the location name, its code and contact details if provided, its status, and counts for medicines, patients, and bills.",
+                "**Primary:** Marks the main location for the account. The primary location cannot be deactivated.",
+                "**Active:** The location is available for work and can appear in the top location selector.",
+                "**Viewing:** Marks the location currently selected in your account.",
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.hospital,
+              alt: "My Locations page with plan coverage summary and location cards",
+              caption: "Plan coverage summary and location cards",
+            },
+            {
+              type: "callout",
+              kind: "note",
+              text: "The figures on the page can change as records are added or locations are activated or deactivated.",
+            },
+
+            { type: "heading", text: "Add a Location" },
+            {
+              type: "steps",
+              items: [
+                { title: "Select **Add Location**" },
+                { title: "Enter a **Location Name**", detail: "This is required." },
+                {
+                  title: "Add the code, address, phone number, and city if available",
+                  detail: "These fields are optional on the form.",
+                },
+                {
+                  title: "Check that the name and code are correct",
+                  detail: "Make sure they are not already used by another location in your account.",
+                },
+                { title: "Review the price summary, then continue" },
+              ],
+            },
+            {
+              type: "list",
+              items: [
+                "If your plan covers the new location, select **Add Location** to create it.",
+                "If an additional charge applies, select **Continue to payment** and review the quote on the **Subscription & Billing** page.",
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.form,
+              alt: "Add Location form with name, code, address, phone, and city fields",
+              caption: "The Add Location form",
+            },
+            {
+              type: "callout",
+              kind: "tip",
+              text: "A clear name and unique code make it easier for staff to select the right branch. For example, you could use a branch name such as “Main Branch - Gulberg” and a short code such as “GLB-01”.",
+            },
+
+            { type: "heading", text: "Payment for an Additional Location" },
+            {
+              type: "paragraph",
+              text: "The page calculates the price using your plan and the number of locations you want. Review the displayed total before paying; the amount shown in your account is the one to follow.",
+            },
+            { type: "paragraph", text: "If payment is required:" },
+            {
+              type: "steps",
+              items: [
+                {
+                  title: "Continue to **Subscription & Billing**",
+                  detail: "Review the plan, location count, and total due.",
+                },
+                { title: "Choose the payment method shown", detail: "Send the displayed amount." },
+                {
+                  title: "Add your store email as the payment reference",
+                  detail: "Use it as the reference or description, as instructed in the payment window.",
+                },
+                { title: "Enter the transaction ID or reference number" },
+                {
+                  title: "Upload a screenshot of the payment receipt",
+                  detail: "The form accepts PNG or JPG images up to 5 MB.",
+                },
+                { title: "Select **Submit Payment Request**" },
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.payment,
+              alt: "Payment request form with transaction ID and receipt upload",
+              caption: "The payment request form",
+            },
+            {
+              type: "callout",
+              kind: "note",
+              text: "The request will show as pending while it is reviewed. The page indicates activation within 24 hours. After the location allowance is activated, return to **My Locations** to add the branch.",
+            },
+
+            { type: "heading", text: "Switch Between Locations" },
+            {
+              type: "paragraph",
+              text: "Use the location selector in the top bar to choose an active branch.",
+            },
+            {
+              type: "callout",
+              kind: "tip",
+              text: "Check the location name before adding or changing records.",
+            },
+            {
+              type: "paragraph",
+              text: "Switching locations reloads the app so that the pages show information for the selected branch.",
+            },
+
+            { type: "heading", text: "Update Location Details" },
+            {
+              type: "paragraph",
+              text: "The page shown does not have an Edit button. It lets you add a location or deactivate and reactivate one.",
+            },
+            {
+              type: "callout",
+              kind: "note",
+              text: "If a location’s name, code, address, phone, or city needs to be corrected, contact the account owner or support for help.",
+            },
+
+            { type: "heading", text: "Deactivate or Reactivate a Location" },
+            {
+              type: "paragraph",
+              text: "To deactivate a non-primary location, select **Deactivate** on its card and confirm. The location becomes read-only and is removed from the location selector. Its records are kept; deactivation does not delete its data.",
+            },
+            {
+              type: "paragraph",
+              text: "To use it again, select **Reactivate**. The account needs an available location slot. If the plan no longer covers another active location, you may need to arrange the required plan or add-on first.",
+            },
+
+            { type: "heading", text: "Assign Staff to a Location" },
+            {
+              type: "paragraph",
+              text: "Staff assignment is managed from **Staff Management**, not from the location card:",
+            },
+            {
+              type: "steps",
+              items: [
+                { title: "Open **Staff Management** from the left menu" },
+                { title: "Add a staff member or edit an existing one" },
+                {
+                  title: "Under **Assigned Locations**, select the branches where that person should work",
+                },
+                { title: "Save or create the staff account" },
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.staff,
+              alt: "Staff form with the Assigned Locations field",
+              caption: "Assigned Locations in the staff form",
+            },
+            {
+              type: "callout",
+              kind: "note",
+              text: "Assign only the locations the staff member needs. Staff accounts are limited to their assigned locations. If no location is selected in the form, the staff member is assigned to the primary location.",
+            },
+
+            { type: "heading", text: "Before You Add or Change a Location" },
+            {
+              type: "list",
+              items: [
+                "Confirm you are using the correct account.",
+                "Use a clear branch name and a code that is not already in use.",
+                "Check the payment quote before sending money.",
+                "Confirm the selected branch in the top bar before entering patient, stock, or billing records.",
+                "Contact the account owner if you cannot see a location or need to correct its details.",
+              ],
             },
           ],
         }
