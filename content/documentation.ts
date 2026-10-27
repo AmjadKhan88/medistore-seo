@@ -57,6 +57,11 @@ const IMG = {
   stock: u("photo-1585435557343-3b092031a831"),
   invoice: u("photo-1554224154-22dec7ec8818"),
 
+  ai: u("photo-1677442136019-21780ecad995"),
+  robot: u("photo-1531746790731-6c087fecd65a"),
+  laptop: u("photo-1516321318423-f06f85e504b3"),
+  meds: u("photo-1587854692152-cbe660dbde88"),
+  pills: u("photo-1471864190281-a93a3070b6de"),
 };
 
 const page = (slug: string, title: string, description?: string, extra: Partial<DocPage> = {}): DocPage => ({
@@ -121,7 +126,7 @@ export const docGroups: DocGroup[] = [
         }
       ),
       page("quick-start", "Quick Start"),
-            page(
+      page(
         "dashboard",
         "Dashboard",
         "The Dashboard gives you a quick overview of the selected location’s medicine store activity.",
@@ -295,6 +300,130 @@ export const docGroups: DocGroup[] = [
     icon: Sparkles,
     image: IMG.tech,
     pages: [
+      page(
+        "ai-medicine-assistant",
+        "AI Medicine Assistant",
+        "The AI Medicine Assistant lets you ask general questions about medicines and view inventory reorder suggestions.",
+        {
+          image: IMG.pills,
+          blocks: [
+            {
+              type: "callout",
+              kind: "warning",
+              text: "Use it as a support tool: AI answers can be incomplete or incorrect, so a qualified pharmacist or clinician should verify medicine information before acting on it.",
+            },
+
+            { type: "heading", text: "How to Find This Page" },
+            {
+              type: "steps",
+              items: [
+                { title: "Sign in to EliteHMS" },
+                { title: "Select **AI Assistant** from the left-hand menu" },
+              ],
+            },
+            {
+              type: "paragraph",
+              text: "From here you can ask a medicine question, choose an available AI model, or open **Smart Reorder** suggestions.",
+            },
+            {
+              type: "image",
+              src: IMG.laptop,
+              alt: "AI Assistant option in the left-hand menu",
+              caption: "AI Assistant in the left-hand menu",
+            },
+
+            { type: "heading", text: "Ask a Medicine Question" },
+            {
+              type: "steps",
+              items: [
+                { title: "Choose a question under **Quick Questions**, or type your own in the box at the bottom" },
+                {
+                  title: "Select the send arrow",
+                  detail: "You can also press **Enter** to send; use **Shift + Enter** to start a new line.",
+                },
+                { title: "Wait for the answer to appear in the conversation" },
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.ai,
+              alt: "Quick Questions and the message box in the AI Assistant",
+              caption: "Quick Questions and the message box",
+            },
+            {
+              type: "paragraph",
+              text: "**Quick Questions** are examples. You can ask about medicine uses, side effects, interactions, dosage information, or alternatives.",
+            },
+            {
+              type: "callout",
+              kind: "tip",
+              text: "Include the medicine name and strength when relevant so the question is clear.",
+            },
+
+            { type: "heading", text: "Choose an AI Model" },
+            {
+              type: "paragraph",
+              text: "Use the model menu in the upper-right corner to select an available AI model. The selected model is used for your questions and **Smart Reorder** suggestions.",
+            },
+            {
+              type: "image",
+              src: IMG.robot,
+              alt: "AI model menu in the upper-right corner",
+              caption: "The AI model menu",
+            },
+            {
+              type: "callout",
+              kind: "note",
+              text: "Available choices may change.",
+            },
+
+            { type: "heading", text: "Smart Reorder" },
+            {
+              type: "paragraph",
+              text: "Select **Smart Reorder** to view suggested medicines to reorder. Suggestions may include a reason, priority, quantity, and estimated cost. They are based on available sales and inventory information.",
+            },
+            {
+              type: "image",
+              src: IMG.stock,
+              alt: "Smart Reorder suggestions with reason, priority, quantity, and estimated cost",
+              caption: "Smart Reorder suggestions",
+            },
+            {
+              type: "callout",
+              kind: "note",
+              text: "Review each suggestion against your current stock and purchasing needs before placing an order. A suggestion is not a purchase order.",
+            },
+            {
+              type: "callout",
+              kind: "tip",
+              text: "If **Smart Reorder** cannot generate suggestions, the store may not have enough sales history yet.",
+            },
+
+            { type: "heading", text: "Other Information on the Screen" },
+            {
+              type: "paragraph",
+              text: "The **Medicine Info**, **Drug Interactions**, **Inventory Insights**, and **Generic Alternatives** panels describe topics the assistant can help with. They are informational panels; use the question box or **Quick Questions** to ask the assistant.",
+            },
+            {
+              type: "image",
+              src: IMG.meds,
+              alt: "Medicine Info, Drug Interactions, Inventory Insights, and Generic Alternatives panels",
+              caption: "The informational panels on the screen",
+            },
+
+            { type: "heading", text: "Keep Questions Safe and Clear" },
+            {
+              type: "list",
+              items: [
+                "Verify dosage, interaction, and treatment information with a qualified pharmacist or clinician.",
+                "Do not use AI as a diagnosis or prescription.",
+                "Do not enter patient names, phone numbers, or other identifying information.",
+                "For urgent medical situations, follow your organization’s emergency procedure instead of waiting for an AI response.",
+              ],
+            },
+          ],
+        }
+      ),
       page("ai-diagnosis", "AI Diagnosis"),
       page("drap-compliance", "DRAP Compliance"),
     ],
