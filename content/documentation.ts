@@ -10,7 +10,8 @@ export type DocBlock =
   | { type: "list"; items: string[]; ordered?: boolean }
   | { type: "image"; src: string; alt: string; caption?: string }
   | { type: "steps"; items: { title: string; detail?: string }[] }
-  | { type: "callout"; kind: "tip" | "note" | "warning"; text: string };
+  | { type: "callout"; kind: "tip" | "note" | "warning"; text: string }
+  | { type: "cards"; items: { icon?: string; title: string; text: string }[] };
 
 export type DocPage = {
   slug: string;
@@ -58,7 +59,50 @@ export const docGroups: DocGroup[] = [
     icon: Rocket,
     image: IMG.hospital,
     pages: [
-      page("introduction", "Introduction", "Welcome to the EliteHMS documentation. Start here, then explore each module from the sidebar."),
+                  page(
+        "introduction",
+        "Introduction",
+        "EliteHMS is a web-based hospital and healthcare management system that helps pharmacies, clinics, and hospitals manage their daily work in one place.",
+        {
+          blocks: [
+            { type: "heading", text: "What is EliteHMS?" },
+            {
+              type: "paragraph",
+              text: "EliteHMS brings together tools for handling medicines, patients, appointments, billing, and healthcare operations, all in one place.",
+            },
+
+            { type: "heading", text: "Built for your type of organization" },
+            { type: "paragraph", text: "The platform includes features for different types of healthcare organizations." },
+            {
+              type: "cards",
+              items: [
+                { icon: "pill", title: "Pharmacy", text: "Manage stock, prescriptions, suppliers, and sales." },
+                { icon: "stethoscope", title: "Clinic", text: "Adds appointments, patient records, and OPD visits." },
+                {
+                  icon: "building",
+                  title: "Hospital",
+                  text: "Adds admissions, wards, beds, nursing, operating theatre schedules, blood bank, and radiology.",
+                },
+              ],
+            },
+
+            { type: "heading", text: "Reports, staff access, and administration" },
+            { type: "paragraph", text: "EliteHMS also provides tools for reports, staff access, and administration." },
+
+            { type: "heading", text: "AI-powered features" },
+            { type: "paragraph", text: "Some plans include AI-powered features, such as:" },
+            { type: "list", items: ["Prescription scanning", "Medicine-demand forecasting", "Diagnosis support"] },
+
+            { type: "heading", text: "How to use this guide" },
+            { type: "paragraph", text: "This guide explains what each part of EliteHMS does and how to use it." },
+            {
+              type: "callout",
+              kind: "note",
+              text: "The features available to you depend on your subscription plan and your staff permissions.",
+            },
+          ],
+        }
+      ),
       page("quick-start", "Quick Start"),
       page("dashboard-overview", "Dashboard Overview"),
     ],

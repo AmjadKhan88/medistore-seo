@@ -1,4 +1,16 @@
-import { AlertTriangle, Info, Lightbulb } from "lucide-react";
+import {
+  AlertTriangle,
+  BarChart3,
+  Building2,
+  Info,
+  Lightbulb,
+  Pill,
+  ShieldCheck,
+  Sparkles,
+  Stethoscope,
+  Users,
+  type LucideIcon,
+} from "lucide-react";
 import { slugify, type DocBlock } from "@/content/documentation";
 import { cn } from "@/lib/utils";
 import { DocImage } from "./doc-image";
@@ -23,6 +35,17 @@ const CALLOUT = {
     ic: "text-amber-600",
   },
 } as const;
+
+// Icon names you can use in { type: "cards" } blocks
+const CARD_ICONS: Record<string, LucideIcon> = {
+  pill: Pill,
+  stethoscope: Stethoscope,
+  building: Building2,
+  chart: BarChart3,
+  sparkles: Sparkles,
+  shield: ShieldCheck,
+  users: Users,
+};
 
 export function DocBlocks({ blocks }: { blocks: DocBlock[] }) {
   return (
@@ -57,7 +80,7 @@ export function DocBlocks({ blocks }: { blocks: DocBlock[] }) {
               <Tag
                 key={i}
                 className={cn(
-                  "my-4 space-y-2 pl-6 leading-7 opacity-80",
+                  "my-4 space-y-2 pl-6 leading-7 opacity-80 marker:text-[rgb(var(--primary))]",
                   b.ordered ? "list-decimal" : "list-disc",
                 )}
               >
@@ -110,6 +133,38 @@ export function DocBlocks({ blocks }: { blocks: DocBlock[] }) {
               </div>
             );
           }
+          case "cards":
+            return (
+              <div
+                key={i}
+                className={cn(
+                  "my-6 grid gap-4",
+                  b.items.length >= 3 ? "sm:grid-cols-3" : "sm:grid-cols-2",
+                )}
+              >
+                {b.items.map((c, j) => {
+                  const Icon = c.icon ? CARD_ICONS[c.icon] : undefined;
+                  return (
+                    <div
+                      key={j}
+                      className="rounded-2xl border border-[rgb(var(--border))] p-5 transition-colors hover:border-[rgb(var(--primary))]"
+                    >
+                      {Icon && (
+                        <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-[rgb(var(--primary)/0.12)] text-[rgb(var(--primary))]">
+                          <Icon size={20} />
+                        </span>
+                      )}
+                      <h3 className={cn("text-base font-bold", Icon && "mt-4")}>
+                        {c.title}
+                      </h3>
+                      <p className="mt-1.5 text-sm leading-7 opacity-75">
+                        {c.text}
+                      </p>
+                    </div>
+                  );
+                })}
+              </div>
+            );
         }
       })}
     </div>
