@@ -52,6 +52,11 @@ const IMG = {
   office: u("photo-1486406146926-c627a92ad1ab"),
   staff: u("photo-1522071820081-009f0129c71c"),
   form: u("photo-1450101499163-c8848c66ca85"),
+  
+  charts: u("photo-1543286386-713bdd548da4"),
+  stock: u("photo-1585435557343-3b092031a831"),
+  invoice: u("photo-1554224154-22dec7ec8818"),
+
 };
 
 const page = (slug: string, title: string, description?: string, extra: Partial<DocPage> = {}): DocPage => ({
@@ -116,7 +121,138 @@ export const docGroups: DocGroup[] = [
         }
       ),
       page("quick-start", "Quick Start"),
-      page("dashboard-overview", "Dashboard Overview"),
+            page(
+        "dashboard",
+        "Dashboard",
+        "The Dashboard gives you a quick overview of the selected location’s medicine store activity.",
+        {
+          image: IMG.analytics,
+          blocks: [
+            {
+              type: "paragraph",
+              text: "Use it to spot stock and payment issues, review sales, and open common tasks.",
+            },
+
+            { type: "heading", text: "How to Find the Dashboard" },
+            {
+              type: "steps",
+              items: [
+                { title: "Sign in to EliteHMS" },
+                { title: "Select **Dashboard** from the left-hand menu" },
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.dashboard,
+              alt: "Dashboard option in the left-hand menu",
+              caption: "Dashboard in the left-hand menu",
+            },
+            {
+              type: "callout",
+              kind: "note",
+              text: "Before using the figures, check the location name in the top bar. Dashboard information is for the selected location, so figures may differ when you switch branches.",
+            },
+
+            { type: "heading", text: "New Invoice" },
+            {
+              type: "paragraph",
+              text: "Select **New Invoice** in the upper-right corner to open the invoice form and create a bill.",
+            },
+            {
+              type: "image",
+              src: IMG.invoice,
+              alt: "New Invoice button in the upper-right corner of the Dashboard",
+              caption: "The New Invoice button",
+            },
+
+            { type: "heading", text: "Summary Cards" },
+            { type: "paragraph", text: "The cards show counts and totals for the selected location:" },
+            {
+              type: "list",
+              items: [
+                "**Total Medicines:** Number of active medicine records. The smaller line shows how many are low in stock.",
+                "**Total Patients:** Number of active patient records.",
+                "**Expired Medicines:** Number of medicines past their expiry date. The smaller line shows how many medicines are expiring soon, within 30 days.",
+                "**Today’s Revenue:** Total value of bills created today, with the number of bills shown below. This is the bill total; it may differ from the amount already collected if a bill is unpaid or partly paid.",
+                "**Monthly Revenue:** Total value and number of bills created this month.",
+                "**Pending Balance:** Money still owed on pending or partly paid bills. The smaller line shows how many bills are pending.",
+                "**Low Stock Items:** Number of medicines whose recorded stock is at or below their minimum stock level.",
+                "**Pending Bills:** Number of bills awaiting full payment.",
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.finance,
+              alt: "Dashboard summary cards",
+              caption: "Summary cards for the selected location",
+            },
+            {
+              type: "callout",
+              kind: "tip",
+              text: "Select a card to open its related page. For example, **Pending Balance** opens **Patient Balances**, and **Expired Medicines** opens **Expiry Alerts**.",
+            },
+
+            { type: "heading", text: "Expiry Warning" },
+            {
+              type: "paragraph",
+              text: "If medicines are expired or expiring soon, a warning can appear above the cards. Select it to open **Expiry Alerts** and review the affected medicines.",
+            },
+            {
+              type: "image",
+              src: IMG.stock,
+              alt: "Expiry warning banner above the summary cards",
+              caption: "The expiry warning above the cards",
+            },
+
+            { type: "heading", text: "Charts" },
+            {
+              type: "list",
+              items: [
+                "**Monthly Revenue:** A bar chart showing bill totals for the last six months. Hover over a bar to see its revenue value. If there are no bills for the period, the chart may be empty.",
+                "**Medicine Categories:** A chart showing how active medicine records are divided among categories. It counts medicine records by category; it does not show sales.",
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.charts,
+              alt: "Monthly Revenue bar chart and Medicine Categories chart",
+              caption: "Monthly Revenue and Medicine Categories charts",
+            },
+
+            { type: "heading", text: "More Dashboard Information" },
+            {
+              type: "paragraph",
+              text: "Scroll down to see **Top Selling Medicines**, which lists up to five medicines by quantity sold, with units sold and revenue.",
+            },
+            {
+              type: "paragraph",
+              text: "When new bills are created, they may also appear in **Live Activity** with the bill number, patient name, and total.",
+            },
+            {
+              type: "image",
+              src: IMG.office,
+              alt: "Top Selling Medicines and Live Activity sections",
+              caption: "Top Selling Medicines and Live Activity",
+            },
+            {
+              type: "callout",
+              kind: "warning",
+              text: "Be mindful of patient privacy when viewing or sharing the screen.",
+            },
+
+            { type: "heading", text: "Helpful Checks" },
+            {
+              type: "list",
+              items: [
+                "A zero can mean there are no matching records for the selected location or time period. Check the location before assuming data is missing.",
+                "Revenue is the total value of bills. Pending balance is the part of bills that has not yet been paid.",
+                "Low stock means the medicine’s recorded stock is at or below its configured minimum.",
+                "Review expiry and low-stock cards regularly so the team can take action.",
+              ],
+            },
+          ],
+        }
+      ),
     ],
   },
   {
