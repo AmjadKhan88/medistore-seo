@@ -62,6 +62,14 @@ const IMG = {
   laptop: u("photo-1516321318423-f06f85e504b3"),
   meds: u("photo-1587854692152-cbe660dbde88"),
   pills: u("photo-1471864190281-a93a3070b6de"),
+
+  barcode: u("photo-1601599561213-832382fd07ba"),
+  warehouse: u("photo-1553413077-190dd305871c"),
+  capsules: u("photo-1550572017-edd951b55104"),
+
+  reception: u("photo-1631217868264-e5b90bb7e133"),
+  records: u("photo-1581594693702-fbdc51b2763b"),
+  phone: u("photo-1556745757-8d76bdb6984b"),
 };
 
 const page = (slug: string, title: string, description?: string, extra: Partial<DocPage> = {}): DocPage => ({
@@ -265,7 +273,231 @@ export const docGroups: DocGroup[] = [
     icon: Pill,
     image: IMG.pharmacy,
     pages: [
-      page("medicine-inventory", "Medicine Inventory"),
+      page(
+        "medicines",
+        "Medicines",
+        "The Medicines page is where you manage the selected location’s medicine inventory.",
+        {
+          image: IMG.capsules,
+          blocks: [
+            {
+              type: "paragraph",
+              text: "You can add and update medicine records, search the list, check expiry or low-stock items, and scan barcodes.",
+            },
+
+            { type: "heading", text: "How to Find This Page" },
+            {
+              type: "steps",
+              items: [
+                { title: "Sign in to EliteHMS" },
+                { title: "Select **Medicines** from the left-hand menu" },
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.pharmacy,
+              alt: "Medicines option in the left-hand menu",
+              caption: "Medicines in the left-hand menu",
+            },
+            {
+              type: "callout",
+              kind: "note",
+              text: "Before adding or changing a record, check the branch shown in the top bar. Medicine inventory belongs to the selected location.",
+            },
+
+            { type: "heading", text: "Search and Filter" },
+            {
+              type: "paragraph",
+              text: "Use the search box to find a medicine by its name, generic name, or batch number. Use the category menu and status buttons to narrow the list:",
+            },
+            {
+              type: "list",
+              items: [
+                "**All:** Show medicines matching the current search and category.",
+                "**Expiring Soon:** Show medicines nearing their expiry date.",
+                "**Expired:** Show medicines past their expiry date.",
+                "**Low Stock:** Show medicines at or below their minimum stock level.",
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.warehouse,
+              alt: "Search box, category menu, and status buttons above the medicine list",
+              caption: "Search box, category menu, and status buttons",
+            },
+            {
+              type: "paragraph",
+              text: "The page shows up to 15 records at a time; use the page controls at the bottom to view more.",
+            },
+            {
+              type: "callout",
+              kind: "tip",
+              text: "If the list says **No medicines found**, add a medicine or check whether your search, category, or status filters are hiding the records.",
+            },
+
+            { type: "heading", text: "Add a Medicine" },
+            {
+              type: "steps",
+              items: [
+                { title: "Select **Add Medicine**" },
+                {
+                  title: "Enter the required details",
+                  detail: "Medicine name, purchase price, sale price, stock quantity, and expiry date are required.",
+                },
+                { title: "Add the other details where available", detail: "See the list below." },
+                { title: "Check the details, then select **Add Medicine**" },
+              ],
+            },
+            { type: "paragraph", text: "Other details you can add:" },
+            {
+              type: "list",
+              items: [
+                "Generic name, category, dosage form, and strength",
+                "Unit, manufacturer, and batch number",
+                "Minimum stock alert",
+                "Manufacturing date and storage location",
+                "Whether a prescription is required",
+                "Description and barcode",
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.meds,
+              alt: "Add Medicine form",
+              caption: "The Add Medicine form",
+            },
+            {
+              type: "callout",
+              kind: "tip",
+              text: "Use the correct unit for the stock quantity, such as **Pcs**, **Strip**, **Box**, **Bottle**, **Vial**, or **Tube**.",
+            },
+            {
+              type: "callout",
+              kind: "note",
+              text: "The **Storage Location** field means the shelf or place inside this branch, such as “Shelf A, Row 2.”",
+            },
+
+            { type: "heading", text: "AI Autofill" },
+            {
+              type: "paragraph",
+              text: "Enter the medicine name, then select the AI suggestion button beside it to fill some details, such as generic name, category, dosage form, strength, prescription requirement, and description.",
+            },
+            {
+              type: "image",
+              src: IMG.ai,
+              alt: "AI suggestion button beside the medicine name field",
+              caption: "The AI suggestion button beside the medicine name",
+            },
+            {
+              type: "callout",
+              kind: "warning",
+              text: "Review every suggested value before saving. AI can make mistakes, and it may not fill every field. Confirm important medicine information with a trusted source or qualified pharmacist.",
+            },
+
+            { type: "heading", text: "Barcode Scanner" },
+            {
+              type: "paragraph",
+              text: "Select **Scan Barcode** to look up a medicine by scanning its barcode.",
+            },
+            {
+              type: "list",
+              items: [
+                "If the barcode matches a medicine already in the inventory, its record opens for editing.",
+                "If no medicine matches, the page opens the **Add Medicine** form with the scanned barcode filled in.",
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.barcode,
+              alt: "Scan Barcode button and camera view",
+              caption: "Scanning a barcode",
+            },
+            {
+              type: "paragraph",
+              text: "You can also scan from inside the Add or Edit form to fill the barcode field.",
+            },
+            {
+              type: "callout",
+              kind: "tip",
+              text: "Allow camera access if your browser asks for it.",
+            },
+
+            { type: "heading", text: "Understanding the Medicine List" },
+            { type: "paragraph", text: "When medicines are present, the table can show:" },
+            {
+              type: "list",
+              items: [
+                "**Medicine:** Name, generic name, dosage form, strength, and an **Rx** badge if a prescription is required.",
+                "**Category:** The medicine’s category.",
+                "**Stock:** Quantity currently recorded, its unit, and the minimum stock alert.",
+                "**Purchase / Sale:** Recorded purchase and sale prices.",
+                "**Expiry / Status:** Expiry date and whether the medicine is valid, expiring soon, or expired.",
+                "**Actions:** Open available clinical information, edit the record, link substitutes, or delete it if your account has permission.",
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.stock,
+              alt: "Medicine list table with stock, prices, expiry, and actions",
+              caption: "The medicine list",
+            },
+
+            { type: "heading", text: "Update a Medicine" },
+            {
+              type: "steps",
+              items: [
+                { title: "Select the edit button on the medicine’s row", detail: "The form opens with the current details filled in." },
+                { title: "Make the correction" },
+                { title: "Select **Update Medicine**" },
+              ],
+            },
+            {
+              type: "callout",
+              kind: "tip",
+              text: "Check the batch, stock, prices, and dates before saving.",
+            },
+
+            { type: "heading", text: "Low Stock, Expiry, and Substitutes" },
+            {
+              type: "list",
+              items: [
+                "A medicine is marked **Low Stock** when its recorded quantity is at or below its minimum stock alert. Update the minimum stock value to match your store’s needs.",
+                "**Expiring Soon** means the expiry date is within the next 30 days. Check the physical package and batch before taking action.",
+                "**Expired** means the expiry date has passed. Follow your pharmacy’s process for removing expired stock from sale.",
+                "Use **Link Substitutes** to connect possible alternative medicines. The page suggests medicines in the same category first.",
+              ],
+            },
+            {
+              type: "callout",
+              kind: "warning",
+              text: "A qualified pharmacist or clinician must confirm that a substitute is appropriate.",
+            },
+
+            { type: "heading", text: "Deleting a Medicine" },
+            {
+              type: "callout",
+              kind: "warning",
+              text: "Delete only when you are sure the record should be removed. The confirmation warns that deletion cannot be undone.",
+            },
+            {
+              type: "paragraph",
+              text: "If you only need to correct a name, price, quantity, or date, edit the record instead. Delete access may depend on your account permissions.",
+            },
+
+            { type: "heading", text: "Useful Checks" },
+            {
+              type: "list",
+              items: [
+                "Confirm the selected branch before entering stock.",
+                "Check the medicine name, strength, dosage form, batch, and expiry against the package.",
+                "Enter the correct stock unit and prices.",
+                "Review AI suggestions before saving.",
+                "Do not treat a linked substitute as automatic approval to replace a medicine.",
+              ],
+            },
+          ],
+        }
+      ),
       page("billing-invoices", "Billing & Invoices"),
       page("purchase-orders", "Purchase Orders"),
       page("expiry-alerts", "Expiry Alerts"),
@@ -276,7 +508,212 @@ export const docGroups: DocGroup[] = [
     icon: Stethoscope,
     image: IMG.doctor,
     pages: [
-      page("patients", "Patients"),
+      page(
+        "patients",
+        "Patients",
+        "The Patients page stores patient contact and health information for the selected location.",
+        {
+          image: IMG.reception,
+          blocks: [
+            {
+              type: "paragraph",
+              text: "You can register patients, view or update their records, check billing totals, manage patient documents, and create a patient portal link.",
+            },
+
+            { type: "heading", text: "How to Find This Page" },
+            {
+              type: "steps",
+              items: [
+                { title: "Sign in to EliteHMS" },
+                { title: "Select **Patients** from the left-hand menu" },
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.doctor,
+              alt: "Patients option in the left-hand menu",
+              caption: "Patients in the left-hand menu",
+            },
+            {
+              type: "callout",
+              kind: "note",
+              text: "Check the location shown in the top bar. Patient records are associated with the selected branch.",
+            },
+
+            { type: "heading", text: "Search and Patient List" },
+            {
+              type: "paragraph",
+              text: "Search by patient name, patient ID, or phone number. The page shows up to 15 patients at a time; use the controls below the list to see more.",
+            },
+            {
+              type: "callout",
+              kind: "tip",
+              text: "If the page says **No patients found**, register a patient or check the search text and selected location.",
+            },
+            {
+              type: "paragraph",
+              text: "When records are available, the table can show the patient’s name, ID, age, gender, city, contact details, blood group, doctor, and billing totals.",
+            },
+            {
+              type: "list",
+              items: [
+                "**Billed:** Total amount of the patient’s bills.",
+                "**Paid:** Amount recorded as paid.",
+                "**Balance:** The amount still owed. **Cleared** means no balance is currently due.",
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.records,
+              alt: "Patient list with search box and billing totals",
+              caption: "The patient list with Billed, Paid, and Balance",
+            },
+            {
+              type: "paragraph",
+              text: "Select **View Balances** to open the **Patient Balances** page, where staff can review outstanding dues and record payments.",
+            },
+
+            { type: "heading", text: "Register a Patient" },
+            {
+              type: "steps",
+              items: [
+                { title: "Select **Add Patient**" },
+                { title: "Enter the patient’s **Full Name**", detail: "This is required." },
+                { title: "Add other details as available", detail: "See the list below." },
+                { title: "Check the details and select **Register Patient**" },
+              ],
+            },
+            { type: "paragraph", text: "Other details you can add:" },
+            {
+              type: "list",
+              items: [
+                "Age and gender",
+                "Phone and email",
+                "Blood group",
+                "City and address",
+                "Attending doctor",
+                "Medical history",
+                "Known allergies",
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.form,
+              alt: "Register Patient form",
+              caption: "The Register Patient form",
+            },
+            {
+              type: "callout",
+              kind: "note",
+              text: "The app assigns a patient ID after registration.",
+            },
+            {
+              type: "callout",
+              kind: "tip",
+              text: "Enter allergies separated by commas, for example: **Penicillin, Aspirin**.",
+            },
+            {
+              type: "callout",
+              kind: "tip",
+              text: "Search the patient list before registering so you can check whether a record already exists.",
+            },
+
+            { type: "heading", text: "View or Update a Patient" },
+            {
+              type: "paragraph",
+              text: "Select the view icon on a patient’s row to open the patient profile. The **Info** tab can show contact details, blood group, doctor, billing totals, address, medical history, and allergies. Select **Documents** to view or upload files for that patient.",
+            },
+            { type: "paragraph", text: "To update details:" },
+            {
+              type: "steps",
+              items: [
+                { title: "Select **Edit** in the profile or the edit icon in the list" },
+                { title: "Make the changes" },
+                { title: "Select **Update Patient**" },
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.laptop,
+              alt: "Patient profile with the Info and Documents tabs",
+              caption: "The patient profile",
+            },
+
+            { type: "heading", text: "Patient Documents" },
+            {
+              type: "steps",
+              items: [
+                { title: "In the patient profile, open **Documents**" },
+                { title: "Select **Upload** to attach a file" },
+                { title: "Add a title and choose a category" },
+              ],
+            },
+            {
+              type: "paragraph",
+              text: "Categories include **ID Card**, **Previous Prescription**, **Test Result**, **Insurance Card**, **Discharge Summary**, **Referral Letter**, **Consent Form**, or **Other**.",
+            },
+            {
+              type: "image",
+              src: IMG.warehouse,
+              alt: "Upload document form with title and category",
+              caption: "Uploading a patient document",
+            },
+            {
+              type: "callout",
+              kind: "note",
+              text: "The page accepts PDF, JPG, JPEG, PNG, and WEBP files up to 10 MB. You can open or delete an uploaded document from the list.",
+            },
+            {
+              type: "callout",
+              kind: "warning",
+              text: "Upload files only to the correct patient record and protect them as private information.",
+            },
+
+            { type: "heading", text: "Patient Portal Link" },
+            {
+              type: "paragraph",
+              text: "Select the link icon on the patient’s row to generate a private portal link. The patient can use it to view bills, prescriptions, lab tests, and appointments without signing in.",
+            },
+            {
+              type: "image",
+              src: IMG.phone,
+              alt: "Patient portal link with copy, share, open, and revoke options",
+              caption: "The patient portal link",
+            },
+            {
+              type: "paragraph",
+              text: "You can copy or share the link, open it, or revoke access. If you revoke access, the existing link stops working.",
+            },
+            {
+              type: "callout",
+              kind: "warning",
+              text: "Share the link only with the intended patient.",
+            },
+
+            { type: "heading", text: "Delete a Patient" },
+            {
+              type: "paragraph",
+              text: "Delete is available only to accounts with the required permission.",
+            },
+            {
+              type: "callout",
+              kind: "warning",
+              text: "The confirmation says the patient record will be removed permanently. Check carefully before confirming; use **Edit** to correct information rather than deleting the record.",
+            },
+
+            { type: "heading", text: "Keep Patient Records Accurate and Private" },
+            {
+              type: "list",
+              items: [
+                "Confirm you have the correct patient before viewing, editing, uploading, or sharing information.",
+                "Check spelling and contact details so staff can find the right record.",
+                "Record allergies and medical history carefully.",
+                "Do not share patient portal links or documents with unintended recipients.",
+              ],
+            },
+          ],
+        }
+      ),
       page("appointments", "Appointments"),
       page("opd-queue", "OPD Queue"),
       page("prescriptions", "Prescriptions"),
