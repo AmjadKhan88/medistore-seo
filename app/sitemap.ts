@@ -3,6 +3,7 @@ import { blogPosts } from "@/content/blog";
 import { docs } from "@/content/docs";
 import { allFeatures } from "@/content/features";
 import { siteConfig } from "@/lib/env";
+import { allDocPages, docHref } from "@/content/documentation";
 
 const staticRoutes = [
   "/",
@@ -32,8 +33,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const featureRoutes = allFeatures.map((f) => `/features/${f.slug}`);
   const blogRoutes = blogPosts.map((post) => `/blog/${post.slug}`);
   const docRoutes = docs.map((doc) => `/docs/${doc.slug}`);
+    // Only pages that have real content (empty placeholders are noindex)
+  const documentationRoutes = allDocPages.filter((p) => p.blocks?.length).map((p) => docHref(p.slug));
 
-  const routes = [...staticRoutes, ...featureRoutes, ...blogRoutes, ...docRoutes];
+  const routes = [...staticRoutes, ...featureRoutes, ...blogRoutes, ...docRoutes, ...documentationRoutes];
+
 
   return routes.map((route) => {
     let priority = 0.7;

@@ -12,6 +12,7 @@
   --primary-foreground: 255 255 255;
   --accent: 255 185 80;
   --ink: 16 30 40;
+  --card: 255 255 255;
 
   /* Semantic aliases — used by Tailwind utilities like bg-background, text-foreground */
   --color-background: rgb(var(--background));
@@ -34,7 +35,7 @@
   --primary-foreground: 4 24 28;
   --accent: 255 196 94;
   --ink: 238 247 247;
-
+  --card: 15 23 29;
   --color-background: rgb(var(--background));
   --color-foreground: rgb(var(--foreground));
   --color-muted: rgb(var(--muted));
