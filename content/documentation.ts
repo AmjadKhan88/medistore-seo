@@ -40,6 +40,11 @@ const IMG = {
   lab: u("photo-1579154204601-01588f351e67"),
   tech: u("photo-1576091160550-2173dba999ef"),
   team: u("photo-1551601651-2a8555f1a136"),
+  dashboard: u("photo-1551288049-bebda4e38f71"),
+  analytics: u("photo-1460925895917-afdab827c52f"),
+  finance: u("photo-1554224155-6726b3ff858f"),
+  payment: u("photo-1563013544-824ae1b704d3"),
+  checkout: u("photo-1556742049-0cfed4f6a45d"),
 };
 
 const page = (slug: string, title: string, description?: string, extra: Partial<DocPage> = {}): DocPage => ({
@@ -157,7 +162,105 @@ export const docGroups: DocGroup[] = [
     image: IMG.team,
     pages: [
       page("staff-roles", "Staff & Roles"),
-      page("subscription", "My Subscription"),
+      page(
+        "subscription",
+        "My Subscription",
+        "The My Subscription page shows your current plan, how much of your plan you have used, your payment history, and other plans you can choose.",
+        {
+          blocks: [
+            { type: "heading", text: "How to Find My Subscription" },
+            {
+              type: "steps",
+              items: [
+                { title: "Sign in to your EliteHMS account" },
+                { title: "Select My Subscription in the left-hand menu", detail: "It is near the top of the menu." },
+                { title: "The Subscription & Billing page opens" },
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.dashboard,
+              alt: "My Subscription option in the left-hand menu",
+              caption: "My Subscription in the left-hand menu",
+            },
+            {
+              type: "callout",
+              kind: "tip",
+              text: "If My Subscription is not visible, sign in with the correct account or ask your administrator to check your access.",
+            },
+
+            { type: "heading", text: "Current Plan" },
+            {
+              type: "paragraph",
+              text: "At the top of the page, you can see the plan that is active for your account. In this example, the current plan is Pharmacy Basic Plan. The renewal date and remaining days are shown below it.",
+            },
+            {
+              type: "image",
+              src: IMG.checkout,
+              alt: "Current plan section at the top of the Subscription & Billing page",
+              caption: "The current plan, renewal date, and remaining days",
+            },
+
+            { type: "heading", text: "Current Usage" },
+            { type: "paragraph", text: "This section shows how much of your plan’s allowance your store has used." },
+            {
+              type: "list",
+              items: [
+                "Medicines: 0 of 500 used",
+                "Patients: 0 of 300 used",
+                "Staff Members: 2 of 3 used",
+                "Bills This Month: Unlimited",
+              ],
+            },
+            { type: "paragraph", text: "The progress bars show your usage visually." },
+            {
+              type: "callout",
+              kind: "note",
+              text: "If you reach a plan limit, you may need to upgrade before adding more records or staff.",
+            },
+            {
+              type: "image",
+              src: IMG.analytics,
+              alt: "Current usage section with progress bars",
+              caption: "Usage progress bars for medicines, patients, staff, and bills",
+            },
+
+            { type: "heading", text: "Payment History" },
+            {
+              type: "paragraph",
+              text: "This section lists payments recorded for your subscription. Each entry can show the plan name, payment method or transaction reference, amount, and payment date.",
+            },
+            {
+              type: "image",
+              src: IMG.payment,
+              alt: "Payment history list",
+              caption: "Payments recorded for your subscription",
+            },
+
+            { type: "heading", text: "Available Plans" },
+            {
+              type: "paragraph",
+              text: "Compare the plans shown on the page to find the features and limits that suit your organization. Prices are displayed in PKR per month. The button on your current plan identifies it; the other plans have upgrade buttons.",
+            },
+            {
+              type: "callout",
+              kind: "tip",
+              text: "Before upgrading, review the plan price and included features. Follow the confirmation and payment steps shown by the app.",
+            },
+            {
+              type: "image",
+              src: IMG.finance,
+              alt: "Available plans with upgrade buttons",
+              caption: "Available plans, priced in PKR per month",
+            },
+            {
+              type: "callout",
+              kind: "note",
+              text: "The values in these screenshots are examples from the account shown. Your plan, usage, payment history, prices, and renewal date may be different.",
+            },
+          ],
+        }
+      ),
       page("reports-analytics", "Reports & Analytics"),
     ],
   },
