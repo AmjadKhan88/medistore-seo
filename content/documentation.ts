@@ -94,6 +94,21 @@ const IMG = {
 
   waiting: u("photo-1519494140681-8b17d830a050"),
   screen: u("photo-1593359677879-a4bb92f829d1"),
+
+  monitor: u("photo-1530026405186-ed1f139313f8"),
+  alert: u("photo-1584036561566-baf8f5f1b144"),
+
+  surgery: u("photo-1551076805-e1869033e561"),
+  theatre: u("photo-1579684385127-1ef15d508118"),
+
+  blood: u("photo-1615461066159-fea0960485d5"),
+  donor: u("photo-1615461065929-4f8ffed6ca40"),
+
+  xray: u("photo-1530497610245-94d3c16cda28"),
+  imaging: u("photo-1559757175-5700dde675bc"),
+
+  rounds: u("photo-1612349317150-e413f6a5b16d"),
+  handover: u("photo-1622253692010-333f2da6031d"),
 };
 
 const page = (slug: string, title: string, description?: string, extra: Partial<DocPage> = {}): DocPage => ({
@@ -113,7 +128,7 @@ export const docGroups: DocGroup[] = [
     icon: Rocket,
     image: IMG.hospital,
     pages: [
-                  page(
+      page(
         "introduction",
         "Introduction",
         "EliteHMS is a web-based hospital and healthcare management system that helps pharmacies, clinics, and hospitals manage their daily work in one place.",
@@ -975,6 +990,147 @@ export const docGroups: DocGroup[] = [
         }
       ),
       page(
+        "patient-matching",
+        "Smart Patient Matching",
+        "Smart Patient Matching compares active patient records and highlights pairs that might belong to the same person.",
+        {
+          image: IMG.records,
+          blocks: [
+            { type: "heading", text: "What this page does" },
+            {
+              type: "paragraph",
+              text: "This can help staff find duplicate records and keep a patient’s information and history together.",
+            },
+            {
+              type: "callout",
+              kind: "tip",
+              text: "If the page shows 0 potential duplicates, no pairs met the current matching threshold. It does not prove that no duplicates exist.",
+            },
+
+            { type: "heading", text: "How to find this page" },
+            {
+              type: "steps",
+              items: [
+                { title: "Sign in to EliteHMS" },
+                { title: "In the left menu, select **Deduplication**" },
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.dashboard,
+              alt: "Deduplication option in the left menu",
+              caption: "Deduplication in the left menu",
+            },
+
+            { type: "heading", text: "What the page shows" },
+            {
+              type: "list",
+              items: [
+                "**Potential duplicates found:** The number of patient pairs that match the current threshold.",
+                "**High confidence:** Pairs with a strong match score.",
+                "**Sensitivity Threshold:** Controls how similar records must be before they appear.",
+                "**All, High, Medium, Low:** Filters the results by match confidence.",
+                "**Rescan:** Runs the comparison again using the selected threshold.",
+                "**No duplicate patients found:** No pairs currently meet the threshold.",
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.analytics,
+              alt: "Smart Patient Matching summary, threshold slider, and filters",
+              caption: "Summary, threshold slider, and filters",
+            },
+            {
+              type: "paragraph",
+              text: "The system compares details such as phone number, CNIC, name, age, gender, and city. Each suggested pair includes a score, confidence level, and reasons for the match.",
+            },
+
+            { type: "heading", text: "Set the sensitivity threshold" },
+            { type: "paragraph", text: "Move the slider from 50% to 90%:" },
+            {
+              type: "list",
+              items: [
+                "A **lower threshold** (closer to 50%) finds more possible matches, including weaker ones. Review these carefully.",
+                "A **higher threshold** (closer to 90%) shows fewer, stronger matches.",
+              ],
+            },
+            {
+              type: "paragraph",
+              text: "Changing the threshold triggers a new scan. Use the confidence filters to focus on **High**, **Medium**, or **Low** results.",
+            },
+
+            { type: "heading", text: "Review a possible duplicate" },
+            {
+              type: "paragraph",
+              text: "For each pair, compare the information shown for both patients, including their names, patient IDs, phone numbers, age, gender, city, billed totals, and record dates. Read the match reasons and score.",
+            },
+            {
+              type: "image",
+              src: IMG.form,
+              alt: "A possible duplicate pair with both patients’ details, score, and reasons",
+              caption: "A possible duplicate pair",
+            },
+            {
+              type: "callout",
+              kind: "warning",
+              text: "A match is only a suggestion. Family members may share a phone number or address, and two different people may have similar names. Confirm the person’s identity and records before merging anything.",
+            },
+
+            { type: "heading", text: "Merge records carefully" },
+            {
+              type: "paragraph",
+              text: "Select **Merge** only after confirming that both records belong to the same patient.",
+            },
+            {
+              type: "steps",
+              items: [
+                {
+                  title: "Choose which patient record to **Keep**",
+                  detail: "This record remains active and keeps its patient ID.",
+                },
+                { title: "Review the field-by-field comparison" },
+                {
+                  title: "For a differing field, select **Use other** if the value from the other record is the correct one",
+                },
+                { title: "Check all information, then select **Merge Records** and confirm" },
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.records,
+              alt: "Merge dialog with Keep selection and field-by-field comparison",
+              caption: "The merge dialog",
+            },
+            {
+              type: "paragraph",
+              text: "When merged, the other patient’s bills, prescriptions, lab tests, appointments, IPD records, vital signs, feedback, insurance claims, radiology studies, broadcast records, and OPD queue records are reassigned to the kept patient. Financial totals are combined.",
+            },
+            {
+              type: "callout",
+              kind: "note",
+              text: "The other patient record is archived rather than deleted.",
+            },
+            {
+              type: "callout",
+              kind: "warning",
+              text: "Merging cannot be fully reversed. If you are unsure whether records belong to the same person, cancel and ask an authorized staff member to verify first.",
+            },
+
+            { type: "heading", text: "Helpful definitions" },
+            {
+              type: "list",
+              items: [
+                "**Potential duplicate:** Two records that share enough details to be worth checking.",
+                "**Match score:** The system’s estimate of how similar two records are.",
+                "**Confidence:** A High, Medium, or Low label based on the match score.",
+                "**Threshold:** The minimum score needed for a pair to appear.",
+                "**Merge:** Combine the related records under one kept patient record.",
+              ],
+            },
+          ],
+        }
+      ),
+      page(
         "appointments",
         "Appointments",
         "The Appointments page helps your team schedule patient visits, review the schedule, and record what happened during a visit.",
@@ -1182,6 +1338,217 @@ export const docGroups: DocGroup[] = [
                 "Record visit details under the correct appointment.",
                 "Treat patient names, contact details, and clinical notes as private information.",
               ],
+            },
+          ],
+        }
+      ),
+      page(
+        "online-booking",
+        "Online Appointment Booking",
+        "Use Online Appointment Booking to let patients request appointments through a public webpage.",
+        {
+          image: IMG.visit,
+          blocks: [
+            { type: "heading", text: "What this page does" },
+            {
+              type: "paragraph",
+              text: "Patients do not need an EliteHMS login. They choose a doctor, date, and available time, then enter their name and phone number.",
+            },
+            {
+              type: "callout",
+              kind: "note",
+              text: "Patients cannot book through the public page until you enable it.",
+            },
+            {
+              type: "callout",
+              kind: "tip",
+              text: "If the booking page is disabled and there are 0 total bookings, you have not turned online booking on yet. Follow the setup steps below.",
+            },
+
+            { type: "heading", text: "How to find this page" },
+            {
+              type: "steps",
+              items: [
+                { title: "Sign in to EliteHMS" },
+                { title: "In the left menu, select **Online Booking**" },
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.dashboard,
+              alt: "Online Booking option in the left menu",
+              caption: "Online Booking in the left menu",
+            },
+
+            { type: "heading", text: "Set up the booking page" },
+            { type: "subheading", text: "1. Complete clinic information" },
+            {
+              type: "paragraph",
+              text: "On the **Setup** tab, check the clinic details:",
+            },
+            {
+              type: "list",
+              items: [
+                "**Booking URL (slug):** The short name used in your public link, such as amjad-ullah. Use lowercase letters, numbers, and hyphens.",
+                "**Clinic Name**, **Tagline**, **Address**, **Phone:** Enter the information patients should see.",
+                "**Allow same-day bookings:** Turn this on if patients may book for today.",
+                "**Advance Booking (days):** How many days ahead patients may book.",
+                "**Cancellation Window (hours):** How long before the visit a patient must cancel.",
+                "**Confirmation Message Template:** Edit the message shown after booking. Available placeholders are **{patientName}**, **{doctor}**, **{date}**, **{time}**, **{clinic}**, and **{cancelLink}**.",
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.form,
+              alt: "Setup tab with booking URL, clinic details, and booking rules",
+              caption: "The Setup tab",
+            },
+            {
+              type: "callout",
+              kind: "warning",
+              text: "Changing the booking URL (slug) changes the link you share. Patients who saved the old link will no longer reach your page.",
+            },
+            {
+              type: "paragraph",
+              text: "Select **Save Settings** after making changes.",
+            },
+
+            { type: "subheading", text: "2. Add doctors and schedules" },
+            {
+              type: "steps",
+              items: [
+                { title: "Open the **Doctors** tab and select **Add Doctor**" },
+                {
+                  title: "Enter the doctor’s name",
+                  detail: "And, where relevant, specialization, qualification, consultation fee, and short bio.",
+                },
+                { title: "Set the days and time slots when the doctor accepts appointments" },
+                {
+                  title: "Choose **Max Per Slot**",
+                  detail: "This controls how many patients can book the same time.",
+                },
+                {
+                  title: "Keep **Doctor is active** selected",
+                  detail: "The doctor appears on the public page only while it is selected.",
+                },
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.doctor,
+              alt: "Add Doctor form with specialization, fee, days, and time slots",
+              caption: "Adding a doctor and their schedule",
+            },
+            {
+              type: "callout",
+              kind: "note",
+              text: "You need at least one active doctor with at least one available day and time slot before patients can book. Use the edit button on a doctor’s card to update their information or schedule.",
+            },
+
+            { type: "subheading", text: "3. Enable and share the page" },
+            {
+              type: "steps",
+              items: [
+                {
+                  title: "Make sure the clinic details and doctor schedules are ready",
+                },
+                {
+                  title: "Select **Enable Booking**",
+                  detail: "The page status should change to **Booking page is LIVE**.",
+                },
+                {
+                  title: "Find the public URL near the top of the page",
+                  detail: "For example, https://app.elitehms.online/book/amjad-ullah",
+                },
+                {
+                  title: "Select **Copy** to copy the link or **Preview** to check the public page",
+                },
+                {
+                  title: "Share the link with patients",
+                  detail: "Through a suitable channel, such as WhatsApp, your clinic’s website, or social media.",
+                },
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.phone,
+              alt: "Booking page is LIVE with the public URL, Copy, and Preview buttons",
+              caption: "The booking page when it is live",
+            },
+
+            { type: "heading", text: "What patients do" },
+            { type: "paragraph", text: "On the public page, patients:" },
+            {
+              type: "steps",
+              items: [
+                { title: "Choose a doctor" },
+                { title: "Select an available date and time" },
+                {
+                  title: "Enter their name and phone number",
+                  detail: "These are required.",
+                },
+                { title: "Choose an appointment type and optionally add notes" },
+                { title: "Submit the booking and view the confirmation details" },
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.calendar,
+              alt: "Public booking page with doctor, date, and time selection",
+              caption: "The public booking page",
+            },
+            {
+              type: "paragraph",
+              text: "Patients can use the cancellation link in their confirmation to cancel, subject to the cancellation window set by the clinic.",
+            },
+            {
+              type: "callout",
+              kind: "tip",
+              text: "Check the **Upcoming** and cancellation counts on the dashboard to monitor activity.",
+            },
+
+            { type: "heading", text: "Tabs and booking counts" },
+            {
+              type: "list",
+              items: [
+                "**Setup:** Clinic details, booking rules, and confirmation message.",
+                "**Doctors:** Doctors who appear on the public booking page and their schedules.",
+                "**Stats:** Total bookings, bookings this month and today, upcoming bookings, cancellations, and booking success rate. It also provides options to copy or share the public link.",
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.analytics,
+              alt: "Online booking summary cards and the Stats tab",
+              caption: "Summary cards and the Stats tab",
+            },
+            {
+              type: "paragraph",
+              text: "The top cards show **Total Bookings**, **This Month**, **Upcoming**, and **Cancellations**. Select **Refresh** to reload the page information.",
+            },
+
+            { type: "heading", text: "Helpful definitions" },
+            {
+              type: "list",
+              items: [
+                "**Public booking URL:** A link patients can open without signing in.",
+                "**Slug:** The clinic-specific part at the end of the booking link.",
+                "**Time slot:** A bookable appointment time.",
+                "**Max per slot:** The number of patients allowed to book one time slot.",
+                "**Cancellation window:** The minimum notice required before a patient can cancel.",
+              ],
+            },
+
+            { type: "heading", text: "Before sharing the link" },
+            {
+              type: "callout",
+              kind: "warning",
+              text: "Preview the public page and confirm the clinic contact details, doctor names, schedules, fees, and cancellation rules are correct. Make sure each doctor’s active days and time slots reflect their real availability.",
+            },
+            {
+              type: "callout",
+              kind: "tip",
+              text: "Disable booking if the clinic is temporarily not accepting online appointments.",
             },
           ],
         }
@@ -1820,6 +2187,338 @@ export const docGroups: DocGroup[] = [
           ],
         }
       ),
+      page(
+        "vital-signs",
+        "Vital Signs Monitoring",
+        "This page lets authorized staff record a patient’s measurements and review past readings, alerts, and trends.",
+        {
+          image: IMG.monitor,
+          blocks: [
+            { type: "heading", text: "How to find this page" },
+            {
+              type: "steps",
+              items: [
+                { title: "Sign in to EliteHMS" },
+                { title: "Choose the correct location from the top bar" },
+                { title: "Select **Vital Signs** from the left menu" },
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.doctor,
+              alt: "Vital Signs option in the left menu",
+              caption: "Vital Signs in the left menu",
+            },
+
+            { type: "heading", text: "What the page shows" },
+            {
+              type: "list",
+              items: [
+                "**Today Readings:** Measurements recorded today.",
+                "**Critical (24h):** Readings flagged with critical values during the last 24 hours.",
+                "**Total Readings:** All saved readings for the selected location.",
+                "**Patient search:** Search by patient name or ID. Enter at least two characters, then select the matching patient.",
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.analytics,
+              alt: "Vital Signs summary cards and patient search",
+              caption: "Summary cards and patient search",
+            },
+            {
+              type: "paragraph",
+              text: "Select **Record** to enter a reading, or **View Charts** to review that patient’s history. Use **Refresh** to reload the summary.",
+            },
+            {
+              type: "callout",
+              kind: "tip",
+              text: "If all the totals are zero, there are no readings currently shown for the selected location.",
+            },
+
+            { type: "heading", text: "Record a patient’s vital signs" },
+            {
+              type: "steps",
+              items: [
+                { title: "Select the patient" },
+                { title: "Choose **Record Vitals**" },
+                {
+                  title: "Enter at least one measurement",
+                  detail: "See the fields below.",
+                },
+                { title: "Check the patient and units" },
+                { title: "Select **Record Vitals**" },
+              ],
+            },
+            { type: "paragraph", text: "The form can include:" },
+            {
+              type: "list",
+              items: [
+                "**Date & Time** and **Context** (such as OPD, IPD, Emergency, ICU, OT, Follow-up, or Home).",
+                "**Blood pressure:** Systolic and diastolic values, the patient’s position, and which arm was used.",
+                "**Pulse**, **respiratory rate**, and **SpO₂** (oxygen saturation).",
+                "**Temperature** and measurement route.",
+                "**Blood sugar (RBS)** and timing, such as fasting, random, or after a meal.",
+                "**Weight**, **height**, **pain score**, and **GCS score**.",
+                "**Notes** for relevant observations.",
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.vitals,
+              alt: "Record Vitals form with blood pressure, pulse, temperature, and SpO₂",
+              caption: "The Record Vitals form",
+            },
+            {
+              type: "callout",
+              kind: "note",
+              text: "The form may show an abnormal or critical warning while values are entered.",
+            },
+            {
+              type: "callout",
+              kind: "warning",
+              text: "Alerts are based on built-in thresholds; they support staff review and do not replace clinical judgment.",
+            },
+
+            { type: "heading", text: "Review charts and history" },
+            { type: "paragraph", text: "On the patient view, you can:" },
+            {
+              type: "list",
+              items: [
+                "Review the latest measurements and any critical alerts.",
+                "Filter readings by admission and date range; use **Clear** to remove those filters.",
+                "View available trend charts for blood pressure, pulse, temperature, SpO₂, blood sugar, and weight.",
+                "Compare readings in the summary table, including latest, average, minimum, and maximum values.",
+                "Review the vitals history table, including date, measurements, and who recorded them.",
+                "Select **Print** to print the patient’s vitals view.",
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.charts,
+              alt: "Trend charts for blood pressure, pulse, temperature, and SpO₂",
+              caption: "Trend charts on the patient view",
+            },
+            {
+              type: "image",
+              src: IMG.records,
+              alt: "Vitals history table with date, measurements, and who recorded them",
+              caption: "The vitals history table",
+            },
+            {
+              type: "callout",
+              kind: "warning",
+              text: "The history table includes a delete control for each record. Use it only if an entry must be removed under your organization’s record-correction policy.",
+            },
+
+            { type: "heading", text: "Critical alerts" },
+            {
+              type: "paragraph",
+              text: "The main page may show recent critical alerts. Select an alert to open that patient’s readings. Critical readings can also trigger an in-app notification.",
+            },
+            {
+              type: "image",
+              src: IMG.alert,
+              alt: "Recent critical alerts on the Vital Signs page",
+              caption: "Recent critical alerts",
+            },
+            {
+              type: "callout",
+              kind: "warning",
+              text: "Follow your facility’s process for checking and escalating alerts; do not rely on the screen alone for urgent care decisions.",
+            },
+
+            { type: "heading", text: "Short definitions" },
+            {
+              type: "list",
+              items: [
+                "**Systolic / diastolic:** The upper and lower numbers in a blood pressure reading.",
+                "**Pulse:** Heartbeats per minute.",
+                "**Respiratory rate:** Breaths per minute.",
+                "**SpO₂:** The percentage of oxygen carried in the blood, as measured by a pulse oximeter.",
+                "**RBS:** Random blood sugar measurement.",
+                "**GCS:** Glasgow Coma Scale, a clinical score used to describe a person’s level of consciousness.",
+                "**Trend:** How a measurement changes across multiple readings.",
+              ],
+            },
+          ],
+        }
+      ),
+      page(
+        "emr",
+        "Electronic Medical Records (EMR)",
+        "EMR brings a patient’s recorded medical information and visit history together.",
+        {
+          image: IMG.laptop,
+          blocks: [
+            { type: "heading", text: "How to find this page" },
+            {
+              type: "steps",
+              items: [
+                { title: "Sign in to EliteHMS" },
+                { title: "Choose the correct location from the top bar" },
+                { title: "Select **EMR** from the left menu" },
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.doctor,
+              alt: "EMR option in the left menu",
+              caption: "EMR in the left menu",
+            },
+            {
+              type: "callout",
+              kind: "note",
+              text: "Until you select a patient, no record is shown.",
+            },
+
+            { type: "heading", text: "Find a patient" },
+            {
+              type: "steps",
+              items: [
+                {
+                  title: "Search by the patient’s name, ID, or phone number",
+                  detail: "Enter at least two characters.",
+                },
+                {
+                  title: "Check the matching patient’s name and details",
+                  detail: "Such as patient ID, age, and gender.",
+                },
+                { title: "Select the patient row or **Open EMR** to open their record" },
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.records,
+              alt: "EMR patient search with matching patients",
+              caption: "Searching for a patient",
+            },
+            {
+              type: "callout",
+              kind: "tip",
+              text: "If the patient does not appear, check the spelling or search by a different detail. Make sure you are in the correct location.",
+            },
+
+            { type: "heading", text: "What is in a patient’s EMR" },
+            { type: "paragraph", text: "The patient record has several tabs:" },
+            {
+              type: "list",
+              items: [
+                "**Overview:** Patient details, allergies, active conditions, a medical summary, clinical summary, and past medical history. The summary can also show counts for bills, prescriptions, lab tests, appointments, and admissions, plus billed and outstanding amounts.",
+                "**Problems:** A list of conditions with their status and, where entered, severity, ICD-10 code, onset date, and notes.",
+                "**Timeline:** A chronological view of recorded bills, prescriptions, lab tests, appointments, admissions, discharges, and vital-sign readings. Use the filters to focus on one type of event.",
+                "**History:** Surgical history, family history, and immunizations.",
+                "**Social:** Lifestyle information such as smoking, alcohol use, occupation, exercise, diet, and living status.",
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.analytics,
+              alt: "Patient EMR with the Overview, Problems, Timeline, History, and Social tabs",
+              caption: "A patient’s EMR tabs",
+            },
+            {
+              type: "callout",
+              kind: "note",
+              text: "The page heading mentions referral records, but the EMR tabs shown in the application do not have a separate referral tab. Referral information may be documented in another relevant record, such as an appointment or admission.",
+            },
+
+            { type: "heading", text: "Add or update information" },
+            {
+              type: "paragraph",
+              text: "Use **Edit** on an editable section, enter accurate information, and select **Save**.",
+            },
+            { type: "paragraph", text: "To add a condition:" },
+            {
+              type: "steps",
+              items: [
+                { title: "Open **Problems**" },
+                { title: "Choose **Add Problem**" },
+                {
+                  title: "Enter the condition and its status",
+                  detail: "Status is required. Severity, ICD-10 code, onset date, and notes can provide more context.",
+                },
+                { title: "Save" },
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.form,
+              alt: "Add Problem form with condition, status, severity, and ICD-10 code",
+              caption: "The Add Problem form",
+            },
+            {
+              type: "paragraph",
+              text: "Use **Edit** to update a problem or **Delete** to remove it when appropriate.",
+            },
+            {
+              type: "paragraph",
+              text: "The **History** tab lets staff add or update surgery, family history, and immunization entries. The **Social** tab has a **Save Social History** button.",
+            },
+            {
+              type: "callout",
+              kind: "warning",
+              text: "Follow your organization’s correction process when changing existing clinical information, and do not enter unverified details.",
+            },
+
+            { type: "heading", text: "Timeline, refresh, and print" },
+            {
+              type: "paragraph",
+              text: "Timeline events are grouped by month. Select a type filter to narrow the list, or **All** to show every available event. Some events include extra details, such as appointment notes, prescription medicines, or vital-sign alerts.",
+            },
+            {
+              type: "image",
+              src: IMG.calendar,
+              alt: "Timeline grouped by month with type filters",
+              caption: "The Timeline tab",
+            },
+            {
+              type: "paragraph",
+              text: "Use **Refresh** to reload the record and **Print EMR** to print the current patient record.",
+            },
+            {
+              type: "callout",
+              kind: "tip",
+              text: "Before printing, confirm you opened the correct patient.",
+            },
+
+            { type: "heading", text: "Important notes" },
+            {
+              type: "callout",
+              kind: "note",
+              text: "Opening a patient’s EMR automatically creates an empty EMR record if one does not exist yet.",
+            },
+            {
+              type: "callout",
+              kind: "warning",
+              text: "The allergy banner uses allergies recorded on the patient profile. Check allergy details carefully before care decisions.",
+            },
+            {
+              type: "callout",
+              kind: "note",
+              text: "The EMR summary combines information from different modules. A count or timeline entry reflects records saved elsewhere in the app; it does not replace those source records.",
+            },
+            {
+              type: "callout",
+              kind: "warning",
+              text: "EMR contains sensitive patient information. Open and print records only when you are authorized and need them for your work.",
+            },
+
+            { type: "heading", text: "Short definitions" },
+            {
+              type: "list",
+              items: [
+                "**EMR:** Electronic Medical Record; a digital collection of a patient’s health information.",
+                "**Problem list:** Conditions recorded for the patient, including whether they are active, suspected, inactive, or resolved.",
+                "**Timeline:** A date-ordered list of events from different parts of the patient record.",
+                "**ICD-10 code:** A standard code used to identify a diagnosis or health condition.",
+                "**Social history:** Health-related lifestyle and background information.",
+                "**Resolved:** A condition marked as no longer active.",
+              ],
+            },
+          ],
+        }
+      ),
     ],
   },
   {
@@ -2360,9 +3059,1245 @@ export const docGroups: DocGroup[] = [
           ],
         }
       ),
-      page("nurse-station", "Nurse Station"),
-      page("ot-scheduling", "OT Scheduling"),
-      page("blood-bank", "Blood Bank"),
+      page(
+        "nurse-station",
+        "Nurse Station",
+        "Nurse Station brings together key information for active IPD admissions: the patient’s ward and bed, scheduled medicine doses, recorded vital signs, and medicine requests sent to the pharmacy.",
+        {
+          image: IMG.nurse,
+          blocks: [
+            { type: "heading", text: "How to find this page" },
+            {
+              type: "steps",
+              items: [
+                { title: "Sign in to EliteHMS" },
+                { title: "Select **Nurse Station** from the left-hand menu" },
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.hospital,
+              alt: "Nurse Station option in the left-hand menu",
+              caption: "Nurse Station in the left-hand menu",
+            },
+
+            { type: "heading", text: "What this page is for" },
+            {
+              type: "paragraph",
+              text: "Nurse Station brings together key information for active IPD admissions: the patient’s ward and bed, scheduled medicine doses, recorded vital signs, and medicine requests sent to the pharmacy.",
+            },
+            {
+              type: "paragraph",
+              text: "It uses admissions and medicine orders created elsewhere in EliteHMS:",
+            },
+            {
+              type: "list",
+              items: [
+                "Admit patients through **IPD Management**.",
+                "Set up wards and beds in **Ward & Beds**.",
+                "Add medicine orders in the patient’s IPD admission.",
+              ],
+            },
+            {
+              type: "callout",
+              kind: "tip",
+              text: "If the page shows **0 patients** and **No active IPD patients**, there are no active inpatient admissions to display for the selected location. It does not mean that the patient list is broken.",
+            },
+            {
+              type: "callout",
+              kind: "note",
+              text: "Registering an OPD queue token alone does not create an IPD admission.",
+            },
+
+            { type: "heading", text: "Find a patient" },
+            {
+              type: "paragraph",
+              text: "The left panel lists active inpatients. Search by the patient’s name, bed number, or ward. Select a patient to open their details on the right.",
+            },
+            {
+              type: "paragraph",
+              text: "Each patient entry can show their ward and bed, days admitted, admission diagnosis, active medicine orders, and a summary of today’s scheduled doses. An overdue marker highlights pending doses whose scheduled times have passed.",
+            },
+            {
+              type: "image",
+              src: IMG.records,
+              alt: "Active inpatient list with search box and overdue markers",
+              caption: "The active inpatient list",
+            },
+            {
+              type: "callout",
+              kind: "tip",
+              text: "Use the **Refresh** button near the Nurse Station heading to reload the patient list and alerts.",
+            },
+
+            { type: "heading", text: "Review the MAR" },
+            {
+              type: "paragraph",
+              text: "The **MAR** tab is the Medicine Administration Record. It lists doses scheduled for the selected patient, grouped by time. Choose a date to review that day’s record, then use refresh if you need to reload it.",
+            },
+            {
+              type: "image",
+              src: IMG.mar,
+              alt: "MAR tab with scheduled doses grouped by time",
+              caption: "The MAR tab",
+            },
+            { type: "paragraph", text: "For today’s pending doses, the available actions are:" },
+            {
+              type: "list",
+              items: [
+                "**Given:** Record that the dose was given.",
+                "**Skip:** Record that the dose was not given.",
+                "**Refused:** Record that the patient refused it.",
+              ],
+            },
+            {
+              type: "paragraph",
+              text: "The screen shows the dose’s medicine, dosage, route, status, and, when recorded, who marked it and when. Pending doses from earlier today may be highlighted as overdue.",
+            },
+            {
+              type: "callout",
+              kind: "note",
+              text: "Dose actions are only available for pending doses dated today; past dates are for review.",
+            },
+            {
+              type: "callout",
+              kind: "warning",
+              text: "Check the patient and authorized medication instructions before recording a dose. Record what actually happened, and follow your facility’s process for omissions or refusals.",
+            },
+
+            { type: "heading", text: "Record and review vital signs" },
+            { type: "paragraph", text: "Open the **Vitals** tab to record one or more readings:" },
+            {
+              type: "list",
+              items: [
+                "**Blood Pressure** in mmHg",
+                "**Pulse** in bpm (beats per minute)",
+                "**Temperature** in °C",
+                "**SpO₂** in percent (oxygen saturation)",
+                "**Blood Sugar** in mg/dL",
+                "**Weight** in kg",
+                "**Notes** for observations",
+              ],
+            },
+            {
+              type: "steps",
+              items: [
+                { title: "Open the **Vitals** tab" },
+                { title: "Enter at least one reading" },
+                { title: "Select **Record Vitals**" },
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.vitals,
+              alt: "Vitals tab with reading fields and recent history",
+              caption: "The Vitals tab",
+            },
+            {
+              type: "paragraph",
+              text: "The app records the time and staff member and shows recent entries in the history. The screen displays up to the latest 20 records.",
+            },
+            {
+              type: "callout",
+              kind: "warning",
+              text: "Make sure readings and units are entered correctly.",
+            },
+            {
+              type: "paragraph",
+              text: "The app sends alerts for some preset readings, including very low or high pulse, SpO₂ below 90%, temperature above 39.5°C, and blood sugar above 400 mg/dL.",
+            },
+            {
+              type: "callout",
+              kind: "warning",
+              text: "Treat alerts as prompts to follow your facility’s clinical escalation process; use clinical judgement and local protocols.",
+            },
+
+            { type: "heading", text: "Request medicine from the pharmacy" },
+            {
+              type: "paragraph",
+              text: "Select **Request Med** in the patient header, or open **Requests** and choose **New Request**.",
+            },
+            {
+              type: "steps",
+              items: [
+                { title: "Search the inventory for a medicine, or enter its name manually" },
+                {
+                  title: "Enter the required quantity",
+                  detail: "Dosage and route can also be added.",
+                },
+                { title: "Select urgency: **Routine**, **Urgent**, or **STAT**" },
+                { title: "Add notes if needed, then select **Send to Pharmacy**" },
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.meds,
+              alt: "New Request form with medicine, quantity, and urgency",
+              caption: "The New Request form",
+            },
+            {
+              type: "callout",
+              kind: "note",
+              text: "A **STAT** request is marked as an immediate-priority request. Use urgency according to your facility’s policy.",
+            },
+            {
+              type: "callout",
+              kind: "note",
+              text: "A request is not the same as a medicine order or a dose administration record: pharmacy staff still need to process the request.",
+            },
+            {
+              type: "paragraph",
+              text: "Pending requests for the selected patient appear in the **Requests** tab. The app can notify nursing staff when pharmacy marks a request dispensed.",
+            },
+
+            { type: "heading", text: "Alerts and notifications" },
+            {
+              type: "paragraph",
+              text: "The bell button shows overdue-dose alerts. Select it to view the overdue list, which includes the patient, ward or bed, medicine, scheduled time, and how late the dose is. The page also shows a pending-request count when requests are outstanding.",
+            },
+            {
+              type: "image",
+              src: IMG.alert,
+              alt: "Bell button with the overdue-dose alert list",
+              caption: "Overdue-dose alerts",
+            },
+            {
+              type: "callout",
+              kind: "tip",
+              text: "Alerts refresh automatically every two minutes, and you can refresh them manually with the refresh button. Critical vital alerts can appear as notifications while the page is open.",
+            },
+
+            { type: "heading", text: "Helpful terms" },
+            {
+              type: "list",
+              items: [
+                "**IPD:** Inpatient Department; care for patients staying in the hospital.",
+                "**MAR:** Medicine Administration Record; a record of scheduled doses and what happened to them.",
+                "**SpO₂:** A reading of the oxygen level in the blood.",
+                "**STAT:** An instruction that something is needed immediately.",
+                "**Overdue dose:** A pending dose whose scheduled time has passed.",
+              ],
+            },
+          ],
+        }
+      ),
+      page(
+        "doctor-orders-notes",
+        "Doctor Orders & Nursing Notes",
+        "Use this page to view active inpatients, create and track doctor orders, write nursing notes, and record shift handovers.",
+        {
+          image: IMG.rounds,
+          blocks: [
+            { type: "heading", text: "How to find this page" },
+            {
+              type: "steps",
+              items: [
+                { title: "Sign in to EliteHMS" },
+                { title: "Select **Orders & Notes** from the left-hand menu" },
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.hospital,
+              alt: "Orders & Notes option in the left-hand menu",
+              caption: "Orders & Notes in the left-hand menu",
+            },
+
+            { type: "heading", text: "What this page is for" },
+            {
+              type: "paragraph",
+              text: "Use this page to view active inpatients, create and track doctor orders, write nursing notes, and record shift handovers.",
+            },
+            {
+              type: "callout",
+              kind: "note",
+              text: "It works with **IPD Management**: a patient must have an active IPD admission before they appear in the **Active Patients** list.",
+            },
+            {
+              type: "callout",
+              kind: "tip",
+              text: "If the page shows **0 Active Patients**, there are no active inpatient admissions at the selected location. Admit the patient in **IPD Management** first, then return here.",
+            },
+
+            { type: "heading", text: "Understand the summary cards" },
+            {
+              type: "list",
+              items: [
+                "**Pending Ack:** Orders waiting for a nurse to acknowledge them.",
+                "**Unacknowledged:** A summary count of orders that have not reached a completed or cancelled state.",
+                "**Today Orders:** Orders created today.",
+                "**Active Patients:** Patients with active IPD admissions.",
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.analytics,
+              alt: "Orders & Notes summary cards",
+              caption: "Summary cards at the top of the page",
+            },
+            {
+              type: "callout",
+              kind: "tip",
+              text: "Use **Refresh** to reload the patient list, order counts, and handovers.",
+            },
+
+            { type: "heading", text: "Active Patients: open a patient’s orders and notes" },
+            {
+              type: "paragraph",
+              text: "Select **Active Patients**, then search by patient name, bed, or ward. Choose a patient to open their record. From there, use the **Orders** and **Notes** tabs.",
+            },
+            {
+              type: "image",
+              src: IMG.records,
+              alt: "Active Patients list with search box and pending-order highlights",
+              caption: "The Active Patients list",
+            },
+            {
+              type: "paragraph",
+              text: "The patient list can highlight patients who have pending orders. A **No active IPD patients** message means there are no current admissions to select.",
+            },
+
+            { type: "heading", text: "Create a doctor order" },
+            {
+              type: "paragraph",
+              text: "From a patient’s order view, select **New Order**. The order is linked to that patient’s active admission.",
+            },
+            {
+              type: "steps",
+              items: [
+                {
+                  title: "Choose an **Order Type**",
+                  detail: "Medicine, Investigation, Diet, Procedure, Nursing, Consultation, Restriction, or Other.",
+                },
+                {
+                  title: "Choose a **Priority**",
+                  detail: "Routine, Urgent, STAT, or One-Time.",
+                },
+                { title: "Enter the required **Order Title / Summary**" },
+                { title: "Add clear **Detailed Instructions**" },
+                { title: "Add **Frequency**, **Duration**, and start or end dates where needed" },
+                { title: "Review the order, then select **Send Order to Nurses**" },
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.form,
+              alt: "New Order form with order type, priority, title, and instructions",
+              caption: "The New Order form",
+            },
+            {
+              type: "callout",
+              kind: "tip",
+              text: "Make the title and instructions clear enough for the receiving staff to understand the intended task.",
+            },
+            {
+              type: "callout",
+              kind: "warning",
+              text: "Use priority according to your facility’s policy. **STAT** means the request needs immediate attention under that policy.",
+            },
+            {
+              type: "paragraph",
+              text: "The app notifies staff about new orders. The receiving nurse should read and acknowledge the order.",
+            },
+            {
+              type: "callout",
+              kind: "note",
+              text: "Acknowledgement records that the order was seen, not that the task was completed.",
+            },
+
+            { type: "heading", text: "Review and update orders" },
+            {
+              type: "paragraph",
+              text: "Expand an order card to read its detailed instructions, acknowledgement notes, completion notes, or modification history. Use the status filters to narrow the list.",
+            },
+            {
+              type: "image",
+              src: IMG.mar,
+              alt: "Order cards with status filters",
+              caption: "Order cards and status filters",
+            },
+            { type: "paragraph", text: "Statuses include:" },
+            {
+              type: "list",
+              items: [
+                "**Pending:** Waiting for acknowledgement.",
+                "**Acknowledged:** A nurse has recorded that they read the order.",
+                "**In-Progress:** The task has been started.",
+                "**Completed:** The task was marked done.",
+                "**Cancelled:** The order was cancelled.",
+                "**On-Hold:** The order is paused.",
+              ],
+            },
+            {
+              type: "paragraph",
+              text: "Available actions may include **Acknowledge**, **Done**, and **Cancel**. When marking an order done, add completion notes if they help explain what was completed. Cancelling asks for a reason.",
+            },
+            {
+              type: "callout",
+              kind: "warning",
+              text: "Acknowledging all orders is available in the patient view; use it only after reading every order.",
+            },
+            {
+              type: "callout",
+              kind: "note",
+              text: "A doctor can edit an order before it is completed or cancelled. If an acknowledged order is changed, it returns to **Pending** so nurses can review the updated instructions.",
+            },
+
+            { type: "heading", text: "Write a nursing note" },
+            {
+              type: "paragraph",
+              text: "Select a patient and choose **Write Note**, or use the page’s handover option for a shift-wide handover. Choose a note type:",
+            },
+            {
+              type: "list",
+              items: [
+                "**Progress Note:** A record of the patient’s progress.",
+                "**Observation:** An observation made during care.",
+                "**Incident Report:** A record of an incident.",
+                "**Patient Education:** Information or instructions given to the patient.",
+                "**Discharge Note:** Notes related to discharge.",
+                "**Other:** Another nursing note type.",
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.nurse,
+              alt: "Write Note form with note type, title, content, and tags",
+              caption: "The Write Note form",
+            },
+            {
+              type: "paragraph",
+              text: "Enter a required **Title** and **Note Content**. You may add comma-separated tags to make notes easier to recognize. In the patient view, the note is associated with that admission.",
+            },
+            {
+              type: "callout",
+              kind: "tip",
+              text: "The note form also offers **Private (nursing staff only)** and **Pin to top** options. Use them according to your facility’s documentation and access policies.",
+            },
+
+            { type: "heading", text: "Write a shift handover" },
+            {
+              type: "steps",
+              items: [
+                {
+                  title: "Select **Write Handover** at the top of the page",
+                  detail: "Or choose **Shift Handovers** and select **Write Shift Handover**.",
+                },
+                { title: "Enter the handover title and overall shift summary" },
+                { title: "Complete the handover section", detail: "See the list below." },
+              ],
+            },
+            { type: "paragraph", text: "The handover section can include:" },
+            {
+              type: "list",
+              items: [
+                "**Shift:** Morning, Evening, or Night.",
+                "**Outgoing Nurse** and **Incoming Nurse**",
+                "**Ward**",
+                "**Critical Patients**",
+                "**Pending Tasks**",
+                "A patient-by-patient summary, including condition, last vitals, pending tasks, and alerts for the next nurse.",
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.handover,
+              alt: "Shift Handover form with shift, nurses, ward, and patient summaries",
+              caption: "The Shift Handover form",
+            },
+            {
+              type: "callout",
+              kind: "warning",
+              text: "Include clear, current information that helps the incoming staff continue care safely. Verify patient names and bed numbers, and follow your facility’s handover policy.",
+            },
+            {
+              type: "paragraph",
+              text: "Past handovers appear under **Shift Handovers**. Select a handover card to expand and read its summary and patient details.",
+            },
+
+            { type: "heading", text: "Helpful terms" },
+            {
+              type: "list",
+              items: [
+                "**Acknowledge:** Record that an order has been read.",
+                "**Handover:** Passing important patient and task information from one shift to the next.",
+                "**IPD:** Inpatient Department; patients staying in the hospital.",
+                "**STAT:** A priority label for immediate attention under the facility’s policy.",
+                "**Investigation:** A requested test or examination, such as a lab test or imaging.",
+              ],
+            },
+          ],
+        }
+      ),
+      page(
+        "ot-scheduling",
+        "OT Scheduling",
+        "Use OT Scheduling to plan surgeries, assign an OT room and surgical team, record pre-operation checks, track progress, and save operation and recovery notes.",
+        {
+          image: IMG.surgery,
+          blocks: [
+            { type: "heading", text: "How to find this page" },
+            {
+              type: "steps",
+              items: [
+                { title: "Sign in to EliteHMS" },
+                { title: "Select **OT Scheduling** from the left-hand menu" },
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.hospital,
+              alt: "OT Scheduling option in the left-hand menu",
+              caption: "OT Scheduling in the left-hand menu",
+            },
+            {
+              type: "callout",
+              kind: "note",
+              text: "OT means Operating Theatre: the room where a surgical procedure takes place.",
+            },
+
+            { type: "heading", text: "What this page is for" },
+            {
+              type: "paragraph",
+              text: "Use OT Scheduling to plan surgeries, assign an OT room and surgical team, record pre-operation checks, track progress, and save operation and recovery notes.",
+            },
+            {
+              type: "callout",
+              kind: "tip",
+              text: "If the page shows no surgeries for the selected location and date filter, select **Schedule First Surgery** or **Schedule Surgery** to begin.",
+            },
+
+            { type: "heading", text: "Understand the summary cards" },
+            {
+              type: "list",
+              items: [
+                "**Today Total:** Surgeries scheduled for today.",
+                "**In Progress:** Surgeries currently marked as underway.",
+                "**Completed Today:** Surgeries marked complete today.",
+                "**Upcoming:** Future scheduled surgeries.",
+                "**This Month Done:** Surgeries completed this month.",
+                "**This Month Hours:** Operation time recorded for the month.",
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.analytics,
+              alt: "OT Scheduling summary cards",
+              caption: "Summary cards at the top of the page",
+            },
+            {
+              type: "callout",
+              kind: "note",
+              text: "Use the cards as an operational overview. They depend on schedules and status updates entered in the system.",
+            },
+
+            { type: "heading", text: "Schedule a surgery" },
+            {
+              type: "steps",
+              items: [
+                { title: "Select **Schedule Surgery**" },
+                {
+                  title: "Search for and select a registered **Patient**",
+                  detail: "Confirm that you have selected the correct patient.",
+                },
+                {
+                  title: "Enter the **Surgery Type / Procedure**",
+                  detail: "For example, “Appendectomy” or “Hernia Repair”.",
+                },
+                { title: "Choose the **OT Room** and **Category**" },
+                {
+                  title: "Choose a **Priority**: **Routine**, **Urgent**, or **Emergency**",
+                  detail: "Use priority according to your hospital’s policy.",
+                },
+                { title: "Set the **Date**, **Start Time**, and estimated duration" },
+                { title: "Select the planned anesthesia type" },
+                { title: "Optionally add an estimated cost and **Pre-Op Notes**" },
+                { title: "Review the details and select **Schedule Surgery**" },
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.form,
+              alt: "Schedule Surgery form with patient, procedure, room, and time",
+              caption: "The Schedule Surgery form",
+            },
+            {
+              type: "callout",
+              kind: "note",
+              text: "Patient, procedure, room, date, and start time are required. The system checks for overlapping bookings in the same room using the scheduled time and estimated duration. If there is a conflict, adjust the room or schedule time before saving.",
+            },
+            {
+              type: "callout",
+              kind: "warning",
+              text: "The form’s default OT rooms, categories, and anesthesia choices are selection lists. Confirm the details with the clinical and theatre teams before saving.",
+            },
+
+            { type: "heading", text: "Search, filter, and switch views" },
+            {
+              type: "paragraph",
+              text: "Use the search box to find schedules by patient, surgery type, or surgeon. Choose a date or select **Today** to filter the list. Select **Clear** to remove a date filter.",
+            },
+            {
+              type: "paragraph",
+              text: "Use a status filter to show schedules that are **Scheduled**, **Pre-Op**, **In-Progress**, **Completed**, **Cancelled**, or **Postponed**.",
+            },
+            {
+              type: "image",
+              src: IMG.records,
+              alt: "Surgery list with search box, date filter, and status filters",
+              caption: "The surgery list with search and filters",
+            },
+            {
+              type: "paragraph",
+              text: "Select **Calendar** to see schedules in calendar view. The button changes to **List** so you can return to the list. Use **Refresh** to reload schedules and summary cards.",
+            },
+            {
+              type: "image",
+              src: IMG.calendar,
+              alt: "Surgery schedules in calendar view",
+              caption: "Calendar view",
+            },
+            {
+              type: "paragraph",
+              text: "Select a schedule card to open its details. The card includes the patient, room, date and time, estimated duration, status, priority, surgeon (when assigned), anesthesia, and checklist progress.",
+            },
+
+            { type: "heading", text: "Review schedule details and progress it" },
+            {
+              type: "paragraph",
+              text: "The schedule detail page shows the patient and procedure information, timing, estimated cost, pre-op notes, team, and checklist.",
+            },
+            {
+              type: "image",
+              src: IMG.theatre,
+              alt: "Surgery schedule details with status actions",
+              caption: "Schedule details",
+            },
+            { type: "paragraph", text: "Use the status actions to record progress:" },
+            {
+              type: "list",
+              items: [
+                "**Scheduled:** The operation has been planned.",
+                "**Pre-Op:** The team is preparing the patient and checking readiness.",
+                "**In-Progress:** The surgery has started. This records the actual start time.",
+                "**Completed:** The operation is finished. Complete the completion form to save the end time and operation details.",
+                "**Cancelled:** The schedule will not proceed as planned.",
+                "**Postponed:** The surgery has been delayed.",
+              ],
+            },
+            {
+              type: "callout",
+              kind: "note",
+              text: "The normal on-screen sequence is **Scheduled**, **Pre-Op**, **In-Progress**, then **Completed**. A schedule in **Scheduled** or **Pre-Op** can also be edited, cancelled, or postponed. Status changes require confirmation.",
+            },
+
+            { type: "heading", text: "Complete the pre-operation checklist" },
+            {
+              type: "paragraph",
+              text: "Open **Pre-Op Checklist** in the schedule details. The page records who marked each item and when, and shows overall checklist progress.",
+            },
+            {
+              type: "callout",
+              kind: "warning",
+              text: "Mark an item complete only after it has actually been checked.",
+            },
+            { type: "paragraph", text: "The checklist includes checks such as:" },
+            {
+              type: "list",
+              items: [
+                "Blood work and blood group",
+                "Patient and anesthesia consent",
+                "Fasting confirmation",
+                "Allergy review and imaging availability",
+                "Blood arrangements, IV access, and pre-medication",
+                "Patient identity and surgical site marking",
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.mar,
+              alt: "Pre-Op Checklist with items and progress",
+              caption: "The Pre-Op Checklist",
+            },
+            {
+              type: "paragraph",
+              text: "The app warns when checklist items remain incomplete.",
+            },
+            {
+              type: "callout",
+              kind: "warning",
+              text: "Use the hospital’s approved clinical procedures and required sign-offs; the software checklist does not replace them.",
+            },
+
+            { type: "heading", text: "Assign the surgical team" },
+            {
+              type: "steps",
+              items: [
+                { title: "Open **Team** in the schedule details" },
+                {
+                  title: "Add each team member’s role, name, and optional phone number",
+                  detail: "Roles include Surgeon, Co-Surgeon, Anesthesiologist, OT Nurse, Scrub Nurse, OT Technician, and Other.",
+                },
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.nurse,
+              alt: "Team tab with role, name, and phone number fields",
+              caption: "The Team tab",
+            },
+            {
+              type: "callout",
+              kind: "tip",
+              text: "Check spelling and role assignments before saving. Team members can be removed before the surgery is marked **Completed**.",
+            },
+
+            { type: "heading", text: "Mark the surgery completed" },
+            {
+              type: "paragraph",
+              text: "When the operation has finished, choose **Complete**. Record the applicable details in the form:",
+            },
+            {
+              type: "list",
+              items: [
+                "**Operative Notes:** Findings and procedure details.",
+                "**Post-Op Notes:** Post-operation care or follow-up notes.",
+                "**Complications:** Record “None” or describe what occurred.",
+                "**Implants / Materials Used:** Materials used during the operation.",
+                "**Post-Op Ward and Bed:** Where the patient is going after surgery.",
+                "**Actual Cost:** The recorded actual cost.",
+                "**Recovery Notes:** The patient’s condition or notes from recovery.",
+              ],
+            },
+            {
+              type: "steps",
+              items: [
+                { title: "Choose **Complete**" },
+                { title: "Record the applicable details in the form" },
+                { title: "Review the record, then select **Mark Completed**" },
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.discharge,
+              alt: "Completion form with operative notes, complications, and post-op ward",
+              caption: "The completion form",
+            },
+            {
+              type: "callout",
+              kind: "note",
+              text: "The system records actual end time and calculates actual duration when the surgery was started in EliteHMS.",
+            },
+
+            { type: "heading", text: "Use the report" },
+            {
+              type: "paragraph",
+              text: "Select **Report** to open the **OT Utilization Report**. Choose a month to review totals and breakdowns by OT room, procedure type, and surgeon. The report can include scheduled, completed, cancelled, and postponed counts, and operation hours.",
+            },
+            {
+              type: "image",
+              src: IMG.charts,
+              alt: "OT Utilization Report with breakdowns by room, procedure, and surgeon",
+              caption: "The OT Utilization Report",
+            },
+            {
+              type: "callout",
+              kind: "note",
+              text: "Report figures depend on the statuses and operation details recorded in schedules.",
+            },
+
+            { type: "heading", text: "Helpful terms" },
+            {
+              type: "list",
+              items: [
+                "**Pre-Op:** Preparation and checks performed before surgery.",
+                "**Anesthesia:** Medicine or care used to prevent pain during a procedure.",
+                "**Estimated duration:** Planned operation length.",
+                "**Actual duration:** Time recorded between starting and completing the surgery in EliteHMS.",
+                "**Post-Op:** Care and recovery after surgery.",
+                "**OT utilization:** How scheduled operating rooms and time are being used.",
+              ],
+            },
+          ],
+        }
+      ),
+      page(
+        "blood-bank",
+        "Blood Bank",
+        "Use Blood Bank to keep records of blood donors and units, review stock by blood group, track expiry dates, and record when a unit is reserved, issued, or discarded.",
+        {
+          image: IMG.blood,
+          blocks: [
+            { type: "heading", text: "How to find this page" },
+            {
+              type: "steps",
+              items: [
+                { title: "Sign in to EliteHMS" },
+                { title: "Select **Blood Bank** from the left-hand menu" },
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.hospital,
+              alt: "Blood Bank option in the left-hand menu",
+              caption: "Blood Bank in the left-hand menu",
+            },
+
+            { type: "heading", text: "What this page is for" },
+            {
+              type: "paragraph",
+              text: "Use Blood Bank to keep records of blood donors and units, review stock by blood group, track expiry dates, and record when a unit is reserved, issued, or discarded.",
+            },
+            {
+              type: "callout",
+              kind: "note",
+              text: "Blood Bank records are scoped to the selected location.",
+            },
+            {
+              type: "callout",
+              kind: "tip",
+              text: "If the page shows **0 units available**, no units are currently available in its inventory.",
+            },
+            {
+              type: "callout",
+              kind: "warning",
+              text: "The **Critical Stock Alert** flags blood groups with fewer than two available units. It is a stock warning, not a clinical recommendation about which blood product to use.",
+            },
+
+            { type: "heading", text: "Understand the summary cards" },
+            {
+              type: "list",
+              items: [
+                "**Available:** Units currently marked available.",
+                "**Reserved:** Units held for a patient.",
+                "**Issued Today:** Units issued today.",
+                "**Expiring (7d):** Available units with an expiry date within seven days.",
+                "**Total Donors:** Active donor records.",
+                "**Critical Groups:** Blood groups with fewer than two available units.",
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.analytics,
+              alt: "Blood Bank summary cards",
+              caption: "Summary cards at the top of the page",
+            },
+            {
+              type: "paragraph",
+              text: "The inventory overview shows available-unit counts for each blood group and, where present, a breakdown by component.",
+            },
+            {
+              type: "callout",
+              kind: "note",
+              text: "Reserved, issued, expired, and discarded units are not counted as available stock.",
+            },
+
+            { type: "heading", text: "Add a donor" },
+            {
+              type: "steps",
+              items: [
+                { title: "Select **Add Donor**" },
+                {
+                  title: "Enter the donor’s name and select their blood group",
+                  detail: "These are required.",
+                },
+                {
+                  title: "Add other details as appropriate",
+                  detail: "Gender, age, CNIC, phone, email, address, occupation, and medical history.",
+                },
+                {
+                  title: "If the donor has a disqualifying condition, mark the checkbox and record the reason",
+                },
+                { title: "Select **Register Donor**" },
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.donor,
+              alt: "Add Donor form with name, blood group, and medical history",
+              caption: "The Add Donor form",
+            },
+            {
+              type: "paragraph",
+              text: "The **Donors** tab shows donor ID, blood group, donation count, last donation, and an eligibility label. The app uses a 56-day interval after a recorded donation when calculating whether a donor may be eligible again.",
+            },
+            {
+              type: "callout",
+              kind: "warning",
+              text: "Treat the eligibility label as a reminder only: donor screening and eligibility must be assessed by qualified staff under your blood bank’s policy.",
+            },
+            {
+              type: "callout",
+              kind: "warning",
+              text: "Donor medical details are sensitive. Enter them accurately and share them only with staff who are authorized to access them.",
+            },
+
+            { type: "heading", text: "Add a blood unit" },
+            {
+              type: "steps",
+              items: [
+                { title: "Select **Add Blood Unit**" },
+                { title: "Select the **Blood Group**" },
+                {
+                  title: "Choose a **Component**",
+                  detail: "Whole Blood, Packed RBC, Fresh Frozen Plasma, Platelets, Cryoprecipitate, or Single Donor Plasma.",
+                },
+                {
+                  title: "Enter the volume and collection date",
+                  detail: "Confirm the **Expiry Date** against the blood bag label and your facility’s validated process.",
+                },
+                {
+                  title: "Choose the source: **Donor**, **External Blood Bank**, or **Replacement**",
+                  detail: "If applicable, link the donor or enter the external blood bank name.",
+                },
+                { title: "Record screening results and whether all required tests are clear" },
+                { title: "Add storage location and cost if known" },
+                { title: "Review the details and select **Add Blood Unit**" },
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.sample,
+              alt: "Add Blood Unit form with blood group, component, and expiry date",
+              caption: "The Add Blood Unit form",
+            },
+            {
+              type: "paragraph",
+              text: "The expiry date is prefilled based on the selected component and collection date. The app generates a bag ID for tracking.",
+            },
+            {
+              type: "callout",
+              kind: "warning",
+              text: "Always verify the actual expiry date and storage requirements from the unit label and your facility’s approved procedures before saving or using a unit.",
+            },
+
+            { type: "heading", text: "Screening and issuing blood" },
+            {
+              type: "paragraph",
+              text: "In the **Blood Units** tab, search by bag ID, storage location, or patient. Filter by blood group and status to find a specific unit. Unit cards display details such as component, volume, source, donor, storage location, collection and expiry dates, screening status, and current status.",
+            },
+            {
+              type: "image",
+              src: IMG.records,
+              alt: "Blood Units tab with unit cards and filters",
+              caption: "The Blood Units tab",
+            },
+            { type: "paragraph", text: "To issue a unit:" },
+            {
+              type: "steps",
+              items: [
+                { title: "Select **Issue** for an available unit" },
+                { title: "Search for and select the registered patient" },
+                {
+                  title: "Carefully compare the patient and unit details",
+                  detail: "The screen warns if their recorded blood groups differ.",
+                },
+                { title: "Enter the requesting doctor and notes, if applicable" },
+                {
+                  title: "Confirm that the required cross-match was completed, then select **Issue Blood Unit**",
+                },
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.form,
+              alt: "Issue Blood Unit form with patient, doctor, and cross-match confirmation",
+              caption: "The Issue Blood Unit form",
+            },
+            {
+              type: "paragraph",
+              text: "The app records the issue and marks the unit as issued.",
+            },
+            {
+              type: "callout",
+              kind: "warning",
+              text: "A displayed blood-group match or mismatch is not a compatibility assessment. The app does not replace laboratory testing, professional interpretation, bedside identity checks, or your facility’s transfusion protocol. Do not issue a unit based only on the inventory screen or its warning.",
+            },
+            {
+              type: "callout",
+              kind: "warning",
+              text: "The system requires the unit’s screening tests to be marked clear before issuing it. Enter test results truthfully; never mark tests clear unless the required results have been verified.",
+            },
+
+            { type: "heading", text: "Reservations and other unit actions" },
+            {
+              type: "paragraph",
+              text: "The summary and unit records include a **Reserved** status, and reserved units can be released from the **Blood Units** list.",
+            },
+            {
+              type: "callout",
+              kind: "note",
+              text: "In the current screen, there is no visible button to create a reservation. If your workflow requires reserving a unit, follow your facility’s approved process and ask your administrator how to record it.",
+            },
+            {
+              type: "list",
+              items: [
+                "**Release:** Returns a reserved unit to **Available** status. Confirm it is appropriate to release before doing so.",
+                "**Discard:** Removes an available or reserved unit from usable inventory and prompts for a reason. Do not discard an issued unit through this workflow.",
+                "**Expired:** Indicates an expired unit; it should not be treated as available.",
+              ],
+            },
+
+            { type: "heading", text: "Inventory Overview, Blood Units, and Donors tabs" },
+            {
+              type: "list",
+              items: [
+                "**Inventory Overview:** Stock by blood group and component, units expiring within seven days, and recent activity.",
+                "**Blood Units:** Search and filter individual units by status and blood group. Use pagination if there are more results.",
+                "**Donors:** Search donor records by name, CNIC, phone, or donor ID. Donor cards show donation history and the app’s eligibility reminder.",
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.charts,
+              alt: "Inventory Overview tab with stock by blood group",
+              caption: "The Inventory Overview tab",
+            },
+            {
+              type: "callout",
+              kind: "tip",
+              text: "Select **Refresh** near the top of the page to reload inventory counts and expiry information.",
+            },
+
+            { type: "heading", text: "Helpful terms" },
+            {
+              type: "list",
+              items: [
+                "**Blood group:** The ABO and Rh type recorded for a donor or unit, such as A+ or O−.",
+                "**Component:** The prepared blood product, such as platelets or packed red cells.",
+                "**Cross-match:** Laboratory testing used by qualified staff to assess whether a donor unit is suitable for a specific patient.",
+                "**Reserved:** Set aside for a patient but not yet issued.",
+                "**Issued:** Recorded as released for a patient.",
+                "**Expiry date:** The final date the unit may be used under the applicable storage and blood bank rules.",
+              ],
+            },
+          ],
+        }
+      ),
+      page(
+        "radiology",
+        "Radiology (PACS-lite)",
+        "Radiology lets staff keep an imaging study’s order, uploaded files, written report, and review status together.",
+        {
+          image: IMG.xray,
+          blocks: [
+            { type: "heading", text: "How to find this page" },
+            {
+              type: "steps",
+              items: [
+                { title: "Sign in to EliteHMS" },
+                { title: "Choose the correct location from the top bar" },
+                { title: "Select **Radiology** from the left menu" },
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.hospital,
+              alt: "Radiology option in the left menu",
+              caption: "Radiology in the left menu",
+            },
+
+            { type: "heading", text: "What Radiology is for" },
+            {
+              type: "paragraph",
+              text: "Radiology lets staff keep an imaging study’s order, uploaded files, written report, and review status together.",
+            },
+            {
+              type: "callout",
+              kind: "note",
+              text: "PACS-lite means a smaller imaging record and workflow; the screen does not establish that EliteHMS replaces a full diagnostic imaging system.",
+            },
+
+            { type: "heading", text: "What the page shows" },
+            {
+              type: "list",
+              items: [
+                "**Ordered:** Studies that have been requested.",
+                "**Images Uploaded:** Studies with files attached.",
+                "**Reported:** Studies with a report submitted.",
+                "**Verified:** Reports marked as reviewed.",
+                "**Critical Pending:** The number of studies flagged as critical and still awaiting verification.",
+                "**Today:** Studies dated today.",
+                "**Search:** Find a study by patient, study type, radiologist, or study number.",
+                "**Status filter:** Narrow the list by its current status.",
+                "**Refresh:** Reload the list and counts.",
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.analytics,
+              alt: "Radiology summary cards, search box, and status filter",
+              caption: "Summary cards, search, and status filter",
+            },
+            {
+              type: "callout",
+              kind: "tip",
+              text: "If a study is missing, check the selected location, clear the search, choose **All Statuses**, and refresh.",
+            },
+
+            { type: "heading", text: "Order a study" },
+            {
+              type: "paragraph",
+              text: "Select **Order Study** (or **Order First Study** when the list is empty), then enter the study details:",
+            },
+            {
+              type: "steps",
+              items: [
+                {
+                  title: "Choose the patient",
+                  detail: "Confirm the patient’s identity before saving.",
+                },
+                {
+                  title: "Select the modality",
+                  detail: "The type of imaging, such as X-ray, ultrasound, CT, or MRI.",
+                },
+                {
+                  title: "Enter the study type and, if applicable, the body part and laterality",
+                  detail: "Laterality means left, right, or both sides.",
+                },
+                {
+                  title: "Set the priority: **Routine**, **Urgent**, **STAT**, or **Emergency**",
+                  detail: "Use the urgency options according to your facility’s procedure.",
+                },
+                {
+                  title: "Enter the study date, referring doctor, and clinical history/indication",
+                  detail: "The indication is the reason for the study.",
+                },
+                { title: "If contrast is used, mark it and enter the contrast agent" },
+                { title: "Add the radiologist and cost if known, then save the order" },
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.form,
+              alt: "Order Study form with patient, modality, study type, and priority",
+              caption: "The Order Study form",
+            },
+            {
+              type: "callout",
+              kind: "note",
+              text: "The study receives a study number and starts with the **Ordered** status.",
+            },
+
+            { type: "heading", text: "Upload images" },
+            {
+              type: "paragraph",
+              text: "Open a study to view its patient and order details. You can upload files while it is **Ordered** or **In Progress**; after images are uploaded, you can add more files while it is **Images Uploaded**.",
+            },
+            { type: "paragraph", text: "The upload accepts:" },
+            {
+              type: "list",
+              items: [
+                "Image files, PDFs, and `.dcm` files",
+                "Up to 10 files per upload",
+                "A 20 MB limit per file",
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.imaging,
+              alt: "Study details with the file upload area",
+              caption: "Uploading images to a study",
+            },
+            {
+              type: "callout",
+              kind: "warning",
+              text: "The app provides a study record and file viewing/sharing workflow. The upload accepts DICOM files, but this alone does not confirm a full diagnostic DICOM viewer or complete PACS functionality.",
+            },
+
+            { type: "heading", text: "Complete the report" },
+            {
+              type: "steps",
+              items: [
+                {
+                  title: "Enter the radiologist name, findings, and impression/conclusion",
+                  detail: "Technique and recommendation are optional.",
+                },
+                { title: "Mark **Normal Study** or **Critical Finding** as appropriate" },
+                {
+                  title: "Submit the report",
+                  detail: "A submitted report moves to **Reported**.",
+                },
+                {
+                  title: "An authorized reviewer selects **Verify**",
+                  detail: "This marks the report **Verified**.",
+                },
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.report,
+              alt: "Report form with findings, impression, and Critical Finding option",
+              caption: "The report form",
+            },
+            {
+              type: "callout",
+              kind: "warning",
+              text: "A critical finding can trigger a notification, so follow your organization’s urgent-result procedure as well.",
+            },
+            {
+              type: "callout",
+              kind: "tip",
+              text: "Check the patient, study, images, and report carefully before reporting or verifying.",
+            },
+
+            { type: "heading", text: "Share a report" },
+            {
+              type: "paragraph",
+              text: "For a **Reported** or **Verified** study, select **Share**.",
+            },
+            {
+              type: "steps",
+              items: [
+                { title: "Choose an expiry of 1, 3, 7, 14, or 30 days" },
+                { title: "Generate the link" },
+                { title: "Copy it or share it through WhatsApp" },
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.phone,
+              alt: "Share dialog with expiry options and WhatsApp button",
+              caption: "Sharing a report",
+            },
+            {
+              type: "paragraph",
+              text: "The link opens a read-only view without requiring sign-in and includes the report and uploaded images. You can revoke the link from **Manage Share**.",
+            },
+            {
+              type: "callout",
+              kind: "warning",
+              text: "Anyone with the link can open it until it expires or is revoked. The link contains patient-related information, so share it only with the intended, authorized recipient.",
+            },
+
+            { type: "heading", text: "Status meanings" },
+            {
+              type: "list",
+              items: [
+                "**Ordered:** The study request has been entered.",
+                "**In Progress:** Work on the study has started.",
+                "**Images Uploaded:** Files have been attached.",
+                "**Reported:** A report has been submitted.",
+                "**Verified:** The report has been reviewed and marked verified.",
+                "**Cancelled:** The study was cancelled.",
+              ],
+            },
+
+            { type: "heading", text: "Short definitions" },
+            {
+              type: "list",
+              items: [
+                "**Modality:** The kind of imaging used, such as X-ray or MRI.",
+                "**Laterality:** Which side of the body is being examined.",
+                "**Contrast:** A substance used in some imaging studies to make structures easier to see.",
+                "**Findings:** What the radiologist observes in the study.",
+                "**Impression:** A short summary or conclusion of the report.",
+                "**Verified:** Marked as reviewed in the system.",
+              ],
+            },
+          ],
+        }
+      ),
     ],
   },
   {
@@ -2489,6 +4424,335 @@ export const docGroups: DocGroup[] = [
                 "Do not use AI as a diagnosis or prescription.",
                 "Do not enter patient names, phone numbers, or other identifying information.",
                 "For urgent medical situations, follow your organization’s emergency procedure instead of waiting for an AI response.",
+              ],
+            },
+          ],
+        }
+      ),
+      page(
+        "store-knowledge-base",
+        "Store Knowledge Base",
+        "This page lets staff add store-specific reference information and ask AI questions about it.",
+        {
+          image: IMG.robot,
+          blocks: [
+            { type: "heading", text: "How to find this page" },
+            {
+              type: "steps",
+              items: [
+                { title: "Sign in to EliteHMS" },
+                { title: "Choose the correct location from the top bar" },
+                { title: "Select **My Knowledge Base** from the left menu" },
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.laptop,
+              alt: "My Knowledge Base option in the left menu",
+              caption: "My Knowledge Base in the left menu",
+            },
+
+            { type: "heading", text: "My Documents" },
+            {
+              type: "paragraph",
+              text: "The **My Documents** tab lists uploaded or pasted documents. Use **Search documents** to find one by its name, medicine name, or description, or use **All Categories** to filter by category.",
+            },
+            {
+              type: "paragraph",
+              text: "The summary cards show document count, documents processing, searchable vectors, and storage used. The storage bar shows how many document slots and how much space remain.",
+            },
+            {
+              type: "image",
+              src: IMG.analytics,
+              alt: "My Documents tab with summary cards and storage bar",
+              caption: "Summary cards and the storage bar",
+            },
+            {
+              type: "callout",
+              kind: "tip",
+              text: "If the document and storage counts are zero, no store documents have been added yet.",
+            },
+
+            { type: "heading", text: "Add a document" },
+            {
+              type: "steps",
+              items: [
+                { title: "Select **Add Document**" },
+                {
+                  title: "Upload a file, or choose **Paste Text** to add written content directly",
+                },
+                { title: "Provide a document name and choose a category" },
+                {
+                  title: "Add optional details",
+                  detail: "Such as medicine name, tags, source, and description.",
+                },
+                { title: "Select **Upload & Vectorize** to submit the document" },
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.form,
+              alt: "Add Document form with name, category, and file upload",
+              caption: "The Add Document form",
+            },
+            { type: "paragraph", text: "Choose one of these categories:" },
+            {
+              type: "list",
+              items: [
+                "**Medicine Info:** Information about medicines your pharmacy stocks.",
+                "**Our Services:** Clinic services and packages.",
+                "**Our Protocols:** Your clinic’s procedures.",
+                "**Guidelines:** Clinical guidelines your team follows.",
+                "**Store Information:** Pharmacy details, FAQs, and policies.",
+                "**Pricing & Packages:** Service fees and packages.",
+                "**General:** Other reference material.",
+              ],
+            },
+            { type: "paragraph", text: "The limits are:" },
+            {
+              type: "list",
+              items: [
+                "Files: PDF, DOCX, TXT, MD, and JSON, up to 5 MB each.",
+                "Pasted text: up to 5 MB.",
+                "Each store: up to 25 documents and 15 MB total storage.",
+              ],
+            },
+            {
+              type: "callout",
+              kind: "tip",
+              text: "For a medicine document, entering the medicine name helps AI find relevant information. Keep the content clear and current; for example, use headings and include the effective date on policies or fee schedules.",
+            },
+
+            { type: "heading", text: "Document status" },
+            {
+              type: "list",
+              items: [
+                "**Processing:** The document is being prepared for search.",
+                "**Ready:** The document is searchable.",
+                "**Failed:** Read the error shown beside it, correct the source file or content, and upload it again.",
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.records,
+              alt: "Document list with Processing, Ready, and Failed statuses",
+              caption: "Document statuses in the list",
+            },
+            {
+              type: "callout",
+              kind: "note",
+              text: "A ready document cannot be edited from this list. Delete it and upload the corrected version if you need to replace it. Deleting also removes its searchable vectors.",
+            },
+
+            { type: "heading", text: "Ask AI" },
+            {
+              type: "steps",
+              items: [
+                { title: "Choose the **Ask AI** tab" },
+                {
+                  title: "Choose a question type",
+                  detail: "See the two types below.",
+                },
+                { title: "Use a suggested question or type your own, and submit" },
+                { title: "Review the answer and its source labels" },
+                {
+                  title: "Open **View retrieved chunks**",
+                  detail: "This shows the pieces of documents used for the answer.",
+                },
+              ],
+            },
+            {
+              type: "list",
+              items: [
+                "**General Query:** Ask about your store documents, services, protocols, and other reference information.",
+                "**Medicine Lookup:** Enter a medicine name, then ask a related question, such as where the store’s document discusses its information.",
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.ai,
+              alt: "Ask AI tab with General Query, Medicine Lookup, and suggested questions",
+              caption: "The Ask AI tab",
+            },
+            {
+              type: "paragraph",
+              text: "The page describes a three-stage search:",
+            },
+            {
+              type: "list",
+              ordered: true,
+              items: [
+                "It searches your store’s documents.",
+                "Then it searches a global clinical database.",
+                "It may also use the AI model’s general training knowledge.",
+              ],
+            },
+            {
+              type: "paragraph",
+              text: "The answer’s source label indicates which sources contributed.",
+            },
+            {
+              type: "callout",
+              kind: "warning",
+              text: "If no store document is used, the answer may not reflect your store’s own policy or stock details.",
+            },
+
+            { type: "heading", text: "Good information to add" },
+            {
+              type: "paragraph",
+              text: "Useful documents include current opening hours, service fees, store policies, medicine reference notes, and internal procedures.",
+            },
+            {
+              type: "callout",
+              kind: "warning",
+              text: "Avoid uploading information that your team should not make available to the AI query workflow. Keep patient-identifying details out of general reference documents.",
+            },
+
+            { type: "heading", text: "Short definitions" },
+            {
+              type: "list",
+              items: [
+                "**Vector:** A searchable representation of a small piece of a document that helps AI find relevant information.",
+                "**Processing:** The app is preparing the content for search.",
+                "**Vectorize:** Convert document content into searchable pieces for AI retrieval.",
+                "**Source:** The document or database that contributed information to an answer.",
+                "**Global clinical database:** Clinical reference information shared beyond your store’s own documents.",
+              ],
+            },
+          ],
+        }
+      ),
+      page(
+        "prescription-ocr",
+        "Prescription OCR Scanner",
+        "The Prescription OCR Scanner reads a photo of a printed or handwritten prescription and uses Gemini AI to extract details such as the doctor, patient, date, diagnosis, instructions, and medicines.",
+        {
+          image: IMG.rx,
+          blocks: [
+            { type: "heading", text: "What this page does" },
+            {
+              type: "paragraph",
+              text: "The scanner can also compare extracted medicine names with your inventory.",
+            },
+            {
+              type: "callout",
+              kind: "note",
+              text: "OCR means optical character recognition: software reading text from an image.",
+            },
+            {
+              type: "callout",
+              kind: "warning",
+              text: "The scanner is an assistant for reading the prescription. It does not confirm that the prescription or extracted details are correct.",
+            },
+
+            { type: "heading", text: "How to find this page" },
+            {
+              type: "steps",
+              items: [
+                { title: "Sign in to EliteHMS" },
+                { title: "In the left menu, select **Rx OCR Scanner**" },
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.dashboard,
+              alt: "Rx OCR Scanner option in the left menu",
+              caption: "Rx OCR Scanner in the left menu",
+            },
+
+            { type: "heading", text: "Scan a prescription" },
+            {
+              type: "steps",
+              items: [
+                {
+                  title: "Prepare a clear image of the prescription",
+                  detail: "The page accepts image files up to 10 MB.",
+                },
+                {
+                  title: "Drag the image into the upload area, or click the area to choose a file",
+                },
+                { title: "Check that the preview shows the complete, readable prescription" },
+                { title: "Select **Scan with Gemini AI** and wait for the results" },
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.printer,
+              alt: "Upload area with a prescription preview and the Scan with Gemini AI button",
+              caption: "Uploading and scanning a prescription",
+            },
+            {
+              type: "callout",
+              kind: "tip",
+              text: "If the result is missing details or the scan fails, try a clearer, well-lit image with the writing in focus.",
+            },
+
+            { type: "heading", text: "Read the results" },
+            { type: "paragraph", text: "The results may include:" },
+            {
+              type: "list",
+              items: [
+                "**Doctor**, **Patient**, **Date**, **Diagnosis**, and **Instructions** when the scanner can read them.",
+                "**Medicines found**, with extracted details such as dosage, frequency, duration, route, and notes.",
+                "A **confidence** label indicating how certain the scan says it is.",
+                "**In Stock** or **Not in inventory** for each medicine.",
+                "**Matched in inventory**, which can show possible matching items, stock, unit, and sale price.",
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.rx,
+              alt: "Scan results with medicines, confidence, and inventory matches",
+              caption: "Scan results",
+            },
+            {
+              type: "callout",
+              kind: "warning",
+              text: "A medicine match is only a possible inventory match. Similar names can refer to different products, strengths, or forms.",
+            },
+
+            { type: "heading", text: "Use the extracted list" },
+            {
+              type: "list",
+              items: [
+                "Select **Copy List** to copy the medicine names and available dosage, frequency, and duration text.",
+                "Select **Create Prescription from This** to open the prescription page.",
+              ],
+            },
+            {
+              type: "callout",
+              kind: "note",
+              text: "The OCR page itself does not save a prescription or update inventory. Check the details again in the prescription workflow.",
+            },
+
+            { type: "heading", text: "Important safety check" },
+            {
+              type: "paragraph",
+              text: "Before creating or dispensing a prescription:",
+            },
+            {
+              type: "list",
+              ordered: true,
+              items: [
+                "Compare the scan with the original image.",
+                "Confirm the patient, medicine name, strength, dosage, route, frequency, and duration with the prescribing clinician or authorized staff.",
+              ],
+            },
+            {
+              type: "callout",
+              kind: "warning",
+              text: "Handwriting, blurry photos, abbreviations, and similar medicine names can lead to incorrect readings. Do not use the AI result alone to make treatment decisions.",
+            },
+
+            { type: "heading", text: "Helpful definitions" },
+            {
+              type: "list",
+              items: [
+                "**Dosage:** How much medicine to take each time.",
+                "**Frequency:** How often to take it.",
+                "**Duration:** How long to take it.",
+                "**Route:** How the medicine is taken, such as by mouth or applied to the skin.",
+                "**Confidence:** The scanner’s estimate of how certain its reading is.",
               ],
             },
           ],
@@ -2811,6 +5075,1100 @@ export const docGroups: DocGroup[] = [
         }
       ),
       page("reports-analytics", "Reports & Analytics"),
+      page(
+        "accounting-finance",
+        "Accounting & Finance",
+        "This page brings together sales and collection figures, recorded expenses, estimated medicine margins, yearly trends, and an FBR/GST summary.",
+        {
+          image: IMG.finance,
+          blocks: [
+            { type: "heading", text: "How to find this page" },
+            {
+              type: "steps",
+              items: [
+                { title: "Sign in to EliteHMS" },
+                { title: "Select the correct location from the top bar" },
+                { title: "Choose **Accounting** from the left menu" },
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.dashboard,
+              alt: "Accounting option in the left menu",
+              caption: "Accounting in the left menu",
+            },
+            {
+              type: "callout",
+              kind: "tip",
+              text: "If the displayed month shows zero values, there are no recorded bills or expenses for that month at the selected location.",
+            },
+
+            { type: "heading", text: "Select a reporting period" },
+            {
+              type: "paragraph",
+              text: "Use the month selector in the top right to change the month. The **P&L**, **Expenses**, **Medicine Margins**, and **FBR / Tax** sections use the selected month. In **Yearly Trend**, choose a year instead.",
+            },
+            {
+              type: "paragraph",
+              text: "The four summary cards show this month’s **Revenue**, **Expenses**, **Profit**, and **Collected** amount. The page compares revenue, expenses, and profit with the previous month when comparison data is available.",
+            },
+            {
+              type: "image",
+              src: IMG.analytics,
+              alt: "Month selector and the four summary cards",
+              caption: "Month selector and summary cards",
+            },
+
+            { type: "heading", text: "P&L Statement" },
+            { type: "paragraph", text: "The **Profit & Loss Statement** tab summarizes:" },
+            {
+              type: "list",
+              items: [
+                "**Gross Revenue:** Total bill amounts recorded in the selected month.",
+                "**Discounts:** Discounts recorded on those bills.",
+                "**Net Revenue:** Gross revenue after discounts.",
+                "**Cost of Goods Sold (COGS):** Estimated cost of the medicines sold.",
+                "**Gross Profit:** Net revenue less medicine cost.",
+                "**Operating Expenses:** Expenses entered for the selected month.",
+                "**Net Profit:** Gross profit less operating expenses.",
+                "**Payment Collection:** Amount collected, grouped by payment method, plus outstanding balances.",
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.receipt,
+              alt: "Profit & Loss Statement with gross revenue, COGS, and net profit",
+              caption: "The Profit & Loss Statement",
+            },
+            {
+              type: "paragraph",
+              text: "The chart groups expenses by category. **Export Excel** downloads a workbook containing the P&L and, when available, medicine margin details.",
+            },
+            {
+              type: "callout",
+              kind: "warning",
+              text: "COGS is estimated using each medicine’s current purchase price and quantity sold. It may differ from accounting figures prepared using historical purchase costs or other accounting methods.",
+            },
+
+            { type: "heading", text: "Expenses" },
+            {
+              type: "paragraph",
+              text: "Choose **Expenses** to review entries for the selected month. You can filter by category, use the page controls to browse entries, and export the displayed expenses to Excel.",
+            },
+            { type: "paragraph", text: "To add an expense, choose **Add Expense** and enter:" },
+            {
+              type: "steps",
+              items: [
+                { title: "**Category** and **Title / Description**" },
+                { title: "**Amount** and **Date**" },
+                {
+                  title: "Payment method",
+                  detail: "Cash, Bank Transfer, Cheque, JazzCash, EasyPaisa, or Other.",
+                },
+                { title: "Vendor/supplier, invoice number, and reference or cheque number if available" },
+                {
+                  title: "If applicable, select **GST Applicable (FBR)**",
+                  detail: "Enter the GST rate and vendor NTN. The form shows the GST amount and total with GST.",
+                },
+                {
+                  title: "Add notes if needed",
+                  detail: "The form also has a **Recurring expense** option with Monthly, Quarterly, or Yearly cycles.",
+                },
+                { title: "Select **Add Expense** to save it" },
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.form,
+              alt: "Add Expense form with category, amount, payment method, and GST options",
+              caption: "The Add Expense form",
+            },
+            {
+              type: "paragraph",
+              text: "Existing entries can be edited or deleted from the **Expenses** list.",
+            },
+            {
+              type: "callout",
+              kind: "tip",
+              text: "Keep invoices and payment evidence according to your organization’s recordkeeping process.",
+            },
+
+            { type: "heading", text: "Medicine Margins" },
+            {
+              type: "paragraph",
+              text: "This tab analyzes medicines sold during the selected month. It shows revenue, quantity sold, average selling price, purchase price, COGS, gross profit, and margin percentage. A chart highlights the top medicines by revenue.",
+            },
+            {
+              type: "image",
+              src: IMG.charts,
+              alt: "Medicine Margins table and top medicines chart",
+              caption: "The Medicine Margins tab",
+            },
+            {
+              type: "paragraph",
+              text: "Use these figures to compare recorded sales with estimated product costs.",
+            },
+            {
+              type: "callout",
+              kind: "note",
+              text: "Margin results depend on the purchase prices stored for the medicines.",
+            },
+
+            { type: "heading", text: "Yearly Trend" },
+            {
+              type: "paragraph",
+              text: "Select **Yearly Trend** and choose a year to compare monthly revenue, collections, expenses, profit, bill count, and margin. The chart and table make it easier to spot changes across months.",
+            },
+            {
+              type: "image",
+              src: IMG.office,
+              alt: "Yearly Trend chart and table",
+              caption: "The Yearly Trend tab",
+            },
+
+            { type: "heading", text: "FBR / Tax" },
+            {
+              type: "paragraph",
+              text: "The **FBR / Tax** tab shows a GST summary for the selected month, including output tax from bills, input tax from GST-marked expenses, the calculated net amount payable or excess credit, and vendor-wise expense tax information. **Export for FBR** downloads the summary to Excel.",
+            },
+            {
+              type: "image",
+              src: IMG.payment,
+              alt: "FBR / Tax tab with GST summary and Export for FBR button",
+              caption: "The FBR / Tax tab",
+            },
+            {
+              type: "callout",
+              kind: "warning",
+              text: "Treat this as a preparation summary, not a tax filing or confirmation of tax liability. Check the figures, invoices, rates, and current requirements with your accountant or tax adviser before submitting anything to FBR.",
+            },
+
+            { type: "heading", text: "Short definitions" },
+            {
+              type: "list",
+              items: [
+                "**Revenue:** The amount billed for sales.",
+                "**Collected:** The amount of bill payments received.",
+                "**Outstanding:** The amount still unpaid on bills.",
+                "**COGS:** The estimated cost of the products sold.",
+                "**Gross profit:** Revenue after discounts, minus the estimated product cost.",
+                "**Net profit:** Gross profit after recorded operating expenses.",
+                "**Margin:** Profit shown as a percentage of revenue.",
+                "**GST:** Goods and Services Tax.",
+                "**NTN:** National Tax Number.",
+                "**Recurring expense:** An expense marked as repeating.",
+              ],
+            },
+            {
+              type: "callout",
+              kind: "note",
+              text: "The form records a recurring cycle, so check the expense list to confirm future entries are recorded.",
+            },
+          ],
+        }
+      ),
+      page(
+        "insurance-panels",
+        "Insurance & Panel Management",
+        "This page records insurance companies or other payment panels, links patients to a panel, and tracks claims and payments.",
+        {
+          image: IMG.payment,
+          blocks: [
+            { type: "heading", text: "How to find this page" },
+            {
+              type: "steps",
+              items: [
+                { title: "Sign in to EliteHMS" },
+                { title: "Select the correct location from the top bar" },
+                { title: "Choose **Insurance** from the left menu" },
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.dashboard,
+              alt: "Insurance option in the left menu",
+              caption: "Insurance in the left menu",
+            },
+            {
+              type: "callout",
+              kind: "tip",
+              text: "If there are no panels or claims yet, the summary cards show zero values. Start with **Add Panel**.",
+            },
+
+            { type: "heading", text: "What the summary cards show" },
+            {
+              type: "list",
+              items: [
+                "**Active Panels:** Panels available for use.",
+                "**Insured Patients:** Patients linked to an insurance panel.",
+                "**Pending Claims:** Claims in **Submitted** or **Under Review** status.",
+                "**Outstanding:** The unpaid balance on approved or partially approved claims.",
+                "**Paid This Month:** Insurance payments marked as paid during the current month.",
+                "**Total Claims:** All recorded claims.",
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.analytics,
+              alt: "Insurance summary cards",
+              caption: "Summary cards at the top of the page",
+            },
+
+            { type: "heading", text: "Add a panel" },
+            {
+              type: "steps",
+              items: [
+                { title: "Select **Add Panel**" },
+                {
+                  title: "Enter the panel’s details",
+                  detail: "**Panel / Company Name** and **Type** are required.",
+                },
+                { title: "Save the panel" },
+              ],
+            },
+            { type: "paragraph", text: "The form also lets you record:" },
+            {
+              type: "list",
+              items: [
+                "**Category**, such as Health Insurance, EOBI, PESSI, or Corporate HR.",
+                "Coverage type, percentage paid by insurance, and the patient’s co-pay percentage.",
+                "Maximum claim per bill and annual limit per patient.",
+                "Covered services, such as medicines, consultations, lab tests, radiology, IPD, OPD, surgery, or emergency care.",
+                "Contact person, phone, email, city, agreement or policy number, agreement date, and expiry date.",
+                "Payment terms and how claims are submitted: online portal, email, physical, WhatsApp, or another method.",
+                "Portal address, NTN, and notes where relevant.",
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.form,
+              alt: "Add Panel form with coverage, limits, and covered services",
+              caption: "The Add Panel form",
+            },
+            {
+              type: "callout",
+              kind: "warning",
+              text: "Use the actual agreement terms when entering coverage and limits.",
+            },
+            {
+              type: "paragraph",
+              text: "The panel card can show expiry reminders, coverage, permitted services, claims, amounts claimed and paid, and payment/submission terms. You can edit a panel later.",
+            },
+            {
+              type: "callout",
+              kind: "note",
+              text: "A panel cannot be deleted while it has claims recorded against it.",
+            },
+
+            { type: "heading", text: "Link a patient to a panel" },
+            {
+              type: "steps",
+              items: [
+                { title: "Select **Link Patient**" },
+                { title: "Search for the patient" },
+                { title: "Choose the panel" },
+                { title: "Enter the policy/member number and coverage expiry date" },
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.records,
+              alt: "Link Patient form with patient, panel, and policy number",
+              caption: "The Link Patient form",
+            },
+            {
+              type: "callout",
+              kind: "tip",
+              text: "Confirm the patient’s identity and policy details before linking.",
+            },
+            {
+              type: "callout",
+              kind: "warning",
+              text: "A patient record stores one linked panel at a time. Linking a different panel updates the patient’s current insurance details, so check the existing panel before changing it.",
+            },
+
+            { type: "heading", text: "Create a claim" },
+            {
+              type: "steps",
+              items: [
+                {
+                  title: "Select **New Claim**",
+                  detail: "Choose the patient, panel, and total bill amount. The patient should already have the relevant insurance information recorded.",
+                },
+                {
+                  title: "Review the calculation",
+                  detail: "The page calculates an estimated insurance portion and patient portion using the panel’s coverage percentage and maximum claim per bill.",
+                },
+                {
+                  title: "Indicate whether pre-authorization is required",
+                  detail: "If it is, enter its reference number.",
+                },
+                { title: "Add submission notes" },
+                { title: "Select **Create Claim**" },
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.receipt,
+              alt: "New Claim form with estimated insurance and patient portions",
+              caption: "The New Claim form",
+            },
+            {
+              type: "callout",
+              kind: "warning",
+              text: "Review the calculation against the insurer’s policy and bill before selecting **Create Claim**.",
+            },
+            {
+              type: "callout",
+              kind: "note",
+              text: "Creating a claim records it in EliteHMS; it does not submit it to the insurer. Follow the panel’s submission method and update the claim status when you receive a response.",
+            },
+
+            { type: "heading", text: "Track a claim" },
+            {
+              type: "paragraph",
+              text: "In the **Claims** tab, search by claim number, patient, or bill; filter by panel or status; and select **Update Status** to record progress:",
+            },
+            {
+              type: "list",
+              items: [
+                "**Draft:** Claim record created.",
+                "**Submitted:** Sent to the insurer or panel.",
+                "**Under Review:** Waiting for the insurer’s decision.",
+                "**Approved** or **Partially Approved:** The insurer approved all or part of the claim.",
+                "**Rejected:** The insurer declined it.",
+                "**Appealed:** A challenge or appeal has been recorded.",
+                "**Paid:** Payment received and recorded.",
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.finance,
+              alt: "Claims tab with search, filters, and the Update Status button",
+              caption: "The Claims tab",
+            },
+            {
+              type: "paragraph",
+              text: "When updating a claim, record the approved amount, amount received, insurer’s reference number, cheque or transfer number, and notes as applicable.",
+            },
+            {
+              type: "callout",
+              kind: "note",
+              text: "Only draft claims can be deleted.",
+            },
+
+            { type: "heading", text: "Reports" },
+            {
+              type: "paragraph",
+              text: "Open the **Report** tab to review totals claimed, approved, paid, and pending payment; panel performance; and claims grouped by status.",
+            },
+            {
+              type: "image",
+              src: IMG.charts,
+              alt: "Report tab with panel performance and claims by status",
+              caption: "The Report tab",
+            },
+            {
+              type: "callout",
+              kind: "note",
+              text: "These totals depend on claim records and statuses entered in the system.",
+            },
+
+            { type: "heading", text: "Short definitions" },
+            {
+              type: "list",
+              items: [
+                "**Panel:** An insurer, employer, or program that may cover eligible patient costs.",
+                "**Coverage percentage:** The share of eligible costs assigned to insurance under the panel settings.",
+                "**Co-pay:** The share assigned to the patient under those settings.",
+                "**Pre-authorization:** Approval requested from the insurer before providing certain services.",
+                "**Claim:** A request for reimbursement or payment sent to an insurer or panel.",
+                "**Outstanding:** The approved amount that has not yet been recorded as paid.",
+                "**TPA:** Third-party administrator; an organization that manages insurance claims for an insurer or employer.",
+              ],
+            },
+          ],
+        }
+      ),
+      page(
+        "salary-payroll",
+        "Salary & Payroll",
+        "This page helps you keep employee salary profiles, monthly payroll records, staff advances, and yearly totals.",
+        {
+          image: IMG.staff,
+          blocks: [
+            { type: "heading", text: "How to find this page" },
+            {
+              type: "steps",
+              items: [
+                { title: "Sign in to EliteHMS" },
+                { title: "Select the correct location from the top bar" },
+                { title: "Choose **Payroll** from the left menu" },
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.dashboard,
+              alt: "Payroll option in the left menu",
+              caption: "Payroll in the left menu",
+            },
+            {
+              type: "callout",
+              kind: "tip",
+              text: "If the selected month shows no payroll records, start by adding employee profiles.",
+            },
+
+            { type: "heading", text: "Summary cards" },
+            {
+              type: "list",
+              items: [
+                "**Total Employees:** Employees with active salary profiles.",
+                "**This Month Total:** Net payroll recorded for the current month.",
+                "**Paid:** Payroll records marked as paid.",
+                "**Pending:** Payroll records not yet marked as paid.",
+                "**Advances Outstanding:** The remaining balances on staff advances.",
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.analytics,
+              alt: "Payroll summary cards",
+              caption: "Summary cards at the top of the page",
+            },
+
+            { type: "heading", text: "1. Add employee salary profiles" },
+            {
+              type: "steps",
+              items: [
+                { title: "Open **Employee Profiles** and choose **Add Profile**" },
+                {
+                  title: "Select an existing staff member",
+                  detail: "This form creates a salary profile for that person, not a new staff account.",
+                },
+                {
+                  title: "Enter their basic salary",
+                  detail: "And, if applicable, designation, department, employee code, joining date, employment type, and bank details.",
+                },
+                {
+                  title: "Add allowances such as housing, medical, transport, or bonus",
+                  detail: "An allowance can be a fixed amount or a percentage of basic salary. The form previews gross monthly salary.",
+                },
+                {
+                  title: "Choose whether to deduct EOBI and income tax",
+                  detail: "You can also enter a leave balance and notes.",
+                },
+                { title: "Save the profile" },
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.form,
+              alt: "Add Profile form with basic salary, allowances, and deductions",
+              caption: "The Add Profile form",
+            },
+            {
+              type: "callout",
+              kind: "warning",
+              text: "Check every salary, deduction, and bank detail before saving. Profile information can be edited later.",
+            },
+
+            { type: "heading", text: "2. Generate monthly payroll" },
+            {
+              type: "steps",
+              items: [
+                { title: "Go to **Monthly Payroll** and select the month" },
+                { title: "Choose **Generate Payroll**" },
+                {
+                  title: "Review each employee’s record before paying",
+                  detail: "If needed, select **Adjust** to enter days absent, overtime hours, bonuses, and notes.",
+                },
+              ],
+            },
+            {
+              type: "paragraph",
+              text: "Payroll is created for active staff who have active salary profiles. The system creates draft records using each profile’s basic salary, allowances, selected deductions, and any monthly advance recovery. The generated record starts with the default 26 working days and no absences.",
+            },
+            {
+              type: "image",
+              src: IMG.records,
+              alt: "Monthly Payroll table with Generate Payroll and Adjust buttons",
+              caption: "The Monthly Payroll tab",
+            },
+            {
+              type: "paragraph",
+              text: "When you adjust a record, the system recalculates gross pay and deductions.",
+            },
+            {
+              type: "callout",
+              kind: "note",
+              text: "Paid records cannot be edited. If a record already exists for that employee and month, generating again skips it. To make a correction after generation, adjust the existing unpaid record.",
+            },
+
+            { type: "heading", text: "3. Review and mark payment" },
+            {
+              type: "paragraph",
+              text: "The monthly table shows each employee’s basic pay, allowances, gross salary, absences, deductions, net salary, and status.",
+            },
+            {
+              type: "list",
+              items: [
+                "**Draft:** Payroll record created.",
+                "**Processed:** Record adjusted or updated.",
+                "**Paid:** Marked as paid in EliteHMS.",
+              ],
+            },
+            {
+              type: "steps",
+              items: [
+                { title: "Confirm the payment has happened" },
+                {
+                  title: "Use the employee’s **Mark Paid** button",
+                  detail: "The app asks for a payment method.",
+                },
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.payment,
+              alt: "Mark Paid dialog with a payment method",
+              caption: "Marking a record as paid",
+            },
+            {
+              type: "callout",
+              kind: "note",
+              text: "**Mark All Paid** marks all unpaid records for the selected month as paid and records the payment method as **Cash**.",
+            },
+            {
+              type: "callout",
+              kind: "warning",
+              text: "These actions update payroll records; they do not send money or make a bank transfer. Confirm the real payment has happened before marking it paid.",
+            },
+
+            { type: "heading", text: "Payslips" },
+            {
+              type: "paragraph",
+              text: "Select the payslip icon in an employee’s row to preview a payslip. It includes employee and period details, earnings, deductions, net salary, and signature lines. You can print it or share its details through WhatsApp.",
+            },
+            {
+              type: "image",
+              src: IMG.receipt,
+              alt: "Payslip preview with earnings, deductions, and net salary",
+              caption: "A payslip preview",
+            },
+            {
+              type: "callout",
+              kind: "warning",
+              text: "Confirm the recipient before sharing salary information.",
+            },
+
+            { type: "heading", text: "Advances" },
+            {
+              type: "steps",
+              items: [
+                { title: "Open **Advances** and choose **Record Advance**" },
+                { title: "Select the employee" },
+                {
+                  title: "Enter the amount, date, and reason",
+                  detail: "You can also add an optional monthly recovery amount, approver, and notes.",
+                },
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.finance,
+              alt: "Advances tab with original amount, amount repaid, and remaining balance",
+              caption: "The Advances tab",
+            },
+            {
+              type: "paragraph",
+              text: "Outstanding advances can be included in monthly payroll recovery according to the monthly deduction entered. When the payroll record is marked paid, the recovered amount is applied to the advance balance. The **Advances** tab shows the original amount, amount repaid, remaining balance, and repayment status.",
+            },
+            {
+              type: "callout",
+              kind: "warning",
+              text: "An advance record can be deleted from this tab; check it carefully before removal.",
+            },
+
+            { type: "heading", text: "Annual Summary" },
+            {
+              type: "paragraph",
+              text: "Choose **Annual Summary** and select a year to review each employee’s monthly payroll records and yearly totals. The summary shows gross pay, deductions, net pay, tax, EOBI, advances deducted, and bonuses. Months marked paid appear differently from unpaid records.",
+            },
+            {
+              type: "image",
+              src: IMG.charts,
+              alt: "Annual Summary with each employee’s monthly payroll and yearly totals",
+              caption: "The Annual Summary tab",
+            },
+
+            { type: "heading", text: "Important notes" },
+            {
+              type: "callout",
+              kind: "warning",
+              text: "Income tax and statutory deductions shown by the system are calculated estimates based on its configured payroll rules. Verify them against current requirements and your organization’s payroll advice before finalizing pay.",
+            },
+            {
+              type: "callout",
+              kind: "warning",
+              text: "Salary, bank, tax, and payslip details are sensitive. Limit access and sharing to authorized people.",
+            },
+
+            { type: "heading", text: "Short definitions" },
+            {
+              type: "list",
+              items: [
+                "**Basic salary:** The employee’s base pay before allowances and deductions.",
+                "**Allowance:** Extra pay added to basic salary, either as a fixed amount or percentage.",
+                "**Gross salary:** Basic salary plus allowances, overtime, and bonuses.",
+                "**Deduction:** An amount subtracted from gross salary.",
+                "**Net salary:** The amount remaining after deductions.",
+                "**EOBI:** Employees’ Old-Age Benefits Institution contribution.",
+                "**Advance recovery:** A portion of a previous staff advance deducted from salary.",
+                "**Processed:** A payroll record that has been prepared or adjusted.",
+                "**Paid:** The record has been marked paid in the app.",
+              ],
+            },
+          ],
+        }
+      ),
+      page(
+        "whatsapp-sms-broadcast",
+        "WhatsApp & SMS Broadcast",
+        "Use WhatsApp & SMS Broadcast to prepare a message for a group of patients, such as an appointment reminder or a general health tip.",
+        {
+          image: IMG.phone,
+          blocks: [
+            { type: "heading", text: "What this page does" },
+            {
+              type: "paragraph",
+              text: "You choose who should receive the message, write it, review the recipient count, then open WhatsApp or the phone’s SMS app to send it.",
+            },
+            {
+              type: "callout",
+              kind: "warning",
+              text: "The app prepares messages and keeps a sending checklist. It does not automatically send them or confirm delivery. Staff send each message and then update its status in EliteHMS.",
+            },
+
+            { type: "heading", text: "How to find this page" },
+            {
+              type: "steps",
+              items: [
+                { title: "Sign in to EliteHMS" },
+                { title: "In the left menu, select **Broadcast**" },
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.dashboard,
+              alt: "Broadcast option in the left menu",
+              caption: "Broadcast in the left menu",
+            },
+
+            { type: "heading", text: "What you see on the page" },
+            {
+              type: "list",
+              items: [
+                "**Total Campaigns:** Broadcasts created.",
+                "**Completed:** Campaigns where all recipients have been processed.",
+                "**In Progress:** Campaigns that still have recipients to process.",
+                "**Total Messages Sent:** Messages staff marked as **Sent** in EliteHMS.",
+                "**Campaign Ideas:** Examples such as appointment reminders, health tips, Eid greetings, and messages for patients with outstanding balances.",
+                "**New Broadcast:** Opens the form to prepare a campaign.",
+                "**Refresh:** Reloads the campaign list and counts.",
+                "**No broadcasts yet:** Appears until the first campaign is created.",
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.analytics,
+              alt: "Broadcast summary cards and campaign ideas",
+              caption: "Summary cards and campaign ideas",
+            },
+            {
+              type: "callout",
+              kind: "note",
+              text: "**Total Messages Sent** is a tracking count, not a delivery receipt from WhatsApp or a mobile network.",
+            },
+            {
+              type: "callout",
+              kind: "tip",
+              text: "The idea buttons are suggestions to start from. Review the audience and message in the campaign form before creating anything.",
+            },
+
+            { type: "heading", text: "Create a broadcast" },
+            {
+              type: "paragraph",
+              text: "Select **New Broadcast** or **Create First Broadcast**. The form has three steps.",
+            },
+            { type: "subheading", text: "1. Choose the campaign and audience" },
+            {
+              type: "paragraph",
+              text: "Give the campaign a clear title, choose a channel, and select a **Target Audience**, the group of patients you want to contact. Available audience filters include:",
+            },
+            {
+              type: "list",
+              items: [
+                "**All Active Patients**",
+                "**By Medical Condition:** Enter a keyword such as diabetes or asthma.",
+                "**Not Seen in X Days:** Choose how many days since a completed appointment.",
+                "**By City**",
+                "**By Blood Group**",
+                "**By Age Range**",
+                "**Have Outstanding Balance:** Set a minimum balance.",
+                "**Upcoming Appointments (next 48h)**",
+                "**Insured Patients**",
+                "**Custom Search:** Search patient details such as name, phone, city, or patient ID.",
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.records,
+              alt: "Target Audience filters and the recipient preview",
+              caption: "Choosing the audience",
+            },
+            {
+              type: "callout",
+              kind: "tip",
+              text: "Check the recipient preview and sample recipients. Confirm that the people and phone numbers are appropriate before moving on.",
+            },
+            {
+              type: "callout",
+              kind: "note",
+              text: "Patients need a phone number for the message workflow.",
+            },
+
+            { type: "subheading", text: "2. Write the message" },
+            {
+              type: "paragraph",
+              text: "Choose a quick template or write your own. Templates include appointment reminders, health tips, and refill reminders.",
+            },
+            {
+              type: "callout",
+              kind: "tip",
+              text: "Read and edit template text before sending.",
+            },
+            {
+              type: "paragraph",
+              text: "You can personalize messages with these variables:",
+            },
+            {
+              type: "list",
+              items: [
+                "**{name}:** Patient’s full name.",
+                "**{firstName}:** Patient’s first name.",
+                "**{storeName}:** Clinic or store name.",
+                "**{city}:** Patient’s city.",
+                "**{bloodGroup}:** Blood group.",
+                "**{patientId}:** Patient ID.",
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.form,
+              alt: "Message form with templates, variables, and a preview",
+              caption: "Writing the message",
+            },
+            {
+              type: "paragraph",
+              text: "The preview shows an example of how the message may look. Check the actual wording, spelling, dates, and contact details before continuing.",
+            },
+
+            { type: "subheading", text: "3. Review and create" },
+            {
+              type: "steps",
+              items: [
+                {
+                  title: "Review the campaign details",
+                  detail: "Title, channel, audience, recipient count, skipped count, and message preview. If anything is wrong, go back and edit it.",
+                },
+                { title: "Select **Create & Start Sending**" },
+              ],
+            },
+            {
+              type: "paragraph",
+              text: "The campaign will appear in the campaign list, where you can choose **Start Sending** or **Continue Sending**.",
+            },
+
+            { type: "heading", text: "Send and track messages" },
+            {
+              type: "paragraph",
+              text: "Open a campaign to see its recipients and sending progress. For each person:",
+            },
+            {
+              type: "steps",
+              items: [
+                { title: "Check the patient name, number, and personalized message" },
+                { title: "Select **Open in WhatsApp** or **Open in SMS**" },
+                {
+                  title: "Press **Send** in WhatsApp or SMS yourself",
+                  detail: "The selected app opens with the message prepared.",
+                },
+                {
+                  title: "Return to EliteHMS and mark the message **Sent**",
+                  detail: "Only after you have sent it.",
+                },
+                {
+                  title: "If you do not send it, choose **Skip**",
+                  detail: "Use **Mark as Failed** if sending failed.",
+                },
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.email,
+              alt: "Campaign recipients with Open in WhatsApp and Open in SMS buttons",
+              caption: "Sending to each recipient",
+            },
+            {
+              type: "paragraph",
+              text: "WhatsApp and SMS are handled through the apps on your device.",
+            },
+            {
+              type: "callout",
+              kind: "note",
+              text: "The system’s **Sent** status is a record entered by staff; it does not verify that the recipient received or read the message.",
+            },
+            {
+              type: "callout",
+              kind: "warning",
+              text: "The **Mark All Sent** button updates all remaining recipients at once, so use it only after you have actually sent those messages.",
+            },
+            {
+              type: "paragraph",
+              text: "The campaign list shows its status and progress. You can refresh the page, cancel an eligible campaign, or open a completed campaign’s report. The recipient list lets you review **Pending**, **Sent**, **Failed**, and **Skipped** entries.",
+            },
+            {
+              type: "image",
+              src: IMG.charts,
+              alt: "Campaign report with Pending, Sent, Failed, and Skipped counts",
+              caption: "A campaign report",
+            },
+
+            { type: "heading", text: "Helpful definitions" },
+            {
+              type: "list",
+              items: [
+                "**Campaign:** One prepared message sent to a selected group.",
+                "**Audience:** The patients selected to receive the campaign.",
+                "**Template:** A reusable example message that you can edit.",
+                "**Variable:** A placeholder such as {firstName} that is filled with patient information.",
+                "**Pending:** Not yet marked as sent, failed, or skipped.",
+                "**Skipped:** Not sent to that recipient.",
+                "**Failed:** Staff recorded that sending did not succeed.",
+              ],
+            },
+
+            { type: "heading", text: "Good practice" },
+            {
+              type: "list",
+              items: [
+                "Choose only the patients who need the message.",
+                "Check that the patient’s contact details are correct.",
+              ],
+            },
+            {
+              type: "callout",
+              kind: "warning",
+              text: "Keep health messages general and respectful of patient privacy; avoid putting sensitive medical details in a group message.",
+            },
+            {
+              type: "callout",
+              kind: "warning",
+              text: "Review health advice carefully and have a qualified clinician approve it when needed. Follow your clinic’s consent and communication rules.",
+            },
+          ],
+        }
+      ),
+      page(
+        "patient-feedback",
+        "Patient Feedback & Ratings",
+        "Use Patient Feedback & Ratings to invite patients to rate a visit, read their feedback, and review satisfaction ratings for doctors and staff.",
+        {
+          image: IMG.reception,
+          blocks: [
+            { type: "heading", text: "What this page does" },
+            {
+              type: "paragraph",
+              text: "Patients open a personal feedback link and submit their rating. The page then summarizes the reviews for your clinic.",
+            },
+
+            { type: "heading", text: "How to find this page" },
+            {
+              type: "steps",
+              items: [
+                { title: "Sign in to EliteHMS" },
+                { title: "In the left menu, select **Feedback**" },
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.dashboard,
+              alt: "Feedback option in the left menu",
+              caption: "Feedback in the left menu",
+            },
+
+            { type: "heading", text: "What you see" },
+            { type: "paragraph", text: "The top cards show:" },
+            {
+              type: "list",
+              items: [
+                "**Overall Rating:** Average overall patient rating out of 5.",
+                "**Total Reviews:** Feedback forms submitted.",
+                "**Flagged:** Reviews marked for follow-up.",
+                "**Doctor Rating:** Average doctor rating.",
+                "**Staff Rating:** Average staff rating.",
+                "**Wait Time Rating:** Average wait-time rating.",
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.analytics,
+              alt: "Patient feedback summary cards",
+              caption: "Summary cards at the top of the page",
+            },
+            {
+              type: "callout",
+              kind: "tip",
+              text: "If the page shows 0 reviews and ratings of 0/5, these will change after patients submit feedback.",
+            },
+            {
+              type: "paragraph",
+              text: "Select **Refresh** to reload the counts and reviews. Use the tabs to explore the information:",
+            },
+            {
+              type: "list",
+              items: [
+                "**Overview:** Summary and recent feedback highlights.",
+                "**Reviews:** Individual reviews, with search and filters.",
+                "**Doctors:** Ratings grouped by doctor.",
+                "**Trend:** Monthly satisfaction ratings over time.",
+              ],
+            },
+
+            { type: "heading", text: "Generate and send a feedback link" },
+            {
+              type: "steps",
+              items: [
+                { title: "Select **Generate Feedback Link**" },
+                { title: "Search for a patient and select the correct record" },
+                {
+                  title: "If available, link the request to a completed appointment",
+                  detail: "You can leave it as **General feedback** instead.",
+                },
+                { title: "Enter or confirm the doctor’s name" },
+                {
+                  title: "Choose how long the link stays valid",
+                  detail: "3, 7, 14, or 30 days.",
+                },
+                { title: "Select **Generate Link**" },
+                {
+                  title: "Send the link",
+                  detail: "Use **Send via WhatsApp**, or select **Copy** and share it through another approved channel.",
+                },
+                {
+                  title: "Use **Preview Form** to see what the patient will see",
+                },
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.form,
+              alt: "Generate Feedback Link form with patient, doctor, and validity",
+              caption: "The Generate Feedback Link form",
+            },
+            {
+              type: "paragraph",
+              text: "The feedback form asks for an overall star rating. Patients may also rate the doctor, staff, cleanliness, and wait time, write a comment, and choose to submit anonymously.",
+            },
+            {
+              type: "image",
+              src: IMG.phone,
+              alt: "Patient feedback form with star ratings and a comment box",
+              caption: "The form the patient sees",
+            },
+            {
+              type: "callout",
+              kind: "note",
+              text: "The overall rating is required; the category ratings and written comment are optional.",
+            },
+            {
+              type: "callout",
+              kind: "tip",
+              text: "Generate the link for the correct patient and visit, then share it through an appropriate channel.",
+            },
+
+            { type: "heading", text: "Review patient feedback" },
+            {
+              type: "paragraph",
+              text: "Open the **Reviews** tab to search and filter reviews by doctor, status, rating, or flagged status. A review can show its star ratings, patient name (or “Anonymous Patient”), doctor, date, written comment, and any clinic response.",
+            },
+            {
+              type: "image",
+              src: IMG.records,
+              alt: "Reviews tab with star ratings, comments, and filters",
+              caption: "The Reviews tab",
+            },
+            { type: "paragraph", text: "Staff can:" },
+            {
+              type: "list",
+              items: [
+                "Flag a review for follow-up, or remove the flag later.",
+                "Reply to a review that does not already have a response.",
+                "Delete a review if necessary.",
+              ],
+            },
+            {
+              type: "callout",
+              kind: "tip",
+              text: "If a review is flagged, the page may show an alert. Select **View Flagged** or open **Reviews** and choose **Flagged Only** to find it.",
+            },
+
+            { type: "heading", text: "Doctor ratings and trends" },
+            {
+              type: "list",
+              items: [
+                "In **Doctors**, compare doctors’ average ratings and review counts. The page can also show doctor-skill ratings and the number of negative reviews.",
+                "In **Trend**, view monthly average satisfaction and review counts.",
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.charts,
+              alt: "Doctors tab and monthly satisfaction trend chart",
+              caption: "Doctor ratings and the monthly trend",
+            },
+            {
+              type: "callout",
+              kind: "note",
+              text: "These figures reflect submitted feedback. A small number of reviews may not represent every patient’s experience, so consider the review count alongside the score.",
+            },
+
+            { type: "heading", text: "Helpful definitions" },
+            {
+              type: "list",
+              items: [
+                "**Overall rating:** The patient’s general score for their experience, from 1 to 5 stars.",
+                "**Flagged review:** A review staff marked for attention.",
+                "**Trend:** How ratings change over time.",
+                "**Anonymous:** The patient chose not to display their name with the feedback.",
+              ],
+            },
+
+            { type: "heading", text: "Good practice" },
+            {
+              type: "list",
+              items: [
+                "Review negative feedback promptly and respond politely.",
+              ],
+            },
+            {
+              type: "callout",
+              kind: "warning",
+              text: "Keep patient comments private and follow your clinic’s privacy practices when discussing them with staff.",
+            },
+          ],
+        }
+      ),
     ],
   },
   {
