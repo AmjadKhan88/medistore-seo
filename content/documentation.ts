@@ -8614,6 +8614,238 @@ export const docGroups: DocGroup[] = [
           ],
         }
       ),
+      page(
+        "settings",
+        "Settings",
+        "Settings lets you update your store profile, account details, security, dashboard appearance, sidebar, and mobile app options.",
+        {
+          image: IMG.tech,
+          blocks: [
+            { type: "heading", text: "How to find it" },
+            {
+              type: "steps",
+              items: [
+                { title: "From the dashboard, open the left menu" },
+                { title: "Choose **Settings** under **Management**" },
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.dashboard,
+              alt: "Settings option under Management in the left menu",
+              caption: "Settings under Management",
+            },
+            {
+              type: "paragraph",
+              text: "Choose **Store**, **Account**, **Security**, **Appearance**, **Navigation**, or **Mobile App** to update that part of your setup. The tabs run across the top.",
+            },
+            {
+              type: "callout",
+              kind: "tip",
+              text: "On a narrow screen, scroll the tab bar sideways to see them all.",
+            },
+
+            { type: "heading", text: "Store tab — Store / Clinic Profile" },
+            {
+              type: "paragraph",
+              text: "This profile supplies store details used on printed invoice PDFs, so check spelling and contact information.",
+            },
+            {
+              type: "steps",
+              items: [
+                {
+                  title: "Enter the required **Store / Pharmacy Name**, **Address**, and **Phone Number**",
+                },
+                {
+                  title: "Add the optional details",
+                  detail: "**Doctor / Owner Name**, **Email**, and **Drug License No.**",
+                },
+                { title: "Select **Save Store Profile** when finished" },
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.form,
+              alt: "Store tab with the Store / Clinic Profile form",
+              caption: "The Store tab",
+            },
+            {
+              type: "paragraph",
+              text: "The name and phone are also saved to the account profile.",
+            },
+            {
+              type: "callout",
+              kind: "warning",
+              text: "The other store details are saved in the current browser, so check them again if you use a different browser or device.",
+            },
+
+            { type: "heading", text: "Account tab — Account Profile" },
+            {
+              type: "paragraph",
+              text: "This tab shows the signed-in user’s name, email, and role. You can update the **Full Name** and **Phone Number**, then select **Save Profile**.",
+            },
+            {
+              type: "image",
+              src: IMG.staff,
+              alt: "Account tab with name, email, role, and phone number",
+              caption: "The Account tab",
+            },
+            {
+              type: "callout",
+              kind: "note",
+              text: "The email and role are displayed for reference here.",
+            },
+
+            { type: "heading", text: "Security tab — Password and sign-in protection" },
+            { type: "subheading", text: "Change password" },
+            {
+              type: "steps",
+              items: [
+                { title: "Enter your current password" },
+                { title: "Enter a new password, and type it again to confirm" },
+                { title: "Select **Change Password** to save it" },
+              ],
+            },
+            {
+              type: "callout",
+              kind: "note",
+              text: "The new password must be at least six characters.",
+            },
+
+            { type: "subheading", text: "Two-Factor Authentication" },
+            {
+              type: "paragraph",
+              text: "Two-factor authentication (2FA) adds a verification step when signing in.",
+            },
+            {
+              type: "steps",
+              items: [
+                {
+                  title: "Enable 2FA with an authenticator app",
+                  detail: "Such as Google Authenticator or Authy.",
+                },
+                { title: "Verify the code shown in that app" },
+                { title: "Save the recovery codes somewhere secure" },
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.alert,
+              alt: "Two-Factor Authentication setup with a code and recovery codes",
+              caption: "Setting up Two-Factor Authentication",
+            },
+            {
+              type: "callout",
+              kind: "warning",
+              text: "Save the recovery codes somewhere secure; they can help if you cannot access the authenticator.",
+            },
+            {
+              type: "paragraph",
+              text: "When 2FA is enabled, the page shows how many recovery codes remain. You can generate new codes or disable 2FA from this section.",
+            },
+
+            { type: "subheading", text: "Active Sessions" },
+            {
+              type: "paragraph",
+              text: "Review the devices where your account is signed in. **Logout All Devices** ends the other active sessions.",
+            },
+            {
+              type: "callout",
+              kind: "note",
+              text: "You may need to sign in again on those devices.",
+            },
+
+            { type: "heading", text: "Appearance tab — Dashboard theme" },
+            {
+              type: "paragraph",
+              text: "Choose **Light**, **Dark**, **Teal**, or **Purple** to change the dashboard’s colour theme.",
+            },
+            {
+              type: "image",
+              src: IMG.analytics,
+              alt: "Appearance tab with the Light, Dark, Teal, and Purple themes",
+              caption: "The Appearance tab",
+            },
+            {
+              type: "callout",
+              kind: "tip",
+              text: "The theme is saved automatically and synced across your browser tabs.",
+            },
+
+            { type: "heading", text: "Navigation tab — Sidebar display" },
+            {
+              type: "paragraph",
+              text: "Use the switches to show or hide pages in your sidebar. Related pages are grouped, such as **Pharmacy**, **Hospital**, **Finance**, **Communication**, **AI & Tools**, and **Management**. You can use **Show All** or **Hide All** for an unlocked group, or change individual pages.",
+            },
+            {
+              type: "image",
+              src: IMG.records,
+              alt: "Navigation tab with switches for each sidebar page",
+              caption: "The Navigation tab",
+            },
+            {
+              type: "paragraph",
+              text: "Some core pages are fixed and cannot be hidden. Hidden pages are removed from the sidebar.",
+            },
+            {
+              type: "callout",
+              kind: "note",
+              text: "Hiding a page does not change the account’s permissions.",
+            },
+            {
+              type: "callout",
+              kind: "warning",
+              text: "These preferences are saved in the current browser, so another device can have different sidebar settings.",
+            },
+            {
+              type: "paragraph",
+              text: "Select **Reset All** to restore the navigation items.",
+            },
+
+            { type: "heading", text: "Mobile App tab — Install and notifications" },
+            { type: "subheading", text: "Install MediStore" },
+            {
+              type: "paragraph",
+              text: "If your browser offers installation, select **Install** to add MediStore to the device. If there is no install button, the page shows manual instructions:",
+            },
+            {
+              type: "list",
+              items: [
+                "**Android Chrome:** Use **Add to Home Screen** from the browser menu.",
+                "**iOS Safari:** Use the **Share** menu.",
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.phone,
+              alt: "Mobile App tab with the Install button and push notifications",
+              caption: "The Mobile App tab",
+            },
+
+            { type: "subheading", text: "Push Notifications" },
+            {
+              type: "paragraph",
+              text: "Use the **Push Notifications** control to enable or manage browser notifications. Your browser or device may ask for permission.",
+            },
+            {
+              type: "callout",
+              kind: "note",
+              text: "Notifications depend on that permission and supported browser settings.",
+            },
+
+            { type: "heading", text: "Helpful definitions" },
+            {
+              type: "list",
+              items: [
+                "**Two-Factor Authentication (2FA):** An extra sign-in check using a code from an authenticator app.",
+                "**Recovery code:** A backup sign-in code to use if you cannot access your authenticator.",
+                "**Active session:** A device or browser currently signed in to your account.",
+                "**Sidebar navigation:** The menu of pages shown along the side of the dashboard.",
+              ],
+            },
+          ],
+        }
+      ),
     ],
   },
   {
