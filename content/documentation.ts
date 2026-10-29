@@ -775,8 +775,751 @@ export const docGroups: DocGroup[] = [
           ],
         }
       ),
-      page("purchase-orders", "Purchase Orders"),
-      page("expiry-alerts", "Expiry Alerts"),
+      page(
+        "patient-balances",
+        "Patient Balances",
+        "Use Patient Balances to review patients with unpaid or partly paid bills, record payments against an invoice, and prepare a WhatsApp payment reminder.",
+        {
+          image: IMG.finance,
+          blocks: [
+            { type: "heading", text: "How to find this page" },
+            {
+              type: "steps",
+              items: [
+                { title: "Sign in to EliteHMS" },
+                { title: "In the left menu, scroll to **Management** and select **Patient Balances**" },
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.dashboard,
+              alt: "Patient Balances option under Management in the left menu",
+              caption: "Patient Balances under Management",
+            },
+            {
+              type: "callout",
+              kind: "tip",
+              text: "If the page shows Rs 0 total outstanding and 0 patients with dues, there are no balances to follow up at the moment.",
+            },
+
+            { type: "heading", text: "Understand the summary cards" },
+            {
+              type: "list",
+              items: [
+                "**Total Outstanding:** Combined remaining balance for listed patients.",
+                "**Patients with Dues:** Number of active patient records with unpaid balances.",
+                "**Avg Outstanding:** Average remaining balance per listed patient.",
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.analytics,
+              alt: "Patient Balances summary cards",
+              caption: "Summary cards at the top of the page",
+            },
+            {
+              type: "paragraph",
+              text: "The page lists active patients whose billed total is greater than their paid total. Use the search box to find a patient by name or patient ID.",
+            },
+
+            { type: "heading", text: "Read the patient list" },
+            {
+              type: "paragraph",
+              text: "When patients have dues, the table shows their name, patient ID, phone number, total billed, total paid, and outstanding balance.",
+            },
+            {
+              type: "image",
+              src: IMG.records,
+              alt: "Patient list with billed, paid, and outstanding amounts",
+              caption: "The patient list with outstanding balances",
+            },
+
+            { type: "heading", text: "Record a payment" },
+            {
+              type: "paragraph",
+              text: "Select **Pay Now** to open the patient’s pending or partly paid invoices. For the invoice you are recording a payment against:",
+            },
+            {
+              type: "steps",
+              items: [
+                { title: "Check the invoice number and its remaining balance" },
+                { title: "Enter the amount received" },
+                { title: "Choose **Cash**, **Card**, or **Online** as the payment method" },
+                { title: "Select **Pay** to save the payment" },
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.payment,
+              alt: "Pay Now dialog with invoice, amount, and payment method",
+              caption: "Recording a payment",
+            },
+            {
+              type: "paragraph",
+              text: "The payment is recorded against that invoice and the patient balance list refreshes.",
+            },
+            {
+              type: "callout",
+              kind: "warning",
+              text: "Confirm the patient, invoice, amount, and payment method before saving.",
+            },
+
+            { type: "heading", text: "Send a WhatsApp reminder" },
+            {
+              type: "steps",
+              items: [
+                {
+                  title: "Select **Remind** next to a patient with a phone number",
+                },
+                {
+                  title: "Check the number and review the prepared message",
+                  detail: "It includes the patient ID, total billed, amount paid, and remaining balance. You can edit the message before continuing.",
+                },
+                { title: "Select **Open WhatsApp**" },
+                { title: "Press **Send** in WhatsApp" },
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.phone,
+              alt: "WhatsApp reminder message with the patient’s balance",
+              caption: "The prepared WhatsApp reminder",
+            },
+            {
+              type: "callout",
+              kind: "note",
+              text: "EliteHMS opens WhatsApp with the message ready. You must press **Send** in WhatsApp; opening WhatsApp does not send the message automatically.",
+            },
+            {
+              type: "callout",
+              kind: "note",
+              text: "The **Remind** button is unavailable when there is no phone number.",
+            },
+
+            { type: "heading", text: "Helpful definitions" },
+            {
+              type: "list",
+              items: [
+                "**Total billed:** The amount charged across the patient’s bills.",
+                "**Total paid:** Payments recorded against those bills.",
+                "**Outstanding balance:** The amount still due.",
+                "**Partial payment:** A payment that covers only part of an invoice balance.",
+              ],
+            },
+
+            { type: "heading", text: "Good practice" },
+            {
+              type: "list",
+              items: [
+                "Verify the correct patient and invoice before recording a payment.",
+              ],
+            },
+            {
+              type: "callout",
+              kind: "warning",
+              text: "Keep payment details private, and send reminders only through an appropriate channel using the correct contact information.",
+            },
+          ],
+        }
+      ),
+      page(
+        "purchase-orders",
+        "Purchase Orders",
+        "Use Purchase Orders to prepare medicine orders for suppliers, record deliveries, update inventory, and track what is still owed to suppliers.",
+        {
+          image: IMG.warehouse,
+          blocks: [
+            { type: "heading", text: "How to find this page" },
+            {
+              type: "steps",
+              items: [
+                { title: "Sign in to EliteHMS" },
+                { title: "In the left menu, scroll to **Management** and select **Purchase Orders**" },
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.dashboard,
+              alt: "Purchase Orders option under Management in the left menu",
+              caption: "Purchase Orders under Management",
+            },
+            {
+              type: "callout",
+              kind: "tip",
+              text: "If the page shows no orders yet, select **New Purchase Order** to create your first one.",
+            },
+
+            { type: "heading", text: "Understand the summary cards" },
+            {
+              type: "list",
+              items: [
+                "**Pending / Ordered**",
+                "**Partially Received**",
+                "**Low Stock Items**",
+                "**Unpaid to Suppliers**",
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.analytics,
+              alt: "Purchase Orders summary cards",
+              caption: "Summary cards at the top of the page",
+            },
+
+            { type: "heading", text: "Create a purchase order" },
+            {
+              type: "paragraph",
+              text: "Select **New Purchase Order**. In the form:",
+            },
+            {
+              type: "steps",
+              items: [
+                {
+                  title: "Enter the supplier or company name",
+                  detail: "Phone, email, address, expected delivery date, and notes are optional.",
+                },
+                {
+                  title: "Add medicines by searching the inventory",
+                  detail: "For each item, enter the **Order Qty** and **Unit Cost**.",
+                },
+                {
+                  title: "If low-stock medicines are listed, use **Auto-fill Low Stock Items** to add them to the order",
+                  detail: "Check and adjust the suggested quantities and costs before saving.",
+                },
+                { title: "Check the order total" },
+                {
+                  title: "Enter any **Advance Payment** already made, if applicable",
+                },
+                { title: "Select **Create Purchase Order**" },
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.form,
+              alt: "New Purchase Order form with supplier, medicines, quantities, and unit costs",
+              caption: "The New Purchase Order form",
+            },
+            {
+              type: "paragraph",
+              text: "The order is created with an **Ordered** status.",
+            },
+            {
+              type: "callout",
+              kind: "note",
+              text: "Creating an order does not add stock to inventory; stock is added when you record delivery.",
+            },
+
+            { type: "heading", text: "Find and review orders" },
+            {
+              type: "paragraph",
+              text: "Search by purchase order number or supplier. Use the filters to view **All**, **Ordered**, **Partial**, **Received**, or **Cancelled** orders.",
+            },
+            {
+              type: "paragraph",
+              text: "The order list can show the order number, supplier, item count, total, amount paid, balance due, expected date, order status, and payment status. Select **View** for the order details.",
+            },
+            {
+              type: "image",
+              src: IMG.records,
+              alt: "Purchase order list with filters, totals, balances, and statuses",
+              caption: "The purchase order list",
+            },
+
+            { type: "heading", text: "Record received stock" },
+            {
+              type: "paragraph",
+              text: "When a supplier delivers an order, select its **Receive Stock** action.",
+            },
+            {
+              type: "steps",
+              items: [
+                {
+                  title: "Enter the actual quantity received for each medicine",
+                  detail: "The form starts with the remaining ordered quantity; change it to match the delivery.",
+                },
+                { title: "Set the received date" },
+                { title: "Check quantities carefully, then select **Confirm & Update Stock**" },
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.stock,
+              alt: "Receive Stock form with quantities received and the received date",
+              caption: "Recording received stock",
+            },
+            {
+              type: "callout",
+              kind: "warning",
+              text: "Record the quantity actually received rather than the quantity expected. Only the quantities recorded as received are added to inventory.",
+            },
+            {
+              type: "paragraph",
+              text: "If the delivery is incomplete, the order remains **Partially Received** and you can record another delivery later. When all ordered quantities are received, the status becomes **Received**.",
+            },
+
+            { type: "heading", text: "Record supplier payments" },
+            {
+              type: "steps",
+              items: [
+                { title: "Select **Record Payment** on an order with an unpaid balance" },
+                { title: "Enter the amount paid" },
+                { title: "Save it" },
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.payment,
+              alt: "Record Payment dialog with the amount paid and the remaining balance",
+              caption: "Recording a supplier payment",
+            },
+            {
+              type: "paragraph",
+              text: "You can record payments in parts; the order shows the amount paid and the remaining balance.",
+            },
+            {
+              type: "callout",
+              kind: "warning",
+              text: "Do not enter more than the amount due.",
+            },
+
+            { type: "heading", text: "Cancel or delete an order" },
+            {
+              type: "paragraph",
+              text: "Orders that have not been fully received can be cancelled or deleted from their available actions.",
+            },
+            {
+              type: "callout",
+              kind: "warning",
+              text: "Check the order details and confirm before cancelling or deleting.",
+            },
+            {
+              type: "callout",
+              kind: "note",
+              text: "A received order cannot be deleted.",
+            },
+
+            { type: "heading", text: "Helpful definitions" },
+            {
+              type: "list",
+              items: [
+                "**Purchase order (PO):** A record of the medicines and quantities you intend to buy from a supplier.",
+                "**Ordered:** The order has been created, but delivery may still be pending.",
+                "**Partially received:** Some, but not all, ordered quantities have been delivered and added to stock.",
+                "**Received:** All ordered quantities have been recorded as delivered.",
+                "**Advance payment:** Money paid to the supplier before the full order is settled.",
+                "**Balance due:** Order total minus payments recorded.",
+              ],
+            },
+
+            { type: "heading", text: "Good practice" },
+            {
+              type: "list",
+              items: [
+                "Check medicine names, quantities, unit costs, and supplier details before creating an order.",
+                "When stock arrives, record the quantity actually received rather than the quantity expected.",
+                "Keep purchase and payment records consistent with supplier documents.",
+              ],
+            },
+          ],
+        }
+      ),
+      page(
+        "suppliers",
+        "Supplier Management",
+        "Supplier Management keeps contact and payment details for medicine suppliers in one place.",
+        {
+          image: IMG.invoice,
+          blocks: [
+            { type: "heading", text: "How to find it" },
+            {
+              type: "steps",
+              items: [
+                { title: "From the dashboard, open the left menu" },
+                { title: "Choose **Suppliers** under **Management**" },
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.dashboard,
+              alt: "Suppliers option under Management in the left menu",
+              caption: "Suppliers under Management",
+            },
+            {
+              type: "paragraph",
+              text: "There you can add suppliers, search their records, check outstanding balances, and review their performance.",
+            },
+
+            { type: "heading", text: "What this page is for" },
+            {
+              type: "paragraph",
+              text: "It also lets staff link medicines to a supplier and review purchase history and delivery performance.",
+            },
+            {
+              type: "callout",
+              kind: "tip",
+              text: "If the page shows 0 suppliers, the totals are zero and the list is empty. Add a supplier to begin.",
+            },
+
+            { type: "heading", text: "What the summary cards mean" },
+            {
+              type: "list",
+              items: [
+                "**Total Suppliers:** Number of active supplier records.",
+                "**Total Outstanding:** The amount recorded as ordered minus the amount recorded as paid.",
+                "**With Balance:** Number of suppliers with an outstanding amount.",
+                "**Avg Rating:** Average supplier rating, from 0 to 5.",
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.analytics,
+              alt: "Supplier summary cards",
+              caption: "Summary cards at the top of the page",
+            },
+            {
+              type: "callout",
+              kind: "note",
+              text: "These figures summarize the supplier records; they do not replace checking invoices, receipts, or bank records.",
+            },
+
+            { type: "heading", text: "Add a supplier" },
+            {
+              type: "steps",
+              items: [
+                { title: "Select **Add Supplier**" },
+                {
+                  title: "In **Basic Info**, enter the supplier’s contact name and phone number",
+                  detail: "These are required. You can also enter the company or distributor name, alternate phone, email, city, NTN, and address.",
+                },
+                {
+                  title: "In **Bank Details**, add the supplier’s bank name, account number, and IBAN if you use them",
+                  detail: "Record the agreed payment terms and credit limit where applicable.",
+                },
+                {
+                  title: "In **Terms & Notes**, add useful internal notes",
+                  detail: "Such as delivery arrangements or product specialties.",
+                },
+                { title: "Select **Add Supplier** to save" },
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.form,
+              alt: "Add Supplier form with Basic Info, Bank Details, and Terms & Notes",
+              caption: "The Add Supplier form",
+            },
+            { type: "paragraph", text: "A few terms you will see on the form:" },
+            {
+              type: "list",
+              items: [
+                "**NTN:** National Tax Number.",
+                "**IBAN:** The standardized bank account number used for transfers.",
+                "**Payment terms:** When payment is due, for example, in advance, on delivery, or within 30 days.",
+                "**Credit limit:** The maximum amount the supplier agrees to let the store owe.",
+              ],
+            },
+            {
+              type: "callout",
+              kind: "warning",
+              text: "Only enter bank and tax details when they are needed, and check them carefully before saving.",
+            },
+
+            { type: "heading", text: "Search and review suppliers" },
+            {
+              type: "paragraph",
+              text: "Use the search field to find a supplier by name, company, phone, or email. Select **All Suppliers** to view the directory, or **Outstanding Payments** to see suppliers with recorded balances.",
+            },
+            {
+              type: "image",
+              src: IMG.records,
+              alt: "Supplier list with search box and the All Suppliers and Outstanding Payments views",
+              caption: "The supplier list",
+            },
+            {
+              type: "paragraph",
+              text: "Open a supplier’s detail view to review:",
+            },
+            {
+              type: "list",
+              items: [
+                "**Overview:** Contact, bank, payment terms, credit limit, and internal notes.",
+                "**Medicines:** Medicines associated with the supplier.",
+                "**Purchase History:** Recent orders and their order date, value, amount paid, and status.",
+                "**Performance:** Order and delivery counts, quality issues, returns, delivery score, and rating.",
+              ],
+            },
+
+            { type: "heading", text: "Update supplier information" },
+            {
+              type: "steps",
+              items: [
+                { title: "Use the supplier’s **Edit** action to change its saved details" },
+                { title: "Select **Update Supplier**" },
+              ],
+            },
+            {
+              type: "callout",
+              kind: "tip",
+              text: "Keep contact, bank, and payment terms current so staff can reach the correct person and use the agreed payment information.",
+            },
+
+            { type: "heading", text: "Link medicines" },
+            {
+              type: "paragraph",
+              text: "In the supplier detail view, select **Link Medicines** to associate medicines with that supplier. The linked list can include a medicine’s name, category, your price, and whether it is preferred.",
+            },
+            {
+              type: "image",
+              src: IMG.meds,
+              alt: "Link Medicines dialog with the linked list and the preferred option",
+              caption: "Linking medicines to a supplier",
+            },
+            {
+              type: "paragraph",
+              text: "A preferred supplier is the one staff usually choose for that medicine.",
+            },
+            {
+              type: "callout",
+              kind: "tip",
+              text: "Confirm the supplier and product are correct before marking one preferred.",
+            },
+
+            { type: "heading", text: "Record a payment" },
+            {
+              type: "steps",
+              items: [
+                { title: "If a supplier has an outstanding balance, open its detail view" },
+                { title: "Choose **Record Payment**" },
+                { title: "Enter a positive amount and submit it" },
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.payment,
+              alt: "Record Payment dialog on the supplier detail view",
+              caption: "Recording a supplier payment",
+            },
+            {
+              type: "paragraph",
+              text: "The supplier’s **Total Paid** increases, which changes its displayed outstanding balance. The supplier record keeps the running paid total.",
+            },
+            {
+              type: "callout",
+              kind: "warning",
+              text: "Confirm the payment amount before recording it.",
+            },
+            {
+              type: "callout",
+              kind: "tip",
+              text: "Keep the actual invoice, payment receipt, and accounting records as supporting evidence.",
+            },
+
+            { type: "heading", text: "Track supplier performance" },
+            {
+              type: "paragraph",
+              text: "In **Performance**, you can update the star rating and log delivery events such as on time, late, quality issue, or returned.",
+            },
+            {
+              type: "image",
+              src: IMG.charts,
+              alt: "Performance tab with the star rating and delivery events",
+              caption: "The Performance tab",
+            },
+            {
+              type: "callout",
+              kind: "tip",
+              text: "Record events based on the order outcome so the rating and delivery history remain useful to the team.",
+            },
+
+            { type: "heading", text: "Remove a supplier" },
+            {
+              type: "paragraph",
+              text: "The **Remove** action asks for confirmation. It makes the supplier inactive, so it is removed from the active supplier list.",
+            },
+            {
+              type: "callout",
+              kind: "warning",
+              text: "Check the supplier’s purchase history and balance before removing it.",
+            },
+
+            { type: "heading", text: "Useful definitions" },
+            {
+              type: "list",
+              items: [
+                "**Outstanding balance:** Amount still recorded as owed.",
+                "**Purchase order (PO):** A record of goods ordered from a supplier.",
+                "**Purchase history:** Past purchase orders associated with the supplier.",
+                "**Delivery score:** A summary of recorded delivery performance.",
+                "**Soft delete:** Hiding a record from active use while retaining it in the system.",
+              ],
+            },
+            {
+              type: "callout",
+              kind: "note",
+              text: "Supplier Management has its own payment and performance actions. When handling a purchase order, make sure its supplier name matches the supplier record so the history can be found under the expected supplier.",
+            },
+          ],
+        }
+      ),
+      page(
+        "expiry-alerts",
+        "Expiry Alerts",
+        "Use Expiry Alerts to find active medicine records that are expired or approaching their expiry date.",
+        {
+          image: IMG.pharmacy,
+          blocks: [
+            { type: "heading", text: "What this page does" },
+            {
+              type: "paragraph",
+              text: "You can review stock and batch details and download a PDF list for follow-up.",
+            },
+            {
+              type: "callout",
+              kind: "tip",
+              text: "If all three categories show 0 medicines, there are no expiry entries to display right now.",
+            },
+
+            { type: "heading", text: "How to find this page" },
+            {
+              type: "steps",
+              items: [
+                { title: "Sign in to EliteHMS" },
+                { title: "In the left menu, scroll to **Management** and select **Expiry Alerts**" },
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.dashboard,
+              alt: "Expiry Alerts option under Management in the left menu",
+              caption: "Expiry Alerts under Management",
+            },
+
+            { type: "heading", text: "Expiry categories" },
+            { type: "paragraph", text: "Select a category to view its medicines:" },
+            {
+              type: "list",
+              items: [
+                "**Expired:** Expiry date has passed.",
+                "**Expiring in 30 Days:** Expiry date is within the next 30 days.",
+                "**Expiring in 60 Days:** Expiry date is more than 30 days away and within 60 days.",
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.stock,
+              alt: "Expired, Expiring in 30 Days, and Expiring in 60 Days categories with counts",
+              caption: "The three expiry categories",
+            },
+            {
+              type: "paragraph",
+              text: "The number beside each category shows how many medicine records match that date range.",
+            },
+            {
+              type: "callout",
+              kind: "note",
+              text: "The alerts are based on active medicine records, including records that may currently have no stock, so check the stock quantity shown before taking action.",
+            },
+            {
+              type: "callout",
+              kind: "tip",
+              text: "If the list is empty, there are no active medicine records in that category at the time the page loaded.",
+            },
+
+            { type: "heading", text: "Read the medicine list" },
+            { type: "paragraph", text: "When medicines appear, the table can show:" },
+            {
+              type: "list",
+              items: [
+                "Medicine name, generic name, form, strength, and manufacturer.",
+                "Category and batch number.",
+                "Stock quantity and unit.",
+                "Sale price and estimated value at risk.",
+                "Expiry date and how many days remain, or how many days ago it expired.",
+                "**Alternatives:** Select **View** to see possible substitutes.",
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.records,
+              alt: "Expiry list with batch, stock, value at risk, expiry date, and Alternatives",
+              caption: "The expiry list",
+            },
+            {
+              type: "callout",
+              kind: "warning",
+              text: "A possible substitute is only a suggestion. Confirm the correct medicine, strength, form, and clinical suitability with an authorized professional before making a substitution.",
+            },
+
+            { type: "heading", text: "Download PDF reports" },
+            { type: "paragraph", text: "Select the relevant PDF button:" },
+            {
+              type: "list",
+              items: [
+                "**Expired PDF:** Expired medicine records.",
+                "**Warning PDF:** Medicines expiring within 30 days.",
+                "**Notice PDF:** Medicines expiring within 31–60 days.",
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.printer,
+              alt: "Expired PDF, Warning PDF, and Notice PDF buttons",
+              caption: "The PDF buttons",
+            },
+            {
+              type: "paragraph",
+              text: "Each PDF includes a table with medicine, batch, stock, price, expiry date, and status, along with summary figures and action notes. The report is generated on your device and downloaded as a file.",
+            },
+            {
+              type: "callout",
+              kind: "note",
+              text: "A PDF button is unavailable when that category has no records.",
+            },
+
+            { type: "heading", text: "What to do when you find an expired medicine" },
+            {
+              type: "callout",
+              kind: "warning",
+              text: "Do not dispense expired medicine.",
+            },
+            {
+              type: "steps",
+              items: [
+                {
+                  title: "Remove it from dispensing stock",
+                  detail: "Follow your organization’s process.",
+                },
+                { title: "Quarantine it for appropriate disposal" },
+                { title: "Update the inventory record" },
+              ],
+            },
+            {
+              type: "paragraph",
+              text: "If you record disposal in **DRAP Compliance**, then **Expiry Destruction**, selecting the medicine from inventory and recording the destroyed quantity reduces its stock in EliteHMS.",
+            },
+            {
+              type: "paragraph",
+              text: "For medicines nearing expiry, review quantities and purchasing plans with the responsible pharmacist or manager.",
+            },
+            {
+              type: "callout",
+              kind: "note",
+              text: "The alert page identifies the date range; it does not automatically remove stock or create a disposal record.",
+            },
+
+            { type: "heading", text: "Helpful definitions" },
+            {
+              type: "list",
+              items: [
+                "**Expiry date:** The date after which the medicine should not be used or supplied.",
+                "**Batch number:** Identifier for a group of medicine made or supplied together.",
+                "**Value at risk:** An estimate using the listed sale price multiplied by current stock.",
+                "**Quarantine:** Keep an item separate so it cannot be dispensed while awaiting the next step.",
+              ],
+            },
+          ],
+        }
+      ),
       page(
         "demand-forecast",
         "Predictive Medicine Demand",
@@ -5120,7 +5863,242 @@ export const docGroups: DocGroup[] = [
           ],
         }
       ),
-      page("drap-compliance", "DRAP Compliance"),
+      page(
+        "drap-compliance",
+        "DRAP Compliance",
+        "Use DRAP Compliance to review medicine records that may be needed for pharmacy record-keeping: prescription-medicine sales, batch history, expiry destructions, supplier purchases, and a period report.",
+        {
+          image: IMG.report,
+          blocks: [
+            { type: "heading", text: "What this page does" },
+            {
+              type: "paragraph",
+              text: "The page helps organize records.",
+            },
+            {
+              type: "callout",
+              kind: "warning",
+              text: "A report or score from EliteHMS does not by itself confirm compliance with all current DRAP or other legal requirements. Check the latest requirements that apply to your business and have an authorized person review the records.",
+            },
+
+            { type: "heading", text: "How to find this page" },
+            {
+              type: "steps",
+              items: [
+                { title: "Sign in to EliteHMS" },
+                { title: "In the left menu, select **DRAP Compliance**" },
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.dashboard,
+              alt: "DRAP Compliance option in the left menu",
+              caption: "DRAP Compliance in the left menu",
+            },
+
+            { type: "heading", text: "Select a reporting period" },
+            {
+              type: "paragraph",
+              text: "Use the month selector at the top of the page to choose the period. The cards and records are based on the selected month where relevant. Select **Refresh** to reload the counts.",
+            },
+            { type: "paragraph", text: "The cards show:" },
+            {
+              type: "list",
+              items: [
+                "**Controlled Medicines:** Count shown by the page for controlled or prescription medicines.",
+                "**Destructions This Month:** Destruction records created for the current reporting period.",
+                "**Expired in Stock:** Expired medicines that still have stock recorded.",
+                "**Expiring in 30 Days:** Medicines approaching expiry.",
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.analytics,
+              alt: "DRAP Compliance month selector and summary cards",
+              caption: "Month selector and summary cards",
+            },
+            {
+              type: "callout",
+              kind: "tip",
+              text: "If **Expired in Stock** is above zero, review the items promptly. The page provides an alert and a shortcut to **Expiry Destruction**.",
+            },
+
+            { type: "heading", text: "Controlled Register" },
+            {
+              type: "paragraph",
+              text: "The **Controlled Register** lists medicine transactions found in billing records for the period. Entries can include bill date and number, patient details, medicine, strength, batch, quantity, value, and whether the medicine is marked controlled or prescription-only.",
+            },
+            {
+              type: "image",
+              src: IMG.records,
+              alt: "Controlled Register with transactions for the selected period",
+              caption: "The Controlled Register",
+            },
+            {
+              type: "paragraph",
+              text: "Use this tab to review recorded sales and transaction details.",
+            },
+            {
+              type: "callout",
+              kind: "tip",
+              text: "If the register is empty, there may be no matching transactions for the selected period.",
+            },
+
+            { type: "heading", text: "Batch Tracking" },
+            {
+              type: "steps",
+              items: [
+                { title: "Open **Batch Tracking**" },
+                { title: "Search by batch number or medicine name" },
+                { title: "Select **Track Batch**" },
+              ],
+            },
+            { type: "paragraph", text: "Results can show:" },
+            {
+              type: "list",
+              items: [
+                "Batch number, manufacturer, expiry date, and current stock.",
+                "Total quantity distributed.",
+                "Purchase orders and supplier information connected to the batch, when available.",
+                "Distribution details, including the bill and patient records associated with that batch.",
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.barcode,
+              alt: "Batch Tracking results with distribution details",
+              caption: "Batch Tracking results",
+            },
+            {
+              type: "paragraph",
+              text: "Use the results to trace where a batch came from and which patients received it.",
+            },
+            {
+              type: "callout",
+              kind: "tip",
+              text: "Verify that medicine batch information is complete and accurate in the inventory records.",
+            },
+
+            { type: "heading", text: "Expiry Destruction" },
+            {
+              type: "paragraph",
+              text: "Use **Expiry Destruction** to record medicines removed from stock because they expired, were damaged, recalled, contaminated, or had another reason.",
+            },
+            {
+              type: "steps",
+              items: [
+                {
+                  title: "Select **Record Destruction** or choose an expired medicine shown in the alert",
+                },
+                {
+                  title: "Search for and select the inventory medicine, or enter the medicine manually",
+                },
+                {
+                  title: "Check the medicine and batch details, expiry date, quantity, and unit",
+                },
+                {
+                  title: "Enter the destruction date, method, location, pharmacist and witness details, and any notes that apply",
+                },
+                { title: "Select **Record Destruction**" },
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.form,
+              alt: "Record Destruction form with medicine, batch, quantity, and witness details",
+              caption: "The Record Destruction form",
+            },
+            {
+              type: "callout",
+              kind: "note",
+              text: "When you select a medicine from inventory, saving the destruction record also reduces that medicine’s stock by the quantity entered.",
+            },
+            {
+              type: "callout",
+              kind: "warning",
+              text: "When entering a medicine manually without selecting its inventory record, the system cannot adjust that inventory item’s stock. Confirm the quantity and batch carefully before saving.",
+            },
+            {
+              type: "paragraph",
+              text: "If DRAP notification is required, select the notification option and track the displayed status. The record can show **DRAP Pending** or **Notified**.",
+            },
+            {
+              type: "callout",
+              kind: "note",
+              text: "Entering a destruction record does not itself submit a notification to DRAP.",
+            },
+            {
+              type: "callout",
+              kind: "warning",
+              text: "Destruction records can be deleted from the register. Use this carefully and follow your organization’s record-handling rules.",
+            },
+
+            { type: "heading", text: "Supplier Records" },
+            {
+              type: "paragraph",
+              text: "The **Supplier Records** tab shows purchase orders for the selected period. It can include supplier, purchase-order number and date, items, total amount, amount paid, balance, and order status.",
+            },
+            {
+              type: "image",
+              src: IMG.warehouse,
+              alt: "Supplier Records with purchase orders and balances",
+              caption: "The Supplier Records tab",
+            },
+            {
+              type: "paragraph",
+              text: "Use it to review purchases and payment balances alongside the medicine and batch records.",
+            },
+
+            { type: "heading", text: "Compliance Report" },
+            {
+              type: "steps",
+              items: [
+                {
+                  title: "Select **One-Click Report** at the top",
+                  detail: "Or open **Compliance Report** and choose **Generate & Print Report**.",
+                },
+                { title: "Review the generated report" },
+                { title: "Correct any missing or inaccurate records, then print" },
+              ],
+            },
+            { type: "paragraph", text: "The report covers the selected period and can include:" },
+            {
+              type: "list",
+              items: [
+                "Sales summary and prescription-medicine transactions.",
+                "Inventory status, including expired and soon-to-expire stock.",
+                "Expiry destruction records.",
+                "Supplier purchase records.",
+                "A compliance checklist or score.",
+                "A declaration section.",
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.printer,
+              alt: "Compliance Report with sales, inventory, destruction, and supplier sections",
+              caption: "The Compliance Report",
+            },
+            {
+              type: "callout",
+              kind: "warning",
+              text: "The report is a summary of information recorded in the app; it does not replace required source documents or official regulatory submissions.",
+            },
+
+            { type: "heading", text: "Helpful definitions" },
+            {
+              type: "list",
+              items: [
+                "**Controlled medicine:** A medicine subject to additional controls or record-keeping under applicable rules.",
+                "**Batch:** A quantity of medicine produced or supplied together, identified by a batch number.",
+                "**Destruction record:** A record of medicine removed from stock and disposed of.",
+                "**Expiry date:** The date after which the medicine should not be used or supplied.",
+                "**Compliance report:** A summary of records and checks for a selected period.",
+              ],
+            },
+          ],
+        }
+      ),
     ],
   },
   {
@@ -5128,7 +6106,209 @@ export const docGroups: DocGroup[] = [
     icon: Settings,
     image: IMG.team,
     pages: [
-      page("staff-roles", "Staff & Roles"),
+        page(
+        "staff-management",
+        "Staff Management",
+        "Staff Management lets the store owner create staff accounts and control who can access the store.",
+        {
+          image: IMG.staff,
+          blocks: [
+            { type: "heading", text: "How to find it" },
+            {
+              type: "steps",
+              items: [
+                { title: "From the dashboard, open the left menu" },
+                { title: "Choose **Staff Management** under **Management**" },
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.dashboard,
+              alt: "Staff Management option under Management in the left menu",
+              caption: "Staff Management under Management",
+            },
+            {
+              type: "paragraph",
+              text: "Sign in as the store owner, then select **Add Staff Member** to create an account and assign its role and locations.",
+            },
+
+            { type: "heading", text: "What this page is for" },
+            {
+              type: "paragraph",
+              text: "The table shows each person’s name, email, phone, role, assigned locations, account status, and join date.",
+            },
+            {
+              type: "callout",
+              kind: "note",
+              text: "Only the store owner can manage staff accounts.",
+            },
+
+            { type: "heading", text: "Understand the roles" },
+            {
+              type: "paragraph",
+              text: "The cards at the top show a brief summary of some role permissions:",
+            },
+            {
+              type: "list",
+              items: [
+                "**Admin / Owner:** Full access, including managing staff, deleting records, viewing reports, and changing store settings.",
+                "**Doctor:** Can add or edit medicines and patients, create bills, and view reports.",
+                "**Pharmacist:** Can create bills and view medicines and patients.",
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.team,
+              alt: "Role cards summarizing Admin / Owner, Doctor, and Pharmacist permissions",
+              caption: "The role cards at the top of the page",
+            },
+            {
+              type: "paragraph",
+              text: "The add-staff form also offers **Nurse**, **Lab Technician**, and **Receptionist** roles.",
+            },
+            {
+              type: "callout",
+              kind: "note",
+              text: "The cards are a short overview, not a complete permissions list for every role.",
+            },
+            {
+              type: "callout",
+              kind: "warning",
+              text: "Choose a role based on the work the person needs to do, and give the least access needed.",
+            },
+
+            { type: "heading", text: "Add a staff member" },
+            {
+              type: "steps",
+              items: [
+                { title: "Select **Add Staff Member**" },
+                {
+                  title: "Enter the person’s **Full Name**, **Email**, and a temporary **Password**",
+                  detail: "These fields are required. The password must have at least six characters.",
+                },
+                { title: "Select a **Role**" },
+                { title: "Add a **Phone** number if useful" },
+                {
+                  title: "If the location picker is available, select the locations this person should access",
+                  detail: "Leave it empty to assign the Primary location.",
+                },
+                {
+                  title: "Check the **This role can** summary, then choose **Create Account**",
+                },
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.form,
+              alt: "Add Staff Member form with name, email, password, role, and locations",
+              caption: "The Add Staff Member form",
+            },
+            {
+              type: "callout",
+              kind: "warning",
+              text: "Share the login details securely with the staff member and ask them to use their own account. Do not share one login across multiple people.",
+            },
+
+            { type: "heading", text: "Understand the staff list" },
+            {
+              type: "list",
+              items: [
+                "**Name / Email / Phone:** Staff account and contact details.",
+                "**Role:** The account’s permission group.",
+                "**Locations:** Stores or branches the staff member is assigned to. This column appears when location assignments are available.",
+                "**Status:** **Active** means the account can be used; **Deactivated** means access is disabled.",
+                "**Joined:** Date the staff account was created.",
+                "**Actions:** Buttons to edit details, reset the password, activate or deactivate the account, or remove an eligible staff member.",
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.records,
+              alt: "Staff list with role, locations, status, and action buttons",
+              caption: "The staff list",
+            },
+            {
+              type: "callout",
+              kind: "tip",
+              text: "If the table is wider than the screen, scroll horizontally to see the remaining columns and actions.",
+            },
+
+            { type: "heading", text: "Edit a staff member" },
+            {
+              type: "steps",
+              items: [
+                { title: "Select the pencil button beside a staff member" },
+                {
+                  title: "Update their name, phone, role where allowed, and location assignments",
+                },
+                { title: "Select **Save Changes**" },
+              ],
+            },
+            {
+              type: "callout",
+              kind: "warning",
+              text: "A person’s role determines what parts of the app they can access. Review the role before saving changes.",
+            },
+
+            { type: "heading", text: "Reset a password" },
+            {
+              type: "steps",
+              items: [
+                { title: "Select the lock button beside the staff member" },
+                { title: "Enter a new password with at least six characters" },
+                { title: "Confirm the reset" },
+              ],
+            },
+            {
+              type: "callout",
+              kind: "tip",
+              text: "Give the new password to the staff member securely.",
+            },
+
+            { type: "heading", text: "Activate or deactivate an account" },
+            { type: "paragraph", text: "Use the status action beside the staff member:" },
+            {
+              type: "list",
+              items: [
+                "**Deactivate** turns off their access while keeping their account in the list.",
+                "**Activate** restores access for a deactivated account.",
+              ],
+            },
+            {
+              type: "paragraph",
+              text: "Deactivate an account when someone should temporarily lose access.",
+            },
+            {
+              type: "callout",
+              kind: "tip",
+              text: "Confirm the status shown in the table afterward.",
+            },
+
+            { type: "heading", text: "Remove a staff member" },
+            {
+              type: "paragraph",
+              text: "The **Remove** action asks for confirmation and warns that the person will lose access.",
+            },
+            {
+              type: "callout",
+              kind: "warning",
+              text: "Use it only when the account should be removed, rather than temporarily disabled.",
+            },
+
+            { type: "heading", text: "Useful definitions" },
+            {
+              type: "list",
+              items: [
+                "**Role:** A set of permissions that controls what someone can do in the app.",
+                "**Assigned location:** A store or branch the staff member is allowed to work in.",
+                "**Primary location:** The default store location.",
+                "**Deactivate:** Disable access while retaining the account record.",
+                "**Reset password:** Replace the account’s current password with a new one.",
+              ],
+            },
+          ],
+        }
+      ),
       page(
         "subscription",
         "My Subscription",
@@ -5435,7 +6615,179 @@ export const docGroups: DocGroup[] = [
           ],
         }
       ),
-      page("reports-analytics", "Reports & Analytics"),
+      page(
+        "reports-analytics",
+        "Reports & Analytics",
+        "This page summarizes bills and sales activity for the selected date range.",
+        {
+          image: IMG.charts,
+          blocks: [
+            { type: "heading", text: "How to find it" },
+            {
+              type: "steps",
+              items: [
+                { title: "From the dashboard, open the left menu" },
+                { title: "Choose **Reports & Analytics** under **Management**" },
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.dashboard,
+              alt: "Reports & Analytics option under Management in the left menu",
+              caption: "Reports & Analytics under Management",
+            },
+            {
+              type: "paragraph",
+              text: "Then choose a date range to review billing totals, payment trends, popular medicines, and patient spending.",
+            },
+
+            { type: "heading", text: "What this page is for" },
+            {
+              type: "paragraph",
+              text: "Use it to review revenue, see how much has been collected, check outstanding amounts, and find sales trends.",
+            },
+            {
+              type: "callout",
+              kind: "note",
+              text: "It is a reporting view; it does not create bills or record payments.",
+            },
+
+            { type: "heading", text: "Choose a date range" },
+            { type: "paragraph", text: "The date buttons update the report:" },
+            {
+              type: "list",
+              items: [
+                "**Today:** Bills created today.",
+                "**Yesterday:** Bills created yesterday.",
+                "**This Week:** From the start of this week through today.",
+                "**This Month:** From the first day of this month through today. This is selected by default.",
+                "**Last Month:** The complete previous calendar month.",
+                "**Last 30 Days:** The recent 30-day period.",
+                "**This Year:** From the start of this year through today.",
+                "**Custom Range:** Choose a **From Date** and **To Date**.",
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.calendar,
+              alt: "Date range buttons including Custom Range with From Date and To Date",
+              caption: "The date range buttons",
+            },
+            {
+              type: "paragraph",
+              text: "The page heading shows the dates currently included.",
+            },
+            {
+              type: "callout",
+              kind: "tip",
+              text: "For a custom range, select both dates so the report can use the full range.",
+            },
+
+            { type: "heading", text: "Understand the summary cards" },
+            {
+              type: "paragraph",
+              text: "The cards summarize bill data within the selected dates:",
+            },
+            {
+              type: "list",
+              items: [
+                "**Total Bills:** Number of bills created in the period.",
+                "**Total Revenue:** Total bill amounts, before subtracting what remains unpaid.",
+                "**Amount Collected:** Payments recorded against those bills.",
+                "**Outstanding:** Revenue minus the amount collected.",
+                "**Total Discount:** Discounts applied to bills.",
+                "**Avg per Bill:** Total revenue divided by the number of bills.",
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.analytics,
+              alt: "Reports summary cards",
+              caption: "Summary cards at the top of the report",
+            },
+            {
+              type: "paragraph",
+              text: "Amounts are shown in Pakistani rupees (₨).",
+            },
+            {
+              type: "callout",
+              kind: "tip",
+              text: "If there is no billing activity in the selected period, the cards and charts may show zero or no data.",
+            },
+
+            { type: "heading", text: "Read the charts and lists" },
+            { type: "paragraph", text: "Scroll down to explore the rest of the report:" },
+            {
+              type: "list",
+              items: [
+                "**Revenue vs Collected:** Daily lines compare bill revenue with the payments collected. A gap between the lines can indicate unpaid balances.",
+                "**Payment Method Breakdown:** Shows the collected amount grouped by payment method.",
+                "**Revenue by Category:** Compares sales revenue across medicine categories.",
+                "**Top Selling Medicines:** Shows up to six medicines with the highest sales revenue in the selected period.",
+                "**Top Patients by Spending:** Lists up to ten patients by billed spending, with bill count, total spent, paid amount, and outstanding amount.",
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.finance,
+              alt: "Revenue vs Collected chart and Payment Method Breakdown",
+              caption: "Revenue vs Collected and Payment Method Breakdown",
+            },
+            {
+              type: "image",
+              src: IMG.records,
+              alt: "Top Selling Medicines and Top Patients by Spending lists",
+              caption: "Top Selling Medicines and Top Patients by Spending",
+            },
+            {
+              type: "callout",
+              kind: "note",
+              text: "Revenue is the value billed. Collected is the payment recorded so far. Outstanding is the part that has not yet been paid.",
+            },
+
+            { type: "heading", text: "Export a report" },
+            { type: "paragraph", text: "Use the buttons at the top right:" },
+            {
+              type: "list",
+              items: [
+                "**Export CSV** downloads bill rows for the selected dates in a spreadsheet-friendly format.",
+                "**Export PDF** creates a PDF report for the selected dates.",
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.printer,
+              alt: "Export CSV and Export PDF buttons at the top right",
+              caption: "The export buttons",
+            },
+            {
+              type: "callout",
+              kind: "tip",
+              text: "Choose the date range before exporting, and check the dates shown in the page heading.",
+            },
+            {
+              type: "callout",
+              kind: "warning",
+              text: "Keep exported files secure because they may contain patient and billing information.",
+            },
+
+            { type: "heading", text: "Important points" },
+            {
+              type: "list",
+              items: [
+                "Changing the date range refreshes the report for that period.",
+                "Confirm billing and payment records in their relevant pages if a total needs investigation.",
+                "A zero result can mean there were no bills in that range, or that the selected dates do not include the activity you expected.",
+              ],
+            },
+            {
+              type: "callout",
+              kind: "note",
+              text: "The report is based on bills created within the selected dates; it is not a live bank statement.",
+            },
+          ],
+        }
+      ),
       page(
         "accounting-finance",
         "Accounting & Finance",
@@ -6530,6 +7882,738 @@ export const docGroups: DocGroup[] = [
           ],
         }
       ),
+      page(
+        "audit-log",
+        "Audit Log",
+        "Audit Log shows a timeline of selected actions recorded in the system, such as medicine changes, billing activity, patient changes, stock updates, purchase orders, logins, and some settings events.",
+        {
+          image: IMG.records,
+          blocks: [
+            { type: "heading", text: "How to find it" },
+            {
+              type: "steps",
+              items: [
+                { title: "From the dashboard, open the left menu" },
+                { title: "Choose **Audit Log** under **Management**" },
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.dashboard,
+              alt: "Audit Log option under Management in the left menu",
+              caption: "Audit Log under Management",
+            },
+            {
+              type: "paragraph",
+              text: "Then search for a medicine, patient, invoice, or user, choose an event category, and open an entry’s details to see more information.",
+            },
+
+            { type: "heading", text: "What this page is for" },
+            {
+              type: "paragraph",
+              text: "Each entry can show what happened, when it happened, and who performed it.",
+            },
+            {
+              type: "callout",
+              kind: "note",
+              text: "The page describes a “full history,” but only actions that the app records appear here. It is not a general record of every click or activity.",
+            },
+
+            { type: "heading", text: "Understand the summary cards" },
+            {
+              type: "list",
+              items: [
+                "**Total Log Entries:** Number of audit entries counted by the page.",
+                "**Today’s Activity:** Entries recorded today.",
+                "**Medicine Events:** Medicine-related entries.",
+                "**Billing Events:** Billing-related entries.",
+                "**Stock Events:** Stock-related entries.",
+                "**Patient Events:** Patient-related entries.",
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.analytics,
+              alt: "Audit Log summary cards",
+              caption: "Summary cards at the top of the page",
+            },
+            {
+              type: "callout",
+              kind: "tip",
+              text: "The cards give a quick count. Use search and filters below to find individual events.",
+            },
+
+            { type: "heading", text: "Search and filter the timeline" },
+            {
+              type: "paragraph",
+              text: "Use the search box to search entry text, the affected item or record name, or the user who performed the action. Select a category to narrow the timeline:",
+            },
+            {
+              type: "list",
+              items: [
+                "**All**",
+                "**Medicine**",
+                "**Billing**",
+                "**Patient**",
+                "**Stock**",
+                "**Purchase**",
+                "**Auth:** Account and login activity.",
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.form,
+              alt: "Audit Log search box, category buttons, and date filters",
+              caption: "Search, categories, and date filters",
+            },
+            {
+              type: "paragraph",
+              text: "Select **Filters** to show **From Date** and **To Date** fields. To remove the current search, category, and date filters, select **Clear Filters**.",
+            },
+            {
+              type: "callout",
+              kind: "tip",
+              text: "The timeline is paginated, so use the page controls at the bottom to browse older matching entries.",
+            },
+
+            { type: "heading", text: "Read an activity entry" },
+            { type: "paragraph", text: "Each timeline entry may show:" },
+            {
+              type: "list",
+              items: [
+                "**Action:** A label such as Medicine Added or Payment Recorded.",
+                "**Category:** The type of activity.",
+                "**Record name:** The affected medicine, patient, invoice, or other item, when available.",
+                "**Summary:** A short description of what happened.",
+                "**Time and date:** A relative time such as “5d ago” and a full timestamp.",
+                "**Performed by:** The user’s name, when available.",
+                "**IP address:** May be shown when recorded.",
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.charts,
+              alt: "Timeline entries with action, category, summary, time, and performed by",
+              caption: "Timeline entries",
+            },
+            {
+              type: "paragraph",
+              text: "Select **Show details** to expand extra information. If the entry contains changes, it may show the earlier value and the new value. Select **Hide details** to collapse it again.",
+            },
+            {
+              type: "callout",
+              kind: "note",
+              text: "For example, an entry may say that a location named “MainBranch” was created. Its details include the date, time, and recorded IP address.",
+            },
+
+            { type: "heading", text: "Clear old logs — read before using" },
+            {
+              type: "paragraph",
+              text: "**Clear Old Logs** is an admin-only action. It opens a confirmation window where an administrator chooses a retention period: 30, 60, 90, or 180 days, or 1 year.",
+            },
+            {
+              type: "steps",
+              items: [
+                { title: "Select **Clear Old Logs**" },
+                { title: "Choose a retention period" },
+                { title: "Select **Delete Old Logs**" },
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.alert,
+              alt: "Clear Old Logs confirmation window with retention period choices",
+              caption: "The Clear Old Logs confirmation window",
+            },
+            {
+              type: "callout",
+              kind: "warning",
+              text: "Selecting **Delete Old Logs** permanently removes entries older than that period. This cannot be undone.",
+            },
+            {
+              type: "callout",
+              kind: "warning",
+              text: "The deletion applies to old audit logs across the system; it is not limited to the entries currently shown by the search or filters. Keep any records required for your organization before clearing logs.",
+            },
+
+            { type: "heading", text: "Useful definitions" },
+            {
+              type: "list",
+              items: [
+                "**Audit log:** A dated record of a change or action in the system.",
+                "**Timeline:** Entries arranged by time, with the newest first.",
+                "**Metadata:** Extra details saved with an event, such as values before and after a change.",
+                "**Retention period:** How long records are kept before old entries may be deleted.",
+                "**IP address:** A network address that may help identify where an action was made.",
+              ],
+            },
+          ],
+        }
+      ),
+      page(
+        "backup-restore",
+        "Data Backup & Restore",
+        "Use this page to download copies of selected store data, export medicine and patient lists to Excel, or restore selected data from a JSON backup.",
+        {
+          image: IMG.laptop,
+          blocks: [
+            { type: "heading", text: "How to find it" },
+            {
+              type: "steps",
+              items: [
+                { title: "From the dashboard, open the left menu" },
+                { title: "Choose **Backup & Restore** under **Management**" },
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.dashboard,
+              alt: "Backup & Restore option under Management in the left menu",
+              caption: "Backup & Restore under Management",
+            },
+            {
+              type: "paragraph",
+              text: "Sign in as the store owner, open **Backup & Restore**, then choose **Download Full Backup (.json)** to save a copy of your store data.",
+            },
+
+            { type: "heading", text: "What this page is for" },
+            {
+              type: "paragraph",
+              text: "The **Current Data Summary** shows the live record counts for medicines, patients, bills, and purchase orders in the active location.",
+            },
+            {
+              type: "image",
+              src: IMG.analytics,
+              alt: "Current Data Summary with record counts",
+              caption: "The Current Data Summary",
+            },
+            {
+              type: "callout",
+              kind: "note",
+              text: "The page is available to the store owner.",
+            },
+
+            { type: "heading", text: "Download a full JSON backup" },
+            {
+              type: "steps",
+              items: [
+                { title: "Review the **Current Data Summary**" },
+                { title: "Select **Download Full Backup (.json)**" },
+                {
+                  title: "Save the downloaded file somewhere secure",
+                  detail: "Such as an access-controlled drive or encrypted backup location.",
+                },
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.finance,
+              alt: "Download Full Backup (.json) button",
+              caption: "Downloading a full backup",
+            },
+            {
+              type: "paragraph",
+              text: "The JSON backup contains medicine records, patient records, bills, and purchase orders. Active medicines and patients are included; bills and purchase orders are included for the store.",
+            },
+            {
+              type: "callout",
+              kind: "warning",
+              text: "The file also contains identifying and billing information, so protect it carefully and share it only with authorized people.",
+            },
+            {
+              type: "callout",
+              kind: "note",
+              text: "JSON is a structured data file that the app can read when restoring a backup. It is not designed as a regular spreadsheet for editing.",
+            },
+
+            { type: "heading", text: "Export data to Excel" },
+            {
+              type: "paragraph",
+              text: "Scroll down to **Export to Excel** for spreadsheet versions of:",
+            },
+            {
+              type: "list",
+              items: [
+                "**Medicines List:** Medicine details such as name, category, prices, stock, expiry, batch number, and location.",
+                "**Patients List:** Patient details such as ID, contact information, billing totals, medical history, and allergies.",
+                "**Both in One File:** A workbook with separate **Medicines** and **Patients** sheets.",
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.records,
+              alt: "Export to Excel options for medicines, patients, and both",
+              caption: "The Export to Excel options",
+            },
+            {
+              type: "callout",
+              kind: "note",
+              text: "Excel exports are useful for reviewing or analyzing lists. They are separate from the full JSON backup and are not the same as a complete restore file.",
+            },
+
+            { type: "heading", text: "Restore from a JSON backup" },
+            {
+              type: "paragraph",
+              text: "Restore adds or updates records; the page says it does not delete existing data.",
+            },
+            {
+              type: "steps",
+              items: [
+                {
+                  title: "Under **Restore from Backup**, select **Choose .json File** and pick a backup exported by the app",
+                },
+                {
+                  title: "Choose which data types to restore",
+                  detail: "Medicines, Patients, Bills / Invoices, or Purchase Orders.",
+                },
+                { title: "Select **Restore Selected Data**" },
+                { title: "Review the result counts, including any skipped records" },
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.form,
+              alt: "Restore from Backup with the file picker and data type checkboxes",
+              caption: "The Restore from Backup section",
+            },
+            {
+              type: "paragraph",
+              text: "The restore process matches medicines by name and patients by patient ID, updating a matching record or adding it if it is new. Bills with an invoice number that already exists are skipped.",
+            },
+            {
+              type: "callout",
+              kind: "warning",
+              text: "The screen offers a **Purchase Orders** restore checkbox, but the current restore code does not import purchase orders. Do not rely on this option to restore purchase order history. The full JSON export does include purchase orders.",
+            },
+            {
+              type: "callout",
+              kind: "warning",
+              text: "Before restoring data, especially into a live store, keep a fresh backup and check the selected categories. Imported records can update matching medicines and patients.",
+            },
+
+            { type: "heading", text: "“No backup taken yet” and the Last backup notice" },
+            {
+              type: "paragraph",
+              text: "The page may show **No backup taken yet** or a **Last backup** time. This timestamp is stored in the current browser after a successful download; it is a reminder, not proof that the backup file still exists or that a server-side backup was made.",
+            },
+            {
+              type: "callout",
+              kind: "tip",
+              text: "If you use another browser or device, the reminder may not match. Confirm that the downloaded file is present and can be accessed.",
+            },
+
+            { type: "heading", text: "Useful definitions" },
+            {
+              type: "list",
+              items: [
+                "**Backup:** A saved copy of data that can help recover it later.",
+                "**Restore:** Import data from a backup into the app.",
+                "**Merge:** Add new records and update matching records rather than replacing everything.",
+                "**JSON:** A structured file format used for app data.",
+                "**Excel workbook:** A spreadsheet file that can contain one or more sheets.",
+              ],
+            },
+          ],
+        }
+      ),
+      page(
+        "invoice-templates",
+        "Invoice Templates",
+        "Use Invoice Templates to choose how invoices and receipts look when printed.",
+        {
+          image: IMG.invoice,
+          blocks: [
+            { type: "heading", text: "How to find it" },
+            {
+              type: "steps",
+              items: [
+                { title: "From the dashboard, open the left menu" },
+                { title: "Choose **Invoice Templates** under **Management**" },
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.dashboard,
+              alt: "Invoice Templates option under Management in the left menu",
+              caption: "Invoice Templates under Management",
+            },
+            {
+              type: "paragraph",
+              text: "Choose a layout, set your branding and invoice fields, then save the settings.",
+            },
+
+            { type: "heading", text: "What this page is for" },
+            {
+              type: "paragraph",
+              text: "You can set the layout, colors, logo, footer, visible information, and thermal receipt options.",
+            },
+            {
+              type: "callout",
+              kind: "note",
+              text: "This page changes the print layout and displayed fields. It does not change the bill’s amounts or payment records.",
+            },
+
+            { type: "heading", text: "Template & Brand" },
+            { type: "subheading", text: "Choose a template" },
+            {
+              type: "paragraph",
+              text: "Select a layout that matches your paper and printing needs:",
+            },
+            {
+              type: "list",
+              items: [
+                "**Detailed:** A4 page with a coloured header, logo, and full breakdown.",
+                "**Compact:** A4 page with less empty space and clean lines.",
+                "**Thermal 80mm:** Receipt layout for a wider thermal printer roll.",
+                "**Thermal 58mm:** Narrow, compact receipt layout.",
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.receipt,
+              alt: "Template choices: Detailed, Compact, Thermal 80mm, and Thermal 58mm",
+              caption: "The four template layouts",
+            },
+            {
+              type: "paragraph",
+              text: "Use **Preview** beside a template to see a sample invoice before choosing it.",
+            },
+            {
+              type: "callout",
+              kind: "note",
+              text: "The preview uses example patient and medicine details; it is not a real customer bill.",
+            },
+
+            { type: "subheading", text: "Set brand colours" },
+            {
+              type: "paragraph",
+              text: "Choose an **Accent / Header Color** and a **Header Background Color** using the colour swatches or colour picker. The preview shows how these colours will look in the invoice header.",
+            },
+            {
+              type: "image",
+              src: IMG.analytics,
+              alt: "Accent and header background colour pickers with a preview",
+              caption: "Setting brand colours",
+            },
+
+            { type: "subheading", text: "Add a store logo" },
+            {
+              type: "steps",
+              items: [
+                {
+                  title: "Upload a PNG or JPG logo",
+                  detail: "The page recommends an image around 200 × 80 pixels.",
+                },
+                { title: "After selecting a file, choose **Upload**" },
+                {
+                  title: "If a logo is already present, choose **Replace** or **Remove**",
+                },
+                {
+                  title: "Use **Show Logo on Invoice** to control whether it appears on the invoice",
+                },
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.form,
+              alt: "Store logo upload with Replace, Remove, and Show Logo on Invoice",
+              caption: "Uploading a store logo",
+            },
+
+            { type: "subheading", text: "Set the footer message" },
+            {
+              type: "paragraph",
+              text: "Enter the text you want at the bottom of the invoice, such as a short thank-you message. Use **Show Footer Text** to display or hide it. **Show Powered by MediStore** controls the MediStore credit line.",
+            },
+
+            { type: "heading", text: "Content & Fields" },
+            {
+              type: "paragraph",
+              text: "Open **Content & Fields** to choose which details appear on invoices.",
+            },
+            { type: "subheading", text: "Header section" },
+            { type: "paragraph", text: "You can show or hide:" },
+            {
+              type: "list",
+              items: [
+                "Store name",
+                "Doctor name",
+                "Address",
+                "Phone number",
+                "License number",
+                "Email address",
+              ],
+            },
+            { type: "subheading", text: "Invoice body" },
+            { type: "paragraph", text: "You can show or hide:" },
+            {
+              type: "list",
+              items: [
+                "Patient ID",
+                "Patient age",
+                "Generic medicine name beneath the brand name",
+                "Discount line",
+                "Tax line",
+                "Savings badge",
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.records,
+              alt: "Content & Fields toggles for the header section and invoice body",
+              caption: "The Content & Fields tab",
+            },
+            {
+              type: "paragraph",
+              text: "The savings badge shows how much the customer saved on that bill.",
+            },
+            {
+              type: "callout",
+              kind: "tip",
+              text: "Keep only the fields that are useful and appropriate for your printed invoices.",
+            },
+
+            { type: "heading", text: "Thermal Options" },
+            {
+              type: "paragraph",
+              text: "Open **Thermal Options** to adjust the receipt text size and spacing for both thermal formats:",
+            },
+            {
+              type: "list",
+              items: [
+                "**Thermal Font Size:** Adjustable from 7 to 12 pt. The page recommends 8–9 pt for 58mm and 9–10 pt for 80mm.",
+                "**Line Spacing:** Adjustable from 4 to 8 mm.",
+              ],
+            },
+            { type: "paragraph", text: "For a thermal printer, the app’s setup guidance is:" },
+            {
+              type: "steps",
+              items: [
+                { title: "Select **Thermal 80mm** or **Thermal 58mm** in **Template & Brand**" },
+                { title: "Print the invoice as a PDF from billing" },
+                { title: "Open the PDF’s print settings and choose the matching paper width" },
+                {
+                  title: "Set margins to none or borderless if your printer supports it",
+                },
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.printer,
+              alt: "Thermal Options with font size and line spacing",
+              caption: "Thermal Options",
+            },
+            {
+              type: "callout",
+              kind: "warning",
+              text: "The result can vary by printer. Preview a sample and print a test before using the layout for customer receipts.",
+            },
+
+            { type: "heading", text: "Preview and save" },
+            {
+              type: "list",
+              items: [
+                "Use **Preview** to inspect a sample of a particular template.",
+                "Use **Save Settings** at the top or **Save Invoice Settings** at the bottom to save your changes.",
+                "Uploading a logo uses its own **Upload** button.",
+              ],
+            },
+            {
+              type: "callout",
+              kind: "tip",
+              text: "Save your settings after changing colours, content, or thermal options. Then print a test invoice to confirm that the logo, text, and paper size appear correctly.",
+            },
+
+            { type: "heading", text: "Useful definitions" },
+            {
+              type: "list",
+              items: [
+                "**Template:** The layout used to arrange invoice information.",
+                "**Accent colour:** A highlight colour used for invoice details.",
+                "**Thermal printer:** A receipt printer that prints on a narrow paper roll.",
+                "**58mm / 80mm:** The width of the receipt paper roll.",
+                "**Borderless printing:** Printing with little or no margin around the page.",
+              ],
+            },
+          ],
+        }
+      ),
+      page(
+        "document-storage",
+        "Document Storage",
+        "Document Storage keeps files linked to records in your store.",
+        {
+          image: IMG.office,
+          blocks: [
+            { type: "heading", text: "How to find it" },
+            {
+              type: "steps",
+              items: [
+                { title: "From the dashboard, open the left menu" },
+                { title: "Choose **Documents** under **Management**" },
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.dashboard,
+              alt: "Documents option under Management in the left menu",
+              caption: "Documents under Management",
+            },
+            {
+              type: "paragraph",
+              text: "Select **Upload Document** to attach a file to a patient, medicine, or supplier record.",
+            },
+
+            { type: "heading", text: "What this page is for" },
+            {
+              type: "paragraph",
+              text: "The summary cards show active document counts for **Patient Docs**, **Medicine Docs**, **Store Docs**, and **Supplier Docs**.",
+            },
+            {
+              type: "image",
+              src: IMG.analytics,
+              alt: "Document Storage summary cards",
+              caption: "Summary cards at the top of the page",
+            },
+            {
+              type: "callout",
+              kind: "tip",
+              text: "If the page shows no documents, none have been uploaded yet. Select **Upload First Document** to begin.",
+            },
+            {
+              type: "paragraph",
+              text: "Uploaded files are stored using the app’s Cloudinary file service.",
+            },
+            {
+              type: "callout",
+              kind: "warning",
+              text: "Files may contain private patient or business information, so upload only documents you are authorized to store and keep access to them appropriately limited.",
+            },
+
+            { type: "heading", text: "Upload a document" },
+            {
+              type: "steps",
+              items: [
+                { title: "Select **Upload Document** or **Upload First Document**" },
+                {
+                  title: "Choose the type of record",
+                  detail: "Patient, Medicine, Store, or Supplier.",
+                },
+                { title: "Select the record the document belongs to" },
+                {
+                  title: "Choose a file, enter a **Document Title**, and select a **Category**",
+                },
+                { title: "Add **Notes** or **Tags** if useful, then select **Upload Document**" },
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.form,
+              alt: "Upload Document form with record type, file, title, and category",
+              caption: "The Upload Document form",
+            },
+            {
+              type: "callout",
+              kind: "note",
+              text: "A title, file, and linked record are required. The title may be filled from the filename automatically.",
+            },
+            {
+              type: "callout",
+              kind: "tip",
+              text: "Tags can be entered as comma-separated words, such as: ID card, 2026, renewal.",
+            },
+
+            { type: "heading", text: "File requirements" },
+            {
+              type: "paragraph",
+              text: "The upload service accepts PDF, JPEG, PNG, and WebP files up to 5 MB.",
+            },
+            {
+              type: "callout",
+              kind: "warning",
+              text: "Although the upload dialog also lists GIF, DOC, and DOCX and says 10 MB, those formats or larger files may be rejected by the server.",
+            },
+
+            { type: "heading", text: "Categories by record type" },
+            {
+              type: "paragraph",
+              text: "Choose the closest category for the selected record:",
+            },
+            {
+              type: "list",
+              items: [
+                "**Patient:** ID Card, Previous Prescription, Test Result, Insurance Card, Discharge Summary, Referral Letter, Consent Form, or Other.",
+                "**Medicine:** Batch Certificate, Import License, Quality Report, Drug Registration, or Other.",
+                "**Store:** Drug License, Tax Certificate, Inspection Report, Supplier Agreement, or Other.",
+                "**Supplier:** Supplier Agreement, Tax Certificate, or Other.",
+              ],
+            },
+            {
+              type: "callout",
+              kind: "warning",
+              text: "The general upload form currently requires selecting a linked record. It does not provide a store record selector in the **Store** option, so a store-linked document may not be uploadable from this page.",
+            },
+
+            { type: "heading", text: "Search and filter documents" },
+            {
+              type: "paragraph",
+              text: "Use the search box to search by title, linked record name, notes, or tags. You can also:",
+            },
+            {
+              type: "list",
+              items: [
+                "Choose a category from **All Categories**.",
+                "Select **Patient**, **Medicine**, **Store**, or **Supplier** to filter by record type.",
+                "Turn on **Show archived** to view archived documents.",
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.records,
+              alt: "Document list with search box, category filter, and record type filters",
+              caption: "The document list with search and filters",
+            },
+            {
+              type: "callout",
+              kind: "note",
+              text: "The summary cards and regular list show active documents; use the archive filter to find archived items.",
+            },
+
+            { type: "heading", text: "Open, edit, archive, or delete a document" },
+            {
+              type: "list",
+              items: [
+                "Select the file preview to open the document in a new browser tab.",
+                "Use **Edit** to change the title, category, notes, or tags. It does not replace the uploaded file.",
+                "Choose **Archive** to hide a document from the normal active list while retaining it in the system. Use **Show archived**, then **Restore**, to return it to the active list.",
+                "**Delete** permanently removes the document from the system and its file storage.",
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.printer,
+              alt: "Document actions: Edit, Archive, and Delete",
+              caption: "Document actions",
+            },
+            {
+              type: "callout",
+              kind: "warning",
+              text: "Use **Delete** only when the document should no longer be kept. If you only want it out of the active list, archive it instead.",
+            },
+
+            { type: "heading", text: "Useful definitions" },
+            {
+              type: "list",
+              items: [
+                "**Linked record:** The patient, medicine, or supplier that a document belongs to.",
+                "**Category:** The document type, such as Test Result or Drug License.",
+                "**Tag:** A keyword that helps find a document later.",
+                "**Archive:** Hide a document from the active list without permanently deleting it.",
+              ],
+            },
+          ],
+        }
+      ),
     ],
   },
   {
@@ -6537,6 +8621,145 @@ export const docGroups: DocGroup[] = [
     icon: LifeBuoy,
     image: IMG.doctor,
     pages: [
+        page(
+        "support-center",
+        "Support Center",
+        "Use Support Center to send a question or report a problem to the MediStore team.",
+        {
+          image: IMG.phone,
+          blocks: [
+            { type: "heading", text: "How to find it" },
+            {
+              type: "steps",
+              items: [
+                { title: "From the dashboard, open the left menu" },
+                { title: "Choose **Support Center** under **Management**" },
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.dashboard,
+              alt: "Support Center option under Management in the left menu",
+              caption: "Support Center under Management",
+            },
+            {
+              type: "paragraph",
+              text: "Select **New Ticket** to contact the MediStore support team about a billing, technical, account, or other issue.",
+            },
+
+            { type: "heading", text: "What this page is for" },
+            {
+              type: "paragraph",
+              text: "Use Support Center to send a question or report a problem to the MediStore team. The page says the team typically responds within 24 hours.",
+            },
+            {
+              type: "callout",
+              kind: "tip",
+              text: "If the page shows no tickets yet, select **New Ticket** to submit your first one.",
+            },
+
+            { type: "heading", text: "Submit a support ticket" },
+            {
+              type: "steps",
+              items: [
+                { title: "Select **New Ticket**" },
+                {
+                  title: "Enter a short **Subject** that summarizes the issue",
+                },
+                {
+                  title: "Choose the closest **Category**",
+                  detail: "See the categories below.",
+                },
+                {
+                  title: "Choose a **Priority**: **Low**, **Medium**, **High**, or **Urgent**",
+                  detail: "Select the level that best reflects how much the issue is affecting your work.",
+                },
+                { title: "Describe the issue in detail, then select **Submit Ticket**" },
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.form,
+              alt: "New Ticket form with subject, category, priority, and description",
+              caption: "The New Ticket form",
+            },
+            { type: "paragraph", text: "The categories are:" },
+            {
+              type: "list",
+              items: [
+                "**Billing:** Charges or payment questions.",
+                "**Technical:** A problem using the app.",
+                "**Feature Request:** Suggest a new capability.",
+                "**Bug Report:** Report something that appears broken.",
+                "**Account:** Account or access questions.",
+                "**Other:** Anything that does not fit the choices above.",
+              ],
+            },
+            {
+              type: "callout",
+              kind: "note",
+              text: "The subject and description are required.",
+            },
+            {
+              type: "callout",
+              kind: "tip",
+              text: "For a technical issue, include what you were doing, what you expected to happen, what happened instead, and any error text.",
+            },
+            {
+              type: "callout",
+              kind: "warning",
+              text: "Avoid including passwords or unnecessary patient-identifying information.",
+            },
+
+            { type: "heading", text: "Follow up on a ticket" },
+            {
+              type: "paragraph",
+              text: "Tickets that are still open or being handled appear under **Active Tickets**. Select a ticket or **View** to read the original message and replies. You can add more details or respond to the support team in the reply box.",
+            },
+            {
+              type: "image",
+              src: IMG.records,
+              alt: "Active Tickets list with a ticket open and a reply box",
+              caption: "Active Tickets and the reply box",
+            },
+            {
+              type: "paragraph",
+              text: "Tickets marked **Resolved** or **Closed** appear in **Resolved / Closed**.",
+            },
+            {
+              type: "callout",
+              kind: "note",
+              text: "A resolved ticket can be reopened by replying; closed tickets cannot be replied to from the page.",
+            },
+
+            { type: "heading", text: "Understand ticket statuses" },
+            {
+              type: "list",
+              items: [
+                "**Open:** Submitted and waiting for the support process to begin.",
+                "**In Progress:** The support team is working on it.",
+                "**Resolved:** The issue was marked as resolved; replying reopens it as in progress.",
+                "**Closed:** The conversation is closed and no longer accepts replies.",
+              ],
+            },
+
+            { type: "heading", text: "Helpful tips" },
+            {
+              type: "list",
+              items: [
+                "Submit one clear ticket per separate issue so replies stay focused.",
+                "Choose the closest category and explain the steps that led to the problem.",
+                "Check **Active Tickets** for a new reply from the support team.",
+              ],
+            },
+            {
+              type: "callout",
+              kind: "note",
+              text: "The 24-hour response time is a typical estimate shown in the app, not a guaranteed resolution time.",
+            },
+          ],
+        }
+      ),
       page("troubleshooting", "Troubleshooting"),
       page("contact-support", "Contact Support"),
     ],
