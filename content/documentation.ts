@@ -109,6 +109,7 @@ const IMG = {
 
   rounds: u("photo-1612349317150-e413f6a5b16d"),
   handover: u("photo-1622253692010-333f2da6031d"),
+  
 };
 
 const page = (slug: string, title: string, description?: string, extra: Partial<DocPage> = {}): DocPage => ({
@@ -776,6 +777,198 @@ export const docGroups: DocGroup[] = [
       ),
       page("purchase-orders", "Purchase Orders"),
       page("expiry-alerts", "Expiry Alerts"),
+      page(
+        "demand-forecast",
+        "Predictive Medicine Demand",
+        "Use Predictive Medicine Demand to estimate how much of each medicine may be needed in a selected month.",
+        {
+          image: IMG.stock,
+          blocks: [
+            { type: "heading", text: "What this page does" },
+            {
+              type: "paragraph",
+              text: "The forecast uses sales history and seasonal patterns for Pakistan. You can compare predicted demand with current stock and use the suggested order quantities to help plan purchases.",
+            },
+            {
+              type: "callout",
+              kind: "warning",
+              text: "Forecasts are estimates to support stock planning. Check actual stock, supplier lead times, upcoming needs, and your own sales records before placing an order.",
+            },
+
+            { type: "heading", text: "How to find this page" },
+            {
+              type: "steps",
+              items: [
+                { title: "Sign in to EliteHMS" },
+                { title: "In the left menu, select **Demand Forecast**" },
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.dashboard,
+              alt: "Demand Forecast option in the left menu",
+              caption: "Demand Forecast in the left menu",
+            },
+
+            { type: "heading", text: "Generate a forecast" },
+            {
+              type: "steps",
+              items: [
+                { title: "Choose the month and year at the top of the page" },
+                { title: "Select **Generate**" },
+                { title: "Confirm the target month and year in the dialog" },
+                {
+                  title: "Choose whether to use **Use Gemini AI Enhancement**",
+                  detail: "Leave it selected to add Pakistan-specific seasonal insights for the top 25 medicines, or turn it off for a forecast based on sales and seasonal patterns.",
+                },
+                { title: "Select **Generate Predictions** and wait for the results" },
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.form,
+              alt: "Generate dialog with the target month and the Gemini AI Enhancement option",
+              caption: "The Generate dialog",
+            },
+            {
+              type: "callout",
+              kind: "note",
+              text: "The forecast needs active medicines and at least two months of sales history for a medicine. If a medicine has too little history, it may not appear in the results.",
+            },
+            {
+              type: "callout",
+              kind: "tip",
+              text: "For better estimates, keep medicine records and sales up to date.",
+            },
+
+            { type: "heading", text: "What the cards mean" },
+            {
+              type: "list",
+              items: [
+                "**Predictions Generated:** Forecasts available for the selected period.",
+                "**Critical Stock:** Medicines with urgent stock coverage.",
+                "**High Urgency:** Medicines that may need attention soon.",
+                "**Rising Demand:** Medicines with an increasing sales trend.",
+                "**Avg Accuracy:** Average forecast accuracy recorded from months where actual sales were updated.",
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.analytics,
+              alt: "Demand forecast summary cards and the seasonal context banner",
+              caption: "Summary cards and the seasonal context banner",
+            },
+            {
+              type: "paragraph",
+              text: "The seasonal context banner gives a general note for the selected month. For example, a winter-related note may appear for a winter month.",
+            },
+            {
+              type: "callout",
+              kind: "note",
+              text: "Treat the seasonal note as planning context, not a guarantee of demand.",
+            },
+
+            { type: "heading", text: "Review predictions" },
+            {
+              type: "paragraph",
+              text: "On the **Predictions** tab, use the filters to focus on **Critical**, **High**, **Medium**, or **Low** urgency. Choose a category or sort by urgency, predicted quantity, days of stock, or trend.",
+            },
+            {
+              type: "image",
+              src: IMG.records,
+              alt: "Predictions tab with urgency filters and medicine rows",
+              caption: "The Predictions tab",
+            },
+            {
+              type: "paragraph",
+              text: "Select a medicine row to expand its details, including:",
+            },
+            {
+              type: "list",
+              items: [
+                "**Predicted:** Estimated quantity needed for the month.",
+                "**Confidence interval:** A range around the estimate.",
+                "**Actual:** Recorded sales after actuals have been updated.",
+                "**Trend:** Whether demand is rising, falling, stable, or volatile.",
+                "**Days of Stock:** Estimated coverage based on current stock and forecast demand.",
+                "**Suggested Order:** Estimated quantity to order and a suggested order-by date.",
+                "**Sales History:** Recorded quantities in previous months.",
+                "**Seasonal Factor** and **Confidence:** Extra context about the forecast calculation.",
+                "**AI Insight:** Available when generated, for added planning context.",
+              ],
+            },
+            {
+              type: "callout",
+              kind: "tip",
+              text: "Urgency is based on the estimate and stock coverage. Review the underlying numbers before deciding what to purchase.",
+            },
+
+            { type: "heading", text: "Charts and accuracy" },
+            {
+              type: "list",
+              items: [
+                "**Charts:** Compare predicted demand with current stock and suggested order quantities. The charts also summarize stock coverage and demand trends.",
+                "**Model Accuracy:** Review accuracy over time after actual sales have been recorded for forecast months.",
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.charts,
+              alt: "Charts comparing predicted demand with current stock and suggested orders",
+              caption: "Demand and stock charts",
+            },
+            {
+              type: "paragraph",
+              text: "Select **Update Actuals** for a selected month after sales are recorded. EliteHMS reads quantities from bills for that month and compares them with the forecast. This updates accuracy figures.",
+            },
+            {
+              type: "callout",
+              kind: "warning",
+              text: "Avoid updating actuals before the month’s sales are complete, because the comparison will use the sales recorded so far.",
+            },
+
+            { type: "heading", text: "Create a purchase order" },
+            {
+              type: "steps",
+              items: [
+                { title: "When predictions are available, select **Create PO**" },
+                { title: "Choose which urgency levels to include" },
+                {
+                  title: "Enter a supplier name",
+                  detail: "Or leave it blank to use the default.",
+                },
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.warehouse,
+              alt: "Create PO dialog with urgency levels and a supplier name",
+              caption: "The Create PO dialog",
+            },
+            {
+              type: "paragraph",
+              text: "EliteHMS creates a purchase order with the suggested quantities in the **Purchases** section.",
+            },
+            {
+              type: "callout",
+              kind: "warning",
+              text: "Review and adjust the order before sending it to a supplier.",
+            },
+
+            { type: "heading", text: "Helpful definitions" },
+            {
+              type: "list",
+              items: [
+                "**Forecast:** An estimate of future demand based on past sales and other patterns.",
+                "**Confidence interval:** A range showing how far the forecast may vary.",
+                "**Urgency:** A label that helps prioritize stock review.",
+                "**Actuals:** Real sales quantities recorded in bills.",
+                "**Volatile demand:** Sales that change sharply rather than following a steady pattern.",
+              ],
+            },
+          ],
+        }
+      ),
     ],
   },
   {
@@ -4758,7 +4951,175 @@ export const docGroups: DocGroup[] = [
           ],
         }
       ),
-      page("ai-diagnosis", "AI Diagnosis"),
+      page(
+        "ai-diagnosis",
+        "AI Diagnosis Assistant",
+        "The AI Diagnosis Assistant provides clinical decision support based on the case details entered.",
+        {
+          image: IMG.ai,
+          blocks: [
+            { type: "heading", text: "What this page does" },
+            {
+              type: "paragraph",
+              text: "It can suggest possible diagnoses, investigations, treatment guidelines, red flags, and specialist referral advice. The page describes it as Gemini AI-powered and Pakistan-focused.",
+            },
+            {
+              type: "callout",
+              kind: "warning",
+              text: "It does not diagnose or treat patients. A licensed physician must examine the patient, verify the information, and make all clinical decisions.",
+            },
+
+            { type: "heading", text: "How to find this page" },
+            {
+              type: "steps",
+              items: [
+                { title: "Sign in to EliteHMS" },
+                { title: "In the left menu, select **AI Diagnosis**" },
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.dashboard,
+              alt: "AI Diagnosis option in the left menu",
+              caption: "AI Diagnosis in the left menu",
+            },
+
+            { type: "heading", text: "Enter a case" },
+            {
+              type: "paragraph",
+              text: "Complete the relevant fields as accurately as possible:",
+            },
+            {
+              type: "list",
+              items: [
+                "**Patient Details:** Age is required; gender is selectable; name is optional.",
+                "**Chief Complaint:** Describe the main problem. This is required.",
+                "**Duration:** How long the problem has been present.",
+                "**Symptoms:** Select symptoms under the available body-system tabs, or add a custom symptom. At least one symptom is required.",
+                "**Vitals:** Optional measurements include blood pressure, pulse, temperature, oxygen level (SpO₂), blood sugar (RBS), and weight. Enter current, correctly measured values.",
+                "**Lab Results:** Add relevant test results if available.",
+                "**Existing Conditions:** Select listed conditions or add another.",
+                "**Current Medications:** Enter medicines separated by commas.",
+                "**Allergies:** Enter known allergies or relevant allergy information.",
+                "**Additional History:** Include useful family, social, travel, occupation, or risk-factor details.",
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.form,
+              alt: "Case form with patient details, chief complaint, symptoms, and vitals",
+              caption: "The case form",
+            },
+            {
+              type: "image",
+              src: IMG.vitals,
+              alt: "Symptom body-system tabs and vitals fields",
+              caption: "Symptoms and vitals",
+            },
+            {
+              type: "steps",
+              items: [
+                {
+                  title: "Complete the required fields",
+                  detail: "The system requires age, chief complaint, and at least one symptom.",
+                },
+                { title: "Select **Analyze with AI — Get Differential Diagnoses**" },
+              ],
+            },
+
+            { type: "heading", text: "Understand the results" },
+            { type: "paragraph", text: "The result page may include:" },
+            {
+              type: "list",
+              items: [
+                "**Confidence level and summary:** The AI’s confidence estimate and short overview.",
+                "**Red Flags:** Symptoms the assistant marks for urgent attention.",
+                "**Differential Diagnoses:** Possible explanations, ranked by estimated probability, with reasoning and supporting or opposing details.",
+                "**Recommended Investigations:** Possible tests, their rationale, and priority.",
+                "**Treatment Plan:** Suggested immediate actions, medicines, non-medicine measures, and follow-up guidance.",
+                "**Referral:** The assistant may suggest a specialist and urgency.",
+                "**Pakistan-Specific Notes** and **Clinical Pearls:** Additional context that may be relevant to the case.",
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.report,
+              alt: "Results with red flags, differential diagnoses, and recommended investigations",
+              caption: "The results page",
+            },
+            {
+              type: "callout",
+              kind: "note",
+              text: "The confidence level is not a measure of clinical certainty.",
+            },
+            {
+              type: "callout",
+              kind: "warning",
+              text: "Assess red flags promptly; do not rely on the AI to rule out an emergency.",
+            },
+            {
+              type: "callout",
+              kind: "note",
+              text: "A differential is a list of possibilities, not a final diagnosis.",
+            },
+            {
+              type: "callout",
+              kind: "warning",
+              text: "Review every recommendation against the patient’s examination, history, current guidelines, allergies, medicines, and local availability before acting. Do not copy an AI medication suggestion into a prescription without clinician review.",
+            },
+
+            { type: "heading", text: "Ask a follow-up question" },
+            {
+              type: "paragraph",
+              text: "In **Ask a Follow-up Question**, ask for clarification about the case, for example, how a provided allergy or pregnancy status could affect the discussion.",
+            },
+            {
+              type: "callout",
+              kind: "warning",
+              text: "The response is AI-generated and must be checked by the clinician, just like the initial analysis.",
+            },
+
+            { type: "heading", text: "View previous sessions" },
+            {
+              type: "steps",
+              items: [
+                { title: "Select **History** to view recent diagnosis sessions" },
+                { title: "Select a session to reopen its analysis" },
+              ],
+            },
+            {
+              type: "paragraph",
+              text: "You can delete a session from the history list; the page asks for confirmation first. Select **New Case** to return to the form and start another analysis.",
+            },
+            {
+              type: "image",
+              src: IMG.records,
+              alt: "History list of previous diagnosis sessions",
+              caption: "Previous sessions in History",
+            },
+
+            { type: "heading", text: "Helpful definitions" },
+            {
+              type: "list",
+              items: [
+                "**Clinical decision support:** Information intended to assist a clinician’s judgment.",
+                "**Differential diagnosis:** A set of possible causes being considered.",
+                "**Red flag:** A sign or symptom that may need urgent assessment.",
+                "**Confidence level:** The AI’s estimate of certainty; it does not confirm that an answer is correct.",
+                "**SpO₂:** The measured oxygen level in the blood.",
+                "**RBS:** Random blood sugar measurement.",
+              ],
+            },
+
+            { type: "heading", text: "Safety reminder" },
+            {
+              type: "callout",
+              kind: "warning",
+              text: "For an emergency, prioritize immediate patient stabilization and urgent in-person care. Always perform a complete physical examination. Final diagnosis and treatment decisions must be made by a licensed physician.",
+            },
+          ],
+        }
+      ),
       page("drap-compliance", "DRAP Compliance"),
     ],
   },
