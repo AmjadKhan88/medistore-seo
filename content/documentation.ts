@@ -1,5 +1,12 @@
 import {
-  Building2, LifeBuoy, Pill, Rocket, Settings, Sparkles, Stethoscope, type LucideIcon,
+  Building2,
+  LifeBuoy,
+  Pill,
+  Rocket,
+  Settings,
+  Sparkles,
+  Stethoscope,
+  type LucideIcon,
 } from "lucide-react";
 
 // ───────────── Types ─────────────
@@ -52,7 +59,7 @@ const IMG = {
   office: u("photo-1486406146926-c627a92ad1ab"),
   staff: u("photo-1522071820081-009f0129c71c"),
   form: u("photo-1450101499163-c8848c66ca85"),
-  
+
   charts: u("photo-1543286386-713bdd548da4"),
   stock: u("photo-1585435557343-3b092031a831"),
   invoice: u("photo-1554224154-22dec7ec8818"),
@@ -109,18 +116,26 @@ const IMG = {
 
   rounds: u("photo-1612349317150-e413f6a5b16d"),
   handover: u("photo-1622253692010-333f2da6031d"),
-  
 };
 
-const page = (slug: string, title: string, description?: string, extra: Partial<DocPage> = {}): DocPage => ({
+const page = (
+  slug: string,
+  title: string,
+  description?: string,
+  extra: Partial<DocPage> = {},
+): DocPage => ({
   slug,
   title,
-  description: description ?? `Everything you need to know about ${title} in EliteHMS.`,
+  description:
+    description ?? `Everything you need to know about ${title} in EliteHMS.`,
   ...extra,
 });
 
 export const slugify = (s: string) =>
-  s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+  s
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
 
 // ───────────── Sidebar structure (edit freely) ─────────────
 export const docGroups: DocGroup[] = [
@@ -142,12 +157,23 @@ export const docGroups: DocGroup[] = [
             },
 
             { type: "heading", text: "Built for your type of organization" },
-            { type: "paragraph", text: "The platform includes features for different types of healthcare organizations." },
+            {
+              type: "paragraph",
+              text: "The platform includes features for different types of healthcare organizations.",
+            },
             {
               type: "cards",
               items: [
-                { icon: "pill", title: "Pharmacy", text: "Manage stock, prescriptions, suppliers, and sales." },
-                { icon: "stethoscope", title: "Clinic", text: "Adds appointments, patient records, and OPD visits." },
+                {
+                  icon: "pill",
+                  title: "Pharmacy",
+                  text: "Manage stock, prescriptions, suppliers, and sales.",
+                },
+                {
+                  icon: "stethoscope",
+                  title: "Clinic",
+                  text: "Adds appointments, patient records, and OPD visits.",
+                },
                 {
                   icon: "building",
                   title: "Hospital",
@@ -156,22 +182,41 @@ export const docGroups: DocGroup[] = [
               ],
             },
 
-            { type: "heading", text: "Reports, staff access, and administration" },
-            { type: "paragraph", text: "EliteHMS also provides tools for reports, staff access, and administration." },
+            {
+              type: "heading",
+              text: "Reports, staff access, and administration",
+            },
+            {
+              type: "paragraph",
+              text: "EliteHMS also provides tools for reports, staff access, and administration.",
+            },
 
             { type: "heading", text: "AI-powered features" },
-            { type: "paragraph", text: "Some plans include AI-powered features, such as:" },
-            { type: "list", items: ["Prescription scanning", "Medicine-demand forecasting", "Diagnosis support"] },
+            {
+              type: "paragraph",
+              text: "Some plans include AI-powered features, such as:",
+            },
+            {
+              type: "list",
+              items: [
+                "Prescription scanning",
+                "Medicine-demand forecasting",
+                "Diagnosis support",
+              ],
+            },
 
             { type: "heading", text: "How to use this guide" },
-            { type: "paragraph", text: "This guide explains what each part of EliteHMS does and how to use it." },
+            {
+              type: "paragraph",
+              text: "This guide explains what each part of EliteHMS does and how to use it.",
+            },
             {
               type: "callout",
               kind: "note",
               text: "The features available to you depend on your subscription plan and your staff permissions.",
             },
           ],
-        }
+        },
       ),
       page("quick-start", "Quick Start"),
       page(
@@ -219,7 +264,10 @@ export const docGroups: DocGroup[] = [
             },
 
             { type: "heading", text: "Summary Cards" },
-            { type: "paragraph", text: "The cards show counts and totals for the selected location:" },
+            {
+              type: "paragraph",
+              text: "The cards show counts and totals for the selected location:",
+            },
             {
               type: "list",
               items: [
@@ -304,7 +352,184 @@ export const docGroups: DocGroup[] = [
               ],
             },
           ],
-        }
+        },
+      ),
+      page(
+        "top-navigation-bar",
+        "Top Navigation Bar",
+        "The top navigation bar stays above the main page while you use the dashboard.",
+        {
+          image: IMG.dashboard,
+          blocks: [
+            {
+              type: "paragraph",
+              text: "It gives you quick access to the active location, live connection status, notifications, and the light/dark theme switch.",
+            },
+            {
+              type: "image",
+              src: IMG.analytics,
+              alt: "The top navigation bar with the location selector, status dot, bell, and theme switch",
+              caption: "The top navigation bar",
+            },
+
+            { type: "heading", text: "Welcome message and date" },
+            {
+              type: "paragraph",
+              text: "On wider screens, the left side shows **Welcome back** with the signed-in user’s first name. Below it is today’s date.",
+            },
+            {
+              type: "callout",
+              kind: "note",
+              text: "On narrow screens the welcome message may be hidden to make room for the other controls.",
+            },
+
+            { type: "heading", text: "Location selector" },
+            {
+              type: "paragraph",
+              text: "The store button shows the active location name and whether it is the **Primary** location or a branch. If the account has more than one location, it also shows its position, such as **1 of 2**.",
+            },
+            {
+              type: "steps",
+              items: [
+                { title: "Select the location button" },
+                { title: "Choose an active location from the list" },
+                {
+                  title:
+                    "The selected location becomes the context for location-based pages and records",
+                },
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.hospital,
+              alt: "Location menu with medicine and patient counts and Manage locations",
+              caption: "The location menu",
+            },
+            {
+              type: "paragraph",
+              text: "The menu also shows medicine and patient counts for each location. Choose **Manage locations** to open the location management page. Deactivated locations appear unavailable in the selector.",
+            },
+            {
+              type: "callout",
+              kind: "note",
+              text: "Active location means the store or branch currently selected in the dashboard.",
+            },
+            {
+              type: "callout",
+              kind: "warning",
+              text: "Check the location name before adding or changing records. Dashboard figures, medicines, patients, and bills all follow the selected location.",
+            },
+
+            { type: "heading", text: "Live connection indicator" },
+            {
+              type: "paragraph",
+              text: "The coloured dot shows the real-time connection status:",
+            },
+            {
+              type: "list",
+              items: [
+                "**Green:** Live updates are connected.",
+                "**Red:** The app is reconnecting.",
+              ],
+            },
+            {
+              type: "paragraph",
+              text: "Hover over the dot to see a status message. When more than one user is online, the bar may also show the online user count.",
+            },
+            {
+              type: "callout",
+              kind: "tip",
+              text: "If the dot is red, wait for it to reconnect; updates that depend on the live connection may be delayed.",
+            },
+
+            { type: "heading", text: "Notifications bell" },
+            {
+              type: "paragraph",
+              text: "Select the bell to open the notification panel. The bell’s colour and number badge can indicate whether there are alerts. The panel groups notifications into:",
+            },
+            {
+              type: "list",
+              items: [
+                "**All**",
+                "**Expired**",
+                "**Expiring**",
+                "**Stock**",
+                "**Balance**",
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.alert,
+              alt: "Notification panel with All, Expired, Expiring, Stock, and Balance groups",
+              caption: "The notification panel",
+            },
+            {
+              type: "paragraph",
+              text: "Select a notification to open the related page. Use the refresh icon to reload notifications, or **Mark all as read** to dismiss the current notification alerts. The panel may show when it was last updated.",
+            },
+
+            { type: "heading", text: "Theme switch" },
+            {
+              type: "paragraph",
+              text: "Select the moon to switch to dark mode or the sun to return to light mode. The top-bar button switches between those two themes.",
+            },
+            {
+              type: "callout",
+              kind: "tip",
+              text: "For other colour themes, open **Settings**, then **Appearance**.",
+            },
+
+            { type: "heading", text: "Sidebar toggle" },
+            {
+              type: "paragraph",
+              text: "The X at the far left is the sidebar toggle:",
+            },
+            {
+              type: "list",
+              items: [
+                "When the sidebar is open, select **X** to close it and give the page more room.",
+                "When it is closed, select the menu icon to reopen it.",
+              ],
+            },
+            {
+              type: "callout",
+              kind: "note",
+              text: "This only changes the menu’s visibility; it does not sign you out or change access.",
+            },
+
+            { type: "heading", text: "Profile initials and sign out" },
+            {
+              type: "paragraph",
+              text: "The circle at the far right shows the signed-in user’s initials. In this layout it is a user marker, not a dropdown menu.",
+            },
+            {
+              type: "callout",
+              kind: "note",
+              text: "The sign-out control is at the bottom of the left sidebar beside the user’s name and role.",
+            },
+
+            { type: "heading", text: "Helpful definitions" },
+            {
+              type: "list",
+              items: [
+                "**Primary location:** The account’s default store or branch.",
+                "**Branch:** Another location managed under the same account.",
+                "**Live updates:** Changes delivered to the dashboard while it is connected.",
+                "**Notification:** An alert about an item such as expiry, low stock, or a balance.",
+              ],
+            },
+
+            { type: "heading", text: "See also" },
+            {
+              type: "list",
+              items: [
+                "**My Locations:** Add, deactivate, and manage the locations shown in the selector.",
+                "**Settings:** Change the colour theme and sidebar display.",
+                "**Expiry Alerts** and **Patient Balances:** The pages behind the notification groups.",
+              ],
+            },
+          ],
+        },
       ),
     ],
   },
@@ -382,9 +607,13 @@ export const docGroups: DocGroup[] = [
                 { title: "Select **Add Medicine**" },
                 {
                   title: "Enter the required details",
-                  detail: "Medicine name, purchase price, sale price, stock quantity, and expiry date are required.",
+                  detail:
+                    "Medicine name, purchase price, sale price, stock quantity, and expiry date are required.",
                 },
-                { title: "Add the other details where available", detail: "See the list below." },
+                {
+                  title: "Add the other details where available",
+                  detail: "See the list below.",
+                },
                 { title: "Check the details, then select **Add Medicine**" },
               ],
             },
@@ -463,7 +692,10 @@ export const docGroups: DocGroup[] = [
             },
 
             { type: "heading", text: "Understanding the Medicine List" },
-            { type: "paragraph", text: "When medicines are present, the table can show:" },
+            {
+              type: "paragraph",
+              text: "When medicines are present, the table can show:",
+            },
             {
               type: "list",
               items: [
@@ -486,7 +718,10 @@ export const docGroups: DocGroup[] = [
             {
               type: "steps",
               items: [
-                { title: "Select the edit button on the medicine’s row", detail: "The form opens with the current details filled in." },
+                {
+                  title: "Select the edit button on the medicine’s row",
+                  detail: "The form opens with the current details filled in.",
+                },
                 { title: "Make the correction" },
                 { title: "Select **Update Medicine**" },
               ],
@@ -536,7 +771,7 @@ export const docGroups: DocGroup[] = [
               ],
             },
           ],
-        }
+        },
       ),
       page(
         "billing-invoices",
@@ -556,7 +791,10 @@ export const docGroups: DocGroup[] = [
               type: "steps",
               items: [
                 { title: "Sign in to EliteHMS" },
-                { title: "Choose **Billing & Invoices** from the left-hand menu" },
+                {
+                  title:
+                    "Choose **Billing & Invoices** from the left-hand menu",
+                },
                 { title: "To start a bill, select **Create Invoice**" },
               ],
             },
@@ -608,19 +846,29 @@ export const docGroups: DocGroup[] = [
               items: [
                 { title: "Select **Create Invoice**" },
                 {
-                  title: "Under **Select Patient**, search by the patient’s name or ID, then select the correct patient",
-                  detail: "If the patient is not registered, add them from the **Patients** page first.",
+                  title:
+                    "Under **Select Patient**, search by the patient’s name or ID, then select the correct patient",
+                  detail:
+                    "If the patient is not registered, add them from the **Patients** page first.",
                 },
                 {
-                  title: "Under **Add Medicines**, search for a medicine and select it",
+                  title:
+                    "Under **Add Medicines**, search for a medicine and select it",
                   detail: "You can also scan its barcode.",
                 },
                 {
                   title: "Check each item’s name, price, and quantity",
-                  detail: "The quantity cannot exceed the available stock. Remove an item from the invoice if it was selected by mistake.",
+                  detail:
+                    "The quantity cannot exceed the available stock. Remove an item from the invoice if it was selected by mistake.",
                 },
-                { title: "Review any medicine interaction warnings shown by the checker" },
-                { title: "Check the invoice summary, enter payment details, and select **Create Invoice**" },
+                {
+                  title:
+                    "Review any medicine interaction warnings shown by the checker",
+                },
+                {
+                  title:
+                    "Check the invoice summary, enter payment details, and select **Create Invoice**",
+                },
               ],
             },
             {
@@ -668,7 +916,10 @@ export const docGroups: DocGroup[] = [
             },
 
             { type: "heading", text: "Understand Payment Status" },
-            { type: "paragraph", text: "The status is based on the amount paid:" },
+            {
+              type: "paragraph",
+              text: "The status is based on the amount paid:",
+            },
             {
               type: "list",
               items: [
@@ -700,14 +951,18 @@ export const docGroups: DocGroup[] = [
             },
 
             { type: "heading", text: "Record Another Payment" },
-            { type: "paragraph", text: "For an invoice that is not fully paid:" },
+            {
+              type: "paragraph",
+              text: "For an invoice that is not fully paid:",
+            },
             {
               type: "steps",
               items: [
                 { title: "Select its **Record Payment** action" },
                 {
                   title: "Enter the amount received",
-                  detail: "It must be greater than zero and cannot exceed the remaining balance.",
+                  detail:
+                    "It must be greater than zero and cannot exceed the remaining balance.",
                 },
                 { title: "Choose **Cash**, **Card**, or **Online**" },
                 { title: "Select **Record Payment**" },
@@ -773,7 +1028,7 @@ export const docGroups: DocGroup[] = [
               ],
             },
           ],
-        }
+        },
       ),
       page(
         "patient-balances",
@@ -787,7 +1042,10 @@ export const docGroups: DocGroup[] = [
               type: "steps",
               items: [
                 { title: "Sign in to EliteHMS" },
-                { title: "In the left menu, scroll to **Management** and select **Patient Balances**" },
+                {
+                  title:
+                    "In the left menu, scroll to **Management** and select **Patient Balances**",
+                },
               ],
             },
             {
@@ -844,7 +1102,10 @@ export const docGroups: DocGroup[] = [
               items: [
                 { title: "Check the invoice number and its remaining balance" },
                 { title: "Enter the amount received" },
-                { title: "Choose **Cash**, **Card**, or **Online** as the payment method" },
+                {
+                  title:
+                    "Choose **Cash**, **Card**, or **Online** as the payment method",
+                },
                 { title: "Select **Pay** to save the payment" },
               ],
             },
@@ -869,11 +1130,13 @@ export const docGroups: DocGroup[] = [
               type: "steps",
               items: [
                 {
-                  title: "Select **Remind** next to a patient with a phone number",
+                  title:
+                    "Select **Remind** next to a patient with a phone number",
                 },
                 {
                   title: "Check the number and review the prepared message",
-                  detail: "It includes the patient ID, total billed, amount paid, and remaining balance. You can edit the message before continuing.",
+                  detail:
+                    "It includes the patient ID, total billed, amount paid, and remaining balance. You can edit the message before continuing.",
                 },
                 { title: "Select **Open WhatsApp**" },
                 { title: "Press **Send** in WhatsApp" },
@@ -920,7 +1183,7 @@ export const docGroups: DocGroup[] = [
               text: "Keep payment details private, and send reminders only through an appropriate channel using the correct contact information.",
             },
           ],
-        }
+        },
       ),
       page(
         "purchase-orders",
@@ -934,7 +1197,10 @@ export const docGroups: DocGroup[] = [
               type: "steps",
               items: [
                 { title: "Sign in to EliteHMS" },
-                { title: "In the left menu, scroll to **Management** and select **Purchase Orders**" },
+                {
+                  title:
+                    "In the left menu, scroll to **Management** and select **Purchase Orders**",
+                },
               ],
             },
             {
@@ -976,19 +1242,24 @@ export const docGroups: DocGroup[] = [
               items: [
                 {
                   title: "Enter the supplier or company name",
-                  detail: "Phone, email, address, expected delivery date, and notes are optional.",
+                  detail:
+                    "Phone, email, address, expected delivery date, and notes are optional.",
                 },
                 {
                   title: "Add medicines by searching the inventory",
-                  detail: "For each item, enter the **Order Qty** and **Unit Cost**.",
+                  detail:
+                    "For each item, enter the **Order Qty** and **Unit Cost**.",
                 },
                 {
-                  title: "If low-stock medicines are listed, use **Auto-fill Low Stock Items** to add them to the order",
-                  detail: "Check and adjust the suggested quantities and costs before saving.",
+                  title:
+                    "If low-stock medicines are listed, use **Auto-fill Low Stock Items** to add them to the order",
+                  detail:
+                    "Check and adjust the suggested quantities and costs before saving.",
                 },
                 { title: "Check the order total" },
                 {
-                  title: "Enter any **Advance Payment** already made, if applicable",
+                  title:
+                    "Enter any **Advance Payment** already made, if applicable",
                 },
                 { title: "Select **Create Purchase Order**" },
               ],
@@ -1035,10 +1306,14 @@ export const docGroups: DocGroup[] = [
               items: [
                 {
                   title: "Enter the actual quantity received for each medicine",
-                  detail: "The form starts with the remaining ordered quantity; change it to match the delivery.",
+                  detail:
+                    "The form starts with the remaining ordered quantity; change it to match the delivery.",
                 },
                 { title: "Set the received date" },
-                { title: "Check quantities carefully, then select **Confirm & Update Stock**" },
+                {
+                  title:
+                    "Check quantities carefully, then select **Confirm & Update Stock**",
+                },
               ],
             },
             {
@@ -1061,7 +1336,10 @@ export const docGroups: DocGroup[] = [
             {
               type: "steps",
               items: [
-                { title: "Select **Record Payment** on an order with an unpaid balance" },
+                {
+                  title:
+                    "Select **Record Payment** on an order with an unpaid balance",
+                },
                 { title: "Enter the amount paid" },
                 { title: "Save it" },
               ],
@@ -1121,7 +1399,7 @@ export const docGroups: DocGroup[] = [
               ],
             },
           ],
-        }
+        },
       ),
       page(
         "suppliers",
@@ -1188,16 +1466,21 @@ export const docGroups: DocGroup[] = [
               items: [
                 { title: "Select **Add Supplier**" },
                 {
-                  title: "In **Basic Info**, enter the supplier’s contact name and phone number",
-                  detail: "These are required. You can also enter the company or distributor name, alternate phone, email, city, NTN, and address.",
+                  title:
+                    "In **Basic Info**, enter the supplier’s contact name and phone number",
+                  detail:
+                    "These are required. You can also enter the company or distributor name, alternate phone, email, city, NTN, and address.",
                 },
                 {
-                  title: "In **Bank Details**, add the supplier’s bank name, account number, and IBAN if you use them",
-                  detail: "Record the agreed payment terms and credit limit where applicable.",
+                  title:
+                    "In **Bank Details**, add the supplier’s bank name, account number, and IBAN if you use them",
+                  detail:
+                    "Record the agreed payment terms and credit limit where applicable.",
                 },
                 {
                   title: "In **Terms & Notes**, add useful internal notes",
-                  detail: "Such as delivery arrangements or product specialties.",
+                  detail:
+                    "Such as delivery arrangements or product specialties.",
                 },
                 { title: "Select **Add Supplier** to save" },
               ],
@@ -1208,7 +1491,10 @@ export const docGroups: DocGroup[] = [
               alt: "Add Supplier form with Basic Info, Bank Details, and Terms & Notes",
               caption: "The Add Supplier form",
             },
-            { type: "paragraph", text: "A few terms you will see on the form:" },
+            {
+              type: "paragraph",
+              text: "A few terms you will see on the form:",
+            },
             {
               type: "list",
               items: [
@@ -1253,7 +1539,10 @@ export const docGroups: DocGroup[] = [
             {
               type: "steps",
               items: [
-                { title: "Use the supplier’s **Edit** action to change its saved details" },
+                {
+                  title:
+                    "Use the supplier’s **Edit** action to change its saved details",
+                },
                 { title: "Select **Update Supplier**" },
               ],
             },
@@ -1288,7 +1577,10 @@ export const docGroups: DocGroup[] = [
             {
               type: "steps",
               items: [
-                { title: "If a supplier has an outstanding balance, open its detail view" },
+                {
+                  title:
+                    "If a supplier has an outstanding balance, open its detail view",
+                },
                 { title: "Choose **Record Payment**" },
                 { title: "Enter a positive amount and submit it" },
               ],
@@ -1359,7 +1651,7 @@ export const docGroups: DocGroup[] = [
               text: "Supplier Management has its own payment and performance actions. When handling a purchase order, make sure its supplier name matches the supplier record so the history can be found under the expected supplier.",
             },
           ],
-        }
+        },
       ),
       page(
         "expiry-alerts",
@@ -1384,7 +1676,10 @@ export const docGroups: DocGroup[] = [
               type: "steps",
               items: [
                 { title: "Sign in to EliteHMS" },
-                { title: "In the left menu, scroll to **Management** and select **Expiry Alerts**" },
+                {
+                  title:
+                    "In the left menu, scroll to **Management** and select **Expiry Alerts**",
+                },
               ],
             },
             {
@@ -1395,7 +1690,10 @@ export const docGroups: DocGroup[] = [
             },
 
             { type: "heading", text: "Expiry categories" },
-            { type: "paragraph", text: "Select a category to view its medicines:" },
+            {
+              type: "paragraph",
+              text: "Select a category to view its medicines:",
+            },
             {
               type: "list",
               items: [
@@ -1426,7 +1724,10 @@ export const docGroups: DocGroup[] = [
             },
 
             { type: "heading", text: "Read the medicine list" },
-            { type: "paragraph", text: "When medicines appear, the table can show:" },
+            {
+              type: "paragraph",
+              text: "When medicines appear, the table can show:",
+            },
             {
               type: "list",
               items: [
@@ -1476,7 +1777,10 @@ export const docGroups: DocGroup[] = [
               text: "A PDF button is unavailable when that category has no records.",
             },
 
-            { type: "heading", text: "What to do when you find an expired medicine" },
+            {
+              type: "heading",
+              text: "What to do when you find an expired medicine",
+            },
             {
               type: "callout",
               kind: "warning",
@@ -1518,7 +1822,7 @@ export const docGroups: DocGroup[] = [
               ],
             },
           ],
-        }
+        },
       ),
       page(
         "demand-forecast",
@@ -1562,9 +1866,13 @@ export const docGroups: DocGroup[] = [
                 { title: "Confirm the target month and year in the dialog" },
                 {
                   title: "Choose whether to use **Use Gemini AI Enhancement**",
-                  detail: "Leave it selected to add Pakistan-specific seasonal insights for the top 25 medicines, or turn it off for a forecast based on sales and seasonal patterns.",
+                  detail:
+                    "Leave it selected to add Pakistan-specific seasonal insights for the top 25 medicines, or turn it off for a forecast based on sales and seasonal patterns.",
                 },
-                { title: "Select **Generate Predictions** and wait for the results" },
+                {
+                  title:
+                    "Select **Generate Predictions** and wait for the results",
+                },
               ],
             },
             {
@@ -1674,7 +1982,9 @@ export const docGroups: DocGroup[] = [
             {
               type: "steps",
               items: [
-                { title: "When predictions are available, select **Create PO**" },
+                {
+                  title: "When predictions are available, select **Create PO**",
+                },
                 { title: "Choose which urgency levels to include" },
                 {
                   title: "Enter a supplier name",
@@ -1710,7 +2020,7 @@ export const docGroups: DocGroup[] = [
               ],
             },
           ],
-        }
+        },
       ),
     ],
   },
@@ -1789,8 +2099,14 @@ export const docGroups: DocGroup[] = [
               type: "steps",
               items: [
                 { title: "Select **Add Patient**" },
-                { title: "Enter the patient’s **Full Name**", detail: "This is required." },
-                { title: "Add other details as available", detail: "See the list below." },
+                {
+                  title: "Enter the patient’s **Full Name**",
+                  detail: "This is required.",
+                },
+                {
+                  title: "Add other details as available",
+                  detail: "See the list below.",
+                },
                 { title: "Check the details and select **Register Patient**" },
               ],
             },
@@ -1838,7 +2154,10 @@ export const docGroups: DocGroup[] = [
             {
               type: "steps",
               items: [
-                { title: "Select **Edit** in the profile or the edit icon in the list" },
+                {
+                  title:
+                    "Select **Edit** in the profile or the edit icon in the list",
+                },
                 { title: "Make the changes" },
                 { title: "Select **Update Patient**" },
               ],
@@ -1912,7 +2231,10 @@ export const docGroups: DocGroup[] = [
               text: "The confirmation says the patient record will be removed permanently. Check carefully before confirming; use **Edit** to correct information rather than deleting the record.",
             },
 
-            { type: "heading", text: "Keep Patient Records Accurate and Private" },
+            {
+              type: "heading",
+              text: "Keep Patient Records Accurate and Private",
+            },
             {
               type: "list",
               items: [
@@ -1923,7 +2245,7 @@ export const docGroups: DocGroup[] = [
               ],
             },
           ],
-        }
+        },
       ),
       page(
         "patient-matching",
@@ -2022,13 +2344,18 @@ export const docGroups: DocGroup[] = [
               items: [
                 {
                   title: "Choose which patient record to **Keep**",
-                  detail: "This record remains active and keeps its patient ID.",
+                  detail:
+                    "This record remains active and keeps its patient ID.",
                 },
                 { title: "Review the field-by-field comparison" },
                 {
-                  title: "For a differing field, select **Use other** if the value from the other record is the correct one",
+                  title:
+                    "For a differing field, select **Use other** if the value from the other record is the correct one",
                 },
-                { title: "Check all information, then select **Merge Records** and confirm" },
+                {
+                  title:
+                    "Check all information, then select **Merge Records** and confirm",
+                },
               ],
             },
             {
@@ -2064,7 +2391,7 @@ export const docGroups: DocGroup[] = [
               ],
             },
           ],
-        }
+        },
       ),
       page(
         "appointments",
@@ -2119,7 +2446,12 @@ export const docGroups: DocGroup[] = [
             },
             {
               type: "list",
-              items: ["**Scheduled**", "**Completed**", "**Cancelled**", "**No-Show**"],
+              items: [
+                "**Scheduled**",
+                "**Completed**",
+                "**Cancelled**",
+                "**No-Show**",
+              ],
             },
             {
               type: "image",
@@ -2150,7 +2482,8 @@ export const docGroups: DocGroup[] = [
                 { title: "Select **Schedule**" },
                 {
                   title: "Search for and select the patient",
-                  detail: "If the patient is not registered, add them from **Patients** first.",
+                  detail:
+                    "If the patient is not registered, add them from **Patients** first.",
                 },
                 { title: "Choose the appointment date and time" },
                 {
@@ -2159,9 +2492,13 @@ export const docGroups: DocGroup[] = [
                 },
                 {
                   title: "Choose an appointment type",
-                  detail: "Checkup, Follow-up, Emergency, Consultation, Procedure, Lab Test, or Other.",
+                  detail:
+                    "Checkup, Follow-up, Emergency, Consultation, Procedure, Lab Test, or Other.",
                 },
-                { title: "Add a reason or other useful information in **Notes**" },
+                {
+                  title:
+                    "Add a reason or other useful information in **Notes**",
+                },
                 { title: "Select **Schedule Appointment**" },
               ],
             },
@@ -2199,10 +2536,7 @@ export const docGroups: DocGroup[] = [
             { type: "paragraph", text: "To cancel a scheduled visit:" },
             {
               type: "steps",
-              items: [
-                { title: "Select **Cancel**" },
-                { title: "Confirm" },
-              ],
+              items: [{ title: "Select **Cancel**" }, { title: "Confirm" }],
             },
             {
               type: "callout",
@@ -2214,11 +2548,17 @@ export const docGroups: DocGroup[] = [
             {
               type: "steps",
               items: [
-                { title: "For a scheduled appointment, select **Record Visit**" },
-                { title: "Enter the visit details", detail: "See the list below." },
+                {
+                  title: "For a scheduled appointment, select **Record Visit**",
+                },
+                {
+                  title: "Enter the visit details",
+                  detail: "See the list below.",
+                },
                 {
                   title: "Select **Complete Visit**",
-                  detail: "This saves the visit and marks the appointment **Completed**.",
+                  detail:
+                    "This saves the visit and marks the appointment **Completed**.",
                 },
               ],
             },
@@ -2276,7 +2616,7 @@ export const docGroups: DocGroup[] = [
               ],
             },
           ],
-        }
+        },
       ),
       page(
         "online-booking",
@@ -2356,16 +2696,22 @@ export const docGroups: DocGroup[] = [
                 { title: "Open the **Doctors** tab and select **Add Doctor**" },
                 {
                   title: "Enter the doctor’s name",
-                  detail: "And, where relevant, specialization, qualification, consultation fee, and short bio.",
+                  detail:
+                    "And, where relevant, specialization, qualification, consultation fee, and short bio.",
                 },
-                { title: "Set the days and time slots when the doctor accepts appointments" },
+                {
+                  title:
+                    "Set the days and time slots when the doctor accepts appointments",
+                },
                 {
                   title: "Choose **Max Per Slot**",
-                  detail: "This controls how many patients can book the same time.",
+                  detail:
+                    "This controls how many patients can book the same time.",
                 },
                 {
                   title: "Keep **Doctor is active** selected",
-                  detail: "The doctor appears on the public page only while it is selected.",
+                  detail:
+                    "The doctor appears on the public page only while it is selected.",
                 },
               ],
             },
@@ -2386,22 +2732,27 @@ export const docGroups: DocGroup[] = [
               type: "steps",
               items: [
                 {
-                  title: "Make sure the clinic details and doctor schedules are ready",
+                  title:
+                    "Make sure the clinic details and doctor schedules are ready",
                 },
                 {
                   title: "Select **Enable Booking**",
-                  detail: "The page status should change to **Booking page is LIVE**.",
+                  detail:
+                    "The page status should change to **Booking page is LIVE**.",
                 },
                 {
                   title: "Find the public URL near the top of the page",
-                  detail: "For example, https://app.elitehms.online/book/amjad-ullah",
+                  detail:
+                    "For example, https://app.elitehms.online/book/amjad-ullah",
                 },
                 {
-                  title: "Select **Copy** to copy the link or **Preview** to check the public page",
+                  title:
+                    "Select **Copy** to copy the link or **Preview** to check the public page",
                 },
                 {
                   title: "Share the link with patients",
-                  detail: "Through a suitable channel, such as WhatsApp, your clinic’s website, or social media.",
+                  detail:
+                    "Through a suitable channel, such as WhatsApp, your clinic’s website, or social media.",
                 },
               ],
             },
@@ -2423,8 +2774,12 @@ export const docGroups: DocGroup[] = [
                   title: "Enter their name and phone number",
                   detail: "These are required.",
                 },
-                { title: "Choose an appointment type and optionally add notes" },
-                { title: "Submit the booking and view the confirmation details" },
+                {
+                  title: "Choose an appointment type and optionally add notes",
+                },
+                {
+                  title: "Submit the booking and view the confirmation details",
+                },
               ],
             },
             {
@@ -2487,7 +2842,7 @@ export const docGroups: DocGroup[] = [
               text: "Disable booking if the clinic is temporarily not accepting online appointments.",
             },
           ],
-        }
+        },
       ),
       page(
         "opd-queue",
@@ -2554,26 +2909,33 @@ export const docGroups: DocGroup[] = [
               type: "steps",
               items: [
                 {
-                  title: "Make sure the queue is open, then select **Register Token** or **Register First Patient**",
+                  title:
+                    "Make sure the queue is open, then select **Register Token** or **Register First Patient**",
                 },
                 {
                   title: "Optionally search for an existing patient",
                   detail: "Selecting one fills in their name and phone number.",
                 },
                 {
-                  title: "If the patient is not registered, enter their name as a walk-in",
+                  title:
+                    "If the patient is not registered, enter their name as a walk-in",
                   detail: "The patient name is required.",
                 },
                 { title: "Add a phone number if useful" },
                 {
                   title: "Optionally enter the doctor and choose a department",
-                  detail: "For example, General OPD, Cardiology, or Pediatrics.",
+                  detail:
+                    "For example, General OPD, Cardiology, or Pediatrics.",
                 },
                 {
-                  title: "Choose a priority: **Normal**, **Urgent**, or **VIP**",
+                  title:
+                    "Choose a priority: **Normal**, **Urgent**, or **VIP**",
                   detail: "Use priority according to your clinic’s policy.",
                 },
-                { title: "Optionally add a short note, then select **Issue Token**" },
+                {
+                  title:
+                    "Optionally add a short note, then select **Issue Token**",
+                },
               ],
             },
             {
@@ -2679,7 +3041,7 @@ export const docGroups: DocGroup[] = [
               ],
             },
           ],
-        }
+        },
       ),
       page(
         "prescriptions",
@@ -2733,7 +3095,13 @@ export const docGroups: DocGroup[] = [
             },
             {
               type: "list",
-              items: ["**All**", "**Active**", "**Dispensed**", "**Expired**", "**Cancelled**"],
+              items: [
+                "**All**",
+                "**Active**",
+                "**Dispensed**",
+                "**Expired**",
+                "**Cancelled**",
+              ],
             },
             {
               type: "image",
@@ -2758,7 +3126,8 @@ export const docGroups: DocGroup[] = [
                 { title: "Select **Write Prescription**" },
                 {
                   title: "Search for and select the correct patient",
-                  detail: "If the patient is not registered, add them from **Patients** first.",
+                  detail:
+                    "If the patient is not registered, add them from **Patients** first.",
                 },
                 {
                   title: "Enter the **Doctor Name**",
@@ -2766,8 +3135,14 @@ export const docGroups: DocGroup[] = [
                 },
                 { title: "Add a diagnosis or complaint if needed" },
                 { title: "Choose how many days the prescription is valid for" },
-                { title: "Add each prescribed medicine and complete its instructions" },
-                { title: "Review the summary, then select **Create Prescription**" },
+                {
+                  title:
+                    "Add each prescribed medicine and complete its instructions",
+                },
+                {
+                  title:
+                    "Review the summary, then select **Create Prescription**",
+                },
               ],
             },
             {
@@ -2876,7 +3251,7 @@ export const docGroups: DocGroup[] = [
               ],
             },
           ],
-        }
+        },
       ),
       page(
         "lab-tests",
@@ -2962,19 +3337,26 @@ export const docGroups: DocGroup[] = [
                 { title: "Select **Order Lab Test**" },
                 {
                   title: "Search for and select the patient",
-                  detail: "If the patient is not registered, add them from **Patients** first.",
+                  detail:
+                    "If the patient is not registered, add them from **Patients** first.",
                 },
                 {
                   title: "Choose a category",
-                  detail: "Blood Test, Urine Test, Imaging, Microbiology, Pathology, Cardiac, or Other.",
+                  detail:
+                    "Blood Test, Urine Test, Imaging, Microbiology, Pathology, Cardiac, or Other.",
                 },
                 {
                   title: "Enter a test name",
-                  detail: "The form suggests common tests for the selected category, or you can type another name.",
+                  detail:
+                    "The form suggests common tests for the selected category, or you can type another name.",
                 },
-                { title: "Add the ordering doctor, laboratory name, and order date if available" },
                 {
-                  title: "Add notes such as preparation instructions, then select **Order Lab Test**",
+                  title:
+                    "Add the ordering doctor, laboratory name, and order date if available",
+                },
+                {
+                  title:
+                    "Add notes such as preparation instructions, then select **Order Lab Test**",
                 },
               ],
             },
@@ -2995,14 +3377,19 @@ export const docGroups: DocGroup[] = [
               type: "steps",
               items: [
                 {
-                  title: "Select the result action on a test row, or open the test and select **Enter Results**",
+                  title:
+                    "Select the result action on a test row, or open the test and select **Enter Results**",
                 },
                 { title: "Choose the result date and overall interpretation" },
-                { title: "Select a result-entry mode", detail: "See the two modes below." },
+                {
+                  title: "Select a result-entry mode",
+                  detail: "See the two modes below.",
+                },
                 { title: "Enter the values" },
                 {
                   title: "Select **Save Results**",
-                  detail: "The form saves the test as **Completed**. Results for completed tests can be edited later.",
+                  detail:
+                    "The form saves the test as **Completed**. Results for completed tests can be edited later.",
                 },
               ],
             },
@@ -3121,7 +3508,7 @@ export const docGroups: DocGroup[] = [
               ],
             },
           ],
-        }
+        },
       ),
       page(
         "vital-signs",
@@ -3278,7 +3665,7 @@ export const docGroups: DocGroup[] = [
               ],
             },
           ],
-        }
+        },
       ),
       page(
         "emr",
@@ -3320,7 +3707,10 @@ export const docGroups: DocGroup[] = [
                   title: "Check the matching patient’s name and details",
                   detail: "Such as patient ID, age, and gender.",
                 },
-                { title: "Select the patient row or **Open EMR** to open their record" },
+                {
+                  title:
+                    "Select the patient row or **Open EMR** to open their record",
+                },
               ],
             },
             {
@@ -3372,7 +3762,8 @@ export const docGroups: DocGroup[] = [
                 { title: "Choose **Add Problem**" },
                 {
                   title: "Enter the condition and its status",
-                  detail: "Status is required. Severity, ICD-10 code, onset date, and notes can provide more context.",
+                  detail:
+                    "Status is required. Severity, ICD-10 code, onset date, and notes can provide more context.",
                 },
                 { title: "Save" },
               ],
@@ -3453,7 +3844,7 @@ export const docGroups: DocGroup[] = [
               ],
             },
           ],
-        }
+        },
       ),
     ],
   },
@@ -3494,7 +3885,10 @@ export const docGroups: DocGroup[] = [
               type: "paragraph",
               text: "Use IPD Management to record a patient’s admission, ward and bed, doctor, and admission notes. You can also review the admission, record medicine orders and charges, track medicine doses, and discharge the patient.",
             },
-            { type: "paragraph", text: "This page works with **Ward & Beds**:" },
+            {
+              type: "paragraph",
+              text: "This page works with **Ward & Beds**:",
+            },
             {
               type: "list",
               items: [
@@ -3533,7 +3927,8 @@ export const docGroups: DocGroup[] = [
               type: "steps",
               items: [
                 {
-                  title: "Select **New Admission** or, when the list is empty, **Admit First Patient**",
+                  title:
+                    "Select **New Admission** or, when the list is empty, **Admit First Patient**",
                 },
                 {
                   title: "Search for and select the registered **Patient**",
@@ -3541,14 +3936,17 @@ export const docGroups: DocGroup[] = [
                 },
                 {
                   title: "Choose a **Ward**",
-                  detail: "The list shows the number of free beds in each ward.",
+                  detail:
+                    "The list shows the number of free beds in each ward.",
                 },
                 {
                   title: "Choose an available **Bed**",
-                  detail: "If the ward has no free beds, check **Ward & Beds** for its current status.",
+                  detail:
+                    "If the ward has no free beds, check **Ward & Beds** for its current status.",
                 },
                 {
-                  title: "Optionally enter the **Attending Doctor**, **Expected Discharge** date, **Admission Diagnosis**, and **Admission Notes**",
+                  title:
+                    "Optionally enter the **Attending Doctor**, **Expected Discharge** date, **Admission Diagnosis**, and **Admission Notes**",
                 },
                 { title: "Review the details and select **Admit Patient**" },
               ],
@@ -3616,15 +4014,18 @@ export const docGroups: DocGroup[] = [
               items: [
                 {
                   title: "From an active admission, select **Add Order**",
-                  detail: "You can also open **Orders** and select **Add Medicine Order**.",
+                  detail:
+                    "You can also open **Orders** and select **Add Medicine Order**.",
                 },
                 {
-                  title: "Search inventory for a medicine or type its name manually",
+                  title:
+                    "Search inventory for a medicine or type its name manually",
                 },
                 { title: "Enter the required **Dosage**" },
                 {
                   title: "Select the route and frequency",
-                  detail: "You can also add an end date, ordering doctor, and notes.",
+                  detail:
+                    "You can also add an end date, ordering doctor, and notes.",
                 },
               ],
             },
@@ -3667,7 +4068,8 @@ export const docGroups: DocGroup[] = [
                 { title: "Open **Charges** on an active admission" },
                 {
                   title: "Choose the charge type",
-                  detail: "Medicine, Procedure, Room, Consultation, Lab, or Other.",
+                  detail:
+                    "Medicine, Procedure, Room, Consultation, Lab, or Other.",
                 },
                 { title: "Enter a description, quantity, and unit price" },
               ],
@@ -3698,11 +4100,17 @@ export const docGroups: DocGroup[] = [
               type: "steps",
               items: [
                 { title: "Open the active admission and select **Discharge**" },
-                { title: "Enter the discharge diagnosis, notes, and instructions as appropriate" },
-                { title: "Review the **Final Bill Summary** and total charges" },
+                {
+                  title:
+                    "Enter the discharge diagnosis, notes, and instructions as appropriate",
+                },
+                {
+                  title: "Review the **Final Bill Summary** and total charges",
+                },
                 { title: "Enter any discount and the amount paid" },
                 {
-                  title: "Review the displayed net payable and balance, then select **Discharge & Generate Bill**",
+                  title:
+                    "Review the displayed net payable and balance, then select **Discharge & Generate Bill**",
                 },
               ],
             },
@@ -3723,7 +4131,10 @@ export const docGroups: DocGroup[] = [
               text: "The discharge form records a payment amount and generates the final bill. The admission detail screen does not show a separate **Record Payment** button, so use the available billing workflow or ask your administrator how to record later payments against the bill.",
             },
 
-            { type: "heading", text: "Understand the statuses and payment labels" },
+            {
+              type: "heading",
+              text: "Understand the statuses and payment labels",
+            },
             {
               type: "list",
               items: [
@@ -3754,7 +4165,7 @@ export const docGroups: DocGroup[] = [
               ],
             },
           ],
-        }
+        },
       ),
       page(
         "ward-bed-management",
@@ -3807,13 +4218,23 @@ export const docGroups: DocGroup[] = [
                   title: "Enter a clear **Ward Name**",
                   detail: "For example, “General Ward A” or “ICU”.",
                 },
-                { title: "Choose the **Ward Type** and enter its **Floor** if useful" },
-                { title: "Enter **Total Beds**", detail: "The form allows 1–200 beds." },
+                {
+                  title:
+                    "Choose the **Ward Type** and enter its **Floor** if useful",
+                },
+                {
+                  title: "Enter **Total Beds**",
+                  detail: "The form allows 1–200 beds.",
+                },
                 {
                   title: "Optionally enter a **Bed Number Prefix**",
-                  detail: "For example, A- or ICU-. The preview shows the numbers the system will create.",
+                  detail:
+                    "For example, A- or ICU-. The preview shows the numbers the system will create.",
                 },
-                { title: "Check the name, type, floor, and bed count, then select **Create Ward**" },
+                {
+                  title:
+                    "Check the name, type, floor, and bed count, then select **Create Ward**",
+                },
               ],
             },
             {
@@ -3887,14 +4308,22 @@ export const docGroups: DocGroup[] = [
             {
               type: "steps",
               items: [
-                { title: "Select an **Available** bed and choose its admit action" },
+                {
+                  title:
+                    "Select an **Available** bed and choose its admit action",
+                },
                 {
                   title: "Search for and select the registered patient",
-                  detail: "If the patient is not registered yet, add them from **Patients** first.",
+                  detail:
+                    "If the patient is not registered yet, add them from **Patients** first.",
                 },
-                { title: "Check that the selected patient is the correct person" },
                 {
-                  title: "Optionally enter the **Assigned Doctor**, **Expected Discharge** date, and **Admission Notes**",
+                  title:
+                    "Check that the selected patient is the correct person",
+                },
+                {
+                  title:
+                    "Optionally enter the **Assigned Doctor**, **Expected Discharge** date, and **Admission Notes**",
                 },
                 { title: "Select **Admit Patient**" },
               ],
@@ -3916,17 +4345,25 @@ export const docGroups: DocGroup[] = [
               text: "A patient should not be assigned to a bed already marked **Occupied** or **Maintenance**. The system also checks that the patient is not already admitted to another bed at the same location.",
             },
 
-            { type: "heading", text: "Discharge a patient and prepare the bed" },
+            {
+              type: "heading",
+              text: "Discharge a patient and prepare the bed",
+            },
             {
               type: "steps",
               items: [
-                { title: "Use the bed’s discharge action when the patient is leaving" },
                 {
-                  title: "Confirm",
-                  detail: "The system clears the patient details and changes the bed to **Cleaning**.",
+                  title:
+                    "Use the bed’s discharge action when the patient is leaving",
                 },
                 {
-                  title: "After staff have cleaned and checked the bed, change its status to **Available**",
+                  title: "Confirm",
+                  detail:
+                    "The system clears the patient details and changes the bed to **Cleaning**.",
+                },
+                {
+                  title:
+                    "After staff have cleaned and checked the bed, change its status to **Available**",
                 },
               ],
             },
@@ -3993,7 +4430,7 @@ export const docGroups: DocGroup[] = [
               ],
             },
           ],
-        }
+        },
       ),
       page(
         "nurse-station",
@@ -4077,7 +4514,10 @@ export const docGroups: DocGroup[] = [
               alt: "MAR tab with scheduled doses grouped by time",
               caption: "The MAR tab",
             },
-            { type: "paragraph", text: "For today’s pending doses, the available actions are:" },
+            {
+              type: "paragraph",
+              text: "For today’s pending doses, the available actions are:",
+            },
             {
               type: "list",
               items: [
@@ -4102,7 +4542,10 @@ export const docGroups: DocGroup[] = [
             },
 
             { type: "heading", text: "Record and review vital signs" },
-            { type: "paragraph", text: "Open the **Vitals** tab to record one or more readings:" },
+            {
+              type: "paragraph",
+              text: "Open the **Vitals** tab to record one or more readings:",
+            },
             {
               type: "list",
               items: [
@@ -4156,13 +4599,21 @@ export const docGroups: DocGroup[] = [
             {
               type: "steps",
               items: [
-                { title: "Search the inventory for a medicine, or enter its name manually" },
+                {
+                  title:
+                    "Search the inventory for a medicine, or enter its name manually",
+                },
                 {
                   title: "Enter the required quantity",
                   detail: "Dosage and route can also be added.",
                 },
-                { title: "Select urgency: **Routine**, **Urgent**, or **STAT**" },
-                { title: "Add notes if needed, then select **Send to Pharmacy**" },
+                {
+                  title: "Select urgency: **Routine**, **Urgent**, or **STAT**",
+                },
+                {
+                  title:
+                    "Add notes if needed, then select **Send to Pharmacy**",
+                },
               ],
             },
             {
@@ -4215,7 +4666,7 @@ export const docGroups: DocGroup[] = [
               ],
             },
           ],
-        }
+        },
       ),
       page(
         "doctor-orders-notes",
@@ -4277,7 +4728,10 @@ export const docGroups: DocGroup[] = [
               text: "Use **Refresh** to reload the patient list, order counts, and handovers.",
             },
 
-            { type: "heading", text: "Active Patients: open a patient’s orders and notes" },
+            {
+              type: "heading",
+              text: "Active Patients: open a patient’s orders and notes",
+            },
             {
               type: "paragraph",
               text: "Select **Active Patients**, then search by patient name, bed, or ward. Choose a patient to open their record. From there, use the **Orders** and **Notes** tabs.",
@@ -4303,7 +4757,8 @@ export const docGroups: DocGroup[] = [
               items: [
                 {
                   title: "Choose an **Order Type**",
-                  detail: "Medicine, Investigation, Diet, Procedure, Nursing, Consultation, Restriction, or Other.",
+                  detail:
+                    "Medicine, Investigation, Diet, Procedure, Nursing, Consultation, Restriction, or Other.",
                 },
                 {
                   title: "Choose a **Priority**",
@@ -4311,8 +4766,14 @@ export const docGroups: DocGroup[] = [
                 },
                 { title: "Enter the required **Order Title / Summary**" },
                 { title: "Add clear **Detailed Instructions**" },
-                { title: "Add **Frequency**, **Duration**, and start or end dates where needed" },
-                { title: "Review the order, then select **Send Order to Nurses**" },
+                {
+                  title:
+                    "Add **Frequency**, **Duration**, and start or end dates where needed",
+                },
+                {
+                  title:
+                    "Review the order, then select **Send Order to Nurses**",
+                },
               ],
             },
             {
@@ -4417,10 +4878,14 @@ export const docGroups: DocGroup[] = [
               items: [
                 {
                   title: "Select **Write Handover** at the top of the page",
-                  detail: "Or choose **Shift Handovers** and select **Write Shift Handover**.",
+                  detail:
+                    "Or choose **Shift Handovers** and select **Write Shift Handover**.",
                 },
                 { title: "Enter the handover title and overall shift summary" },
-                { title: "Complete the handover section", detail: "See the list below." },
+                {
+                  title: "Complete the handover section",
+                  detail: "See the list below.",
+                },
               ],
             },
             { type: "paragraph", text: "The handover section can include:" },
@@ -4463,7 +4928,7 @@ export const docGroups: DocGroup[] = [
               ],
             },
           ],
-        }
+        },
       ),
       page(
         "ot-scheduling",
@@ -4542,12 +5007,19 @@ export const docGroups: DocGroup[] = [
                 },
                 { title: "Choose the **OT Room** and **Category**" },
                 {
-                  title: "Choose a **Priority**: **Routine**, **Urgent**, or **Emergency**",
+                  title:
+                    "Choose a **Priority**: **Routine**, **Urgent**, or **Emergency**",
                   detail: "Use priority according to your hospital’s policy.",
                 },
-                { title: "Set the **Date**, **Start Time**, and estimated duration" },
+                {
+                  title:
+                    "Set the **Date**, **Start Time**, and estimated duration",
+                },
                 { title: "Select the planned anesthesia type" },
-                { title: "Optionally add an estimated cost and **Pre-Op Notes**" },
+                {
+                  title:
+                    "Optionally add an estimated cost and **Pre-Op Notes**",
+                },
                 { title: "Review the details and select **Schedule Surgery**" },
               ],
             },
@@ -4598,7 +5070,10 @@ export const docGroups: DocGroup[] = [
               text: "Select a schedule card to open its details. The card includes the patient, room, date and time, estimated duration, status, priority, surgeon (when assigned), anesthesia, and checklist progress.",
             },
 
-            { type: "heading", text: "Review schedule details and progress it" },
+            {
+              type: "heading",
+              text: "Review schedule details and progress it",
+            },
             {
               type: "paragraph",
               text: "The schedule detail page shows the patient and procedure information, timing, estimated cost, pre-op notes, team, and checklist.",
@@ -4609,7 +5084,10 @@ export const docGroups: DocGroup[] = [
               alt: "Surgery schedule details with status actions",
               caption: "Schedule details",
             },
-            { type: "paragraph", text: "Use the status actions to record progress:" },
+            {
+              type: "paragraph",
+              text: "Use the status actions to record progress:",
+            },
             {
               type: "list",
               items: [
@@ -4637,7 +5115,10 @@ export const docGroups: DocGroup[] = [
               kind: "warning",
               text: "Mark an item complete only after it has actually been checked.",
             },
-            { type: "paragraph", text: "The checklist includes checks such as:" },
+            {
+              type: "paragraph",
+              text: "The checklist includes checks such as:",
+            },
             {
               type: "list",
               items: [
@@ -4671,8 +5152,10 @@ export const docGroups: DocGroup[] = [
               items: [
                 { title: "Open **Team** in the schedule details" },
                 {
-                  title: "Add each team member’s role, name, and optional phone number",
-                  detail: "Roles include Surgeon, Co-Surgeon, Anesthesiologist, OT Nurse, Scrub Nurse, OT Technician, and Other.",
+                  title:
+                    "Add each team member’s role, name, and optional phone number",
+                  detail:
+                    "Roles include Surgeon, Co-Surgeon, Anesthesiologist, OT Nurse, Scrub Nurse, OT Technician, and Other.",
                 },
               ],
             },
@@ -4755,7 +5238,7 @@ export const docGroups: DocGroup[] = [
               ],
             },
           ],
-        }
+        },
       ),
       page(
         "blood-bank",
@@ -4839,10 +5322,12 @@ export const docGroups: DocGroup[] = [
                 },
                 {
                   title: "Add other details as appropriate",
-                  detail: "Gender, age, CNIC, phone, email, address, occupation, and medical history.",
+                  detail:
+                    "Gender, age, CNIC, phone, email, address, occupation, and medical history.",
                 },
                 {
-                  title: "If the donor has a disqualifying condition, mark the checkbox and record the reason",
+                  title:
+                    "If the donor has a disqualifying condition, mark the checkbox and record the reason",
                 },
                 { title: "Select **Register Donor**" },
               ],
@@ -4876,17 +5361,24 @@ export const docGroups: DocGroup[] = [
                 { title: "Select the **Blood Group**" },
                 {
                   title: "Choose a **Component**",
-                  detail: "Whole Blood, Packed RBC, Fresh Frozen Plasma, Platelets, Cryoprecipitate, or Single Donor Plasma.",
+                  detail:
+                    "Whole Blood, Packed RBC, Fresh Frozen Plasma, Platelets, Cryoprecipitate, or Single Donor Plasma.",
                 },
                 {
                   title: "Enter the volume and collection date",
-                  detail: "Confirm the **Expiry Date** against the blood bag label and your facility’s validated process.",
+                  detail:
+                    "Confirm the **Expiry Date** against the blood bag label and your facility’s validated process.",
                 },
                 {
-                  title: "Choose the source: **Donor**, **External Blood Bank**, or **Replacement**",
-                  detail: "If applicable, link the donor or enter the external blood bank name.",
+                  title:
+                    "Choose the source: **Donor**, **External Blood Bank**, or **Replacement**",
+                  detail:
+                    "If applicable, link the donor or enter the external blood bank name.",
                 },
-                { title: "Record screening results and whether all required tests are clear" },
+                {
+                  title:
+                    "Record screening results and whether all required tests are clear",
+                },
                 { title: "Add storage location and cost if known" },
                 { title: "Review the details and select **Add Blood Unit**" },
               ],
@@ -4926,11 +5418,15 @@ export const docGroups: DocGroup[] = [
                 { title: "Search for and select the registered patient" },
                 {
                   title: "Carefully compare the patient and unit details",
-                  detail: "The screen warns if their recorded blood groups differ.",
+                  detail:
+                    "The screen warns if their recorded blood groups differ.",
                 },
-                { title: "Enter the requesting doctor and notes, if applicable" },
                 {
-                  title: "Confirm that the required cross-match was completed, then select **Issue Blood Unit**",
+                  title: "Enter the requesting doctor and notes, if applicable",
+                },
+                {
+                  title:
+                    "Confirm that the required cross-match was completed, then select **Issue Blood Unit**",
                 },
               ],
             },
@@ -4974,7 +5470,10 @@ export const docGroups: DocGroup[] = [
               ],
             },
 
-            { type: "heading", text: "Inventory Overview, Blood Units, and Donors tabs" },
+            {
+              type: "heading",
+              text: "Inventory Overview, Blood Units, and Donors tabs",
+            },
             {
               type: "list",
               items: [
@@ -5008,7 +5507,7 @@ export const docGroups: DocGroup[] = [
               ],
             },
           ],
-        }
+        },
       ),
       page(
         "radiology",
@@ -5085,22 +5584,33 @@ export const docGroups: DocGroup[] = [
                 },
                 {
                   title: "Select the modality",
-                  detail: "The type of imaging, such as X-ray, ultrasound, CT, or MRI.",
+                  detail:
+                    "The type of imaging, such as X-ray, ultrasound, CT, or MRI.",
                 },
                 {
-                  title: "Enter the study type and, if applicable, the body part and laterality",
+                  title:
+                    "Enter the study type and, if applicable, the body part and laterality",
                   detail: "Laterality means left, right, or both sides.",
                 },
                 {
-                  title: "Set the priority: **Routine**, **Urgent**, **STAT**, or **Emergency**",
-                  detail: "Use the urgency options according to your facility’s procedure.",
+                  title:
+                    "Set the priority: **Routine**, **Urgent**, **STAT**, or **Emergency**",
+                  detail:
+                    "Use the urgency options according to your facility’s procedure.",
                 },
                 {
-                  title: "Enter the study date, referring doctor, and clinical history/indication",
+                  title:
+                    "Enter the study date, referring doctor, and clinical history/indication",
                   detail: "The indication is the reason for the study.",
                 },
-                { title: "If contrast is used, mark it and enter the contrast agent" },
-                { title: "Add the radiologist and cost if known, then save the order" },
+                {
+                  title:
+                    "If contrast is used, mark it and enter the contrast agent",
+                },
+                {
+                  title:
+                    "Add the radiologist and cost if known, then save the order",
+                },
               ],
             },
             {
@@ -5146,10 +5656,14 @@ export const docGroups: DocGroup[] = [
               type: "steps",
               items: [
                 {
-                  title: "Enter the radiologist name, findings, and impression/conclusion",
+                  title:
+                    "Enter the radiologist name, findings, and impression/conclusion",
                   detail: "Technique and recommendation are optional.",
                 },
-                { title: "Mark **Normal Study** or **Critical Finding** as appropriate" },
+                {
+                  title:
+                    "Mark **Normal Study** or **Critical Finding** as appropriate",
+                },
                 {
                   title: "Submit the report",
                   detail: "A submitted report moves to **Reported**.",
@@ -5232,7 +5746,7 @@ export const docGroups: DocGroup[] = [
               ],
             },
           ],
-        }
+        },
       ),
     ],
   },
@@ -5277,10 +5791,14 @@ export const docGroups: DocGroup[] = [
             {
               type: "steps",
               items: [
-                { title: "Choose a question under **Quick Questions**, or type your own in the box at the bottom" },
+                {
+                  title:
+                    "Choose a question under **Quick Questions**, or type your own in the box at the bottom",
+                },
                 {
                   title: "Select the send arrow",
-                  detail: "You can also press **Enter** to send; use **Shift + Enter** to start a new line.",
+                  detail:
+                    "You can also press **Enter** to send; use **Shift + Enter** to start a new line.",
                 },
                 { title: "Wait for the answer to appear in the conversation" },
               ],
@@ -5363,7 +5881,7 @@ export const docGroups: DocGroup[] = [
               ],
             },
           ],
-        }
+        },
       ),
       page(
         "store-knowledge-base",
@@ -5415,14 +5933,18 @@ export const docGroups: DocGroup[] = [
               items: [
                 { title: "Select **Add Document**" },
                 {
-                  title: "Upload a file, or choose **Paste Text** to add written content directly",
+                  title:
+                    "Upload a file, or choose **Paste Text** to add written content directly",
                 },
                 { title: "Provide a document name and choose a category" },
                 {
                   title: "Add optional details",
-                  detail: "Such as medicine name, tags, source, and description.",
+                  detail:
+                    "Such as medicine name, tags, source, and description.",
                 },
-                { title: "Select **Upload & Vectorize** to submit the document" },
+                {
+                  title: "Select **Upload & Vectorize** to submit the document",
+                },
               ],
             },
             {
@@ -5489,11 +6011,15 @@ export const docGroups: DocGroup[] = [
                   title: "Choose a question type",
                   detail: "See the two types below.",
                 },
-                { title: "Use a suggested question or type your own, and submit" },
+                {
+                  title:
+                    "Use a suggested question or type your own, and submit",
+                },
                 { title: "Review the answer and its source labels" },
                 {
                   title: "Open **View retrieved chunks**",
-                  detail: "This shows the pieces of documents used for the answer.",
+                  detail:
+                    "This shows the pieces of documents used for the answer.",
                 },
               ],
             },
@@ -5556,7 +6082,7 @@ export const docGroups: DocGroup[] = [
               ],
             },
           ],
-        }
+        },
       ),
       page(
         "prescription-ocr",
@@ -5605,10 +6131,17 @@ export const docGroups: DocGroup[] = [
                   detail: "The page accepts image files up to 10 MB.",
                 },
                 {
-                  title: "Drag the image into the upload area, or click the area to choose a file",
+                  title:
+                    "Drag the image into the upload area, or click the area to choose a file",
                 },
-                { title: "Check that the preview shows the complete, readable prescription" },
-                { title: "Select **Scan with Gemini AI** and wait for the results" },
+                {
+                  title:
+                    "Check that the preview shows the complete, readable prescription",
+                },
+                {
+                  title:
+                    "Select **Scan with Gemini AI** and wait for the results",
+                },
               ],
             },
             {
@@ -5692,7 +6225,7 @@ export const docGroups: DocGroup[] = [
               ],
             },
           ],
-        }
+        },
       ),
       page(
         "ai-diagnosis",
@@ -5764,9 +6297,13 @@ export const docGroups: DocGroup[] = [
               items: [
                 {
                   title: "Complete the required fields",
-                  detail: "The system requires age, chief complaint, and at least one symptom.",
+                  detail:
+                    "The system requires age, chief complaint, and at least one symptom.",
                 },
-                { title: "Select **Analyze with AI — Get Differential Diagnoses**" },
+                {
+                  title:
+                    "Select **Analyze with AI — Get Differential Diagnoses**",
+                },
               ],
             },
 
@@ -5826,7 +6363,9 @@ export const docGroups: DocGroup[] = [
             {
               type: "steps",
               items: [
-                { title: "Select **History** to view recent diagnosis sessions" },
+                {
+                  title: "Select **History** to view recent diagnosis sessions",
+                },
                 { title: "Select a session to reopen its analysis" },
               ],
             },
@@ -5861,7 +6400,7 @@ export const docGroups: DocGroup[] = [
               text: "For an emergency, prioritize immediate patient stabilization and urgent in-person care. Always perform a complete physical examination. Final diagnosis and treatment decisions must be made by a licensed physician.",
             },
           ],
-        }
+        },
       ),
       page(
         "drap-compliance",
@@ -5988,16 +6527,20 @@ export const docGroups: DocGroup[] = [
               type: "steps",
               items: [
                 {
-                  title: "Select **Record Destruction** or choose an expired medicine shown in the alert",
+                  title:
+                    "Select **Record Destruction** or choose an expired medicine shown in the alert",
                 },
                 {
-                  title: "Search for and select the inventory medicine, or enter the medicine manually",
+                  title:
+                    "Search for and select the inventory medicine, or enter the medicine manually",
                 },
                 {
-                  title: "Check the medicine and batch details, expiry date, quantity, and unit",
+                  title:
+                    "Check the medicine and batch details, expiry date, quantity, and unit",
                 },
                 {
-                  title: "Enter the destruction date, method, location, pharmacist and witness details, and any notes that apply",
+                  title:
+                    "Enter the destruction date, method, location, pharmacist and witness details, and any notes that apply",
                 },
                 { title: "Select **Record Destruction**" },
               ],
@@ -6055,13 +6598,20 @@ export const docGroups: DocGroup[] = [
               items: [
                 {
                   title: "Select **One-Click Report** at the top",
-                  detail: "Or open **Compliance Report** and choose **Generate & Print Report**.",
+                  detail:
+                    "Or open **Compliance Report** and choose **Generate & Print Report**.",
                 },
                 { title: "Review the generated report" },
-                { title: "Correct any missing or inaccurate records, then print" },
+                {
+                  title:
+                    "Correct any missing or inaccurate records, then print",
+                },
               ],
             },
-            { type: "paragraph", text: "The report covers the selected period and can include:" },
+            {
+              type: "paragraph",
+              text: "The report covers the selected period and can include:",
+            },
             {
               type: "list",
               items: [
@@ -6097,7 +6647,7 @@ export const docGroups: DocGroup[] = [
               ],
             },
           ],
-        }
+        },
       ),
     ],
   },
@@ -6106,7 +6656,7 @@ export const docGroups: DocGroup[] = [
     icon: Settings,
     image: IMG.team,
     pages: [
-        page(
+      page(
         "staff-management",
         "Staff Management",
         "Staff Management lets the store owner create staff accounts and control who can access the store.",
@@ -6183,17 +6733,21 @@ export const docGroups: DocGroup[] = [
               items: [
                 { title: "Select **Add Staff Member**" },
                 {
-                  title: "Enter the person’s **Full Name**, **Email**, and a temporary **Password**",
-                  detail: "These fields are required. The password must have at least six characters.",
+                  title:
+                    "Enter the person’s **Full Name**, **Email**, and a temporary **Password**",
+                  detail:
+                    "These fields are required. The password must have at least six characters.",
                 },
                 { title: "Select a **Role**" },
                 { title: "Add a **Phone** number if useful" },
                 {
-                  title: "If the location picker is available, select the locations this person should access",
+                  title:
+                    "If the location picker is available, select the locations this person should access",
                   detail: "Leave it empty to assign the Primary location.",
                 },
                 {
-                  title: "Check the **This role can** summary, then choose **Create Account**",
+                  title:
+                    "Check the **This role can** summary, then choose **Create Account**",
                 },
               ],
             },
@@ -6239,7 +6793,8 @@ export const docGroups: DocGroup[] = [
               items: [
                 { title: "Select the pencil button beside a staff member" },
                 {
-                  title: "Update their name, phone, role where allowed, and location assignments",
+                  title:
+                    "Update their name, phone, role where allowed, and location assignments",
                 },
                 { title: "Select **Save Changes**" },
               ],
@@ -6266,7 +6821,10 @@ export const docGroups: DocGroup[] = [
             },
 
             { type: "heading", text: "Activate or deactivate an account" },
-            { type: "paragraph", text: "Use the status action beside the staff member:" },
+            {
+              type: "paragraph",
+              text: "Use the status action beside the staff member:",
+            },
             {
               type: "list",
               items: [
@@ -6307,7 +6865,7 @@ export const docGroups: DocGroup[] = [
               ],
             },
           ],
-        }
+        },
       ),
       page(
         "subscription",
@@ -6320,7 +6878,10 @@ export const docGroups: DocGroup[] = [
               type: "steps",
               items: [
                 { title: "Sign in to your EliteHMS account" },
-                { title: "Select My Subscription in the left-hand menu", detail: "It is near the top of the menu." },
+                {
+                  title: "Select My Subscription in the left-hand menu",
+                  detail: "It is near the top of the menu.",
+                },
                 { title: "The Subscription & Billing page opens" },
               ],
             },
@@ -6349,7 +6910,10 @@ export const docGroups: DocGroup[] = [
             },
 
             { type: "heading", text: "Current Usage" },
-            { type: "paragraph", text: "This section shows how much of your plan’s allowance your store has used." },
+            {
+              type: "paragraph",
+              text: "This section shows how much of your plan’s allowance your store has used.",
+            },
             {
               type: "list",
               items: [
@@ -6359,7 +6923,10 @@ export const docGroups: DocGroup[] = [
                 "Bills This Month: Unlimited",
               ],
             },
-            { type: "paragraph", text: "The progress bars show your usage visually." },
+            {
+              type: "paragraph",
+              text: "The progress bars show your usage visually.",
+            },
             {
               type: "callout",
               kind: "note",
@@ -6369,7 +6936,8 @@ export const docGroups: DocGroup[] = [
               type: "image",
               src: IMG.analytics,
               alt: "Current usage section with progress bars",
-              caption: "Usage progress bars for medicines, patients, staff, and bills",
+              caption:
+                "Usage progress bars for medicines, patients, staff, and bills",
             },
 
             { type: "heading", text: "Payment History" },
@@ -6406,7 +6974,7 @@ export const docGroups: DocGroup[] = [
               text: "The values in these screenshots are examples from the account shown. Your plan, usage, payment history, prices, and renewal date may be different.",
             },
           ],
-        }
+        },
       ),
       page(
         "my-locations",
@@ -6468,14 +7036,19 @@ export const docGroups: DocGroup[] = [
               type: "steps",
               items: [
                 { title: "Select **Add Location**" },
-                { title: "Enter a **Location Name**", detail: "This is required." },
                 {
-                  title: "Add the code, address, phone number, and city if available",
+                  title: "Enter a **Location Name**",
+                  detail: "This is required.",
+                },
+                {
+                  title:
+                    "Add the code, address, phone number, and city if available",
                   detail: "These fields are optional on the form.",
                 },
                 {
                   title: "Check that the name and code are correct",
-                  detail: "Make sure they are not already used by another location in your account.",
+                  detail:
+                    "Make sure they are not already used by another location in your account.",
                 },
                 { title: "Review the price summary, then continue" },
               ],
@@ -6512,10 +7085,14 @@ export const docGroups: DocGroup[] = [
                   title: "Continue to **Subscription & Billing**",
                   detail: "Review the plan, location count, and total due.",
                 },
-                { title: "Choose the payment method shown", detail: "Send the displayed amount." },
+                {
+                  title: "Choose the payment method shown",
+                  detail: "Send the displayed amount.",
+                },
                 {
                   title: "Add your store email as the payment reference",
-                  detail: "Use it as the reference or description, as instructed in the payment window.",
+                  detail:
+                    "Use it as the reference or description, as instructed in the payment window.",
                 },
                 { title: "Enter the transaction ID or reference number" },
                 {
@@ -6584,7 +7161,8 @@ export const docGroups: DocGroup[] = [
                 { title: "Open **Staff Management** from the left menu" },
                 { title: "Add a staff member or edit an existing one" },
                 {
-                  title: "Under **Assigned Locations**, select the branches where that person should work",
+                  title:
+                    "Under **Assigned Locations**, select the branches where that person should work",
                 },
                 { title: "Save or create the staff account" },
               ],
@@ -6613,7 +7191,7 @@ export const docGroups: DocGroup[] = [
               ],
             },
           ],
-        }
+        },
       ),
       page(
         "reports-analytics",
@@ -6627,7 +7205,9 @@ export const docGroups: DocGroup[] = [
               type: "steps",
               items: [
                 { title: "From the dashboard, open the left menu" },
-                { title: "Choose **Reports & Analytics** under **Management**" },
+                {
+                  title: "Choose **Reports & Analytics** under **Management**",
+                },
               ],
             },
             {
@@ -6716,7 +7296,10 @@ export const docGroups: DocGroup[] = [
             },
 
             { type: "heading", text: "Read the charts and lists" },
-            { type: "paragraph", text: "Scroll down to explore the rest of the report:" },
+            {
+              type: "paragraph",
+              text: "Scroll down to explore the rest of the report:",
+            },
             {
               type: "list",
               items: [
@@ -6786,7 +7369,7 @@ export const docGroups: DocGroup[] = [
               text: "The report is based on bills created within the selected dates; it is not a live bank statement.",
             },
           ],
-        }
+        },
       ),
       page(
         "accounting-finance",
@@ -6833,7 +7416,10 @@ export const docGroups: DocGroup[] = [
             },
 
             { type: "heading", text: "P&L Statement" },
-            { type: "paragraph", text: "The **Profit & Loss Statement** tab summarizes:" },
+            {
+              type: "paragraph",
+              text: "The **Profit & Loss Statement** tab summarizes:",
+            },
             {
               type: "list",
               items: [
@@ -6868,7 +7454,10 @@ export const docGroups: DocGroup[] = [
               type: "paragraph",
               text: "Choose **Expenses** to review entries for the selected month. You can filter by category, use the page controls to browse entries, and export the displayed expenses to Excel.",
             },
-            { type: "paragraph", text: "To add an expense, choose **Add Expense** and enter:" },
+            {
+              type: "paragraph",
+              text: "To add an expense, choose **Add Expense** and enter:",
+            },
             {
               type: "steps",
               items: [
@@ -6876,16 +7465,22 @@ export const docGroups: DocGroup[] = [
                 { title: "**Amount** and **Date**" },
                 {
                   title: "Payment method",
-                  detail: "Cash, Bank Transfer, Cheque, JazzCash, EasyPaisa, or Other.",
+                  detail:
+                    "Cash, Bank Transfer, Cheque, JazzCash, EasyPaisa, or Other.",
                 },
-                { title: "Vendor/supplier, invoice number, and reference or cheque number if available" },
+                {
+                  title:
+                    "Vendor/supplier, invoice number, and reference or cheque number if available",
+                },
                 {
                   title: "If applicable, select **GST Applicable (FBR)**",
-                  detail: "Enter the GST rate and vendor NTN. The form shows the GST amount and total with GST.",
+                  detail:
+                    "Enter the GST rate and vendor NTN. The form shows the GST amount and total with GST.",
                 },
                 {
                   title: "Add notes if needed",
-                  detail: "The form also has a **Recurring expense** option with Monthly, Quarterly, or Yearly cycles.",
+                  detail:
+                    "The form also has a **Recurring expense** option with Monthly, Quarterly, or Yearly cycles.",
                 },
                 { title: "Select **Add Expense** to save it" },
               ],
@@ -6978,7 +7573,7 @@ export const docGroups: DocGroup[] = [
               text: "The form records a recurring cycle, so check the expense list to confirm future entries are recorded.",
             },
           ],
-        }
+        },
       ),
       page(
         "insurance-panels",
@@ -7080,7 +7675,10 @@ export const docGroups: DocGroup[] = [
                 { title: "Select **Link Patient**" },
                 { title: "Search for the patient" },
                 { title: "Choose the panel" },
-                { title: "Enter the policy/member number and coverage expiry date" },
+                {
+                  title:
+                    "Enter the policy/member number and coverage expiry date",
+                },
               ],
             },
             {
@@ -7106,11 +7704,13 @@ export const docGroups: DocGroup[] = [
               items: [
                 {
                   title: "Select **New Claim**",
-                  detail: "Choose the patient, panel, and total bill amount. The patient should already have the relevant insurance information recorded.",
+                  detail:
+                    "Choose the patient, panel, and total bill amount. The patient should already have the relevant insurance information recorded.",
                 },
                 {
                   title: "Review the calculation",
-                  detail: "The page calculates an estimated insurance portion and patient portion using the panel’s coverage percentage and maximum claim per bill.",
+                  detail:
+                    "The page calculates an estimated insurance portion and patient portion using the panel’s coverage percentage and maximum claim per bill.",
                 },
                 {
                   title: "Indicate whether pre-authorization is required",
@@ -7201,7 +7801,7 @@ export const docGroups: DocGroup[] = [
               ],
             },
           ],
-        }
+        },
       ),
       page(
         "salary-payroll",
@@ -7253,18 +7853,25 @@ export const docGroups: DocGroup[] = [
             {
               type: "steps",
               items: [
-                { title: "Open **Employee Profiles** and choose **Add Profile**" },
+                {
+                  title:
+                    "Open **Employee Profiles** and choose **Add Profile**",
+                },
                 {
                   title: "Select an existing staff member",
-                  detail: "This form creates a salary profile for that person, not a new staff account.",
+                  detail:
+                    "This form creates a salary profile for that person, not a new staff account.",
                 },
                 {
                   title: "Enter their basic salary",
-                  detail: "And, if applicable, designation, department, employee code, joining date, employment type, and bank details.",
+                  detail:
+                    "And, if applicable, designation, department, employee code, joining date, employment type, and bank details.",
                 },
                 {
-                  title: "Add allowances such as housing, medical, transport, or bonus",
-                  detail: "An allowance can be a fixed amount or a percentage of basic salary. The form previews gross monthly salary.",
+                  title:
+                    "Add allowances such as housing, medical, transport, or bonus",
+                  detail:
+                    "An allowance can be a fixed amount or a percentage of basic salary. The form previews gross monthly salary.",
                 },
                 {
                   title: "Choose whether to deduct EOBI and income tax",
@@ -7293,7 +7900,8 @@ export const docGroups: DocGroup[] = [
                 { title: "Choose **Generate Payroll**" },
                 {
                   title: "Review each employee’s record before paying",
-                  detail: "If needed, select **Adjust** to enter days absent, overtime hours, bonuses, and notes.",
+                  detail:
+                    "If needed, select **Adjust** to enter days absent, overtime hours, bonuses, and notes.",
                 },
               ],
             },
@@ -7382,7 +7990,8 @@ export const docGroups: DocGroup[] = [
                 { title: "Select the employee" },
                 {
                   title: "Enter the amount, date, and reason",
-                  detail: "You can also add an optional monthly recovery amount, approver, and notes.",
+                  detail:
+                    "You can also add an optional monthly recovery amount, approver, and notes.",
                 },
               ],
             },
@@ -7442,7 +8051,7 @@ export const docGroups: DocGroup[] = [
               ],
             },
           ],
-        }
+        },
       ),
       page(
         "whatsapp-sms-broadcast",
@@ -7592,7 +8201,8 @@ export const docGroups: DocGroup[] = [
               items: [
                 {
                   title: "Review the campaign details",
-                  detail: "Title, channel, audience, recipient count, skipped count, and message preview. If anything is wrong, go back and edit it.",
+                  detail:
+                    "Title, channel, audience, recipient count, skipped count, and message preview. If anything is wrong, go back and edit it.",
                 },
                 { title: "Select **Create & Start Sending**" },
               ],
@@ -7610,7 +8220,10 @@ export const docGroups: DocGroup[] = [
             {
               type: "steps",
               items: [
-                { title: "Check the patient name, number, and personalized message" },
+                {
+                  title:
+                    "Check the patient name, number, and personalized message",
+                },
                 { title: "Select **Open in WhatsApp** or **Open in SMS**" },
                 {
                   title: "Press **Send** in WhatsApp or SMS yourself",
@@ -7690,7 +8303,7 @@ export const docGroups: DocGroup[] = [
               text: "Review health advice carefully and have a qualified clinician approve it when needed. Follow your clinic’s consent and communication rules.",
             },
           ],
-        }
+        },
       ),
       page(
         "patient-feedback",
@@ -7765,7 +8378,8 @@ export const docGroups: DocGroup[] = [
                 { title: "Select **Generate Feedback Link**" },
                 { title: "Search for a patient and select the correct record" },
                 {
-                  title: "If available, link the request to a completed appointment",
+                  title:
+                    "If available, link the request to a completed appointment",
                   detail: "You can leave it as **General feedback** instead.",
                 },
                 { title: "Enter or confirm the doctor’s name" },
@@ -7776,10 +8390,12 @@ export const docGroups: DocGroup[] = [
                 { title: "Select **Generate Link**" },
                 {
                   title: "Send the link",
-                  detail: "Use **Send via WhatsApp**, or select **Copy** and share it through another approved channel.",
+                  detail:
+                    "Use **Send via WhatsApp**, or select **Copy** and share it through another approved channel.",
                 },
                 {
-                  title: "Use **Preview Form** to see what the patient will see",
+                  title:
+                    "Use **Preview Form** to see what the patient will see",
                 },
               ],
             },
@@ -7880,7 +8496,7 @@ export const docGroups: DocGroup[] = [
               text: "Keep patient comments private and follow your clinic’s privacy practices when discussing them with staff.",
             },
           ],
-        }
+        },
       ),
       page(
         "audit-log",
@@ -8048,7 +8664,7 @@ export const docGroups: DocGroup[] = [
               ],
             },
           ],
-        }
+        },
       ),
       page(
         "backup-restore",
@@ -8101,7 +8717,8 @@ export const docGroups: DocGroup[] = [
                 { title: "Select **Download Full Backup (.json)**" },
                 {
                   title: "Save the downloaded file somewhere secure",
-                  detail: "Such as an access-controlled drive or encrypted backup location.",
+                  detail:
+                    "Such as an access-controlled drive or encrypted backup location.",
                 },
               ],
             },
@@ -8160,14 +8777,19 @@ export const docGroups: DocGroup[] = [
               type: "steps",
               items: [
                 {
-                  title: "Under **Restore from Backup**, select **Choose .json File** and pick a backup exported by the app",
+                  title:
+                    "Under **Restore from Backup**, select **Choose .json File** and pick a backup exported by the app",
                 },
                 {
                   title: "Choose which data types to restore",
-                  detail: "Medicines, Patients, Bills / Invoices, or Purchase Orders.",
+                  detail:
+                    "Medicines, Patients, Bills / Invoices, or Purchase Orders.",
                 },
                 { title: "Select **Restore Selected Data**" },
-                { title: "Review the result counts, including any skipped records" },
+                {
+                  title:
+                    "Review the result counts, including any skipped records",
+                },
               ],
             },
             {
@@ -8191,7 +8813,10 @@ export const docGroups: DocGroup[] = [
               text: "Before restoring data, especially into a live store, keep a fresh backup and check the selected categories. Imported records can update matching medicines and patients.",
             },
 
-            { type: "heading", text: "“No backup taken yet” and the Last backup notice" },
+            {
+              type: "heading",
+              text: "“No backup taken yet” and the Last backup notice",
+            },
             {
               type: "paragraph",
               text: "The page may show **No backup taken yet** or a **Last backup** time. This timestamp is stored in the current browser after a successful download; it is a reminder, not proof that the backup file still exists or that a server-side backup was made.",
@@ -8214,7 +8839,7 @@ export const docGroups: DocGroup[] = [
               ],
             },
           ],
-        }
+        },
       ),
       page(
         "invoice-templates",
@@ -8302,14 +8927,17 @@ export const docGroups: DocGroup[] = [
               items: [
                 {
                   title: "Upload a PNG or JPG logo",
-                  detail: "The page recommends an image around 200 × 80 pixels.",
+                  detail:
+                    "The page recommends an image around 200 × 80 pixels.",
                 },
                 { title: "After selecting a file, choose **Upload**" },
                 {
-                  title: "If a logo is already present, choose **Replace** or **Remove**",
+                  title:
+                    "If a logo is already present, choose **Replace** or **Remove**",
                 },
                 {
-                  title: "Use **Show Logo on Invoice** to control whether it appears on the invoice",
+                  title:
+                    "Use **Show Logo on Invoice** to control whether it appears on the invoice",
                 },
               ],
             },
@@ -8385,15 +9013,25 @@ export const docGroups: DocGroup[] = [
                 "**Line Spacing:** Adjustable from 4 to 8 mm.",
               ],
             },
-            { type: "paragraph", text: "For a thermal printer, the app’s setup guidance is:" },
+            {
+              type: "paragraph",
+              text: "For a thermal printer, the app’s setup guidance is:",
+            },
             {
               type: "steps",
               items: [
-                { title: "Select **Thermal 80mm** or **Thermal 58mm** in **Template & Brand**" },
-                { title: "Print the invoice as a PDF from billing" },
-                { title: "Open the PDF’s print settings and choose the matching paper width" },
                 {
-                  title: "Set margins to none or borderless if your printer supports it",
+                  title:
+                    "Select **Thermal 80mm** or **Thermal 58mm** in **Template & Brand**",
+                },
+                { title: "Print the invoice as a PDF from billing" },
+                {
+                  title:
+                    "Open the PDF’s print settings and choose the matching paper width",
+                },
+                {
+                  title:
+                    "Set margins to none or borderless if your printer supports it",
                 },
               ],
             },
@@ -8436,7 +9074,7 @@ export const docGroups: DocGroup[] = [
               ],
             },
           ],
-        }
+        },
       ),
       page(
         "document-storage",
@@ -8494,16 +9132,23 @@ export const docGroups: DocGroup[] = [
             {
               type: "steps",
               items: [
-                { title: "Select **Upload Document** or **Upload First Document**" },
+                {
+                  title:
+                    "Select **Upload Document** or **Upload First Document**",
+                },
                 {
                   title: "Choose the type of record",
                   detail: "Patient, Medicine, Store, or Supplier.",
                 },
                 { title: "Select the record the document belongs to" },
                 {
-                  title: "Choose a file, enter a **Document Title**, and select a **Category**",
+                  title:
+                    "Choose a file, enter a **Document Title**, and select a **Category**",
                 },
-                { title: "Add **Notes** or **Tags** if useful, then select **Upload Document**" },
+                {
+                  title:
+                    "Add **Notes** or **Tags** if useful, then select **Upload Document**",
+                },
               ],
             },
             {
@@ -8579,7 +9224,10 @@ export const docGroups: DocGroup[] = [
               text: "The summary cards and regular list show active documents; use the archive filter to find archived items.",
             },
 
-            { type: "heading", text: "Open, edit, archive, or delete a document" },
+            {
+              type: "heading",
+              text: "Open, edit, archive, or delete a document",
+            },
             {
               type: "list",
               items: [
@@ -8612,7 +9260,7 @@ export const docGroups: DocGroup[] = [
               ],
             },
           ],
-        }
+        },
       ),
       page(
         "settings",
@@ -8654,11 +9302,13 @@ export const docGroups: DocGroup[] = [
               type: "steps",
               items: [
                 {
-                  title: "Enter the required **Store / Pharmacy Name**, **Address**, and **Phone Number**",
+                  title:
+                    "Enter the required **Store / Pharmacy Name**, **Address**, and **Phone Number**",
                 },
                 {
                   title: "Add the optional details",
-                  detail: "**Doctor / Owner Name**, **Email**, and **Drug License No.**",
+                  detail:
+                    "**Doctor / Owner Name**, **Email**, and **Drug License No.**",
                 },
                 { title: "Select **Save Store Profile** when finished" },
               ],
@@ -8696,7 +9346,10 @@ export const docGroups: DocGroup[] = [
               text: "The email and role are displayed for reference here.",
             },
 
-            { type: "heading", text: "Security tab — Password and sign-in protection" },
+            {
+              type: "heading",
+              text: "Security tab — Password and sign-in protection",
+            },
             { type: "subheading", text: "Change password" },
             {
               type: "steps",
@@ -8802,7 +9455,10 @@ export const docGroups: DocGroup[] = [
               text: "Select **Reset All** to restore the navigation items.",
             },
 
-            { type: "heading", text: "Mobile App tab — Install and notifications" },
+            {
+              type: "heading",
+              text: "Mobile App tab — Install and notifications",
+            },
             { type: "subheading", text: "Install MediStore" },
             {
               type: "paragraph",
@@ -8844,7 +9500,7 @@ export const docGroups: DocGroup[] = [
               ],
             },
           ],
-        }
+        },
       ),
     ],
   },
@@ -8853,7 +9509,7 @@ export const docGroups: DocGroup[] = [
     icon: LifeBuoy,
     image: IMG.doctor,
     pages: [
-        page(
+      page(
         "support-center",
         "Support Center",
         "Use Support Center to send a question or report a problem to the MediStore team.",
@@ -8903,10 +9559,15 @@ export const docGroups: DocGroup[] = [
                   detail: "See the categories below.",
                 },
                 {
-                  title: "Choose a **Priority**: **Low**, **Medium**, **High**, or **Urgent**",
-                  detail: "Select the level that best reflects how much the issue is affecting your work.",
+                  title:
+                    "Choose a **Priority**: **Low**, **Medium**, **High**, or **Urgent**",
+                  detail:
+                    "Select the level that best reflects how much the issue is affecting your work.",
                 },
-                { title: "Describe the issue in detail, then select **Submit Ticket**" },
+                {
+                  title:
+                    "Describe the issue in detail, then select **Submit Ticket**",
+                },
               ],
             },
             {
@@ -8990,7 +9651,7 @@ export const docGroups: DocGroup[] = [
               text: "The 24-hour response time is a typical estimate shown in the app, not a guaranteed resolution time.",
             },
           ],
-        }
+        },
       ),
       page("troubleshooting", "Troubleshooting"),
       page("contact-support", "Contact Support"),
@@ -8999,13 +9660,21 @@ export const docGroups: DocGroup[] = [
 ];
 
 // ───────────── Lookups ─────────────
-export const allDocPages = docGroups.flatMap((g) => g.pages.map((p) => ({ ...p, group: g })));
+export const allDocPages = docGroups.flatMap((g) =>
+  g.pages.map((p) => ({ ...p, group: g })),
+);
 
-export const docHref = (slug: string) => (slug === "introduction" ? "/documentation" : `/documentation/${slug}`);
+export const docHref = (slug: string) =>
+  slug === "introduction" ? "/documentation" : `/documentation/${slug}`;
 
 export function findDocPage(slug: string) {
   const i = allDocPages.findIndex((p) => p.slug === slug);
   if (i === -1) return null;
   const page = allDocPages[i];
-  return { page, group: page.group, prev: allDocPages[i - 1] ?? null, next: allDocPages[i + 1] ?? null };
+  return {
+    page,
+    group: page.group,
+    prev: allDocPages[i - 1] ?? null,
+    next: allDocPages[i + 1] ?? null,
+  };
 }
