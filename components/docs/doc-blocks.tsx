@@ -1,6 +1,7 @@
 import { Fragment } from "react";
 import {
   AlertTriangle,
+  ArrowRight,
   BarChart3,
   Building2,
   Info,
@@ -12,9 +13,10 @@ import {
   Users,
   type LucideIcon,
 } from "lucide-react";
-import { slugify, type DocBlock } from "@/content/documentation";
+import { docHref, slugify, type DocBlock } from "@/content/documentation";
 import { cn } from "@/lib/utils";
 import { DocImage } from "./doc-image";
+import Link from "next/link";
 
 const CALLOUT = {
   tip: {
@@ -49,21 +51,55 @@ const CARD_ICONS: Record<string, LucideIcon> = {
 };
 
 /** Renders **bold** text. Use it for button names and UI labels. */
+const safeHref = (href: string) => /^(https?:\/\/|mailto:|tel:|\/)/.test(href);
+
+/** Renders **bold** text and [label](link) links. Use it for button names and contact details. */
 function Inline({ text }: { text: string }) {
+  const linkClass =
+    "font-medium text-[rgb(var(--primary))] underline underline-offset-2 hover:opacity-80";
+
   return (
     <>
-      {text.split(/(\*\*[^*]+\*\*)/g).map((part, i) =>
-        part.startsWith("**") && part.endsWith("**") ? (
-          <strong
-            key={i}
-            className="font-semibold text-[rgb(var(--foreground))]"
-          >
-            {part.slice(2, -2)}
-          </strong>
-        ) : (
-          <Fragment key={i}>{part}</Fragment>
-        ),
-      )}
+      {text.split(/(\*\*[^*]+\*\*|\[[^\]]+\]\([^)\s]+\))/g).map((part, i) => {
+        const bold = /^\*\*([^*]+)\*\*$/.exec(part);
+        if (bold) {
+          return (
+            <strong
+              key={i}
+              className="font-semibold text-[rgb(var(--foreground))]"
+            >
+              {bold[1]}
+            </strong>
+          );
+        }
+
+        const link = /^\[([^\]]+)\]\(([^)\s]+)\)$/.exec(part);
+        if (link && safeHref(link[2])) {
+          const [, label, href] = link;
+          if (href.startsWith("/")) {
+            return (
+              <Link key={i} href={href} className={linkClass}>
+                {label}
+              </Link>
+            );
+          }
+          const external = href.startsWith("http");
+          return (
+            <a
+              key={i}
+              href={href}
+              className={linkClass}
+              {...(external
+                ? { target: "_blank", rel: "noopener noreferrer" }
+                : {})}
+            >
+              {label}
+            </a>
+          );
+        }
+
+        return <Fragment key={i}>{part}</Fragment>;
+      })}
     </>
   );
 }
@@ -188,6 +224,71 @@ export function DocBlocks({ blocks }: { blocks: DocBlock[] }) {
                     </div>
                   );
                 })}
+              </div>
+            );
+          case "links":
+            return (
+              <div key={i} className="my-6 grid gap-3 sm:grid-cols-2">
+                {b.items.map((l, j) => (
+                  <Link
+                    key={j}
+                    href={docHref(l.slug)}
+                    className="group flex items-start justify-between gap-3 rounded-xl border border-[rgb(var(--border))] p-4 transition-colors hover:border-[rgb(var(--primary))]"
+                  >
+                    <span className="min-w-0">
+                      <span className="block font-semibold group-hover:text-[rgb(var(--primary))]">
+                        {l.title}
+                      </span>
+                      <span className="mt-1 block text-sm leading-6 opacity-70">
+                        {l.text}
+                      </span>
+                    </span>
+                    <ArrowRight
+                      size={16}
+                      className="mt-1 shrink-0 opacity-40 transition-all group-hover:translate-x-0.5 group-hover:text-[rgb(var(--primary))] group-hover:opacity-100"
+                    />
+                  </Link>
+                ))}
+              </div>
+            );
+
+          case "table":
+            return (
+              <div
+                key={i}
+                className="my-6 overflow-x-auto rounded-xl border border-[rgb(var(--border))]"
+              >
+                <table className="w-full min-w-[560px] border-collapse text-sm">
+                  <thead>
+                    <tr className="bg-[rgb(var(--muted))] text-left">
+                      {b.headers.map((h, j) => (
+                        <th key={j} className="px-4 py-3 font-semibold">
+                          {h}
+                        </th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {b.rows.map((r, j) => (
+                      <tr
+                        key={j}
+                        className="border-t border-[rgb(var(--border))]"
+                      >
+                        {r.map((c, k) => (
+                          <td
+                            key={k}
+                            className={cn(
+                              "px-4 py-3 align-top leading-6",
+                              k === 0 && "font-semibold",
+                            )}
+                          >
+                            <Inline text={c} />
+                          </td>
+                        ))}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
               </div>
             );
         }

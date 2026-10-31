@@ -8,7 +8,7 @@ import {
   Stethoscope,
   type LucideIcon,
 } from "lucide-react";
-
+import Link from "next/link";
 // ───────────── Types ─────────────
 export type DocBlock =
   | { type: "heading"; text: string }
@@ -18,7 +18,9 @@ export type DocBlock =
   | { type: "image"; src: string; alt: string; caption?: string }
   | { type: "steps"; items: { title: string; detail?: string }[] }
   | { type: "callout"; kind: "tip" | "note" | "warning"; text: string }
-  | { type: "cards"; items: { icon?: string; title: string; text: string }[] };
+  | { type: "cards"; items: { icon?: string; title: string; text: string }[] }
+  | { type: "links"; items: { slug: string; title: string; text: string }[] }
+  | { type: "table"; headers: string[]; rows: string[][] };
 
 export type DocPage = {
   slug: string;
@@ -218,7 +220,852 @@ export const docGroups: DocGroup[] = [
           ],
         },
       ),
-      page("quick-start", "Quick Start"),
+      page(
+        "how-to-sign-up",
+        "How to Sign Up",
+        "Create your EliteHMS account, verify your email, and complete the first-time setup.",
+        {
+          image: IMG.laptop,
+          blocks: [
+            { type: "heading", text: "Open the sign-up page" },
+            {
+              type: "paragraph",
+              text: "From the EliteHMS public website, select **Start Free Trial** or **Register**. You can also open the registration page directly at /register.",
+            },
+            {
+              type: "image",
+              src: IMG.dashboard,
+              alt: "Start Free Trial and Register buttons on the EliteHMS website",
+              caption: "Start Free Trial on the public website",
+            },
+
+            { type: "heading", text: "Create your account" },
+            {
+              type: "paragraph",
+              text: "On the **Create Account** page, enter:",
+            },
+            {
+              type: "list",
+              items: [
+                "**Full Name:** Required; enter at least 2 characters.",
+                "**Phone:** Optional.",
+                "**Email Address:** Required; use an email address you can open.",
+                "**Password:** Required; at least 6 characters.",
+              ],
+            },
+            {
+              type: "steps",
+              items: [
+                { title: "Fill in the Create Account form" },
+                { title: "Select **Start Free Trial** to create the account" },
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.form,
+              alt: "Create Account form with full name, phone, email, and password",
+              caption: "The Create Account form",
+            },
+            {
+              type: "callout",
+              kind: "note",
+              text: "The trial is for 14 days and does not require a credit card.",
+            },
+            {
+              type: "callout",
+              kind: "tip",
+              text: "If the email is already registered, sign in with that account or use the password-reset option instead of registering again.",
+            },
+
+            { type: "heading", text: "Verify your email" },
+            {
+              type: "paragraph",
+              text: "After registration, the app sends a verification link to the email address you entered.",
+            },
+            {
+              type: "steps",
+              items: [
+                { title: "Open the email and select its verification link" },
+                {
+                  title: "The link expires after 24 hours",
+                },
+                {
+                  title:
+                    "Once verified, the account signs in and opens the setup guide",
+                },
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.email,
+              alt: "Verification email with a link to verify the account",
+              caption: "The verification email",
+            },
+            {
+              type: "callout",
+              kind: "tip",
+              text: "If the email does not arrive, check your spam or junk folder. You can request another verification email from the registration confirmation page or the verification page.",
+            },
+
+            { type: "heading", text: "Complete the first-time setup" },
+            {
+              type: "paragraph",
+              text: "After email verification, the store owner is guided through a short setup.",
+            },
+            { type: "subheading", text: "1. Set up your store" },
+            {
+              type: "paragraph",
+              text: "Enter the **Pharmacy / Store Name**, **Address**, and **Phone Number**. These are required. **Doctor / Owner Name** and **Drug License No.** are optional.",
+            },
+            {
+              type: "callout",
+              kind: "note",
+              text: "This information is saved as the store profile and used on invoices.",
+            },
+            { type: "subheading", text: "2. Add your first medicine" },
+            {
+              type: "paragraph",
+              text: "Enter a medicine name, category, sale price, stock quantity, and expiry date. These fields are required in the setup step.",
+            },
+            {
+              type: "callout",
+              kind: "tip",
+              text: "You can add more medicines later from the **Medicines** page.",
+            },
+            {
+              type: "subheading",
+              text: "3. Invite your first staff member (optional)",
+            },
+            {
+              type: "paragraph",
+              text: "Add a staff member’s name, role, email, and temporary password. Or select **Skip — I work alone or will invite staff later**.",
+            },
+            { type: "subheading", text: "4. Go to the dashboard" },
+            {
+              type: "paragraph",
+              text: "Review the setup summary, then select **Go to Dashboard**.",
+            },
+            {
+              type: "image",
+              src: IMG.team,
+              alt: "First-time setup with store details, first medicine, and staff invitation",
+              caption: "The first-time setup guide",
+            },
+            {
+              type: "callout",
+              kind: "tip",
+              text: "You can change store details later in **Settings** and continue adding records from the dashboard.",
+            },
+
+            { type: "heading", text: "Helpful definitions" },
+            {
+              type: "list",
+              items: [
+                "**Email verification:** Confirms you can access the email address used for the account.",
+                "**Free trial:** Temporary access to the app before choosing or paying for a subscription.",
+                "**Onboarding:** The guided steps that help set up the store after registration.",
+                "**Expiry date:** The date after which a medicine should not be used or sold.",
+              ],
+            },
+
+            { type: "heading", text: "Next steps" },
+            {
+              type: "list",
+              items: [
+                "**Dashboard:** Learn what the dashboard shows.",
+                "**Medicines:** Add and manage your medicine inventory.",
+                "**Staff Management:** Create accounts for your team.",
+                "**Settings:** Update your store profile and account options.",
+              ],
+            },
+          ],
+        },
+      ),
+      page(
+        "how-to-log-in",
+        "How to Log In",
+        "Sign in to your EliteHMS account, use two-factor authentication, and recover access if you forget your password.",
+        {
+          image: IMG.reception,
+          blocks: [
+            { type: "heading", text: "Open the sign-in page" },
+            {
+              type: "paragraph",
+              text: "On the EliteHMS website, select **Sign In**. You can also open /login.",
+            },
+            {
+              type: "image",
+              src: IMG.dashboard,
+              alt: "Sign In button on the EliteHMS website",
+              caption: "Sign In on the public website",
+            },
+
+            { type: "heading", text: "Sign in with your account" },
+            {
+              type: "steps",
+              items: [
+                { title: "Enter your **Email Address**" },
+                { title: "Enter your **Password**" },
+                { title: "Select **Login**" },
+                {
+                  title:
+                    "If your details are correct, the app opens the dashboard",
+                },
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.form,
+              alt: "Sign-in form with email address, password, and the Login button",
+              caption: "The sign-in form",
+            },
+            {
+              type: "callout",
+              kind: "tip",
+              text: "Use the email address associated with your account.",
+            },
+            {
+              type: "callout",
+              kind: "warning",
+              text: "Staff members should sign in using their own account details. Do not share one login across multiple people.",
+            },
+
+            {
+              type: "heading",
+              text: "If two-factor authentication is enabled",
+            },
+            {
+              type: "paragraph",
+              text: "After your email and password are accepted, the app asks for a code:",
+            },
+            {
+              type: "steps",
+              items: [
+                {
+                  title: "Open your authenticator app",
+                  detail: "Such as Google Authenticator or Authy.",
+                },
+                { title: "Enter the current 6-digit code" },
+                { title: "Select **Verify & Login**" },
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.alert,
+              alt: "Two-factor authentication code screen with the Verify & Login button",
+              caption: "Entering the authenticator code",
+            },
+            {
+              type: "callout",
+              kind: "tip",
+              text: "If you cannot access your authenticator, enter one of your saved recovery codes instead. A recovery code can be used once.",
+            },
+
+            { type: "heading", text: "If your email is not verified" },
+            {
+              type: "paragraph",
+              text: "The app will ask you to verify your email before allowing sign-in. Select **Resend verification email**, then open the link in your inbox.",
+            },
+            {
+              type: "callout",
+              kind: "tip",
+              text: "Check your spam or junk folder if the email does not arrive.",
+            },
+
+            { type: "heading", text: "If you forgot your password" },
+            {
+              type: "steps",
+              items: [
+                { title: "Select **Forgot password?** on the sign-in page" },
+                {
+                  title:
+                    "Enter your account email and select **Send Reset Link**",
+                },
+                {
+                  title: "Open the password reset email and follow its link",
+                  detail: "The link expires after 1 hour.",
+                },
+                {
+                  title:
+                    "Enter a new password twice, then select **Reset Password**",
+                },
+                {
+                  title:
+                    "Return to **Sign In** and log in with the new password",
+                },
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.email,
+              alt: "Password reset email with a link to reset the password",
+              caption: "The password reset email",
+            },
+            {
+              type: "callout",
+              kind: "note",
+              text: "The new password must be at least six characters.",
+            },
+            {
+              type: "callout",
+              kind: "tip",
+              text: "If the email does not arrive, check spam or junk, or try sending the reset link again.",
+            },
+
+            { type: "heading", text: "Common sign-in problems" },
+            {
+              type: "list",
+              items: [
+                "**Invalid email or password:** Check for typing errors, then try again.",
+                "**Email not verified:** Use the resend link and verify the account first.",
+                "**Account deactivated:** Contact your store owner or administrator.",
+                "**Invalid authenticator code:** Wait for a fresh code in the authenticator app, or use a recovery code.",
+                "**Still cannot sign in:** Use **Forgot password?** or contact the store owner or Support Center.",
+              ],
+            },
+
+            { type: "heading", text: "See also" },
+            {
+              type: "list",
+              items: [
+                "**How to Sign Up:** Create your account and complete the first-time setup.",
+                "**Settings:** Turn two-factor authentication on or off and change your password.",
+                "**Staff Management:** Activate, deactivate, or reset the password of a staff account.",
+              ],
+            },
+          ],
+        },
+      ),
+      page(
+        "plans-pricing",
+        "EliteHMS Plans, Prices & Payments",
+        "Compare EliteHMS plans, see what each one includes, and learn how to subscribe, upgrade, and pay.",
+        {
+          image: IMG.checkout,
+          blocks: [
+            { type: "heading", text: "Where to find plans" },
+            {
+              type: "list",
+              items: [
+                "**Before signing in:** Open the website’s **Pricing** page. Use the **Monthly / Annual** switch to compare prices and features.",
+                "**After signing in:** Open **My Subscription** from the dashboard menu. Here you can see your current plan, renewal date, usage, payment history, and available upgrades.",
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.finance,
+              alt: "The Pricing page with the Monthly / Annual switch",
+              caption: "The Pricing page on the public website",
+            },
+            {
+              type: "callout",
+              kind: "note",
+              text: "Prices below are the amounts currently shown in EliteHMS. Check the **Pricing** page or the payment screen before paying, in case prices have changed.",
+            },
+
+            { type: "heading", text: "Plans and monthly prices" },
+            {
+              type: "table",
+              headers: [
+                "Plan",
+                "Price per month",
+                "Included limits",
+                "Best suited for",
+              ],
+              rows: [
+                [
+                  "Pharmacy Basic",
+                  "Rs 1,999",
+                  "500 medicines, 300 patients, 3 staff",
+                  "A small pharmacy or medical store",
+                ],
+                [
+                  "Pharmacy Pro",
+                  "Rs 3,999",
+                  "Unlimited medicines and patients, 5 staff",
+                  "A pharmacy needing lab tests, appointments, and advanced reporting",
+                ],
+                [
+                  "Clinic",
+                  "Rs 5,999",
+                  "Unlimited, 10 staff",
+                  "A clinic needing OPD, patient records, vital signs, and online booking",
+                ],
+                [
+                  "Hospital Basic",
+                  "Rs 10,999",
+                  "Unlimited, 20 staff",
+                  "A hospital needing admissions, wards, beds, OT, blood bank, and radiology",
+                ],
+                [
+                  "Hospital Pro",
+                  "Rs 20,999",
+                  "Unlimited, including staff",
+                  "A hospital needing insurance, payroll, DRAP reports, AI diagnosis, and priority support",
+                ],
+              ],
+            },
+            {
+              type: "callout",
+              kind: "note",
+              text: "“Unlimited” refers to the limits listed for that plan; check the plan comparison for the exact features included.",
+            },
+            {
+              type: "paragraph",
+              text: "The Pricing page also displays an annual option with about 17% off.",
+            },
+            {
+              type: "callout",
+              kind: "warning",
+              text: "The signed-in subscription payment screen currently quotes a monthly plan amount. Confirm annual billing with EliteHMS support before sending an annual payment.",
+            },
+
+            { type: "heading", text: "What each plan adds" },
+            {
+              type: "list",
+              items: [
+                "**Pharmacy Basic:** Medicine and patient records, prescriptions, billing, suppliers, purchase orders, expiry alerts, barcode scanning, and basic reports.",
+                "**Pharmacy Pro:** Everything in Basic, plus lab tests, appointments, advanced accounting, prescription OCR, demand forecasting, and two-factor authentication.",
+                "**Clinic:** Everything in Pharmacy Pro, plus OPD queue, doctor orders and nursing notes, electronic medical records, vital signs, feedback, online booking, and broadcast campaigns.",
+                "**Hospital Basic:** Everything in Clinic, plus IPD admissions, wards and beds, nurse station, OT scheduling, blood bank, and PACS-lite radiology.",
+                "**Hospital Pro:** Everything in Hospital Basic, plus insurance panels and claims, payroll, DRAP reports, AI diagnosis, advanced tax summaries, onboarding, and priority support.",
+              ],
+            },
+
+            { type: "heading", text: "Free trial" },
+            {
+              type: "paragraph",
+              text: "The Pricing page advertises a 14-day free trial with Hospital Pro features and no card required. Review the trial terms shown on the website when you sign up.",
+            },
+            {
+              type: "callout",
+              kind: "note",
+              text: "When the trial ends, choose a paid plan to continue using features that require a subscription.",
+            },
+
+            { type: "heading", text: "How to subscribe or upgrade" },
+            {
+              type: "steps",
+              items: [
+                { title: "Sign in and open **My Subscription**" },
+                {
+                  title:
+                    "Choose **Upgrade Now** or **Renew / Upgrade**, then select a plan",
+                },
+                {
+                  title: "Review the payment summary carefully",
+                  detail:
+                    "It shows the plan price and how many locations the payment covers.",
+                },
+                {
+                  title: "Choose **JazzCash** or **Bank Transfer**",
+                  detail:
+                    "Use only the recipient details displayed in the payment screen.",
+                },
+                {
+                  title: "Send the exact amount shown",
+                  detail:
+                    "If your account has more locations than the plan includes, the summary may include an additional-location charge.",
+                },
+                {
+                  title: "Enter the transaction ID or reference",
+                  detail: "From your JazzCash message or bank receipt.",
+                },
+                {
+                  title: "Upload a screenshot of the payment receipt",
+                  detail:
+                    "PNG or JPG, up to 5 MB. Add a note if needed, then submit the payment request.",
+                },
+                {
+                  title: "Check **My Subscription** for the request status",
+                  detail:
+                    "After approval, you will also see the updated plan and payment history.",
+                },
+              ],
+            },
+            {
+              type: "image",
+              src: IMG.payment,
+              alt: "Payment summary with the plan price, location count, and payment method",
+              caption: "The payment summary",
+            },
+            {
+              type: "image",
+              src: IMG.form,
+              alt: "Payment request form with transaction ID and receipt upload",
+              caption: "The payment request form",
+            },
+            {
+              type: "callout",
+              kind: "note",
+              text: "Each plan currently includes one location. Additional locations are charged at Rs 999 per location per month in the current configuration. The payment screen’s total is the amount to use for that request.",
+            },
+
+            { type: "heading", text: "Payment methods and verification" },
+            { type: "subheading", text: "JazzCash" },
+            {
+              type: "paragraph",
+              text: "Select **JazzCash** in the payment form and send the amount to the number displayed there. The app asks you to include your store email as the payment reference or description.",
+            },
+            {
+              type: "callout",
+              kind: "tip",
+              text: "Keep the JazzCash confirmation message so you can enter its transaction ID.",
+            },
+            { type: "subheading", text: "Bank transfer" },
+            {
+              type: "paragraph",
+              text: "Select **Bank Transfer** to see the bank name, account title, and IBAN currently configured for payments.",
+            },
+            {
+              type: "callout",
+              kind: "warning",
+              text: "Check these details in the app immediately before transferring. Do not rely on bank details copied from an old guide or message.",
+            },
+
+            { type: "heading", text: "What happens after submission?" },
+            {
+              type: "paragraph",
+              text: "Your request is marked pending review while the payment is checked. The app says activation should happen within 24 hours after verification. After approval, the payment appears in **Payment History** with the plan, payment method, transaction reference, amount, and date.",
+            },
+            {
+              type: "callout",
+              kind: "note",
+              text: "If the request is still pending, the screen provides a **Cancel** button. Use it only if you need to withdraw that request; contact support if you are unsure whether the payment was received.",
+            },
+            {
+              type: "callout",
+              kind: "tip",
+              text: "If verification takes longer than the stated time, contact support with your registered email, plan, payment date, amount, and transaction reference.",
+            },
+            {
+              type: "callout",
+              kind: "warning",
+              text: "Never send your password or banking login details.",
+            },
+
+            { type: "heading", text: "Helpful terms" },
+            {
+              type: "list",
+              items: [
+                "**Subscription:** Paid access to a plan for a set period.",
+                "**Upgrade:** Changing to a plan with more features or limits.",
+                "**Transaction ID / reference:** The payment provider’s tracking number for a transfer.",
+                "**Payment verification:** Checking the transaction and receipt before approving the subscription.",
+                "**Location add-on:** An extra monthly charge for locations beyond the one included in a plan.",
+              ],
+            },
+
+            { type: "heading", text: "See also" },
+            {
+              type: "links",
+              items: [
+                {
+                  slug: "subscription",
+                  title: "My Subscription",
+                  text: "See your current plan, usage, and payment history.",
+                },
+                {
+                  slug: "my-locations",
+                  title: "My Locations",
+                  text: "Add branches and pay for additional locations.",
+                },
+                {
+                  slug: "how-to-sign-up",
+                  title: "How to Sign Up",
+                  text: "Start your free trial and set up your store.",
+                },
+              ],
+            },
+          ],
+        },
+      ),
+      page(
+        "features-overview",
+        "EliteHMS Features",
+        "EliteHMS combines pharmacy, clinic, and hospital management tools in one dashboard.",
+        {
+          image: IMG.team,
+          blocks: [
+            {
+              type: "paragraph",
+              text: "The features available to each account can depend on its subscription plan, staff role, and permissions. Select any feature below to open its guide.",
+            },
+            {
+              type: "callout",
+              kind: "note",
+              text: "Some features are restricted to particular subscription plans or staff permissions.",
+            },
+
+            { type: "heading", text: "Account and dashboard" },
+            {
+              type: "links",
+              items: [
+                {
+                  slug: "dashboard",
+                  title: "Dashboard",
+                  text: "See an overview of activity, stock, patients, bills, and revenue.",
+                },
+                {
+                  slug: "subscription",
+                  title: "My Subscription",
+                  text: "Review your plan, usage, payment history, and upgrade options.",
+                },
+                {
+                  slug: "my-locations",
+                  title: "My Locations",
+                  text: "Manage store branches and switch between locations.",
+                },
+                {
+                  slug: "staff-management",
+                  title: "Staff Management",
+                  text: "Create staff accounts, assign roles and locations, and manage access.",
+                },
+                {
+                  slug: "settings",
+                  title: "Settings",
+                  text: "Update store details, account security, dashboard appearance, navigation, and app preferences.",
+                },
+                {
+                  slug: "backup-restore",
+                  title: "Backup & Restore",
+                  text: "Download selected store data and restore it from a JSON backup.",
+                },
+                {
+                  slug: "audit-log",
+                  title: "Audit Log",
+                  text: "Review recorded changes and actions, with user and time details.",
+                },
+              ],
+            },
+
+            { type: "heading", text: "Pharmacy and patient care" },
+            {
+              type: "links",
+              items: [
+                {
+                  slug: "medicines",
+                  title: "Medicines",
+                  text: "Manage medicine details, stock quantities, prices, batches, and expiry dates.",
+                },
+                {
+                  slug: "patients",
+                  title: "Patients",
+                  text: "Register patients and maintain their contact and billing information.",
+                },
+                {
+                  slug: "billing-invoices",
+                  title: "Billing & Invoices",
+                  text: "Create bills, record payments, and track invoice status.",
+                },
+                {
+                  slug: "prescriptions",
+                  title: "Prescriptions",
+                  text: "Create and track patient prescriptions.",
+                },
+                {
+                  slug: "appointments",
+                  title: "Appointments",
+                  text: "Schedule visits and track their status.",
+                },
+                {
+                  slug: "patient-balances",
+                  title: "Patient Balances",
+                  text: "Review outstanding patient payments.",
+                },
+                {
+                  slug: "expiry-alerts",
+                  title: "Expiry Alerts",
+                  text: "Find expired or soon-to-expire medicines and prepare reports.",
+                },
+                {
+                  slug: "purchase-orders",
+                  title: "Purchase Orders",
+                  text: "Create supplier orders and track items ordered or received.",
+                },
+                {
+                  slug: "suppliers",
+                  title: "Supplier Management",
+                  text: "Store supplier details, track balances, and review delivery performance.",
+                },
+                {
+                  slug: "document-storage",
+                  title: "Document Storage",
+                  text: "Store files linked to patients, medicines, or suppliers.",
+                },
+                {
+                  slug: "invoice-templates",
+                  title: "Invoice Templates",
+                  text: "Customize printed invoice and receipt layouts.",
+                },
+              ],
+            },
+
+            { type: "heading", text: "Clinic and hospital operations" },
+            {
+              type: "links",
+              items: [
+                {
+                  slug: "lab-tests",
+                  title: "Lab Tests",
+                  text: "Order tests and follow their progress and results.",
+                },
+                {
+                  slug: "ward-bed-management",
+                  title: "Ward & Bed Management",
+                  text: "Set up wards and track bed availability and occupancy.",
+                },
+                {
+                  slug: "ipd-management",
+                  title: "IPD Management",
+                  text: "Manage inpatient admissions, payments, transfers, and discharge.",
+                },
+                {
+                  slug: "opd-queue",
+                  title: "OPD Queue",
+                  text: "Register patient tokens and manage the waiting and consultation queue.",
+                },
+                {
+                  slug: "nurse-station",
+                  title: "Nurse Station",
+                  text: "Review admitted patients’ medication requests and nursing information.",
+                },
+                {
+                  slug: "doctor-orders-notes",
+                  title: "Doctor Orders & Nursing Notes",
+                  text: "Record and review inpatient orders, acknowledgements, and shift handovers.",
+                },
+                {
+                  slug: "ot-scheduling",
+                  title: "OT Scheduling",
+                  text: "Schedule surgeries and track their status.",
+                },
+                {
+                  slug: "blood-bank",
+                  title: "Blood Bank",
+                  text: "Track donors, blood units, reservations, and issued units.",
+                },
+                {
+                  slug: "radiology",
+                  title: "Radiology (PACS-lite)",
+                  text: "Order imaging studies, upload images, and manage reports.",
+                },
+                {
+                  slug: "vital-signs",
+                  title: "Vital Signs Monitoring",
+                  text: "Record patient readings and review vital-sign trends.",
+                },
+                {
+                  slug: "emr",
+                  title: "Electronic Medical Records (EMR)",
+                  text: "View and maintain a patient’s medical history and related records.",
+                },
+                {
+                  slug: "insurance-panels",
+                  title: "Insurance & Panel Management",
+                  text: "Manage insurance panels, insured patients, and claims.",
+                },
+                {
+                  slug: "online-booking",
+                  title: "Online Appointment Booking",
+                  text: "Set up a public booking page for patients to request appointments.",
+                },
+              ],
+            },
+
+            { type: "heading", text: "Finance and business" },
+            {
+              type: "links",
+              items: [
+                {
+                  slug: "accounting-finance",
+                  title: "Accounting & Finance",
+                  text: "Review revenue, expenses, profit, medicine margins, and tax summaries.",
+                },
+                {
+                  slug: "salary-payroll",
+                  title: "Salary & Payroll",
+                  text: "Maintain employee profiles and prepare monthly payroll.",
+                },
+                {
+                  slug: "reports-analytics",
+                  title: "Reports & Analytics",
+                  text: "Review billing and sales summaries, trends, and downloadable reports.",
+                },
+                {
+                  slug: "whatsapp-sms-broadcast",
+                  title: "WhatsApp & SMS Broadcast",
+                  text: "Prepare patient campaigns, reminders, and health messages.",
+                },
+                {
+                  slug: "patient-feedback",
+                  title: "Patient Feedback & Ratings",
+                  text: "Collect and review patient feedback and ratings.",
+                },
+              ],
+            },
+
+            { type: "heading", text: "Smart tools" },
+            {
+              type: "links",
+              items: [
+                {
+                  slug: "ai-medicine-assistant",
+                  title: "AI Medicine Assistant",
+                  text: "Ask medicine-related questions and check possible drug interactions.",
+                },
+                {
+                  slug: "store-knowledge-base",
+                  title: "Store Knowledge Base",
+                  text: "Add store documents for staff to search and ask questions about.",
+                },
+                {
+                  slug: "patient-matching",
+                  title: "Smart Patient Matching",
+                  text: "Find possible duplicate patient records for review.",
+                },
+                {
+                  slug: "prescription-ocr",
+                  title: "Prescription OCR Scanner",
+                  text: "Upload a prescription image to extract medicine details for checking.",
+                },
+                {
+                  slug: "ai-diagnosis",
+                  title: "AI Diagnosis Assistant",
+                  text: "Get AI-generated clinical decision-support suggestions for a licensed clinician to review.",
+                },
+                {
+                  slug: "demand-forecast",
+                  title: "Predictive Medicine Demand",
+                  text: "Forecast medicine demand to help plan stock.",
+                },
+                {
+                  slug: "drap-compliance",
+                  title: "DRAP Compliance",
+                  text: "Track controlled medicines, batches, expiry destruction, supplier records, and compliance reports.",
+                },
+              ],
+            },
+            {
+              type: "callout",
+              kind: "warning",
+              text: "AI-generated clinical suggestions support professional review and do not replace a clinician’s judgment.",
+            },
+
+            { type: "heading", text: "Help" },
+            {
+              type: "links",
+              items: [
+                {
+                  slug: "support-center",
+                  title: "Support Center",
+                  text: "Send a support request and follow replies from the support team.",
+                },
+              ],
+            },
+          ],
+        },
+      ),
       page(
         "dashboard",
         "Dashboard",
@@ -9653,8 +10500,292 @@ export const docGroups: DocGroup[] = [
           ],
         },
       ),
-      page("troubleshooting", "Troubleshooting"),
-      page("contact-support", "Contact Support"),
+      page(
+        "troubleshooting",
+        "Troubleshooting",
+        "Quick fixes for common problems in EliteHMS, with links to the full guides.",
+        {
+          image: IMG.tech,
+          blocks: [
+            { type: "heading", text: "Check these first" },
+            {
+              type: "paragraph",
+              text: "Most problems come from one of four things:",
+            },
+            {
+              type: "list",
+              ordered: true,
+              items: [
+                "**The selected location.** Check the location name in the top bar. Medicines, patients, bills, and reports all follow it. See [Top Navigation Bar](/documentation/top-navigation-bar).",
+                "**Filters, search, and date ranges.** A filter can hide records that exist.",
+                "**Your plan and permissions.** Some features depend on the subscription plan or your staff role.",
+                "**Needing a refresh.** Use the **Refresh** button on the page to reload the latest information.",
+              ],
+            },
+
+            { type: "heading", text: "Sign-in problems" },
+            {
+              type: "list",
+              items: [
+                "**Invalid email or password:** Check for typing errors, then try again.",
+                "**Email not verified:** Select **Resend verification email**, then check your spam or junk folder.",
+                "**Account deactivated:** Contact your store owner or administrator.",
+                "**Invalid authenticator code:** Wait for a fresh code, or use a saved recovery code. A recovery code works once.",
+                "**Forgot your password:** Use **Forgot password?**. The reset link expires after 1 hour.",
+              ],
+            },
+            {
+              type: "paragraph",
+              text: "Full steps are in [How to Log In](/documentation/how-to-log-in).",
+            },
+
+            { type: "heading", text: "A page is missing from the menu" },
+            {
+              type: "list",
+              items: [
+                "Some features are restricted to particular subscription plans or staff permissions. See [Plans, Prices & Payments](/documentation/plans-pricing).",
+                "You may have hidden it. Open **Settings**, then **Navigation**, and use **Reset All**. See [Settings](/documentation/settings).",
+                "Ask the account owner or administrator to check your access. See [Staff Management](/documentation/staff-management).",
+              ],
+            },
+            {
+              type: "callout",
+              kind: "note",
+              text: "Hiding a page in the sidebar does not change the account’s permissions.",
+            },
+
+            { type: "heading", text: "Records or totals look empty or wrong" },
+            {
+              type: "list",
+              items: [
+                "A zero can mean there are no matching records for the selected location or time period. Check the location before assuming data is missing.",
+                "Clear the search box, choose **All** in the status filter, and check the date range.",
+                "Reports are based on bills created within the selected dates. See [Reports & Analytics](/documentation/reports-analytics).",
+              ],
+            },
+
+            { type: "heading", text: "Cannot find a patient" },
+            {
+              type: "list",
+              items: [
+                "Search by name, patient ID, or phone number, and check the spelling.",
+                "In **EMR** and **Vital Signs**, enter at least two characters.",
+                "Make sure you are in the correct location.",
+                "If you suspect duplicate records, use [Smart Patient Matching](/documentation/patient-matching). A match is only a suggestion, so confirm the person’s identity before merging.",
+              ],
+            },
+
+            { type: "heading", text: "Billing and payments" },
+            {
+              type: "list",
+              items: [
+                "**Cannot select a patient on an invoice:** Register the patient first on the [Patients](/documentation/patients) page.",
+                "**Cannot add a medicine quantity:** The quantity cannot exceed the available stock.",
+                "**Cannot record a payment:** The amount must be greater than zero and cannot exceed the remaining balance.",
+                "**Email to Patient does not work:** Add or correct the patient’s email on the Patients page.",
+              ],
+            },
+            {
+              type: "paragraph",
+              text: "See [Billing & Invoices](/documentation/billing-invoices) and [Patient Balances](/documentation/patient-balances).",
+            },
+
+            { type: "heading", text: "Stock and expiry" },
+            {
+              type: "list",
+              items: [
+                "**Stock did not increase after creating a purchase order:** Creating an order does not add stock. Stock is added when you record delivery with **Receive Stock**. See [Purchase Orders](/documentation/purchase-orders).",
+                "**Stock did not drop after recording a destruction:** Stock is reduced only when you select the medicine from inventory. A manually entered medicine cannot adjust stock. See [DRAP Compliance](/documentation/drap-compliance).",
+                "**Expiry Alerts shows a medicine with no stock:** The alerts use active medicine records, including records with no stock. See [Expiry Alerts](/documentation/expiry-alerts).",
+                "**A medicine is flagged Low Stock too early or too late:** Update its minimum stock alert. See [Medicines](/documentation/medicines).",
+              ],
+            },
+
+            { type: "heading", text: "Printing invoices and receipts" },
+            {
+              type: "steps",
+              items: [
+                {
+                  title:
+                    "Select **Thermal 80mm** or **Thermal 58mm** in **Invoice Templates**",
+                },
+                { title: "Print the invoice as a PDF from billing" },
+                {
+                  title:
+                    "Choose the matching paper width in the PDF’s print settings",
+                },
+                {
+                  title:
+                    "Set margins to none or borderless if your printer supports it",
+                },
+              ],
+            },
+            {
+              type: "callout",
+              kind: "tip",
+              text: "Results can vary by printer. Print a test before using the layout for customer receipts. See [Invoice Templates](/documentation/invoice-templates).",
+            },
+
+            { type: "heading", text: "Uploads fail" },
+            {
+              type: "list",
+              items: [
+                "**Documents:** PDF, JPEG, PNG, and WebP files up to 5 MB. See [Document Storage](/documentation/document-storage).",
+                "**Lab result files:** PDF, JPG, PNG, or WEBP up to 5 MB. See [Lab Tests](/documentation/lab-tests).",
+                "**Radiology images:** Up to 10 files per upload and 20 MB per file. See [Radiology](/documentation/radiology).",
+                "**Prescription images:** Image files up to 10 MB. See [Prescription OCR Scanner](/documentation/prescription-ocr).",
+                "**Payment receipts:** PNG or JPG up to 5 MB.",
+              ],
+            },
+
+            { type: "heading", text: "AI tools" },
+            {
+              type: "list",
+              items: [
+                "**Smart Reorder shows no suggestions:** The store may not have enough sales history yet. See [AI Medicine Assistant](/documentation/ai-medicine-assistant).",
+                "**A medicine is missing from the demand forecast:** The forecast needs active medicines and at least two months of sales history for a medicine. See [Predictive Medicine Demand](/documentation/demand-forecast).",
+                "**A prescription scan is missing details or fails:** Try a clearer, well-lit image with the writing in focus.",
+                "**A knowledge base document shows Failed:** Read the error beside it, correct the file or content, and upload it again. A Ready document cannot be edited, so delete it and upload the corrected version. See [Store Knowledge Base](/documentation/store-knowledge-base).",
+              ],
+            },
+            {
+              type: "callout",
+              kind: "warning",
+              text: "AI answers can be incomplete or incorrect. A qualified pharmacist or clinician should always verify medicine and clinical information before acting on it.",
+            },
+
+            { type: "heading", text: "Notifications and live updates" },
+            {
+              type: "list",
+              items: [
+                "**The status dot is red:** The app is reconnecting. Wait for it to turn green. Updates that depend on the live connection may be delayed.",
+                "**Browser notifications do not appear:** They depend on browser permission. Open **Settings**, then **Mobile App**, to manage push notifications.",
+              ],
+            },
+
+            { type: "heading", text: "Subscription and plan limits" },
+            {
+              type: "list",
+              items: [
+                "**You cannot add more records or staff:** You may have reached a plan limit. Check **Current Usage** in [My Subscription](/documentation/subscription).",
+                "**A payment request is still pending:** The app says activation should happen within 24 hours after verification. If it takes longer, contact support with your registered email, plan, payment date, amount, and transaction reference.",
+              ],
+            },
+            {
+              type: "callout",
+              kind: "warning",
+              text: "Never send your password or banking login details to anyone.",
+            },
+
+            { type: "heading", text: "Locations" },
+            {
+              type: "list",
+              items: [
+                "**A location is missing from the selector:** It may be deactivated. A deactivated location is read-only and removed from the selector.",
+                "**You cannot reactivate a location:** The account needs an available location slot.",
+                "**Staff cannot see a branch:** Staff accounts are limited to their assigned locations. Check **Assigned Locations** in Staff Management.",
+              ],
+            },
+            {
+              type: "paragraph",
+              text: "See [My Locations](/documentation/my-locations).",
+            },
+
+            { type: "heading", text: "Backup and restore" },
+            {
+              type: "list",
+              items: [
+                "**Purchase orders were not restored:** The **Purchase Orders** restore option does not import purchase orders. The full JSON export does include them.",
+                "**Some bills were skipped:** Bills with an invoice number that already exists are skipped.",
+              ],
+            },
+            {
+              type: "paragraph",
+              text: "See [Backup & Restore](/documentation/backup-restore).",
+            },
+
+            { type: "heading", text: "Online booking and broadcasts" },
+            {
+              type: "list",
+              items: [
+                "**Patients cannot book online:** The booking page must be enabled, and you need at least one active doctor with at least one available day and time slot. See [Online Appointment Booking](/documentation/online-booking).",
+                "**A broadcast was not sent:** EliteHMS does not send messages automatically. Press **Send** in WhatsApp or SMS yourself, then mark the message **Sent**. See [WhatsApp & SMS Broadcast](/documentation/whatsapp-sms-broadcast).",
+              ],
+            },
+
+            { type: "heading", text: "Still stuck?" },
+            {
+              type: "links",
+              items: [
+                {
+                  slug: "support-center",
+                  title: "Support Center",
+                  text: "Send a ticket from inside the dashboard and follow the replies.",
+                },
+                {
+                  slug: "contact-support",
+                  title: "Contact Support",
+                  text: "Reach the platform owner by email or phone.",
+                },
+                {
+                  slug: "how-to-log-in",
+                  title: "How to Log In",
+                  text: "Cannot sign in? Start here.",
+                },
+              ],
+            },
+          ],
+        },
+      ),
+      page(
+        "contact-support",
+        "Contact Support",
+        "How to reach the EliteHMS support team and the platform owner.",
+        {
+          image: IMG.phone,
+          blocks: [
+            { type: "heading", text: "Use the Support Center first" },
+            {
+              type: "paragraph",
+              text: "For billing, technical, account, and other questions, submit a ticket from the [Support Center](/documentation/support-center) inside the dashboard. You can follow replies in the same place.",
+            },
+
+            { type: "heading", text: "Platform owner" },
+            {
+              type: "list",
+              items: [
+                "**Name:** Amjad Ullah",
+                "**Profession:** Software Developer",
+                "**Phone:** [+92 306 953 4618](tel:+923069534618)",
+                "**Email:** [amjadfast87@gmail.com](mailto:amjadfast87@gmail.com)",
+                "**Company LinkedIn:** [linkedin.com/company/elitehms](https://linkedin.com/company/elitehms)",
+                "**Personal LinkedIn:** [linkedin.com/in/amjad-ullah-baa484246](https://www.linkedin.com/in/amjad-ullah-baa484246)",
+              ],
+            },
+
+            { type: "heading", text: "If you cannot sign in" },
+            {
+              type: "paragraph",
+              text: "The Support Center is only available after you sign in. If you cannot sign in, first try **Forgot password?** (see [How to Log In](/documentation/how-to-log-in)), then use the email or phone number above.",
+            },
+
+            { type: "heading", text: "What to include when you contact us" },
+            {
+              type: "list",
+              items: [
+                "Your registered email address.",
+                "Your plan and, if the question is about a payment, the payment date, amount, and transaction reference.",
+                "What you were doing, what you expected, and what happened instead.",
+              ],
+            },
+            {
+              type: "callout",
+              kind: "warning",
+              text: "Never send your password or banking login details.",
+            },
+          ],
+        },
+      ),
     ],
   },
 ];
